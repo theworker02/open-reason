@@ -1,0 +1,373 @@
+# Open Reason knowledge graph — original curriculum structure.
+# Inspired by typical programming/math/science progressions, not copied from any course.
+
+concepts:
+  - id: python.variables
+    name: Python variables
+    domain: programming
+    education_level: high_school
+    prerequisites: []
+    related_concepts: [python.expressions]
+    common_mistakes: [python.variables.box_model]
+    verification_methods: [trace_assignment]
+    keywords: [variable, assignment, name binding]
+
+  - id: python.expressions
+    name: Python expressions
+    domain: programming
+    education_level: high_school
+    prerequisites: [python.variables]
+    related_concepts: [python.conditionals]
+    common_mistakes: []
+    verification_methods: [evaluate_expression]
+    keywords: [expression, operator, precedence]
+
+  - id: python.conditionals
+    name: Python conditionals
+    domain: programming
+    education_level: high_school
+    prerequisites: [python.expressions]
+    related_concepts: [python.loops]
+    common_mistakes: [python.conditionals.assignment_as_test]
+    verification_methods: [branch_trace]
+    keywords: [if, else, boolean, elif]
+
+  - id: python.loops
+    name: Python loops
+    domain: programming
+    education_level: high_school
+    prerequisites: [python.conditionals]
+    related_concepts: [python.functions]
+    common_mistakes: [python.loops.off_by_one]
+    verification_methods: [sandbox:python]
+    keywords: [for, while, iteration, sequence]
+
+  - id: python.functions
+    name: Python functions
+    domain: programming
+    education_level: high_school
+    prerequisites: [python.loops]
+    related_concepts: [python.collections]
+    common_mistakes: [python.functions.mutable_default]
+    verification_methods: [sandbox:python]
+    keywords: [def, return, argument, parameter]
+
+  - id: python.collections
+    name: Python collections
+    domain: programming
+    education_level: introductory_college
+    prerequisites: [python.functions]
+    related_concepts: [python.classes]
+    common_mistakes: [python.collections.aliasing]
+    verification_methods: [sandbox:python]
+    keywords: [list, dict, set, tuple]
+
+  - id: python.classes
+    name: Python classes
+    domain: programming
+    education_level: introductory_college
+    prerequisites: [python.collections]
+    related_concepts: [cs.algorithms]
+    common_mistakes: []
+    verification_methods: [sandbox:python]
+    keywords: [class, object, method, instance]
+
+  - id: cs.algorithms
+    name: Algorithms
+    domain: computer_science
+    education_level: undergraduate
+    prerequisites: [python.classes]
+    related_concepts: [cs.data_structures, cs.complexity]
+    common_mistakes: []
+    verification_methods: [complexity_argument]
+    keywords: [algorithm, complexity, big-o]
+
+  - id: cs.data_structures
+    name: Data structures
+    domain: computer_science
+    education_level: undergraduate
+    prerequisites: [cs.algorithms]
+    related_concepts: []
+    common_mistakes: []
+    verification_methods: [complexity_argument]
+    keywords: [array, hash table, tree, graph]
+
+  - id: math.arithmetic
+    name: Arithmetic
+    domain: mathematics
+    education_level: k5
+    prerequisites: []
+    related_concepts: [math.algebra]
+    common_mistakes: [math.arithmetic.order_of_operations]
+    verification_methods: [integer_check]
+    keywords: [addition, multiplication, fraction]
+
+  - id: math.algebra
+    name: Algebra
+    domain: mathematics
+    education_level: high_school
+    prerequisites: [math.arithmetic]
+    related_concepts: [math.functions]
+    common_mistakes: [math.algebra.sign_error]
+    verification_methods: [sympy]
+    keywords: [equation, linear, polynomial]
+
+  - id: math.functions
+    name: Functions
+    domain: mathematics
+    education_level: high_school
+    prerequisites: [math.algebra]
+    related_concepts: [math.calculus]
+    common_mistakes: []
+    verification_methods: [sympy]
+    keywords: [function, domain, composition]
+
+  - id: math.calculus
+    name: Calculus
+    domain: mathematics
+    education_level: introductory_college
+    prerequisites: [math.functions]
+    related_concepts: []
+    common_mistakes: [math.calculus.limit_substitution]
+    verification_methods: [sympy]
+    keywords: [limit, derivative, integral]
+
+  - id: science.method
+    name: Scientific method
+    domain: science
+    education_level: middle_school
+    prerequisites: []
+    related_concepts: [science.newton]
+    common_mistakes: [science.method.hypothesis_is_guess]
+    verification_methods: [argument_check]
+    keywords: [hypothesis, experiment, control, evidence]
+
+  - id: science.newton
+    name: Newton's second law
+    domain: science
+    education_level: high_school
+    prerequisites: [science.method]
+    related_concepts: [science.energy]
+    common_mistakes: []
+    verification_methods: [numeric]
+    keywords: [force, mass, acceleration, newton]
+
+  - id: python.exceptions
+    name: Python exceptions
+    domain: programming
+    education_level: high_school
+    prerequisites: [python.functions]
+    related_concepts: [python.testing]
+    common_mistakes: [python.exceptions.bare_except]
+    verification_methods: [sandbox:python]
+    keywords: [try, except, raise, finally]
+
+  - id: python.modules
+    name: Python modules
+    domain: programming
+    education_level: high_school
+    prerequisites: [python.functions]
+    related_concepts: [python.testing]
+    common_mistakes: []
+    verification_methods: [argument_check]
+    keywords: [import, package, module, __name__]
+
+  - id: python.iterators
+    name: Python iterators
+    domain: programming
+    education_level: introductory_college
+    prerequisites: [python.collections]
+    related_concepts: [python.functions]
+    common_mistakes: []
+    verification_methods: [sandbox:python]
+    keywords: [iterator, iterable, next, yield]
+
+  - id: python.testing
+    name: Unit testing
+    domain: programming
+    education_level: introductory_college
+    prerequisites: [python.functions]
+    related_concepts: [python.exceptions]
+    common_mistakes: []
+    verification_methods: [sandbox:python]
+    keywords: [unittest, assert, test, fixture]
+
+  - id: cs.complexity
+    name: Asymptotic complexity
+    domain: computer_science
+    education_level: undergraduate
+    prerequisites: [cs.algorithms]
+    related_concepts: [cs.recursion]
+    common_mistakes: [cs.complexity.nested_loops]
+    verification_methods: [complexity_argument]
+    keywords: [big-o, time complexity, space]
+
+  - id: cs.recursion
+    name: Recursion
+    domain: computer_science
+    education_level: undergraduate
+    prerequisites: [python.functions]
+    related_concepts: [cs.algorithms]
+    common_mistakes: []
+    verification_methods: [sandbox:python]
+    keywords: [recursion, base case, stack]
+
+  - id: cs.sql
+    name: SQL querying
+    domain: computer_science
+    education_level: introductory_college
+    prerequisites: [python.collections]
+    related_concepts: [cs.data_structures]
+    common_mistakes: []
+    verification_methods: [sandbox:sql]
+    keywords: [select, join, group by, where]
+
+  - id: cs.http
+    name: HTTP
+    domain: computer_science
+    education_level: introductory_college
+    prerequisites: [python.functions]
+    related_concepts: [cs.data_structures]
+    common_mistakes: []
+    verification_methods: [argument_check]
+    keywords: [http, get, post, status code]
+
+  - id: cs.git
+    name: Git version control
+    domain: computer_science
+    education_level: introductory_college
+    prerequisites: [python.variables]
+    related_concepts: [cs.http]
+    common_mistakes: []
+    verification_methods: [argument_check]
+    keywords: [git, commit, branch, merge]
+
+  - id: javascript.closures
+    name: JavaScript closures
+    domain: programming
+    education_level: introductory_college
+    prerequisites: [python.functions]
+    related_concepts: [python.functions]
+    common_mistakes: []
+    verification_methods: [argument_check]
+    keywords: [closure, lexical scope, javascript]
+
+  - id: rust.ownership
+    name: Rust ownership
+    domain: programming
+    education_level: undergraduate
+    prerequisites: [python.collections]
+    related_concepts: [python.variables]
+    common_mistakes: []
+    verification_methods: [argument_check]
+    keywords: [ownership, borrow, rust, lifetime]
+
+  - id: go.concurrency
+    name: Go concurrency
+    domain: programming
+    education_level: undergraduate
+    prerequisites: [python.functions]
+    related_concepts: [cs.algorithms]
+    common_mistakes: []
+    verification_methods: [argument_check]
+    keywords: [goroutine, channel, go]
+
+  - id: math.geometry
+    name: Geometry
+    domain: mathematics
+    education_level: high_school
+    prerequisites: [math.algebra]
+    related_concepts: [math.trigonometry]
+    common_mistakes: []
+    verification_methods: [numeric]
+    keywords: [triangle, area, circle, pythagoras]
+
+  - id: math.trigonometry
+    name: Trigonometry
+    domain: mathematics
+    education_level: high_school
+    prerequisites: [math.geometry]
+    related_concepts: [math.calculus]
+    common_mistakes: []
+    verification_methods: [sympy]
+    keywords: [sine, cosine, radian, triangle]
+
+  - id: math.discrete
+    name: Discrete mathematics
+    domain: mathematics
+    education_level: undergraduate
+    prerequisites: [math.algebra]
+    related_concepts: [math.number_theory]
+    common_mistakes: []
+    verification_methods: [integer_check]
+    keywords: [combinatorics, graph, counting]
+
+  - id: math.probability
+    name: Probability
+    domain: mathematics
+    education_level: high_school
+    prerequisites: [math.arithmetic]
+    related_concepts: [math.discrete]
+    common_mistakes: []
+    verification_methods: [numeric]
+    keywords: [probability, independent, expected value]
+
+  - id: math.linear_algebra
+    name: Linear algebra
+    domain: mathematics
+    education_level: undergraduate
+    prerequisites: [math.algebra]
+    related_concepts: [math.functions]
+    common_mistakes: []
+    verification_methods: [sympy]
+    keywords: [matrix, vector, determinant]
+
+  - id: math.number_theory
+    name: Number theory
+    domain: mathematics
+    education_level: high_school
+    prerequisites: [math.arithmetic]
+    related_concepts: [math.discrete]
+    common_mistakes: []
+    verification_methods: [integer_check]
+    keywords: [gcd, modulo, prime, remainder]
+
+  - id: science.energy
+    name: Energy
+    domain: science
+    education_level: high_school
+    prerequisites: [science.newton]
+    related_concepts: [science.waves]
+    common_mistakes: []
+    verification_methods: [numeric]
+    keywords: [kinetic, potential, joule, work]
+
+  - id: science.circuits
+    name: Electric circuits
+    domain: science
+    education_level: high_school
+    prerequisites: [science.energy]
+    related_concepts: [science.newton]
+    common_mistakes: []
+    verification_methods: [numeric]
+    keywords: [ohm, voltage, current, resistance]
+
+  - id: science.stoichiometry
+    name: Stoichiometry
+    domain: science
+    education_level: high_school
+    prerequisites: [science.method]
+    related_concepts: [science.newton]
+    common_mistakes: []
+    verification_methods: [numeric]
+    keywords: [mole, molar mass, reaction, yield]
+
+  - id: science.waves
+    name: Waves
+    domain: science
+    education_level: high_school
+    prerequisites: [science.energy]
+    related_concepts: [science.circuits]
+    common_mistakes: []
+    verification_methods: [numeric]
+    keywords: [frequency, wavelength, period, wave]

@@ -1,0 +1,43 @@
+# Distinctive prefixes and needles from well-known evaluation sets.
+# Store fingerprints, not answers. Hits are reported in build reports.
+benchmarks:
+  - name: humaneval
+    prompt_prefixes:
+      - "from typing import list"
+      - "check if in given list of numbers"
+      - "for a given number n find the number of trailing zeros"
+    needles:
+      - "has_close_elements"
+      - "separate_paren_groups"
+      - "HumanEval/"
+  - name: mbpp
+    prompt_prefixes:
+      - "write a function to find the similar elements from the given two tuple lists"
+    needles:
+      - "MBPP/"
+  - name: gsm8k
+    prompt_prefixes:
+      - "natalia sold clips to 48 of her friends in april"
+      - "weng earns $12 an hour for babysitting"
+    needles:
+      - "GSM8K"
+  - name: math_hendrycks
+    needles:
+      - "hendrycks math"
+      - "MATH competition problem"
+  - name: mmlu
+    needles:
+      - "MMLU-"
+      - "hendrycks test"
+  - name: swebench
+    needles:
+      - "SWE-bench"
+      - "swebench"
+  - name: livecodebench
+    needles:
+      - "LiveCodeBench"
+  - name: reddit_forbidden
+    needles:
+      - "reddit.com"
+      - "reddit.com/r/"
+      - "pushshift"

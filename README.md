@@ -1,0 +1,257 @@
+<p align="center">
+  <img src="assets/logo.svg" alt="Open Reason" width="120" height="120">
+</p>
+
+<h1 align="center">Open Reason</h1>
+
+<p align="center">
+  <strong>An open, verified dataset for coding, science, mathematics, and human reasoning.</strong><br>
+  Provenance-aware. License-gated. Independently checked. Reproducible.
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/code-Apache%202.0-0B1F33" alt="Apache 2.0"></a>
+  <a href="LICENSE-DATA"><img src="https://img.shields.io/badge/data-CC%20BY%204.0-C4A35A" alt="CC BY 4.0"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/pipeline-v0.4.0-2A6F6F" alt="v0.4.0"></a>
+  <a href="docs/data-sources.md"><img src="https://img.shields.io/badge/Reddit-forbidden-b91c1c" alt="Reddit forbidden"></a>
+  <a href="https://huggingface.co/datasets/theworker02/open-reason"><img src="https://img.shields.io/badge/Hugging%20Face-open--reason-FFD21E" alt="Hugging Face"></a>
+</p>
+
+<p align="center">
+  <img src="assets/banner.png" alt="Open Reason — Open. Licensed. Provenanced. Verified." width="100%">
+</p>
+
+> **Open Reason does not use Reddit as a data source.**
+
+## Changelog
+
+See **[CHANGELOG.md](CHANGELOG.md)** for every release.
+
+| Version | Date | Notes |
+| --- | --- | --- |
+| **[v0.4.0](CHANGELOG.md#v040--2026-08-18)** | 2026-08-18 | Policy engine, coverage generation, training pipeline |
+| **[v0.3.0](CHANGELOG.md#v030--2026-08-18)** | 2026-08-18 | Curriculum auto-approve, original source-tagged tasks, README demos |
+| [v0.2.0](CHANGELOG.md#v020--2026-08-18) | 2026-08-18 | Source registry, knowledge graph, education / core / verified splits |
+| [v0.1.0](CHANGELOG.md#v010--2026-08-18) | 2026-08-18 | Schema, sandbox verification, first seed release |
+
+## Why it exists
+
+Most public “reasoning” corpora are web dumps, unverified generations, or evaluation sets reused as training data. Open Reason is built so every row can answer: Where did this come from? May I use it? Was the answer actually checked?
+
+It is a dataset **and** the pipeline that produces it.
+
+## GitHub vs Hugging Face
+
+- **GitHub** [`theworker02/open-reason`](https://github.com/theworker02/open-reason) is the lab: pipeline, schemas, taxonomy, registry, tests, docs, configs, and small samples. Default branch is `main`.
+- **Hugging Face** [`theworker02/open-reason`](https://huggingface.co/datasets/theworker02/open-reason) is distribution: Parquet shards and the dataset card, versioned from **GitHub Releases**.
+- `open-reason build` writes local `data/release/`. Those `*.parquet` / `*.jsonl` shards are gitignored. Only manifests, statistics, and the card in `distribution/dataset/` belong in git.
+
+See [docs/huggingface.md](docs/huggingface.md) and [docs/releases.md](docs/releases.md).
+
+## Quick start
+
+```bash
+git clone https://github.com/theworker02/open-reason.git
+cd open-reason
+pip install -e ".[dev]"
+open-reason sources --approve --apply
+open-reason build --config all --seed 42 --out data/release
+```
+
+Load:
+
+```python
+from datasets import load_dataset
+
+coding = load_dataset("theworker02/open-reason", "coding")
+math = load_dataset("theworker02/open-reason", "mathematics")
+education = load_dataset("theworker02/open-reason", "education")
+core = load_dataset("theworker02/open-reason", "core")
+```
+
+## How to use it
+
+### 1. Auto-approve sources
+
+Auto-approve is a **license policy**, not a scrape. It enables original Open Reason tasks inspired by a source’s public curriculum or docs. It never copies lectures, never sets `verbatim=true` for NC/SA/unknown licenses, and never enables Reddit.
+
+<p align="center">
+  <img src="assets/demo/approve.gif" alt="open-reason sources --approve --apply" width="720">
+</p>
+
+```bash
+open-reason sources --approve          # dry run
+open-reason sources --approve --apply  # write sources/registry.yaml
+```
+
+### 2. Generate original examples
+
+<p align="center">
+  <img src="assets/demo/generate.gif" alt="open-reason generate --domain education" width="720">
+</p>
+
+```bash
+open-reason generate --domain education
+open-reason ingest --source khan-academy   # original tasks, not copied lessons
+open-reason ingest --source reddit         # rejected
+```
+
+### 3. Load a configuration
+
+<p align="center">
+  <img src="assets/demo/load.gif" alt="load_dataset open-reason coding" width="720">
+</p>
+
+```python
+from datasets import load_dataset
+ds = load_dataset("theworker02/open-reason", "coding", split="train", streaming=True)
+for row in ds.take(3):
+    print(row["id"], row["task_type"])
+```
+
+## Dataset configurations
+
+```text
+coding | reasoning | science | mathematics | human | education | core | verified | all
+```
+
+| Config | Contents |
+| --- | --- |
+| `coding` | Sandbox-tested software tasks (Python, SQL, JavaScript when available) |
+| `mathematics` | Symbolic / integer-checked problems |
+| `science` | Independently recomputed numerical and conceptual items |
+| `reasoning` | Structured planning and constraint problems |
+| `human` | Teaching, synthesis, decision support |
+| `education` | Curriculum graph + original tasks from auto-approved sources |
+| `core` | Quality tiers S and A |
+| `verified` | Tier S only (`quality.verified` after a real check) |
+| `all` | Union by `id` |
+
+## Auto-approve policy
+
+```text
+permissive SPDX + commercial + no share-alike  →  original tasks (verbatim still off until a reviewed crawler)
+education / docs with unclear or SA/NC terms   →  original tasks only
+Reddit / Quora / prohibited                    →  never
+Stack Exchange                                 →  skipped (community evidence, not ground truth)
+```
+
+`quality.verified` is never set from votes, views, or “accepted answer.”
+
+## Pipeline
+
+```text
+source registry
+    → license-policy auto-approve
+    → original task generation
+    → normalize / validate / Reddit block
+    → execute or symbolic check
+    → deduplicate
+    → contamination report
+    → statistics + Parquet / JSONL
+```
+
+```bash
+open-reason sources
+open-reason generate --domain programming
+open-reason validate data/release --strict
+open-reason statistics --config all
+open-reason benchmark
+```
+
+## Schema
+
+Every example carries knowledge, task, evidence, solution, verification, provenance, educational position, and quality — not only `prompt` + `answer`.
+
+```json
+{
+  "id": "or-mathematics-synthetic-…",
+  "domain": "mathematics",
+  "task_type": "algebra",
+  "prompt": "…",
+  "observations": [],
+  "constraints": [],
+  "plan": [],
+  "solution": "…",
+  "answer": "…",
+  "verification": {"method": "sympy", "passed": true},
+  "provenance": {"source_type": "synthetic", "license_spdx": "CC-BY-4.0"},
+  "quality": {"tier": "S", "verified": true, "evidence_confidence": 0.81},
+  "education_level": "high_school",
+  "concept_id": "math.algebra"
+}
+```
+
+JSON Schema: [`schemas/`](schemas/).
+
+## Quality tiers
+
+| Tier | Meaning |
+| --- | --- |
+| **S** | A check ran and passed |
+| **A** | Reviewed / human-authored, not claimed executed |
+| **B** | Synthetic, structurally valid |
+| **C** | Raw (unused) |
+
+## Licensing
+
+- Pipeline: [Apache 2.0](LICENSE)
+- Original dataset content: [CC BY 4.0](LICENSE-DATA)
+- Per-row `provenance.license_spdx` is authoritative
+- Share-alike and non-commercial third-party text is not relicensed into this release
+
+## Statistics
+
+<!-- BEGIN_RELEASE_SNAPSHOT -->
+Pipeline version **0.4.0**.
+
+| Configuration | Examples | Verified | Human-authored |
+| --- | ---: | ---: | ---: |
+| coding | 225 | 219 | 0 |
+| reasoning | 187 | 187 | 0 |
+| science | 175 | 175 | 0 |
+| mathematics | 212 | 212 | 0 |
+| human | 260 | 240 | 20 |
+| education | 81 | 20 | 0 |
+| core | 1140 | 1053 | 20 |
+| verified | 1053 | 1053 | 0 |
+| all | 1140 | 1053 | 20 |
+
+Rebuild with `open-reason build --config all --seed 42 --out data/release`.
+Full tables: `data/release/statistics.md`.
+<!-- END_RELEASE_SNAPSHOT -->
+
+## Limitations
+
+- Quality over scale: this is a foundation, not a web dump
+- Auto-approve does **not** download Khan Academy, MIT OCW, MDN, or Stack Overflow
+- Verified coding languages are those the sandbox can run
+- Teaching items are not executable oracles
+- Benchmark denylists cannot be complete
+
+## Documentation
+
+- [Architecture](docs/architecture.md)
+- [Data sources](docs/data-sources.md)
+- [Knowledge graph](docs/knowledge-graph.md)
+- [Provenance](docs/provenance.md) · [Licensing](docs/licensing.md) · [Quality](docs/quality.md)
+- [Validation](docs/validation.md) · [Verification](docs/verification.md) · [Sandbox](docs/sandbox.md)
+- [Contamination](docs/contamination.md) · [Releases](docs/releases.md)
+- [Hugging Face](docs/huggingface.md) · [Dataset card](DATA_CARD.md)
+- [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
+
+## Citation
+
+```bibtex
+@misc{openreason2026,
+  title        = {Open Reason: An open, verified dataset for coding, science, mathematics, and human reasoning},
+  author       = {Open Reason contributors},
+  year         = {2026},
+  howpublished = {\url{https://github.com/theworker02/open-reason}},
+  note         = {Dataset and pipeline v0.4.0}
+}
+```
+
+Also see [`CITATION.cff`](CITATION.cff).
+
+**Open. Licensed. Provenanced. Diverse. Verified. Reproducible. Completely free of Reddit.**

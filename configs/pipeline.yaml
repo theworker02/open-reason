@@ -1,0 +1,18 @@
+version: "0.4.0"
+seed: 42
+configs:
+  - coding
+  - reasoning
+  - science
+  - mathematics
+  - human
+  - education
+  - core
+  - verified
+  - all
+reddit_block: true
+verification_timeout_s: 12
+verification_memory_mb: 512
+max_near_duplicate_similarity: 0.92
+require_license: true
+strict: false

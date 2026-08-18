@@ -1,0 +1,115 @@
+# Central Open Reason source policy. Application code must read this file
+# instead of scattering one-off approval rules.
+version: "0.4.0"
+
+reddit: prohibited
+quora_as_authority: prohibited
+community_votes_are_not_verification: true
+auto_ingest_discovered: false
+reviewed_crawler_exists: false
+
+never_scrape:
+  - khan_academy_computing
+  - mit_opencourseware
+  - harvard_cs50
+  - openstax
+  - mdn
+  - stackoverflow
+  - stack_exchange
+
+verbatim:
+  default: false
+  require_reviewed_crawler: true
+  forbid_if:
+    - non_commercial
+    - share_alike
+    - unknown_license
+    - rejected_spdx
+
+# REVIEW_REQUIRED is the exception. Ordinary docs and original-curriculum
+# education sources auto-approve for original Open Reason tasks only.
+rules:
+  - id: forbidden
+    match:
+      ids: [reddit, quora]
+    decision: AUTO_REJECTED
+    enabled: false
+    curriculum_use: false
+    verbatim: false
+    status: prohibited
+  - id: community_qa
+    match:
+      ids: [stack_exchange, stackoverflow]
+    decision: METADATA_ONLY
+    enabled: false
+    curriculum_use: false
+    verbatim: false
+    status: metadata_only
+    reason: Community evidence is not ground truth and votes never verify.
+  - id: ordinary_docs
+    match:
+      ids:
+        - python_docs
+        - rust_docs
+        - go_docs
+        - sqlite_docs
+        - postgresql_docs
+        - linux_man_pages
+        - w3c_whatwg
+    decision: AUTO_APPROVED
+    enabled: true
+    curriculum_use: true
+    verbatim: false
+    status: conditionally_approved
+    reason: Official docs — original Open Reason tasks only; no scrape.
+  - id: government_edu
+    match:
+      ids: [nasa_education, noaa_education, usgs_education]
+    decision: AUTO_APPROVED
+    enabled: true
+    curriculum_use: true
+    verbatim: false
+    status: conditionally_approved
+    reason: Public-sector education pages inspire original numeric/concept tasks; not copied.
+  - id: oer_and_courses
+    match:
+      ids:
+        - khan_academy_computing
+        - mit_opencourseware
+        - harvard_cs50
+        - openstax
+        - mdn
+        - the_odin_project
+        - oer_commons
+        - wikibooks
+    decision: AUTO_APPROVED
+    enabled: true
+    curriculum_use: true
+    verbatim: false
+    status: conditionally_approved
+    reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
+  - id: internal
+    match:
+      ids: [open-reason-authors, open-reason-generators]
+    decision: AUTO_APPROVED
+    enabled: true
+    curriculum_use: true
+    verbatim: false
+    status: approved
+    reason: First-party Open Reason material.
+  - id: incomplete_connectors
+    match:
+      ids: [github_permissive, github-permissive, openalex, wikipedia]
+    decision: METADATA_ONLY
+    enabled: false
+    curriculum_use: false
+    verbatim: false
+    status: metadata_only
+    reason: No reviewed crawler. Discovery is not ingestion.
+
+fallback:
+  decision: REVIEW_REQUIRED
+  enabled: false
+  curriculum_use: false
+  verbatim: false
+  reason: Unmatched source; human review is required.

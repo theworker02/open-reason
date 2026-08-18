@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://open-reason.dev/schemas/mathematics.schema.json",
+  "title": "Open Reason mathematics example",
+  "allOf": [{ "$ref": "core.schema.json" }],
+  "type": "object",
+  "properties": {
+    "domain": { "const": "mathematics" }
+  }
+}

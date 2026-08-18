@@ -1,0 +1,41 @@
+# Registered sources. Connectors without status=active must not emit examples.
+sources:
+  - id: open-reason-authors
+    type: human_authored
+    license: CC-BY-4.0
+    terms: Original examples written for Open Reason.
+    collection_method: authored_in_repository
+    allowed_usage: dataset redistribution under LICENSE-DATA
+    retention_policy: keep with dataset releases
+    attribution_requirements: Cite Open Reason.
+    status: active
+
+  - id: open-reason-generators
+    type: synthetic
+    license: CC-BY-4.0
+    terms: Generator output is original to this pipeline and labeled synthetic.
+    collection_method: deterministic_generation
+    allowed_usage: dataset redistribution under LICENSE-DATA
+    retention_policy: keep with dataset releases
+    attribution_requirements: Cite Open Reason; preserve provenance.generator.
+    status: active
+
+  - id: github-permissive
+    type: open_source
+    license: per-repository SPDX
+    terms: Only repositories whose LICENSE is in configs/licenses.yaml may be ingested.
+    collection_method: commit-pinned git snapshot
+    allowed_usage: follow original SPDX; do not relicense copyleft as CC-BY-4.0
+    retention_policy: store snapshot hash; drop files that fail license or Reddit checks
+    attribution_requirements: repository, commit, path
+    status: incomplete
+
+  - id: reddit
+    type: forbidden
+    license: n/a
+    terms: Forbidden.
+    collection_method: none
+    allowed_usage: none
+    retention_policy: reject
+    attribution_requirements: n/a
+    status: forbidden

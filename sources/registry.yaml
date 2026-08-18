@@ -1,0 +1,854 @@
+# Open Reason source registry
+# Discovery is not ingestion. Auto-approve enables original curriculum tasks only.
+# Open Reason does not use Reddit as a data source.
+# Verbatim third-party copying still requires an explicit license review.
+
+policy:
+  reddit: prohibited
+  quora_as_authority: prohibited
+  auto_ingest_discovered: false
+  community_votes_are_not_verification: true
+  high_risk_requires_authoritative_or_execution: true
+  auto_approve_curriculum: true
+trust_tiers:
+  0:
+    id: tier0_verification
+    name: Ground truth / direct verification
+    examples:
+    - executable_behavior
+    - symbolic_or_numeric_computation
+    - controlled_experiment
+  1:
+    id: tier1_authoritative
+    name: Primary authoritative sources
+    examples:
+    - official_language_documentation
+    - standards_and_specifications
+    - government_scientific_agencies
+  2:
+    id: tier2_educational
+    name: Structured educational sources
+    examples:
+    - khan_academy
+    - mit_ocw
+    - harvard_cs50
+    - openstax
+  3:
+    id: tier3_scientific
+    name: Open scientific knowledge
+    examples:
+    - openalex_metadata
+    - open_access_literature_when_licensed
+  4:
+    id: tier4_community
+    name: Community-validated knowledge
+    examples:
+    - stack_exchange
+    note: Evidence layer only. Never sets quality.verified by itself.
+  5:
+    id: tier5_implementation
+    name: Open-source implementation evidence
+  6:
+    id: tier6_human_authored
+    name: Original Open Reason contributions
+  7:
+    id: tier7_synthetic
+    name: Synthetic data that passed validation
+sources:
+- id: open-reason-authors
+  name: Open Reason authors
+  category: original
+  trust_tier: 6
+  domains:
+  - programming
+  - mathematics
+  - science
+  - reasoning
+  - education
+  authority: high
+  license: CC-BY-4.0
+  license_spdx: CC-BY-4.0
+  redistribution: allowed
+  commercial: allowed
+  derivatives: allowed
+  share_alike: false
+  attribution_required: true
+  reddit_allowed: false
+  status: approved
+  enabled: true
+  extraction_method:
+  - authored_in_repository
+  notes: Original examples written for this project.
+  curriculum_use: true
+  verbatim: false
+  auto_approved: false
+  auto_approval_mode: null
+  auto_approval_reason: null
+  auto_approved_at: null
+- id: open-reason-generators
+  name: Open Reason generators
+  category: synthetic
+  trust_tier: 7
+  domains:
+  - programming
+  - mathematics
+  - science
+  - reasoning
+  authority: medium
+  license: CC-BY-4.0
+  license_spdx: CC-BY-4.0
+  redistribution: allowed
+  commercial: allowed
+  derivatives: allowed
+  share_alike: false
+  attribution_required: true
+  reddit_allowed: false
+  status: approved
+  enabled: true
+  extraction_method:
+  - deterministic_generation
+  notes: Always labeled synthetic. Never presented as human-authored.
+  curriculum_use: true
+  verbatim: false
+  auto_approved: false
+  auto_approval_mode: null
+  auto_approval_reason: null
+  auto_approved_at: null
+- id: reddit
+  name: Reddit
+  category: prohibited
+  trust_tier: null
+  domains: []
+  authority: none
+  license: n/a
+  license_spdx: null
+  redistribution: forbidden
+  commercial: forbidden
+  derivatives: forbidden
+  share_alike: n/a
+  attribution_required: n/a
+  reddit_allowed: false
+  status: prohibited
+  enabled: false
+  extraction_method: []
+  notes: Absolute exclusion. Posts, comments, dumps, APIs, archives, and Reddit-derived
+    datasets.
+  curriculum_use: false
+  verbatim: false
+  auto_approved: false
+  auto_approval_mode: null
+  auto_approval_reason: null
+  auto_approved_at: null
+- id: quora
+  name: Quora
+  category: prohibited_as_authority
+  trust_tier: null
+  domains: []
+  authority: none
+  license: review_required
+  license_spdx: null
+  redistribution: forbidden
+  commercial: forbidden
+  derivatives: forbidden
+  share_alike: n/a
+  attribution_required: n/a
+  reddit_allowed: false
+  status: prohibited
+  enabled: false
+  extraction_method: []
+  notes: Not a primary source of truth. Popularity is not verification.
+  curriculum_use: false
+  verbatim: false
+  auto_approved: false
+  auto_approval_mode: null
+  auto_approval_reason: null
+  auto_approved_at: null
+- id: khan_academy_computing
+  name: Khan Academy Computing
+  category: education
+  trust_tier: 2
+  domains:
+  - programming
+  - computer_science
+  authority: high
+  license_status: review_required
+  license: Terms of use / copyright; not assumed CC
+  license_spdx: null
+  redistribution: review_required
+  commercial: review_required
+  derivatives: review_required
+  share_alike: unknown
+  attribution_required: true
+  reddit_allowed: false
+  status: conditionally_approved
+  enabled: true
+  extraction_method:
+  - structured_content
+  - metadata
+  notes: 'Valuable curriculum structure (Python, JS, HTML/CSS, algorithms). Do not
+    copy lessons. Until legal review, use only as taxonomy inspiration inside Open
+    Reason''s own knowledge graph.
+
+    '
+  curriculum_use: true
+  verbatim: false
+  auto_approved: true
+  auto_approval_mode: curriculum
+  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
+    verbatim ingest. no SPDX; original tasks only.
+  auto_approved_at: '2026-08-18T21:48:15Z'
+- id: mit_opencourseware
+  name: MIT OpenCourseWare
+  category: education
+  trust_tier: 2
+  domains:
+  - programming
+  - mathematics
+  - physics
+  - engineering
+  - computer_science
+  authority: high
+  license_status: review_required
+  license: Typically CC BY-NC-SA 4.0 per course; verify each course
+  license_spdx: CC-BY-NC-SA-4.0
+  redistribution: restricted
+  commercial: no_if_nc
+  derivatives: share_alike_if_sa
+  share_alike: likely
+  attribution_required: true
+  reddit_allowed: false
+  status: conditionally_approved
+  enabled: true
+  extraction_method:
+  - course_pages
+  - metadata
+  notes: NC/SA licenses are incompatible with a blanket CC-BY-4.0 dataset relicensing.
+  curriculum_use: true
+  verbatim: false
+  auto_approved: true
+  auto_approval_mode: curriculum
+  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
+    verbatim ingest. share-alike blocks verbatim copying into CC-BY-4.0; non-commercial
+    license blocks verbatim commercial redistribution.
+  auto_approved_at: '2026-08-18T21:48:15Z'
+- id: harvard_cs50
+  name: Harvard CS50
+  category: education
+  trust_tier: 2
+  domains:
+  - programming
+  - computer_science
+  authority: high
+  license_status: review_required
+  license: Per-asset; lectures, notes, and problem sets may differ
+  license_spdx: null
+  redistribution: review_required
+  commercial: review_required
+  derivatives: review_required
+  share_alike: unknown
+  attribution_required: true
+  reddit_allowed: false
+  status: conditionally_approved
+  enabled: true
+  extraction_method:
+  - metadata
+  - concept_progression
+  notes: Transform concepts into original exercises. Do not reproduce problem-set
+    answers.
+  curriculum_use: true
+  verbatim: false
+  auto_approved: true
+  auto_approval_mode: curriculum
+  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
+    verbatim ingest. no SPDX; original tasks only.
+  auto_approved_at: '2026-08-18T21:48:15Z'
+- id: openstax
+  name: OpenStax
+  category: education
+  trust_tier: 2
+  domains:
+  - computer_science
+  - mathematics
+  - physics
+  - chemistry
+  - biology
+  - statistics
+  - economics
+  authority: high
+  license_status: review_required
+  license: Often CC BY 4.0 per book; never assume identical licensing
+  license_spdx: CC-BY-4.0
+  redistribution: review_required
+  commercial: review_required
+  derivatives: review_required
+  share_alike: per_book
+  attribution_required: true
+  reddit_allowed: false
+  status: conditionally_approved
+  enabled: true
+  extraction_method:
+  - textbook
+  - exercises
+  - metadata
+  notes: Store the exact license of each book before any extract.
+  curriculum_use: true
+  verbatim: false
+  auto_approved: true
+  auto_approval_mode: curriculum
+  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
+    verbatim ingest.
+  auto_approved_at: '2026-08-18T21:48:15Z'
+- id: mdn
+  name: MDN Web Docs
+  category: documentation
+  trust_tier: 1
+  domains:
+  - web
+  - javascript
+  - html
+  - css
+  - accessibility
+  - http
+  authority: high
+  license_status: review_required
+  license: Typically CC-BY-SA for content; verify current terms
+  license_spdx: CC-BY-SA-2.5
+  redistribution: review_required
+  commercial: review_required
+  derivatives: share_alike_likely
+  share_alike: likely
+  attribution_required: true
+  reddit_allowed: false
+  status: conditionally_approved
+  enabled: true
+  extraction_method:
+  - structured_docs
+  notes: Share-alike must be preserved on any derived rows. Do not relicense as CC-BY-4.0.
+  curriculum_use: true
+  verbatim: false
+  auto_approved: true
+  auto_approval_mode: curriculum
+  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
+    verbatim ingest. share-alike blocks verbatim copying into CC-BY-4.0.
+  auto_approved_at: '2026-08-18T21:48:15Z'
+- id: the_odin_project
+  name: The Odin Project
+  category: education
+  trust_tier: 2
+  domains:
+  - web
+  - javascript
+  - ruby
+  - git
+  - databases
+  authority: medium
+  license_status: review_required
+  license: Curriculum and website code have different licenses
+  license_spdx: null
+  redistribution: review_required
+  commercial: review_required
+  derivatives: review_required
+  share_alike: unknown
+  attribution_required: true
+  reddit_allowed: false
+  status: conditionally_approved
+  enabled: true
+  extraction_method:
+  - metadata
+  - taxonomy
+  notes: Public GitHub access is not permission to ingest. Prefer metadata_only until
+    reviewed.
+  curriculum_use: true
+  verbatim: false
+  auto_approved: true
+  auto_approval_mode: curriculum
+  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
+    verbatim ingest. no SPDX; original tasks only.
+  auto_approved_at: '2026-08-18T21:48:15Z'
+- id: python_docs
+  name: Python official documentation
+  category: documentation
+  trust_tier: 1
+  domains:
+  - python
+  - programming
+  authority: high
+  license_status: review_required
+  license: PSF License / documentation terms
+  license_spdx: PSF-2.0
+  redistribution: review_required
+  commercial: review_required
+  derivatives: review_required
+  share_alike: false
+  attribution_required: true
+  reddit_allowed: false
+  status: conditionally_approved
+  enabled: true
+  extraction_method:
+  - version_pinned_docs
+  curriculum_use: true
+  verbatim: false
+  auto_approved: true
+  auto_approval_mode: curriculum
+  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
+    verbatim ingest.
+  auto_approved_at: '2026-08-18T21:48:15Z'
+- id: rust_docs
+  name: Rust official documentation
+  category: documentation
+  trust_tier: 1
+  domains:
+  - rust
+  - programming
+  authority: high
+  license_status: review_required
+  license: Apache-2.0 / MIT dual for much of rust-lang docs; verify
+  license_spdx: Apache-2.0 OR MIT
+  redistribution: review_required
+  commercial: review_required
+  derivatives: review_required
+  share_alike: false
+  attribution_required: true
+  reddit_allowed: false
+  status: conditionally_approved
+  enabled: true
+  extraction_method:
+  - version_pinned_docs
+  curriculum_use: true
+  verbatim: false
+  auto_approved: true
+  auto_approval_mode: curriculum
+  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
+    verbatim ingest.
+  auto_approved_at: '2026-08-18T21:48:15Z'
+- id: go_docs
+  name: Go official documentation
+  category: documentation
+  trust_tier: 1
+  domains:
+  - go
+  - programming
+  authority: high
+  license_status: review_required
+  license: BSD-style; verify golang.org terms
+  license_spdx: BSD-3-Clause
+  redistribution: review_required
+  commercial: review_required
+  derivatives: review_required
+  share_alike: false
+  attribution_required: true
+  reddit_allowed: false
+  status: conditionally_approved
+  enabled: true
+  extraction_method:
+  - version_pinned_docs
+  curriculum_use: true
+  verbatim: false
+  auto_approved: true
+  auto_approval_mode: curriculum
+  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
+    verbatim ingest.
+  auto_approved_at: '2026-08-18T21:48:15Z'
+- id: w3c_whatwg
+  name: W3C / WHATWG specifications
+  category: specification
+  trust_tier: 1
+  domains:
+  - web
+  - html
+  - http
+  authority: high
+  license_status: review_required
+  license: Per-spec document license
+  license_spdx: null
+  redistribution: review_required
+  commercial: review_required
+  derivatives: review_required
+  share_alike: unknown
+  attribution_required: true
+  reddit_allowed: false
+  status: conditionally_approved
+  enabled: true
+  extraction_method:
+  - specification_text
+  curriculum_use: true
+  verbatim: false
+  auto_approved: true
+  auto_approval_mode: curriculum
+  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
+    verbatim ingest. no SPDX; original tasks only.
+  auto_approved_at: '2026-08-18T21:48:15Z'
+- id: sqlite_docs
+  name: SQLite documentation
+  category: documentation
+  trust_tier: 1
+  domains:
+  - sql
+  - databases
+  authority: high
+  license_status: review_required
+  license: Blessing / public domain for software; docs may differ
+  license_spdx: blessing
+  redistribution: review_required
+  commercial: review_required
+  derivatives: review_required
+  share_alike: false
+  attribution_required: true
+  reddit_allowed: false
+  status: conditionally_approved
+  enabled: true
+  extraction_method:
+  - version_pinned_docs
+  curriculum_use: true
+  verbatim: false
+  auto_approved: true
+  auto_approval_mode: curriculum
+  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
+    verbatim ingest.
+  auto_approved_at: '2026-08-18T21:48:15Z'
+- id: postgresql_docs
+  name: PostgreSQL documentation
+  category: documentation
+  trust_tier: 1
+  domains:
+  - sql
+  - databases
+  authority: high
+  license_status: review_required
+  license: PostgreSQL License
+  license_spdx: PostgreSQL
+  redistribution: review_required
+  commercial: review_required
+  derivatives: review_required
+  share_alike: false
+  attribution_required: true
+  reddit_allowed: false
+  status: conditionally_approved
+  enabled: true
+  extraction_method:
+  - version_pinned_docs
+  curriculum_use: true
+  verbatim: false
+  auto_approved: true
+  auto_approval_mode: curriculum
+  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
+    verbatim ingest.
+  auto_approved_at: '2026-08-18T21:48:15Z'
+- id: linux_man_pages
+  name: Linux man-pages
+  category: documentation
+  trust_tier: 1
+  domains:
+  - linux
+  - operating_systems
+  authority: high
+  license_status: review_required
+  license: Per-page; often GPL or BSD variants
+  license_spdx: null
+  redistribution: review_required
+  commercial: review_required
+  derivatives: review_required
+  share_alike: per_page
+  attribution_required: true
+  reddit_allowed: false
+  status: conditionally_approved
+  enabled: true
+  extraction_method:
+  - man_pages
+  curriculum_use: true
+  verbatim: false
+  auto_approved: true
+  auto_approval_mode: curriculum
+  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
+    verbatim ingest. no SPDX; original tasks only.
+  auto_approved_at: '2026-08-18T21:48:15Z'
+- id: nasa_education
+  name: NASA educational resources
+  category: science
+  trust_tier: 1
+  domains:
+  - astronomy
+  - physics
+  - earth_science
+  authority: high
+  license_status: review_required
+  license: Often US government work / public domain, but not always
+  license_spdx: null
+  redistribution: review_required
+  commercial: review_required
+  derivatives: review_required
+  share_alike: false
+  attribution_required: true
+  reddit_allowed: false
+  status: conditionally_approved
+  enabled: true
+  extraction_method:
+  - educational_pages
+  - datasets
+  curriculum_use: true
+  verbatim: false
+  auto_approved: true
+  auto_approval_mode: curriculum
+  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
+    verbatim ingest. no SPDX; original tasks only.
+  auto_approved_at: '2026-08-18T21:48:15Z'
+- id: noaa_education
+  name: NOAA educational resources
+  category: science
+  trust_tier: 1
+  domains:
+  - earth_science
+  - environmental_science
+  authority: high
+  license_status: review_required
+  license: Often US government work; verify third-party material
+  license_spdx: null
+  redistribution: review_required
+  commercial: review_required
+  derivatives: review_required
+  share_alike: false
+  attribution_required: true
+  reddit_allowed: false
+  status: conditionally_approved
+  enabled: true
+  extraction_method:
+  - educational_pages
+  - datasets
+  curriculum_use: true
+  verbatim: false
+  auto_approved: true
+  auto_approval_mode: curriculum
+  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
+    verbatim ingest. no SPDX; original tasks only.
+  auto_approved_at: '2026-08-18T21:48:15Z'
+- id: usgs_education
+  name: USGS educational resources
+  category: science
+  trust_tier: 1
+  domains:
+  - earth_science
+  authority: high
+  license_status: review_required
+  license: Often US government work; verify
+  license_spdx: null
+  redistribution: review_required
+  commercial: review_required
+  derivatives: review_required
+  share_alike: false
+  attribution_required: true
+  reddit_allowed: false
+  status: conditionally_approved
+  enabled: true
+  extraction_method:
+  - educational_pages
+  - datasets
+  curriculum_use: true
+  verbatim: false
+  auto_approved: true
+  auto_approval_mode: curriculum
+  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
+    verbatim ingest. no SPDX; original tasks only.
+  auto_approved_at: '2026-08-18T21:48:15Z'
+- id: openalex
+  name: OpenAlex
+  category: scientific_metadata
+  trust_tier: 3
+  domains:
+  - research
+  - science
+  authority: medium
+  license_status: review_required
+  license: Core metadata typically CC0; full texts are not included
+  license_spdx: CC0-1.0
+  redistribution: review_required
+  commercial: review_required
+  derivatives: review_required
+  share_alike: false
+  attribution_required: true
+  reddit_allowed: false
+  status: metadata_only
+  enabled: false
+  extraction_method:
+  - metadata
+  - citation_graph
+  notes: Metadata and discovery only. Do not treat records as full-text of papers.
+  curriculum_use: false
+  verbatim: false
+  auto_approved: false
+  auto_approval_mode: null
+  auto_approval_reason: null
+  auto_approved_at: null
+- id: stack_exchange
+  name: Stack Exchange network
+  category: community
+  trust_tier: 4
+  domains:
+  - programming
+  - mathematics
+  - science
+  - systems
+  authority: community_validated
+  license_status: review_required
+  license: CC BY-SA; version depends on contribution date (often 4.0 now, 3.0 historically)
+  license_spdx: CC-BY-SA-4.0
+  redistribution: review_required
+  commercial: allowed_with_sa
+  derivatives: share_alike
+  share_alike: true
+  attribution_required: true
+  reddit_allowed: false
+  status: review_required
+  enabled: false
+  extraction_method:
+  - data_dump
+  - api
+  notes: 'Community evidence, not ground truth. Votes and accepted flags inform scoring
+    only. quality.verified requires independent execution or authoritative corroboration.
+    Share-alike must be preserved. Not all SE sites are in scope; each site needs
+    its own profile.
+
+    '
+  curriculum_use: false
+  verbatim: false
+  auto_approved: false
+  auto_approval_mode: null
+  auto_approval_reason: null
+  auto_approved_at: null
+- id: stackoverflow
+  name: Stack Overflow
+  category: community
+  trust_tier: 4
+  domains:
+  - programming
+  authority: community_validated
+  license_status: review_required
+  license: CC BY-SA (date-dependent version)
+  license_spdx: CC-BY-SA-4.0
+  redistribution: review_required
+  commercial: allowed_with_sa
+  derivatives: share_alike
+  share_alike: true
+  attribution_required: true
+  reddit_allowed: false
+  status: review_required
+  enabled: false
+  parent: stack_exchange
+  extraction_method:
+  - data_dump
+  - api
+  notes: Disclaims warranties. Never copy Q/A as the example; transform into structured
+    evidence.
+  curriculum_use: false
+  verbatim: false
+  auto_approved: false
+  auto_approval_mode: null
+  auto_approval_reason: null
+  auto_approved_at: null
+- id: github_permissive
+  name: Permissive Git repositories
+  category: implementation
+  trust_tier: 5
+  domains:
+  - programming
+  authority: medium
+  license_status: review_required
+  license: Per-repository SPDX allowlist
+  license_spdx: null
+  redistribution: per_repo
+  commercial: per_repo
+  derivatives: per_repo
+  share_alike: per_repo
+  attribution_required: true
+  reddit_allowed: false
+  status: review_required
+  enabled: false
+  extraction_method:
+  - commit_pinned_snapshot
+  notes: Incomplete connector. No clone until an allowlisted snapshot is configured.
+  curriculum_use: false
+  verbatim: false
+  auto_approved: false
+  auto_approval_mode: null
+  auto_approval_reason: null
+  auto_approved_at: null
+- id: oer_commons
+  name: OER Commons
+  category: education
+  trust_tier: 2
+  domains:
+  - education
+  authority: medium
+  license_status: review_required
+  license: Per-resource
+  license_spdx: null
+  redistribution: review_required
+  commercial: review_required
+  derivatives: review_required
+  share_alike: per_resource
+  attribution_required: true
+  reddit_allowed: false
+  status: conditionally_approved
+  enabled: true
+  extraction_method:
+  - metadata
+  notes: Catalog only until each resource license is stored.
+  curriculum_use: true
+  verbatim: false
+  auto_approved: true
+  auto_approval_mode: curriculum
+  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
+    verbatim ingest. no SPDX; original tasks only.
+  auto_approved_at: '2026-08-18T21:48:15Z'
+- id: wikibooks
+  name: Wikibooks
+  category: education
+  trust_tier: 2
+  domains:
+  - education
+  authority: medium
+  license_status: review_required
+  license: Typically CC BY-SA
+  license_spdx: CC-BY-SA-3.0
+  redistribution: review_required
+  commercial: allowed_with_sa
+  derivatives: share_alike
+  share_alike: true
+  attribution_required: true
+  reddit_allowed: false
+  status: conditionally_approved
+  enabled: true
+  extraction_method:
+  - wiki_export
+  curriculum_use: true
+  verbatim: false
+  auto_approved: true
+  auto_approval_mode: curriculum
+  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
+    verbatim ingest. share-alike blocks verbatim copying into CC-BY-4.0.
+  auto_approved_at: '2026-08-18T21:48:15Z'
+- id: wikipedia
+  name: Wikipedia
+  category: encyclopedia
+  trust_tier: 3
+  domains:
+  - general
+  authority: medium
+  license_status: review_required
+  license: CC BY-SA 4.0 and GFDL
+  license_spdx: CC-BY-SA-4.0
+  redistribution: review_required
+  commercial: allowed_with_sa
+  derivatives: share_alike
+  share_alike: true
+  attribution_required: true
+  reddit_allowed: false
+  status: review_required
+  enabled: false
+  extraction_method: []
+  notes: Not a single source of truth. Open Reason must not become Wikipedia-dependent.
+  curriculum_use: false
+  verbatim: false
+  auto_approved: false
+  auto_approval_mode: null
+  auto_approval_reason: null
+  auto_approved_at: null

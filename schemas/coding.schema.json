@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://open-reason.dev/schemas/coding.schema.json",
+  "title": "Open Reason coding example",
+  "allOf": [{ "$ref": "core.schema.json" }],
+  "type": "object",
+  "properties": {
+    "domain": { "const": "coding" },
+    "context": {
+      "type": "object",
+      "properties": {
+        "language": { "type": "string" },
+        "repository": {
+          "type": "object",
+          "properties": {
+            "files": { "type": "object", "additionalProperties": { "type": "string" } }
+          }
+        },
+        "failure": { "type": "object" },
+        "topic": { "type": "string" }
+      }
+    }
+  }
+}

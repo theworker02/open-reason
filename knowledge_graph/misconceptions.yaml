@@ -1,0 +1,98 @@
+# Documented learner difficulties. Not randomly manufactured.
+
+misconceptions:
+  - id: python.variables.box_model
+    concept_id: python.variables
+    statement: "A variable is a box that stores a copy of an object forever."
+    why_it_is_wrong: >
+      In Python a name is a binding to an object. Assignment rebinds the name;
+      mutable objects can still change through other names.
+    correct_explanation: >
+      Names refer to objects. Assignment of one name to another makes both
+      names refer to the same object. Rebinding one name later does not rebind
+      the other.
+    diagnostic_prompt: >
+      After a = [1, 2]; b = a; a.append(3), what is b and why?
+    diagnostic_answer: >
+      b is [1, 2, 3] because a and b referred to the same list. append
+      mutated that object; it did not rebind b.
+
+  - id: python.conditionals.assignment_as_test
+    concept_id: python.conditionals
+    statement: "if x = 0 is a valid test that checks whether x equals zero."
+    why_it_is_wrong: "In Python a single equals sign is assignment. Equality is written with two equals signs. The assignment form is a SyntaxError."
+    correct_explanation: "Use a comparison, not assignment, in a conditional test."
+    diagnostic_prompt: "Why does if n = 1: fail to parse in Python?"
+    diagnostic_answer: "Assignment cannot appear in that expression position; comparison uses two equals signs."
+
+  - id: python.loops.off_by_one
+    concept_id: python.loops
+    statement: "range(n) yields n, so a loop over range(len(xs)) includes the last index twice."
+    why_it_is_wrong: "range(n) yields 0 through n-1, which is exactly the valid indices of a length-n sequence."
+    correct_explanation: "Half-open intervals [0, n) match zero-based indexing. The last index is n - 1."
+    diagnostic_prompt: "What values does list(range(3)) produce?"
+    diagnostic_answer: "[0, 1, 2]"
+
+  - id: python.functions.mutable_default
+    concept_id: python.functions
+    statement: "A default argument list is created fresh on every call."
+    why_it_is_wrong: "Default argument objects are created once, when the function is defined, and reused."
+    correct_explanation: "Use None as the default and create a new list inside the function body."
+    diagnostic_prompt: "Why can a function with a default empty list return [1, 1] on a second call that appends 1?"
+    diagnostic_answer: "The same default list is mutated across calls because it is created once at definition time."
+
+  - id: python.collections.aliasing
+    concept_id: python.collections
+    statement: "Slicing a list always deep-copies nested objects."
+    why_it_is_wrong: "A slice copies the top-level list only. Nested mutables remain shared."
+    correct_explanation: "A slice is a shallow copy. Nested lists still alias unless copied recursively."
+    diagnostic_prompt: "After a = [[0]]; b = a[:]; b[0].append(1), what is a?"
+    diagnostic_answer: "[[0, 1]] because the inner list was shared."
+
+  - id: math.arithmetic.order_of_operations
+    concept_id: math.arithmetic
+    statement: "Addition is always done before multiplication, left to right."
+    why_it_is_wrong: "Multiplication and division bind more tightly than addition and subtraction."
+    correct_explanation: "Evaluate 2 + 3 * 4 as 2 + 12 = 14, not (2 + 3) * 4."
+    diagnostic_prompt: "Evaluate 2 + 3 * 4."
+    diagnostic_answer: "14"
+
+  - id: math.algebra.sign_error
+    concept_id: math.algebra
+    statement: "Moving a term across an equals sign never changes its sign."
+    why_it_is_wrong: "Adding the additive inverse is required; the sign of the moved term flips."
+    correct_explanation: "From x + 3 = 7, subtract 3 from both sides to get x = 4."
+    diagnostic_prompt: "Solve x + 5 = 2."
+    diagnostic_answer: "-3"
+
+  - id: math.calculus.limit_substitution
+    concept_id: math.calculus
+    statement: "If substituting x=a into f(x) is undefined, the limit cannot exist."
+    why_it_is_wrong: "A limit describes nearby values. A hole or removable discontinuity can still have a finite limit."
+    correct_explanation: "Algebraic simplification or a two-sided check can show the limit exists even if f(a) is undefined."
+    diagnostic_prompt: "Does lim x->0 of (sin x)/x fail to exist because the expression is 0/0 at 0?"
+    diagnostic_answer: "No. The two-sided limit is 1 even though direct substitution is undefined."
+
+  - id: science.method.hypothesis_is_guess
+    concept_id: science.method
+    statement: "A hypothesis is an uneducated guess and experiments exist to prove it true."
+    why_it_is_wrong: "A hypothesis is a testable claim. Experiments can falsify it; they do not prove it in the mathematical sense."
+    correct_explanation: "Design a test that could fail, collect data, and update confidence. Replication and controls matter."
+    diagnostic_prompt: "What would make a hypothesis scientific rather than a slogan?"
+    diagnostic_answer: "It must be testable and potentially falsifiable by observation or experiment."
+
+  - id: python.exceptions.bare_except
+    concept_id: python.exceptions
+    statement: "except: is the safest way to keep a program running."
+    why_it_is_wrong: "A bare except catches SystemExit and KeyboardInterrupt and hides unexpected bugs."
+    correct_explanation: "Catch the specific exception you can handle. Let the rest propagate."
+    diagnostic_prompt: "Why is a bare except: considered harmful in Python?"
+    diagnostic_answer: "It swallows unexpected errors and control-flow exceptions; catch a specific type instead."
+
+  - id: cs.complexity.nested_loops
+    concept_id: cs.complexity
+    statement: "Two nested loops over n items are always O(n) because each loop is simple."
+    why_it_is_wrong: "Each of n outer iterations does n inner iterations, which is Theta(n^2) work."
+    correct_explanation: "Multiply independent nested iteration counts unless the inner bound shrinks."
+    diagnostic_prompt: "What is the time complexity of for i in range(n): for j in range(n): work()?"
+    diagnostic_answer: "Theta(n^2) if work() is constant time."

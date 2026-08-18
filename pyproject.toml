@@ -1,0 +1,80 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "open-reason"
+version = "0.4.0"
+description = "An open, verified dataset for coding, science, mathematics, and human reasoning."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+authors = [
+    { name = "Open Reason contributors" },
+]
+keywords = [
+    "dataset",
+    "reasoning",
+    "coding",
+    "mathematics",
+    "science",
+    "evaluation",
+    "provenance",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "pydantic>=2.6",
+    "typer>=0.12",
+    "rich>=13.7",
+    "pyyaml>=6.0",
+    "pyarrow>=15.0",
+    "jsonschema>=4.21",
+    "sympy>=1.12",
+]
+
+[project.optional-dependencies]
+hf = ["datasets>=2.20"]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.4",
+    "pillow>=10.0",
+]
+all = ["open-reason[hf,dev]"]
+
+[project.scripts]
+open-reason = "open_reason.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/theworker02/open-reason"
+Documentation = "https://github.com/theworker02/open-reason/tree/main/docs"
+Issues = "https://github.com/theworker02/open-reason/issues"
+Dataset = "https://huggingface.co/datasets/theworker02/open-reason"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+open_reason = [
+    "py.typed",
+    "contamination/denylist.yaml",
+    "generation/banks/*.json",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

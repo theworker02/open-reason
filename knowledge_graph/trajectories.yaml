@@ -1,0 +1,57 @@
+trajectories:
+  - id: python.foundations
+    name: Python foundations
+    domain: programming
+    steps:
+      - python.variables
+      - python.expressions
+      - python.conditionals
+      - python.loops
+      - python.functions
+      - python.collections
+      - python.classes
+      - cs.algorithms
+      - cs.data_structures
+      - cs.complexity
+      - python.exceptions
+      - python.testing
+
+  - id: math.extended
+    name: Mathematics extended
+    domain: mathematics
+    steps:
+      - math.arithmetic
+      - math.algebra
+      - math.geometry
+      - math.trigonometry
+      - math.functions
+      - math.calculus
+      - math.probability
+      - math.linear_algebra
+
+  - id: science.extended
+    name: Science extended
+    domain: science
+    steps:
+      - science.method
+      - science.newton
+      - science.energy
+      - science.circuits
+      - science.waves
+      - science.stoichiometry
+
+  - id: math.foundations
+    name: Mathematics foundations
+    domain: mathematics
+    steps:
+      - math.arithmetic
+      - math.algebra
+      - math.functions
+      - math.calculus
+
+  - id: science.foundations
+    name: Science foundations
+    domain: science
+    steps:
+      - science.method
+      - science.newton

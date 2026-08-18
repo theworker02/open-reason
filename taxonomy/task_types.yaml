@@ -1,0 +1,64 @@
+# Task types used across Open Reason configurations.
+
+coding:
+  - code_generation
+  - code_completion
+  - bug_fixing
+  - debugging
+  - refactoring
+  - optimization
+  - code_review
+  - test_generation
+  - documentation
+  - api_usage
+  - sql_generation
+  - query_optimization
+  - algorithm_design
+  - data_structure_selection
+  - security_analysis
+  - performance_analysis
+
+reasoning:
+  - planning
+  - constraint_satisfaction
+  - causal_reasoning
+  - temporal_reasoning
+  - classification
+  - comparison
+  - argument_analysis
+
+mathematics:
+  - arithmetic
+  - algebra
+  - geometry
+  - calculus
+  - discrete
+  - probability
+  - proof
+  - numerical
+
+science:
+  - conceptual
+  - numerical
+  - experimental_design
+  - modeling
+  - data_analysis
+  - graph_interpretation
+
+education:
+  - concept_explanation
+  - simple_exercise
+  - applied_exercise
+  - debugging_exercise
+  - diagnostic_misconception
+  - correction_exercise
+  - verification
+  - worked_example
+
+human:
+  - teaching
+  - explanation
+  - summarization
+  - research_synthesis
+  - troubleshooting
+  - decision_analysis

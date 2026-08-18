@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://open-reason.dev/schemas/provenance.schema.json",
+  "$defs": {
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_type"],
+      "properties": {
+        "source_type": {
+          "type": "string",
+          "enum": [
+            "open_source",
+            "documentation",
+            "specification",
+            "scientific",
+            "educational",
+            "community",
+            "human_authored",
+            "synthetic",
+            "unknown"
+          ]
+        },
+        "source": { "type": ["string", "null"] },
+        "source_id": { "type": ["string", "null"] },
+        "source_url": { "type": ["string", "null"] },
+        "source_version": { "type": ["string", "null"] },
+        "license": { "type": ["string", "null"] },
+        "license_spdx": { "type": ["string", "null"] },
+        "commit": { "type": ["string", "null"] },
+        "retrieved_at": { "type": ["string", "null"] },
+        "derived": { "type": "boolean" },
+        "generator": { "type": ["string", "null"] },
+        "generator_version": { "type": ["string", "null"] },
+        "generated_at": { "type": ["string", "null"] },
+        "derived_from": { "type": ["string", "null"] },
+        "transformation": { "type": ["string", "null"] },
+        "unknown_reason": { "type": ["string", "null"] },
+        "trust_tier": { "type": ["string", "null"] }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tier"],
+      "properties": {
+        "tier": { "type": "string", "enum": ["S", "A", "B", "C"] },
+        "verified": { "type": "boolean" },
+        "verification_method": { "type": ["string", "null"] },
+        "notes": { "type": "array", "items": { "type": "string" } },
+        "evidence_confidence": { "type": ["number", "null"] },
+        "score_components": { "type": "object" }
+      }
+    },
+    "verification": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "method": { "type": "string" },
+        "passed": { "type": ["boolean", "null"] },
+        "result": { "type": ["string", "null"] },
+        "command": { "type": ["string", "null"] },
+        "tests_passed": { "type": ["integer", "null"] },
+        "tests_failed": { "type": ["integer", "null"] },
+        "runtime_s": { "type": ["number", "null"] },
+        "memory_mb": { "type": ["number", "null"] },
+        "exit_code": { "type": ["integer", "null"] },
+        "compiler_version": { "type": ["string", "null"] },
+        "runtime_version": { "type": ["string", "null"] },
+        "stdout": { "type": ["string", "null"] },
+        "stderr": { "type": ["string", "null"] },
+        "details": { "type": "object" }
+      }
+    }
+  }
+}

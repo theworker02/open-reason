@@ -1,0 +1,31 @@
+# Sync the Hugging Face dataset card directory on GitHub Releases only.
+# Do not run this on every push to main. Do not sync the whole git tree.
+#
+# Hugging Face Trusted Publisher claims (Settings → Trusted Publishers):
+#   Provider:    GitHub Actions
+#   repository:  theworker02/open-reason
+#   workflow:    sync-huggingface.yml    # filename, not the YAML name: below
+#   branch:      leave blank             # this job runs on tags/releases, not a branch
+# Do not change this filename or the `name:` key without updating docs/huggingface.md.
+name: Sync Open Reason to Hugging Face
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: huggingface/hub-sync@v0.1.0
+        with:
+          github_repo_id: ${{ github.repository }}
+          huggingface_repo_id: theworker02/open-reason
+          repo_type: dataset
+          subdirectory: distribution/dataset
+          hf_token: ${{ secrets.HF_TOKEN }}

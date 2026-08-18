@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://open-reason.dev/schemas/science.schema.json",
+  "title": "Open Reason science example",
+  "allOf": [{ "$ref": "core.schema.json" }],
+  "type": "object",
+  "properties": {
+    "domain": { "const": "science" },
+    "context": {
+      "type": "object",
+      "properties": {
+        "field": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://open-reason.dev/schemas/core.schema.json",
+  "title": "Open Reason core example",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "domain", "task_type", "difficulty", "prompt", "provenance", "quality"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^or-" },
+    "domain": {
+      "type": "string",
+      "enum": ["coding", "reasoning", "science", "mathematics", "human"]
+    },
+    "task_type": { "type": "string", "minLength": 1 },
+    "difficulty": {
+      "type": "string",
+      "enum": ["introductory", "beginner", "intermediate", "advanced", "expert", "research"]
+    },
+    "prompt": { "type": "string", "minLength": 8 },
+    "context": { "type": "object" },
+    "observations": { "type": "array", "items": { "type": "string" } },
+    "constraints": { "type": "array", "items": { "type": "string" } },
+    "assumptions": { "type": "array", "items": { "type": "string" } },
+    "plan": { "type": "array", "items": { "type": "string" } },
+    "strategy": { "type": "array", "items": { "type": "string" } },
+    "solution": { "type": ["string", "null"] },
+    "answer": { "type": ["string", "null"] },
+    "verification": { "$ref": "provenance.schema.json#/$defs/verification" },
+    "provenance": { "$ref": "provenance.schema.json#/$defs/provenance" },
+    "quality": { "$ref": "provenance.schema.json#/$defs/quality" },
+    "education_level": {
+      "type": ["string", "null"],
+      "enum": [
+        "k5",
+        "middle_school",
+        "high_school",
+        "introductory_college",
+        "undergraduate",
+        "graduate",
+        "professional",
+        "expert",
+        "research",
+        null
+      ]
+    },
+    "concept_id": { "type": ["string", "null"] },
+    "evidence": { "type": ["object", "null"] },
+    "transformation": { "type": "array", "items": { "type": "string" } },
+    "temporal": { "type": ["object", "null"] },
+    "runtime": { "type": ["object", "null"] },
+    "natural_language": { "type": "string" },
+    "translation_status": {
+      "type": "string",
+      "enum": [
+        "original",
+        "human_translated",
+        "machine_translated",
+        "machine_translated_and_verified"
+      ]
+    },
+    "metadata": { "type": "object" }
+  }
+}

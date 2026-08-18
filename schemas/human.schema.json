@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://open-reason.dev/schemas/human.schema.json",
+  "title": "Open Reason human problem-solving example",
+  "allOf": [{ "$ref": "core.schema.json" }],
+  "type": "object",
+  "properties": {
+    "domain": { "const": "human" }
+  }
+}

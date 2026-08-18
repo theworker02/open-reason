@@ -1,0 +1,37 @@
+# Dataset configurations. Future names can be added here without rewriting the pipeline.
+configs:
+  coding:
+    domain: coding
+    description: Machine-verifiable software engineering tasks.
+  reasoning:
+    domain: reasoning
+    description: Structured reasoning summaries with checkable conclusions.
+  science:
+    domain: science
+    description: Scientific calculation, modeling, and experimental-design items.
+  mathematics:
+    domain: mathematics
+    description: Independently verified mathematical problems.
+  human:
+    domain: human
+    description: Teaching, planning, synthesis, and general problem solving.
+  education:
+    domain: mixed
+    description: Curriculum-aligned original tasks with education_level and concept_id.
+  core:
+    domain: mixed
+    description: Quality tiers S and A from the union of domain splits.
+  verified:
+    domain: mixed
+    description: Independently verified (tier S) examples only.
+  all:
+    domain: all
+    description: Union of validated configurations without duplicate ids.
+
+future:
+  - systems
+  - languages
+  - research
+  - planning
+  - technical
+  - multilingual

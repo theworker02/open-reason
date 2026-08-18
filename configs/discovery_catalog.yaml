@@ -1,0 +1,99 @@
+# Discovery catalog. Scoring these rows does not ingest them and never
+# enables Reddit. Publicly accessible is not redistributable.
+candidates:
+  - id: python_docs
+    kind: official_docs
+    license_hint: PSF
+    authority: 0.95
+    educational_quality: 0.9
+    license_clarity: 0.85
+    technical_relevance: 0.95
+    verification_potential: 0.8
+  - id: rust_docs
+    kind: official_docs
+    license_hint: Apache-2.0 OR MIT
+    authority: 0.93
+    educational_quality: 0.88
+    license_clarity: 0.9
+    technical_relevance: 0.9
+    verification_potential: 0.4
+  - id: go_docs
+    kind: official_docs
+    license_hint: BSD-3-Clause
+    authority: 0.93
+    educational_quality: 0.85
+    license_clarity: 0.9
+    technical_relevance: 0.9
+    verification_potential: 0.4
+  - id: sqlite_docs
+    kind: official_docs
+    license_hint: blessing
+    authority: 0.92
+    educational_quality: 0.8
+    license_clarity: 0.8
+    technical_relevance: 0.85
+    verification_potential: 0.85
+  - id: postgresql_docs
+    kind: official_docs
+    license_hint: PostgreSQL
+    authority: 0.92
+    educational_quality: 0.82
+    license_clarity: 0.8
+    technical_relevance: 0.85
+    verification_potential: 0.7
+  - id: nist_publications
+    kind: government
+    license_hint: US-work
+    authority: 0.96
+    educational_quality: 0.75
+    license_clarity: 0.7
+    technical_relevance: 0.8
+    verification_potential: 0.5
+  - id: ietf_rfc
+    kind: standards
+    license_hint: IETF
+    authority: 0.95
+    educational_quality: 0.7
+    license_clarity: 0.75
+    technical_relevance: 0.85
+    verification_potential: 0.4
+  - id: nasa_education
+    kind: government_edu
+    license_hint: US-work
+    authority: 0.9
+    educational_quality: 0.85
+    license_clarity: 0.7
+    technical_relevance: 0.7
+    verification_potential: 0.8
+  - id: usgs_education
+    kind: government_edu
+    license_hint: US-work
+    authority: 0.9
+    educational_quality: 0.8
+    license_clarity: 0.7
+    technical_relevance: 0.65
+    verification_potential: 0.6
+  - id: noaa_education
+    kind: government_edu
+    license_hint: US-work
+    authority: 0.9
+    educational_quality: 0.8
+    license_clarity: 0.7
+    technical_relevance: 0.6
+    verification_potential: 0.5
+  - id: wikibooks
+    kind: oer
+    license_hint: CC-BY-SA-3.0
+    authority: 0.55
+    educational_quality: 0.7
+    license_clarity: 0.85
+    technical_relevance: 0.6
+    verification_potential: 0.3
+  - id: oer_commons
+    kind: oer_catalog
+    license_hint: mixed
+    authority: 0.5
+    educational_quality: 0.7
+    license_clarity: 0.4
+    technical_relevance: 0.5
+    verification_potential: 0.2

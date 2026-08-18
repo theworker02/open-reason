@@ -1,0 +1,33 @@
+# SPDX identifiers allowed for redistribution into Open Reason releases.
+permissive:
+  - Apache-2.0
+  - MIT
+  - BSD-2-Clause
+  - BSD-3-Clause
+  - ISC
+  - CC0-1.0
+  - CC-BY-4.0
+  - CC-BY-3.0
+  - Unlicense
+  - 0BSD
+  - Python-2.0
+  - Zlib
+  - MPL-2.0
+  - ODC-By-1.0
+  - PDDL-1.0
+
+copyleft_requires_exception:
+  - GPL-2.0-only
+  - GPL-2.0-or-later
+  - GPL-3.0-only
+  - GPL-3.0-or-later
+  - AGPL-3.0-only
+  - LGPL-2.1-only
+  - LGPL-3.0-only
+
+rejected:
+  - NOASSERTION
+  - NONE
+  - UNKNOWN
+  - UNLICENSED
+  - PROPRIETARY

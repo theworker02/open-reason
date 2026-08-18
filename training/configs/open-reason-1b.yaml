@@ -1,0 +1,21 @@
+model_name: open-reason-1b
+hub_model_id: theworker02/open-reason-1b
+base_model: TinyLlama/TinyLlama-1.1B-Chat-v1.0
+base_license: Apache-2.0
+dataset: theworker02/open-reason
+local_data: data/release/all.jsonl
+max_seq_len: 2048
+learning_rate: 2.0e-5
+per_device_batch_size: 1
+gradient_accumulation: 8
+epochs: 1
+warmup_ratio: 0.03
+lora: true
+eval_configs:
+  - coding
+  - mathematics
+  - science
+  - reasoning
+notes: >
+  This config describes a real training job. Running it requires GPU and
+  transformers. `open-reason train --smoke` does not load this base model.

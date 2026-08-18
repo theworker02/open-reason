@@ -1,0 +1,29 @@
+domains:
+  - coding
+  - reasoning
+  - science
+  - mathematics
+  - human
+
+education_levels:
+  - k5
+  - middle_school
+  - high_school
+  - introductory_college
+  - undergraduate
+  - graduate
+  - professional
+  - expert
+  - research
+
+difficulty_levels:
+  - introductory
+  - beginner
+  - intermediate
+  - advanced
+  - expert
+  - research
+
+note: >
+  Difficulty and education level are independent. A professional debugging
+  task can be introductory difficulty; a middle-school puzzle can be hard.

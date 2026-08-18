@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Open Reason">
+  <rect width="256" height="256" rx="36" fill="#0B1F33"/>
+  <path d="M78 64 L78 192 L178 192" fill="none" stroke="#C4A35A" stroke-width="18" stroke-linecap="square"/>
+  <path d="M102 88 L102 168 L154 168" fill="none" stroke="#2A6F6F" stroke-width="10" stroke-linecap="square"/>
+  <circle cx="178" cy="64" r="8" fill="#F4EFE4"/>
+</svg>

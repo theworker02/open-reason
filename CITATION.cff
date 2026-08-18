@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+title: "Open Reason"
+message: "If you use this dataset or pipeline, please cite it as below."
+type: dataset
+authors:
+  - name: "Open Reason contributors"
+repository-code: "https://github.com/theworker02/open-reason"
+url: "https://huggingface.co/datasets/theworker02/open-reason"
+license: "CC-BY-4.0"
+version: 0.4.0
+date-released: "2026-08-18"
+abstract: >-
+  An open, verified dataset and pipeline for coding, science, mathematics,
+  and human reasoning with required provenance and no Reddit sources.
