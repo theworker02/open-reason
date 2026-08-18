@@ -1,0 +1,11 @@
+# Held-out eval protocol (no invented scores)
+
+gold: benchmarks/items.jsonl
+train_must_not_overlap: data/release/all.jsonl
+metrics: evaluation/metrics.yaml
+commands:
+  - open-reason benchmark --path benchmarks/items.jsonl --train data/release/all.jsonl
+  - open-reason score --predictions PATH --gold benchmarks/items.jsonl
+refuse:
+  - publishing open-reason-1b without a real GPU run
+  - filling MODEL_CARD.md eval tables with placeholder numbers

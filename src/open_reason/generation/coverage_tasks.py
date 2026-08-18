@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from open_reason.constants import PIPELINE_VERSION
 from open_reason.generation.base import build_example, reviewed_quality, verified_quality
+from open_reason.generation.coverage_v1 import COVERAGE_SPECS_V1
 from open_reason.models import Domain, EducationLevel, Evidence, Example
 from open_reason.provenance import synthetic_provenance
 from open_reason.verification import verify_math_answer, verify_numeric
@@ -484,3 +485,5 @@ COVERAGE_SPECS: list[dict] = [
         "solution": "Use enumerate if you need index and value. Direct iteration is the default.",
     },
 ]
+
+COVERAGE_SPECS.extend(COVERAGE_SPECS_V1)

@@ -55,3 +55,58 @@ trajectories:
     steps:
       - science.method
       - science.newton
+
+  - id: python.language_depth
+    name: Python language depth
+    domain: programming
+    steps:
+      - python.functions
+      - python.collections
+      - python.comprehensions
+      - python.iterators
+      - python.exceptions
+      - python.context_managers
+      - python.file_io
+      - python.decorators
+      - python.typing
+      - python.testing
+
+  - id: cs.algorithms_path
+    name: Algorithms path
+    domain: computer_science
+    steps:
+      - python.functions
+      - cs.recursion
+      - cs.algorithms
+      - cs.sorting
+      - cs.data_structures
+      - cs.graphs
+      - cs.complexity
+      - cs.dynamic_programming
+      - cs.concurrency
+      - cs.os
+
+  - id: math.probability_stats
+    name: Probability and statistics
+    domain: mathematics
+    steps:
+      - math.arithmetic
+      - math.algebra
+      - math.sequences
+      - math.probability
+      - math.statistics
+      - math.discrete
+
+  - id: science.physical
+    name: Physical science
+    domain: science
+    steps:
+      - science.method
+      - science.newton
+      - science.energy
+      - science.thermo
+      - science.waves
+      - science.optics
+      - science.circuits
+      - science.stoichiometry
+      - science.genetics

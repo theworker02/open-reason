@@ -1,0 +1,27 @@
+pipeline_version: 1.0.0
+matchers:
+  reddit:
+    hosts:
+    - reddit.com
+    - www.reddit.com
+    - old.reddit.com
+    - np.reddit.com
+    - redd.it
+    url_substrings:
+    - /r/
+    - reddit.com
+    - redd.it
+    dataset_name_substrings:
+    - reddit
+    - pushshift
+    - subreddit
+    policy: Open Reason does not use Reddit as a data source.
+  quora:
+    hosts:
+    - quora.com
+    - www.quora.com
+    url_substrings:
+    - quora.com
+    dataset_name_substrings:
+    - quora
+    policy: Quora is not a primary source of truth.

@@ -546,4 +546,7 @@ def generate_science(seed: int = 42) -> list[Example]:
     examples: list[Example] = []
     for factory, count in FAMILIES:
         examples.extend(factory(rng, count))
+    from open_reason.generation.science_v1 import extra_science
+
+    examples.extend(extra_science(rng))
     return examples

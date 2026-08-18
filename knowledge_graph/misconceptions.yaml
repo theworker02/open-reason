@@ -96,3 +96,67 @@ misconceptions:
     correct_explanation: "Multiply independent nested iteration counts unless the inner bound shrinks."
     diagnostic_prompt: "What is the time complexity of for i in range(n): for j in range(n): work()?"
     diagnostic_answer: "Theta(n^2) if work() is constant time."
+
+  - id: python.comprehensions.side_effect
+    concept_id: python.comprehensions
+    statement: "A list comprehension is the right place to call functions for their side effects."
+    why_it_is_wrong: "Comprehensions exist to build a collection. Side-effecting inside them hides control flow and still allocates a list."
+    correct_explanation: "Use a for-loop for actions. Use a comprehension when you need the resulting sequence."
+    diagnostic_prompt: "Why is `[print(x) for x in xs]` a poor pattern?"
+    diagnostic_answer: "It builds a list of None values as a side effect of printing. A for-loop states the intent."
+
+  - id: python.decorators.wrapper
+    concept_id: python.decorators
+    statement: "A decorator that returns an inner function automatically copies the original function's name and docstring."
+    why_it_is_wrong: "The inner function has its own __name__ and __doc__ unless you apply functools.wraps."
+    correct_explanation: "functools.wraps(func) updates the wrapper's metadata so tools and tests still see the original identity."
+    diagnostic_prompt: "After decorating without wraps, what is f.__name__ if the wrapper is named inner?"
+    diagnostic_answer: "It is 'inner', not the original function name."
+
+  - id: python.typing.runtime
+    concept_id: python.typing
+    statement: "A type hint like `def f(x: int)` makes Python reject a str argument at runtime."
+    why_it_is_wrong: "Annotations are not enforced by CPython. They are metadata for checkers and readers."
+    correct_explanation: "Use a type checker (or an explicit isinstance guard) if you need a runtime check."
+    diagnostic_prompt: "Does `def f(x: int) -> int: return x` raise TypeError on f('a')?"
+    diagnostic_answer: "No. CPython will return 'a' unless you add a runtime check."
+
+  - id: cs.graphs.bfs_dfs
+    concept_id: cs.graphs
+    statement: "BFS and DFS always visit nodes in the same order on an undirected graph."
+    why_it_is_wrong: "BFS explores by distance from the start. DFS dives along one path first. Orders differ unless the graph is a path."
+    correct_explanation: "Choose BFS for unweighted shortest paths. Choose DFS for connectivity, finishing times, or cycle checks."
+    diagnostic_prompt: "On a star graph, why does BFS from the center differ from DFS?"
+    diagnostic_answer: "BFS lists all leaves at distance 1 before going deeper; DFS may fully explore one spoke before another."
+
+  - id: math.statistics.mean_median
+    concept_id: math.statistics
+    statement: "The mean is always the best one-number summary of a numeric list."
+    why_it_is_wrong: "A single extreme value can drag the mean. The median is resistant to that skew."
+    correct_explanation: "Report mean when the distribution is roughly symmetric; report median (and maybe IQR) when outliers matter."
+    diagnostic_prompt: "For values 1, 2, 3, 100, why might you prefer the median?"
+    diagnostic_answer: "The mean is 26.5, dominated by 100. The median is 2.5 and describes the typical small values."
+
+  - id: science.thermo.heat_vs_temp
+    concept_id: science.thermo
+    statement: "Heat and temperature are two names for the same quantity."
+    why_it_is_wrong: "Temperature is an intensive state variable. Heat is energy transferred because of a temperature difference."
+    correct_explanation: "A large lake and a cup of tea can share a temperature while storing very different amounts of thermal energy."
+    diagnostic_prompt: "Can two objects at the same temperature exchange heat?"
+    diagnostic_answer: "Not net heat, once they are in thermal equilibrium. Heat flow requires a temperature difference."
+
+  - id: javascript.promises.then
+    concept_id: javascript.promises
+    statement: "Calling .then on a Promise starts the async work a second time."
+    why_it_is_wrong: "A Promise represents one eventual result. Additional then-handlers observe that same settlement."
+    correct_explanation: "The executor runs once. later .then calls receive the already-resolved or already-rejected value."
+    diagnostic_prompt: "If a Promise is already fulfilled with 3, what does a later .then(x => x+1) receive?"
+    diagnostic_answer: "It receives 3 asynchronously and yields 4. The original work is not rerun."
+
+  - id: sql.indexes.where
+    concept_id: sql.indexes
+    statement: "An index on column a also speeds WHERE b = 1 even if a is never mentioned."
+    why_it_is_wrong: "A B-tree on a cannot locate rows by b. The planner still needs a scan unless another index matches the predicate."
+    correct_explanation: "Index usefulness depends on matching predicates, join keys, and selectivity—not on 'having some index'."
+    diagnostic_prompt: "Why might CREATE INDEX on users.email not help WHERE users.created_at > '2024-01-01'?"
+    diagnostic_answer: "The predicate is on created_at. An email index does not order or filter that column."

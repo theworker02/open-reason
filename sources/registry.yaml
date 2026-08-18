@@ -194,9 +194,8 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
-    verbatim ingest. no SPDX; original tasks only.
-  auto_approved_at: '2026-08-18T21:48:15Z'
+  auto_approval_reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
+  auto_approved_at: '2026-08-18T23:47:59Z'
 - id: mit_opencourseware
   name: MIT OpenCourseWare
   category: education
@@ -227,10 +226,8 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
-    verbatim ingest. share-alike blocks verbatim copying into CC-BY-4.0; non-commercial
-    license blocks verbatim commercial redistribution.
-  auto_approved_at: '2026-08-18T21:48:15Z'
+  auto_approval_reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
+  auto_approved_at: '2026-08-18T23:47:59Z'
 - id: harvard_cs50
   name: Harvard CS50
   category: education
@@ -259,9 +256,8 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
-    verbatim ingest. no SPDX; original tasks only.
-  auto_approved_at: '2026-08-18T21:48:15Z'
+  auto_approval_reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
+  auto_approved_at: '2026-08-18T23:47:59Z'
 - id: openstax
   name: OpenStax
   category: education
@@ -295,9 +291,8 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
-    verbatim ingest.
-  auto_approved_at: '2026-08-18T21:48:15Z'
+  auto_approval_reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
+  auto_approved_at: '2026-08-18T23:47:59Z'
 - id: mdn
   name: MDN Web Docs
   category: documentation
@@ -328,9 +323,8 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
-    verbatim ingest. share-alike blocks verbatim copying into CC-BY-4.0.
-  auto_approved_at: '2026-08-18T21:48:15Z'
+  auto_approval_reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
+  auto_approved_at: '2026-08-18T23:47:59Z'
 - id: the_odin_project
   name: The Odin Project
   category: education
@@ -362,9 +356,8 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
-    verbatim ingest. no SPDX; original tasks only.
-  auto_approved_at: '2026-08-18T21:48:15Z'
+  auto_approval_reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
+  auto_approved_at: '2026-08-18T23:47:59Z'
 - id: python_docs
   name: Python official documentation
   category: documentation
@@ -390,9 +383,8 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
-    verbatim ingest.
-  auto_approved_at: '2026-08-18T21:48:15Z'
+  auto_approval_reason: Official docs — original Open Reason tasks only; no scrape.
+  auto_approved_at: '2026-08-18T23:47:59Z'
 - id: rust_docs
   name: Rust official documentation
   category: documentation
@@ -418,9 +410,8 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
-    verbatim ingest.
-  auto_approved_at: '2026-08-18T21:48:15Z'
+  auto_approval_reason: Official docs — original Open Reason tasks only; no scrape.
+  auto_approved_at: '2026-08-18T23:47:59Z'
 - id: go_docs
   name: Go official documentation
   category: documentation
@@ -446,9 +437,8 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
-    verbatim ingest.
-  auto_approved_at: '2026-08-18T21:48:15Z'
+  auto_approval_reason: Official docs — original Open Reason tasks only; no scrape.
+  auto_approved_at: '2026-08-18T23:47:59Z'
 - id: w3c_whatwg
   name: W3C / WHATWG specifications
   category: specification
@@ -475,9 +465,8 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
-    verbatim ingest. no SPDX; original tasks only.
-  auto_approved_at: '2026-08-18T21:48:15Z'
+  auto_approval_reason: Official docs — original Open Reason tasks only; no scrape.
+  auto_approved_at: '2026-08-18T23:47:59Z'
 - id: sqlite_docs
   name: SQLite documentation
   category: documentation
@@ -503,9 +492,8 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
-    verbatim ingest.
-  auto_approved_at: '2026-08-18T21:48:15Z'
+  auto_approval_reason: Official docs — original Open Reason tasks only; no scrape.
+  auto_approved_at: '2026-08-18T23:47:59Z'
 - id: postgresql_docs
   name: PostgreSQL documentation
   category: documentation
@@ -531,9 +519,8 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
-    verbatim ingest.
-  auto_approved_at: '2026-08-18T21:48:15Z'
+  auto_approval_reason: Official docs — original Open Reason tasks only; no scrape.
+  auto_approved_at: '2026-08-18T23:47:59Z'
 - id: linux_man_pages
   name: Linux man-pages
   category: documentation
@@ -559,9 +546,8 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
-    verbatim ingest. no SPDX; original tasks only.
-  auto_approved_at: '2026-08-18T21:48:15Z'
+  auto_approval_reason: Official docs — original Open Reason tasks only; no scrape.
+  auto_approved_at: '2026-08-18T23:47:59Z'
 - id: nasa_education
   name: NASA educational resources
   category: science
@@ -589,9 +575,9 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
-    verbatim ingest. no SPDX; original tasks only.
-  auto_approved_at: '2026-08-18T21:48:15Z'
+  auto_approval_reason: Public-sector education pages inspire original numeric/concept
+    tasks; not copied.
+  auto_approved_at: '2026-08-18T23:47:59Z'
 - id: noaa_education
   name: NOAA educational resources
   category: science
@@ -618,9 +604,9 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
-    verbatim ingest. no SPDX; original tasks only.
-  auto_approved_at: '2026-08-18T21:48:15Z'
+  auto_approval_reason: Public-sector education pages inspire original numeric/concept
+    tasks; not copied.
+  auto_approved_at: '2026-08-18T23:47:59Z'
 - id: usgs_education
   name: USGS educational resources
   category: science
@@ -646,9 +632,9 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
-    verbatim ingest. no SPDX; original tasks only.
-  auto_approved_at: '2026-08-18T21:48:15Z'
+  auto_approval_reason: Public-sector education pages inspire original numeric/concept
+    tasks; not copied.
+  auto_approved_at: '2026-08-18T23:47:59Z'
 - id: openalex
   name: OpenAlex
   category: scientific_metadata
@@ -796,9 +782,8 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
-    verbatim ingest. no SPDX; original tasks only.
-  auto_approved_at: '2026-08-18T21:48:15Z'
+  auto_approval_reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
+  auto_approved_at: '2026-08-18T23:47:59Z'
 - id: wikibooks
   name: Wikibooks
   category: education
@@ -823,9 +808,8 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Curriculum auto-approve for original Open Reason tasks; no
-    verbatim ingest. share-alike blocks verbatim copying into CC-BY-4.0.
-  auto_approved_at: '2026-08-18T21:48:15Z'
+  auto_approval_reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
+  auto_approved_at: '2026-08-18T23:47:59Z'
 - id: wikipedia
   name: Wikipedia
   category: encyclopedia

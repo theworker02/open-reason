@@ -1,5 +1,31 @@
 # Changelog
 
+## v1.0.0 — 2026-08-18
+
+First 1.0 line: complete catalogs in every previously README-only section,
+broader original task banks, and a rebuildable local dataset.
+
+### Expanded directories
+
+- `sources/approved|restricted|prohibited` — YAML catalogs, license report, fetch denylist, Reddit/Quora matchers, original-task metadata samples
+- `evaluation/` — holdout metrics, fixtures, `open-reason score`
+- `training/` — smoke config, SFT prepare script, eval protocol (still no fake 1B upload)
+- `knowledge_graph/` — more concepts, misconceptions, trajectories, README
+- `taxonomy/` — verification methods and license policy YAML
+- `schemas/education.schema.json`
+- `benchmarks/v1.jsonl` extra holdout items
+
+### Dataset
+
+- Coverage tasks cover multiple types per concept, not a single paraphrase
+- Curriculum banks have several original items per auto-approved source
+- New coding, math, science, reasoning, and human generators (checks still required for `quality.verified`)
+
+### Policy
+
+- Unchanged: Reddit forbidden; no KA/OCW/MDN/SO scrapes; NC/SA never relicensed to CC BY 4.0 copies
+- `open-reason catalogs --apply` refreshes source directories from the policy engine
+
 ## v0.4.0 — 2026-08-18
 
 Phase II: policy engine, coverage-driven original tasks, and a real (not faked) training pipeline.

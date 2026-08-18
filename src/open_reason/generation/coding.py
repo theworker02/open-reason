@@ -13,6 +13,7 @@ from open_reason.generation.coding_languages import generate_language_concept_ta
 from open_reason.generation.coding_micro import micro_python_tasks
 from open_reason.generation.coding_python import all_python_tasks
 from open_reason.generation.coding_sql_js import JS_TASKS, SQL_TASKS
+from open_reason.generation.coding_v1 import v1_python_tasks
 from open_reason.models import Domain, Example, Verification
 from open_reason.provenance import synthetic_provenance
 from open_reason.verification import parse_harness_payload, verification_from_sandbox
@@ -63,7 +64,7 @@ def generate_coding(seed: int = 42, sandbox: Sandbox | None = None) -> list[Exam
 
 def _python_examples(sandbox: Sandbox) -> list[Example]:
     out: list[Example] = []
-    for task in [*all_python_tasks(), *extra_python_tasks(), *micro_python_tasks()]:
+    for task in [*all_python_tasks(), *extra_python_tasks(), *micro_python_tasks(), *v1_python_tasks()]:
         files = _python_files(task["code"], task["tests"])
         result, payload = _run_python(sandbox, files)
         verification = verification_from_sandbox(result, payload)

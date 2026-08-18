@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://open-reason.dev/schemas/education.schema.json",
+  "title": "Open Reason education example extras",
+  "type": "object",
+  "description": "Education rows use the core schema plus these conventional fields.",
+  "required": ["concept_id", "education_level"],
+  "properties": {
+    "concept_id": { "type": "string", "minLength": 1 },
+    "education_level": {
+      "type": "string",
+      "enum": [
+        "k5",
+        "middle_school",
+        "high_school",
+        "introductory_college",
+        "undergraduate",
+        "graduate",
+        "professional",
+        "expert",
+        "research"
+      ]
+    },
+    "task_type": {
+      "type": "string",
+      "enum": [
+        "concept_explanation",
+        "simple_exercise",
+        "applied_exercise",
+        "debugging_exercise",
+        "diagnostic_misconception",
+        "correction_exercise",
+        "verification",
+        "worked_example",
+        "numerical",
+        "teaching",
+        "sql_generation"
+      ]
+    }
+  }
+}

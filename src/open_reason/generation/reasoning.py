@@ -484,4 +484,7 @@ def generate_reasoning(seed: int = 42) -> list[Example]:
     examples: list[Example] = []
     for factory, count in FAMILIES:
         examples.extend(factory(rng, count))
+    from open_reason.generation.reasoning_v1 import extra_reasoning
+
+    examples.extend(extra_reasoning(rng))
     return examples

@@ -14,6 +14,26 @@ from open_reason.config import repo_root
 from open_reason.io import iter_jsonl
 
 
+def prepare_sft_rows(rows: list[dict]) -> list[dict]:
+    """Map Open Reason examples to prompt/completion pairs. No fake labels."""
+    prepared: list[dict] = []
+    for row in rows:
+        prompt = str(row.get("prompt") or "").strip()
+        completion = str(row.get("answer") or row.get("solution") or "").strip()
+        if not prompt or not completion:
+            continue
+        prepared.append(
+            {
+                "id": row.get("id"),
+                "prompt": prompt,
+                "completion": completion,
+                "domain": row.get("domain"),
+                "verified": bool((row.get("quality") or {}).get("verified")),
+            }
+        )
+    return prepared
+
+
 def run_training(*, config_path: Path, data_path: Path, smoke: bool = False) -> int:
     config_path = Path(config_path)
     data_path = Path(data_path)
@@ -41,7 +61,11 @@ def run_training(*, config_path: Path, data_path: Path, smoke: bool = False) -> 
     if not rows:
         print(f"no JSONL rows at {data_path}; build the dataset first")
         return 2
-    subset = rows[:8] if smoke else rows
+    prepared = prepare_sft_rows(rows)
+    if not prepared:
+        print("no prompt/completion pairs after prepare_sft_rows")
+        return 2
+    subset = prepared[:8] if smoke else prepared
     vocab = 64
     model = nn.Sequential(nn.Embedding(vocab, 16), nn.Flatten(), nn.Linear(16 * 8, vocab))
     opt = torch.optim.SGD(model.parameters(), lr=0.05)

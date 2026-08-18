@@ -1,0 +1,31 @@
+pipeline_version: 1.0.0
+note: These sources cannot be enabled. Reddit is an absolute exclusion.
+sources:
+- id: reddit
+  name: Reddit
+  category: prohibited
+  license: n/a
+  license_spdx: null
+  status: prohibited
+  enabled: false
+  curriculum_use: false
+  verbatim: false
+  decision: AUTO_REJECTED
+  rule_id: forbidden
+  reason: Open Reason does not use Reddit as a data source. Reddit posts, comments,
+    subreddit dumps, APIs, archives, Reddit-derived datasets, and third-party datasets
+    whose provenance includes Reddit are rejected.
+  auto_approval_mode: null
+- id: quora
+  name: Quora
+  category: prohibited_as_authority
+  license: review_required
+  license_spdx: null
+  status: prohibited
+  enabled: false
+  curriculum_use: false
+  verbatim: false
+  decision: AUTO_REJECTED
+  rule_id: forbidden
+  reason: Quora is not a primary source of truth.
+  auto_approval_mode: null

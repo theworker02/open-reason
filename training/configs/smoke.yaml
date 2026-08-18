@@ -1,0 +1,9 @@
+model_name: open-reason-smoke
+hub_model_id: null
+base_model: none
+dataset: local
+local_data: data/release/all.jsonl
+max_seq_len: 64
+notes: >
+  CPU toy run via `open-reason train --smoke`. Not TinyLlama and not
+  theworker02/open-reason-1b.

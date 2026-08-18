@@ -17,6 +17,8 @@ def test_help() -> None:
     assert "evaluate-sources" in result.stdout
     assert "analyze-coverage" in result.stdout
     assert "train" in result.stdout
+    assert "catalogs" in result.stdout
+    assert "score" in result.stdout
     assert "Reddit" in result.stdout or "reddit" in result.stdout.lower()
 
 

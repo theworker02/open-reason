@@ -19,8 +19,15 @@ open-reason evaluate-model --model training/work/model --data data/release/verif
 `--smoke` runs a tiny CPU embedding loop (a few steps) so the trainer is real.
 It is **not** TinyLlama and must not be uploaded as `open-reason-1b`.
 
+```bash
+python training/scripts/prepare_sft.py data/release/all.jsonl training/work/sft.jsonl
+open-reason train --smoke --config training/configs/smoke.yaml --data data/release/all.jsonl
+```
+
 Full 1B–3B training needs a GPU, `torch`, and `transformers`. If those are missing,
 the CLI exits with an honest message and writes no fake metrics.
+
+Eval protocol: `training/eval/protocol.yaml`. Holdout scoring: `docs/evaluation.md`.
 
 ## GitHub vs Hub
 

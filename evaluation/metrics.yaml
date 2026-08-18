@@ -1,0 +1,22 @@
+# Holdout metrics
+
+These metrics are computed by `open_reason.evaluation` against `benchmarks/`
+gold. They are not claims about a published 1B model.
+
+metrics:
+  - id: exact_match
+    applies_to: [mathematics, science, reasoning, human, education]
+    method: normalized string equality on `answer`
+  - id: numeric_match
+    applies_to: [mathematics, science]
+    method: float isclose with rel_tol 1e-6
+  - id: sandbox_pass
+    applies_to: [coding]
+    method: existing verification.passed on gold; models must re-run tests
+    note: This repo does not fake sandbox pass@k for an untrained model.
+  - id: contamination
+    applies_to: [all]
+    method: id overlap between train JSONL and holdout
+
+reddit: prohibited
+train_on_benchmarks: false

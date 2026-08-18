@@ -312,6 +312,49 @@ ORDER BY e.name;
 """,
         "expected": [("Ben", "Ada"), ("Cyd", "Ada")],
     },
+    {
+        "slug": "left_join_unmatched",
+        "topic": "sql",
+        "prompt": (
+            "customers(id, name), orders(id, customer_id, total). Return every customer "
+            "name and their order total using a LEFT JOIN, with NULL total when there is "
+            "no order. Order by name, then total NULLS LAST equivalent (SQLite: totals "
+            "ascending with NULLs first is acceptable if names group). Return name, total "
+            "ordered by name ASC, total ASC."
+        ),
+        "schema": """
+CREATE TABLE customers (id INTEGER, name TEXT);
+CREATE TABLE orders (id INTEGER, customer_id INTEGER, total INTEGER);
+INSERT INTO customers VALUES (1, 'Ada'), (2, 'Ben'), (3, 'Cyd');
+INSERT INTO orders VALUES (10, 1, 40), (11, 2, 50);
+""",
+        "query": """
+SELECT c.name, o.total
+FROM customers AS c
+LEFT JOIN orders AS o ON o.customer_id = c.id
+ORDER BY c.name ASC, o.total ASC;
+""",
+        "expected": [("Ada", 40), ("Ben", 50), ("Cyd", None)],
+    },
+    {
+        "slug": "windowless_rank_proxy",
+        "topic": "sql",
+        "prompt": (
+            "scores(name, pts). Return names whose pts equal the maximum pts in the table, "
+            "ordered by name."
+        ),
+        "schema": """
+CREATE TABLE scores (name TEXT, pts INTEGER);
+INSERT INTO scores VALUES ('Ada', 10), ('Ben', 7), ('Cyd', 10);
+""",
+        "query": """
+SELECT name
+FROM scores
+WHERE pts = (SELECT MAX(pts) FROM scores)
+ORDER BY name;
+""",
+        "expected": [("Ada",), ("Cyd",)],
+    },
 ]
 
 

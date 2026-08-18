@@ -58,7 +58,7 @@ def test_verified_without_passed_is_rejected() -> None:
         prompt="Solve a tiny original equation x = 1.",
         answer="1",
         solution="x=1",
-        provenance=synthetic_provenance(generator="tests", generator_version="0.4.0"),
+        provenance=synthetic_provenance(generator="tests", generator_version="1.0.0"),
         quality=verified_quality("sympy"),
         source_key="test-false-verified",
         verification=Verification(method="sympy", passed=False, result="no"),

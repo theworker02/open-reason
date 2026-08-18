@@ -12,6 +12,7 @@ coding:
   - documentation
   - api_usage
   - sql_generation
+  - sql
   - query_optimization
   - algorithm_design
   - data_structure_selection
@@ -33,13 +34,18 @@ mathematics:
   - geometry
   - calculus
   - discrete
+  - discrete_mathematics
   - probability
   - proof
   - numerical
+  - sequences
+  - number_theory
+  - linear_algebra
 
 science:
   - conceptual
   - numerical
+  - calculation
   - experimental_design
   - modeling
   - data_analysis
@@ -62,3 +68,4 @@ human:
   - research_synthesis
   - troubleshooting
   - decision_analysis
+  - structured_reasoning

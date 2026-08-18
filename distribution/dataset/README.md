@@ -66,11 +66,11 @@ Open Reason is a provenance-aware corpus plus a reproducible pipeline. It is int
 
 ## Languages
 
-Prompts and solutions are English. Verified coding languages in v0.4: Python, SQL, JavaScript (when the sandbox can run them). Other languages appear as original concept tasks and are not marked verified.
+Prompts and solutions are English. Verified coding languages in v1.0.0: Python, SQL, JavaScript (when the sandbox can run them). Other languages appear as original concept tasks and are not marked verified.
 
 ## Source information
 
-| Kind | How to recognize | v0.3 |
+| Kind | How to recognize | v1.0.0 |
 | --- | --- | --- |
 | Human-authored | `provenance.source_type = human_authored` | Teaching, synthesis, qualitative items |
 | Synthetic | `provenance.source_type = synthetic` plus `generator` | Math, science, most reasoning/coding, curriculum |
@@ -110,7 +110,7 @@ Research on reasoning and code models; filtering by domain, language, tier, and 
 
 ## Limitations
 
-Small v0.3 foundation; English-centric; verified coding languages limited; teaching items are not executable oracles; third-party educational sites are registered but not scraped; denylists cannot be complete.
+Small v1.0.0 foundation; English-centric; verified coding languages limited; teaching items are not executable oracles; third-party educational sites are registered but not scraped; denylists cannot be complete.
 
 ## Bias considerations
 
@@ -130,22 +130,22 @@ Releases are immutable; GitHub tags map to Hub revisions. Fixes ship in a new ve
 
 See `CITATION.cff` and the README BibTeX entry.
 
-## v0.3.0 snapshot
+## v1.0.0 snapshot
 
 <!-- BEGIN_RELEASE_SNAPSHOT -->
-Pipeline version **0.4.0**.
+Pipeline version **1.0.0**.
 
 | Configuration | Examples | Verified | Human-authored |
 | --- | ---: | ---: | ---: |
-| coding | 225 | 219 | 0 |
-| reasoning | 187 | 187 | 0 |
-| science | 175 | 175 | 0 |
-| mathematics | 212 | 212 | 0 |
-| human | 260 | 240 | 20 |
-| education | 81 | 20 | 0 |
-| core | 1140 | 1053 | 20 |
-| verified | 1053 | 1053 | 0 |
-| all | 1140 | 1053 | 20 |
+| coding | 238 | 232 | 0 |
+| reasoning | 210 | 210 | 0 |
+| science | 203 | 203 | 0 |
+| mathematics | 252 | 252 | 0 |
+| human | 268 | 240 | 28 |
+| education | 185 | 39 | 0 |
+| core | 1356 | 1176 | 28 |
+| verified | 1176 | 1176 | 0 |
+| all | 1356 | 1176 | 28 |
 
 Rebuild with `open-reason build --config all --seed 42 --out data/release`.
 Full tables: `data/release/statistics.md`.

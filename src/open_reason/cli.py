@@ -466,6 +466,49 @@ def benchmark(
 
 
 @app.command()
+def catalogs(
+    apply: bool = typer.Option(
+        True,
+        "--apply/--dry-run",
+        help="Write sources/approved|restricted|prohibited catalogs from the registry.",
+    ),
+) -> None:
+    """Export machine-readable source catalogs. Does not scrape third-party sites."""
+    from open_reason.sources.catalog import partition_sources, write_source_catalogs
+
+    buckets = partition_sources()
+    console.print(
+        json.dumps(
+            {name: [row["id"] for row in rows] for name, rows in buckets.items()},
+            indent=2,
+        )
+    )
+    if apply:
+        written = write_source_catalogs()
+        for label, path in written.items():
+            console.print(f"{label}: {path}")
+    console.print(REDDIT_POLICY)
+
+
+@app.command("score")
+def score_cmd(
+    predictions: Path = typer.Option(Path("evaluation/fixtures/sample_predictions.jsonl"), "--predictions"),
+    gold: Path = typer.Option(Path("benchmarks/items.jsonl"), "--gold"),
+    train: Optional[Path] = typer.Option(Path("data/release/all.jsonl"), "--train"),
+) -> None:
+    """Score predictions against holdout gold. Refuses to invent model metrics."""
+    from open_reason.evaluation import evaluate_paths, write_metrics
+
+    train_path = train if train and train.exists() else None
+    report = evaluate_paths(predictions=predictions, gold=gold, train=train_path)
+    out = repo_root() / "evaluation" / "reports" / "last_score.json"
+    write_metrics(out, report)
+    console.print_json(data=report)
+    if report.get("contaminated"):
+        raise typer.Exit(code=1)
+
+
+@app.command()
 def inspect(
     path: Path = typer.Argument(..., help="JSONL file."),
     example_id: Optional[str] = typer.Option(None, "--id", help="Example id to show."),

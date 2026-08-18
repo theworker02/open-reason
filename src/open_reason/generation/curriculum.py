@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from open_reason.constants import PIPELINE_VERSION
 from open_reason.generation.base import build_example, reviewed_quality, verified_quality
+from open_reason.generation.curriculum_v1 import EXTRA_TASKS
 from open_reason.models import Domain, EducationLevel, Evidence, Example
 from open_reason.provenance import synthetic_provenance
 from open_reason.verification import verify_math_answer, verify_numeric
@@ -311,3 +312,6 @@ TASKS: dict[str, list[dict]] = {
         }
     ],
 }
+
+for _source_id, _extra in EXTRA_TASKS.items():
+    TASKS.setdefault(_source_id, []).extend(_extra)

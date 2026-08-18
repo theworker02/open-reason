@@ -1,0 +1,27 @@
+pipeline_version: 1.0.0
+never_fetch_hosts:
+- khanacademy.org
+- www.khanacademy.org
+- ocw.mit.edu
+- cs50.harvard.edu
+- openstax.org
+- developer.mozilla.org
+- stackoverflow.com
+- stackexchange.com
+- reddit.com
+- www.reddit.com
+- old.reddit.com
+- redd.it
+- www.quora.com
+- quora.com
+never_scrape_source_ids:
+- khan_academy_computing
+- mit_opencourseware
+- harvard_cs50
+- openstax
+- mdn
+- stackoverflow
+- stack_exchange
+- the_odin_project
+reason: Public pages are not a redistribution grant. Open Reason generates original
+  tasks.

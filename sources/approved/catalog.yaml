@@ -1,0 +1,267 @@
+pipeline_version: 1.0.0
+note: Auto-approved for original Open Reason tasks only. verbatim is always false.
+  No third-party lesson text is stored here.
+sources:
+- id: open-reason-authors
+  name: Open Reason authors
+  category: original
+  license: CC-BY-4.0
+  license_spdx: CC-BY-4.0
+  status: approved
+  enabled: true
+  curriculum_use: true
+  verbatim: false
+  decision: AUTO_APPROVED
+  rule_id: internal
+  reason: First-party Open Reason material.
+  auto_approval_mode: null
+- id: open-reason-generators
+  name: Open Reason generators
+  category: synthetic
+  license: CC-BY-4.0
+  license_spdx: CC-BY-4.0
+  status: approved
+  enabled: true
+  curriculum_use: true
+  verbatim: false
+  decision: AUTO_APPROVED
+  rule_id: internal
+  reason: First-party Open Reason material.
+  auto_approval_mode: null
+- id: khan_academy_computing
+  name: Khan Academy Computing
+  category: education
+  license: Terms of use / copyright; not assumed CC
+  license_spdx: null
+  status: conditionally_approved
+  enabled: true
+  curriculum_use: true
+  verbatim: false
+  decision: AUTO_APPROVED
+  rule_id: oer_and_courses
+  reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
+  auto_approval_mode: curriculum
+- id: mit_opencourseware
+  name: MIT OpenCourseWare
+  category: education
+  license: Typically CC BY-NC-SA 4.0 per course; verify each course
+  license_spdx: CC-BY-NC-SA-4.0
+  status: conditionally_approved
+  enabled: true
+  curriculum_use: true
+  verbatim: false
+  decision: AUTO_APPROVED
+  rule_id: oer_and_courses
+  reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
+  auto_approval_mode: curriculum
+- id: harvard_cs50
+  name: Harvard CS50
+  category: education
+  license: Per-asset; lectures, notes, and problem sets may differ
+  license_spdx: null
+  status: conditionally_approved
+  enabled: true
+  curriculum_use: true
+  verbatim: false
+  decision: AUTO_APPROVED
+  rule_id: oer_and_courses
+  reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
+  auto_approval_mode: curriculum
+- id: openstax
+  name: OpenStax
+  category: education
+  license: Often CC BY 4.0 per book; never assume identical licensing
+  license_spdx: CC-BY-4.0
+  status: conditionally_approved
+  enabled: true
+  curriculum_use: true
+  verbatim: false
+  decision: AUTO_APPROVED
+  rule_id: oer_and_courses
+  reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
+  auto_approval_mode: curriculum
+- id: mdn
+  name: MDN Web Docs
+  category: documentation
+  license: Typically CC-BY-SA for content; verify current terms
+  license_spdx: CC-BY-SA-2.5
+  status: conditionally_approved
+  enabled: true
+  curriculum_use: true
+  verbatim: false
+  decision: AUTO_APPROVED
+  rule_id: oer_and_courses
+  reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
+  auto_approval_mode: curriculum
+- id: the_odin_project
+  name: The Odin Project
+  category: education
+  license: Curriculum and website code have different licenses
+  license_spdx: null
+  status: conditionally_approved
+  enabled: true
+  curriculum_use: true
+  verbatim: false
+  decision: AUTO_APPROVED
+  rule_id: oer_and_courses
+  reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
+  auto_approval_mode: curriculum
+- id: python_docs
+  name: Python official documentation
+  category: documentation
+  license: PSF License / documentation terms
+  license_spdx: PSF-2.0
+  status: conditionally_approved
+  enabled: true
+  curriculum_use: true
+  verbatim: false
+  decision: AUTO_APPROVED
+  rule_id: ordinary_docs
+  reason: Official docs — original Open Reason tasks only; no scrape.
+  auto_approval_mode: curriculum
+- id: rust_docs
+  name: Rust official documentation
+  category: documentation
+  license: Apache-2.0 / MIT dual for much of rust-lang docs; verify
+  license_spdx: Apache-2.0 OR MIT
+  status: conditionally_approved
+  enabled: true
+  curriculum_use: true
+  verbatim: false
+  decision: AUTO_APPROVED
+  rule_id: ordinary_docs
+  reason: Official docs — original Open Reason tasks only; no scrape.
+  auto_approval_mode: curriculum
+- id: go_docs
+  name: Go official documentation
+  category: documentation
+  license: BSD-style; verify golang.org terms
+  license_spdx: BSD-3-Clause
+  status: conditionally_approved
+  enabled: true
+  curriculum_use: true
+  verbatim: false
+  decision: AUTO_APPROVED
+  rule_id: ordinary_docs
+  reason: Official docs — original Open Reason tasks only; no scrape.
+  auto_approval_mode: curriculum
+- id: w3c_whatwg
+  name: W3C / WHATWG specifications
+  category: specification
+  license: Per-spec document license
+  license_spdx: null
+  status: conditionally_approved
+  enabled: true
+  curriculum_use: true
+  verbatim: false
+  decision: AUTO_APPROVED
+  rule_id: ordinary_docs
+  reason: Official docs — original Open Reason tasks only; no scrape.
+  auto_approval_mode: curriculum
+- id: sqlite_docs
+  name: SQLite documentation
+  category: documentation
+  license: Blessing / public domain for software; docs may differ
+  license_spdx: blessing
+  status: conditionally_approved
+  enabled: true
+  curriculum_use: true
+  verbatim: false
+  decision: AUTO_APPROVED
+  rule_id: ordinary_docs
+  reason: Official docs — original Open Reason tasks only; no scrape.
+  auto_approval_mode: curriculum
+- id: postgresql_docs
+  name: PostgreSQL documentation
+  category: documentation
+  license: PostgreSQL License
+  license_spdx: PostgreSQL
+  status: conditionally_approved
+  enabled: true
+  curriculum_use: true
+  verbatim: false
+  decision: AUTO_APPROVED
+  rule_id: ordinary_docs
+  reason: Official docs — original Open Reason tasks only; no scrape.
+  auto_approval_mode: curriculum
+- id: linux_man_pages
+  name: Linux man-pages
+  category: documentation
+  license: Per-page; often GPL or BSD variants
+  license_spdx: null
+  status: conditionally_approved
+  enabled: true
+  curriculum_use: true
+  verbatim: false
+  decision: AUTO_APPROVED
+  rule_id: ordinary_docs
+  reason: Official docs — original Open Reason tasks only; no scrape.
+  auto_approval_mode: curriculum
+- id: nasa_education
+  name: NASA educational resources
+  category: science
+  license: Often US government work / public domain, but not always
+  license_spdx: null
+  status: conditionally_approved
+  enabled: true
+  curriculum_use: true
+  verbatim: false
+  decision: AUTO_APPROVED
+  rule_id: government_edu
+  reason: Public-sector education pages inspire original numeric/concept tasks; not
+    copied.
+  auto_approval_mode: curriculum
+- id: noaa_education
+  name: NOAA educational resources
+  category: science
+  license: Often US government work; verify third-party material
+  license_spdx: null
+  status: conditionally_approved
+  enabled: true
+  curriculum_use: true
+  verbatim: false
+  decision: AUTO_APPROVED
+  rule_id: government_edu
+  reason: Public-sector education pages inspire original numeric/concept tasks; not
+    copied.
+  auto_approval_mode: curriculum
+- id: usgs_education
+  name: USGS educational resources
+  category: science
+  license: Often US government work; verify
+  license_spdx: null
+  status: conditionally_approved
+  enabled: true
+  curriculum_use: true
+  verbatim: false
+  decision: AUTO_APPROVED
+  rule_id: government_edu
+  reason: Public-sector education pages inspire original numeric/concept tasks; not
+    copied.
+  auto_approval_mode: curriculum
+- id: oer_commons
+  name: OER Commons
+  category: education
+  license: Per-resource
+  license_spdx: null
+  status: conditionally_approved
+  enabled: true
+  curriculum_use: true
+  verbatim: false
+  decision: AUTO_APPROVED
+  rule_id: oer_and_courses
+  reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
+  auto_approval_mode: curriculum
+- id: wikibooks
+  name: Wikibooks
+  category: education
+  license: Typically CC BY-SA
+  license_spdx: CC-BY-SA-3.0
+  status: conditionally_approved
+  enabled: true
+  curriculum_use: true
+  verbatim: false
+  decision: AUTO_APPROVED
+  rule_id: oer_and_courses
+  reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
+  auto_approval_mode: curriculum

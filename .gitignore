@@ -27,7 +27,8 @@ data/cache/
 data/tmp/
 sandbox_runs/
 *.log
-training/work/
+evaluation/reports/*.json
+!evaluation/reports/.gitkeep
 
 # Generated dataset shards — rebuild locally; publish on GitHub Releases / Hugging Face
 data/release/*.parquet

@@ -1,3 +1,6 @@
 seed: 2026
 holdout: true
+files:
+  - items.jsonl
+  - v1.jsonl
 note: Benchmark items must not be copied into data/release training files.

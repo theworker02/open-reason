@@ -12,7 +12,7 @@
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/code-Apache%202.0-0B1F33" alt="Apache 2.0"></a>
   <a href="LICENSE-DATA"><img src="https://img.shields.io/badge/data-CC%20BY%204.0-C4A35A" alt="CC BY 4.0"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/pipeline-v0.4.0-2A6F6F" alt="v0.4.0"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/pipeline-v1.0.0-2A6F6F" alt="v1.0.0"></a>
   <a href="docs/data-sources.md"><img src="https://img.shields.io/badge/Reddit-forbidden-b91c1c" alt="Reddit forbidden"></a>
   <a href="https://huggingface.co/datasets/theworker02/open-reason"><img src="https://img.shields.io/badge/Hugging%20Face-open--reason-FFD21E" alt="Hugging Face"></a>
 </p>
@@ -29,6 +29,7 @@ See **[CHANGELOG.md](CHANGELOG.md)** for every release.
 
 | Version | Date | Notes |
 | --- | --- | --- |
+| **[v1.0.0](CHANGELOG.md#v100--2026-08-18)** | 2026-08-18 | Catalogs in every section, broader original tasks, local 1.0 dataset |
 | **[v0.4.0](CHANGELOG.md#v040--2026-08-18)** | 2026-08-18 | Policy engine, coverage generation, training pipeline |
 | **[v0.3.0](CHANGELOG.md#v030--2026-08-18)** | 2026-08-18 | Curriculum auto-approve, original source-tagged tasks, README demos |
 | [v0.2.0](CHANGELOG.md#v020--2026-08-18) | 2026-08-18 | Source registry, knowledge graph, education / core / verified splits |
@@ -203,19 +204,19 @@ JSON Schema: [`schemas/`](schemas/).
 ## Statistics
 
 <!-- BEGIN_RELEASE_SNAPSHOT -->
-Pipeline version **0.4.0**.
+Pipeline version **1.0.0**.
 
 | Configuration | Examples | Verified | Human-authored |
 | --- | ---: | ---: | ---: |
-| coding | 225 | 219 | 0 |
-| reasoning | 187 | 187 | 0 |
-| science | 175 | 175 | 0 |
-| mathematics | 212 | 212 | 0 |
-| human | 260 | 240 | 20 |
-| education | 81 | 20 | 0 |
-| core | 1140 | 1053 | 20 |
-| verified | 1053 | 1053 | 0 |
-| all | 1140 | 1053 | 20 |
+| coding | 238 | 232 | 0 |
+| reasoning | 210 | 210 | 0 |
+| science | 203 | 203 | 0 |
+| mathematics | 252 | 252 | 0 |
+| human | 268 | 240 | 28 |
+| education | 185 | 39 | 0 |
+| core | 1356 | 1176 | 28 |
+| verified | 1176 | 1176 | 0 |
+| all | 1356 | 1176 | 28 |
 
 Rebuild with `open-reason build --config all --seed 42 --out data/release`.
 Full tables: `data/release/statistics.md`.
@@ -238,6 +239,7 @@ Full tables: `data/release/statistics.md`.
 - [Validation](docs/validation.md) · [Verification](docs/verification.md) · [Sandbox](docs/sandbox.md)
 - [Contamination](docs/contamination.md) · [Releases](docs/releases.md)
 - [Hugging Face](docs/huggingface.md) · [Dataset card](DATA_CARD.md)
+- [Evaluation](docs/evaluation.md) · [Training](docs/training.md)
 - [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
 
 ## Citation
@@ -248,7 +250,7 @@ Full tables: `data/release/statistics.md`.
   author       = {Open Reason contributors},
   year         = {2026},
   howpublished = {\url{https://github.com/theworker02/open-reason}},
-  note         = {Dataset and pipeline v0.4.0}
+  note         = {Dataset and pipeline v1.0.0}
 }
 ```
 

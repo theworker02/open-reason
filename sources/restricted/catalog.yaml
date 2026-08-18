@@ -1,0 +1,69 @@
+pipeline_version: 1.0.0
+note: Review-required or metadata-only. Do not fetch or copy these sites. Original
+  tasks may exist only after AUTO_APPROVED curriculum_use.
+sources:
+- id: openalex
+  name: OpenAlex
+  category: scientific_metadata
+  license: Core metadata typically CC0; full texts are not included
+  license_spdx: CC0-1.0
+  status: metadata_only
+  enabled: false
+  curriculum_use: false
+  verbatim: false
+  decision: METADATA_ONLY
+  rule_id: incomplete_connectors
+  reason: No reviewed crawler. Discovery is not ingestion.
+  auto_approval_mode: null
+- id: stack_exchange
+  name: Stack Exchange network
+  category: community
+  license: CC BY-SA; version depends on contribution date (often 4.0 now, 3.0 historically)
+  license_spdx: CC-BY-SA-4.0
+  status: metadata_only
+  enabled: false
+  curriculum_use: false
+  verbatim: false
+  decision: METADATA_ONLY
+  rule_id: community_qa
+  reason: Community evidence is not ground truth and votes never verify.
+  auto_approval_mode: null
+- id: stackoverflow
+  name: Stack Overflow
+  category: community
+  license: CC BY-SA (date-dependent version)
+  license_spdx: CC-BY-SA-4.0
+  status: metadata_only
+  enabled: false
+  curriculum_use: false
+  verbatim: false
+  decision: METADATA_ONLY
+  rule_id: community_qa
+  reason: Community evidence is not ground truth and votes never verify.
+  auto_approval_mode: null
+- id: github_permissive
+  name: Permissive Git repositories
+  category: implementation
+  license: Per-repository SPDX allowlist
+  license_spdx: null
+  status: metadata_only
+  enabled: false
+  curriculum_use: false
+  verbatim: false
+  decision: METADATA_ONLY
+  rule_id: incomplete_connectors
+  reason: No reviewed crawler. Discovery is not ingestion.
+  auto_approval_mode: null
+- id: wikipedia
+  name: Wikipedia
+  category: encyclopedia
+  license: CC BY-SA 4.0 and GFDL
+  license_spdx: CC-BY-SA-4.0
+  status: metadata_only
+  enabled: false
+  curriculum_use: false
+  verbatim: false
+  decision: METADATA_ONLY
+  rule_id: incomplete_connectors
+  reason: No reviewed crawler. Discovery is not ingestion.
+  auto_approval_mode: null

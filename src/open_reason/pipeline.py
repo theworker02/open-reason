@@ -261,6 +261,9 @@ def build_release(
             progress(f"core kept={core_report.kept}")
             progress(f"verified kept={ver_report.kept}")
         write_release_catalog(staging, reports)
+        from open_reason.sources.catalog import write_source_catalogs
+
+        write_source_catalogs()
         publish_staging(staging, out)
         published = True
     except Exception:

@@ -777,4 +777,7 @@ def generate_mathematics(seed: int = 42) -> list[Example]:
     examples: list[Example] = []
     for _name, factory, count in FAMILIES:
         examples.extend(factory(rng, count))
+    from open_reason.generation.math_v1 import extra_mathematics
+
+    examples.extend(extra_mathematics(rng))
     return examples

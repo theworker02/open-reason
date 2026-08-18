@@ -57,7 +57,7 @@ concepts:
     domain: programming
     education_level: introductory_college
     prerequisites: [python.functions]
-    related_concepts: [python.classes]
+    related_concepts: [python.classes, python.comprehensions]
     common_mistakes: [python.collections.aliasing]
     verification_methods: [sandbox:python]
     keywords: [list, dict, set, tuple]
@@ -77,7 +77,7 @@ concepts:
     domain: computer_science
     education_level: undergraduate
     prerequisites: [python.classes]
-    related_concepts: [cs.data_structures, cs.complexity]
+    related_concepts: [cs.data_structures, cs.complexity, cs.sorting]
     common_mistakes: []
     verification_methods: [complexity_argument]
     keywords: [algorithm, complexity, big-o]
@@ -87,7 +87,7 @@ concepts:
     domain: computer_science
     education_level: undergraduate
     prerequisites: [cs.algorithms]
-    related_concepts: []
+    related_concepts: [cs.graphs]
     common_mistakes: []
     verification_methods: [complexity_argument]
     keywords: [array, hash table, tree, graph]
@@ -307,7 +307,7 @@ concepts:
     domain: mathematics
     education_level: high_school
     prerequisites: [math.arithmetic]
-    related_concepts: [math.discrete]
+    related_concepts: [math.discrete, math.statistics]
     common_mistakes: []
     verification_methods: [numeric]
     keywords: [probability, independent, expected value]
@@ -337,7 +337,7 @@ concepts:
     domain: science
     education_level: high_school
     prerequisites: [science.newton]
-    related_concepts: [science.waves]
+    related_concepts: [science.waves, science.thermo]
     common_mistakes: []
     verification_methods: [numeric]
     keywords: [kinetic, potential, joule, work]
@@ -367,7 +367,177 @@ concepts:
     domain: science
     education_level: high_school
     prerequisites: [science.energy]
-    related_concepts: [science.circuits]
+    related_concepts: [science.circuits, science.optics]
     common_mistakes: []
     verification_methods: [numeric]
     keywords: [frequency, wavelength, period, wave]
+
+  - id: python.comprehensions
+    name: Python comprehensions
+    domain: programming
+    education_level: introductory_college
+    prerequisites: [python.collections]
+    related_concepts: [python.iterators]
+    common_mistakes: [python.comprehensions.side_effect]
+    verification_methods: [sandbox:python]
+    keywords: [list comprehension, generator expression, filter]
+
+  - id: python.decorators
+    name: Python decorators
+    domain: programming
+    education_level: undergraduate
+    prerequisites: [python.functions]
+    related_concepts: [python.modules]
+    common_mistakes: [python.decorators.wrapper]
+    verification_methods: [argument_check]
+    keywords: [decorator, wrapper, functools.wraps]
+
+  - id: python.context_managers
+    name: Python context managers
+    domain: programming
+    education_level: introductory_college
+    prerequisites: [python.exceptions]
+    related_concepts: [python.file_io]
+    common_mistakes: []
+    verification_methods: [sandbox:python]
+    keywords: [with, context manager, __enter__, __exit__]
+
+  - id: python.typing
+    name: Python type hints
+    domain: programming
+    education_level: introductory_college
+    prerequisites: [python.functions]
+    related_concepts: [python.testing]
+    common_mistakes: [python.typing.runtime]
+    verification_methods: [argument_check]
+    keywords: [annotation, typing, Optional, list]
+
+  - id: python.file_io
+    name: Python file I/O
+    domain: programming
+    education_level: high_school
+    prerequisites: [python.functions]
+    related_concepts: [python.context_managers]
+    common_mistakes: []
+    verification_methods: [sandbox:python]
+    keywords: [open, read, write, encoding]
+
+  - id: cs.graphs
+    name: Graphs
+    domain: computer_science
+    education_level: undergraduate
+    prerequisites: [cs.data_structures]
+    related_concepts: [cs.algorithms]
+    common_mistakes: [cs.graphs.bfs_dfs]
+    verification_methods: [complexity_argument]
+    keywords: [graph, bfs, dfs, adjacency]
+
+  - id: cs.sorting
+    name: Sorting
+    domain: computer_science
+    education_level: undergraduate
+    prerequisites: [cs.algorithms]
+    related_concepts: [cs.complexity]
+    common_mistakes: []
+    verification_methods: [complexity_argument]
+    keywords: [sort, merge, stable, comparison]
+
+  - id: cs.dynamic_programming
+    name: Dynamic programming
+    domain: computer_science
+    education_level: undergraduate
+    prerequisites: [cs.recursion]
+    related_concepts: [cs.algorithms]
+    common_mistakes: []
+    verification_methods: [complexity_argument]
+    keywords: [memoization, subproblem, overlapping]
+
+  - id: cs.concurrency
+    name: Concurrency
+    domain: computer_science
+    education_level: undergraduate
+    prerequisites: [python.functions]
+    related_concepts: [go.concurrency]
+    common_mistakes: []
+    verification_methods: [argument_check]
+    keywords: [thread, lock, race, deadlock]
+
+  - id: cs.os
+    name: Operating systems
+    domain: computer_science
+    education_level: undergraduate
+    prerequisites: [python.functions]
+    related_concepts: [cs.concurrency]
+    common_mistakes: []
+    verification_methods: [argument_check]
+    keywords: [process, virtual memory, syscall, kernel]
+
+  - id: javascript.promises
+    name: JavaScript promises
+    domain: programming
+    education_level: introductory_college
+    prerequisites: [javascript.closures]
+    related_concepts: [javascript.closures]
+    common_mistakes: [javascript.promises.then]
+    verification_methods: [argument_check]
+    keywords: [promise, async, then, await]
+
+  - id: math.statistics
+    name: Statistics
+    domain: mathematics
+    education_level: high_school
+    prerequisites: [math.probability]
+    related_concepts: [math.algebra]
+    common_mistakes: [math.statistics.mean_median]
+    verification_methods: [numeric]
+    keywords: [mean, median, variance, sample]
+
+  - id: math.sequences
+    name: Sequences and series
+    domain: mathematics
+    education_level: high_school
+    prerequisites: [math.algebra]
+    related_concepts: [math.calculus]
+    common_mistakes: []
+    verification_methods: [numeric]
+    keywords: [arithmetic sequence, geometric series, sum]
+
+  - id: science.thermo
+    name: Thermodynamics
+    domain: science
+    education_level: high_school
+    prerequisites: [science.energy]
+    related_concepts: [science.energy]
+    common_mistakes: [science.thermo.heat_vs_temp]
+    verification_methods: [numeric]
+    keywords: [heat, temperature, specific heat, joule]
+
+  - id: science.optics
+    name: Optics
+    domain: science
+    education_level: high_school
+    prerequisites: [science.waves]
+    related_concepts: [science.waves]
+    common_mistakes: []
+    verification_methods: [numeric]
+    keywords: [lens, refraction, focal length, image]
+
+  - id: science.genetics
+    name: Mendelian genetics
+    domain: science
+    education_level: high_school
+    prerequisites: [science.method]
+    related_concepts: [science.method]
+    common_mistakes: []
+    verification_methods: [numeric]
+    keywords: [allele, punnett, dominant, genotype]
+
+  - id: sql.indexes
+    name: SQL indexes
+    domain: computer_science
+    education_level: undergraduate
+    prerequisites: [cs.sql]
+    related_concepts: [cs.data_structures]
+    common_mistakes: [sql.indexes.where]
+    verification_methods: [argument_check]
+    keywords: [index, b-tree, query plan, selectivity]

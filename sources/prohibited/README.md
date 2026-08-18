@@ -1,6 +1,21 @@
-Prohibited sources cannot be enabled.
+# Prohibited sources
 
-- Reddit (absolute exclusion)
-- Quora as a primary source of truth
+These sources cannot be enabled.
+
+- **Reddit** — absolute exclusion (posts, comments, dumps, APIs, derived datasets)
+- **Quora** — not a primary source of truth
+
+## Files
+
+| File | What it is |
+| --- | --- |
+| `catalog.yaml` | Prohibited registry rows |
+| `matchers.yaml` | Host and substring matchers used in tests and validators |
+
+Refresh:
+
+```bash
+open-reason catalogs --apply
+```
 
 Open Reason does not use Reddit as a data source.

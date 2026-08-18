@@ -1,5 +1,21 @@
-Restricted and review-required sources live in `../registry.yaml` with `enabled: false`.
+# Restricted / review-required sources
 
-Examples: Khan Academy, MIT OCW, CS50, OpenStax, MDN, The Odin Project, official language docs, Stack Exchange, OpenAlex (metadata only).
+Sources here are **not fetched**. Public web pages are not a redistribution
+grant. Khan Academy, MIT OCW, MDN, Stack Overflow, and similar sites stay
+off the crawler.
 
-Do not fetch or emit examples from these sources until status is `approved` or `conditionally_approved` and `enabled: true`.
+Original Open Reason tasks tagged `inspired_by` a source may exist only after
+the policy engine sets `AUTO_APPROVED` with `verbatim: false`.
+
+## Files
+
+| File | What it is |
+| --- | --- |
+| `catalog.yaml` | Review-required and metadata-only registry rows |
+| `fetch_denylist.yaml` | Hosts and source ids the pipeline must never download |
+
+Refresh:
+
+```bash
+open-reason catalogs --apply
+```

@@ -1,0 +1,26 @@
+# Verification methods that may set quality.verified=true.
+
+sandbox:
+  - sandbox:python
+  - sandbox:sqlite
+  - sandbox:node
+
+symbolic:
+  - sympy
+  - integer-check
+
+numeric:
+  - numeric
+
+structured:
+  - constraint-check
+  - budget-check
+
+not_verification:
+  - human_review
+  - community_votes
+  - popularity
+
+note: >
+  quality.verified is true only when a listed checker ran and passed.
+  Community votes are never verification.
