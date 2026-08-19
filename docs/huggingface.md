@@ -9,6 +9,7 @@ the Hub.
 | --- | --- |
 | Pipeline, schemas, registry, tests, docs, samples, release manifests | GitHub [`theworker02/open-reason`](https://github.com/theworker02/open-reason) (branch `main`) |
 | Dataset card + published shards | Hugging Face dataset [`theworker02/open-reason`](https://huggingface.co/datasets/theworker02/open-reason) |
+| Small CPU model (not 1B) | Hugging Face model [`theworker02/open-reason-small`](https://huggingface.co/theworker02/open-reason-small) |
 
 ## What is synced
 

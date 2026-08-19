@@ -59,6 +59,11 @@ configs:
 
 **An open, verified dataset for coding, science, mathematics, and human reasoning.**
 
+- Dataset: https://huggingface.co/datasets/theworker02/open-reason
+- Model: https://huggingface.co/theworker02/open-reason-small (small CPU causal LM; not 1B)
+- GitHub: https://github.com/theworker02/open-reason
+- Site: https://theworker02.github.io/open-reason/
+
 Open Reason is a provenance-aware corpus plus a reproducible pipeline. It is intended for training and evaluating systems on coding, mathematics, science, structured decision-making, and human problem solving.
 
 **Open Reason does not use Reddit as a data source.** Quora is not a primary source of truth. Case study: [docs/why-not-reddit.md](docs/why-not-reddit.md).

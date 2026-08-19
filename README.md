@@ -24,6 +24,24 @@
 
 > **Open Reason does not use Reddit as a data source.** Case study: [docs/why-not-reddit.md](docs/why-not-reddit.md) · [project site](https://theworker02.github.io/open-reason/why-not-reddit.html).
 
+## Official links
+
+| What | URL |
+| --- | --- |
+| **GitHub** (pipeline, tests, samples) | https://github.com/theworker02/open-reason |
+| **Dataset** | https://huggingface.co/datasets/theworker02/open-reason |
+| **Model** (small CPU causal LM, not 1B) | https://huggingface.co/theworker02/open-reason-small |
+| **Site** | https://theworker02.github.io/open-reason/ |
+
+```python
+from datasets import load_dataset
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+ds = load_dataset("theworker02/open-reason", "all")
+tok = AutoTokenizer.from_pretrained("theworker02/open-reason-small")
+model = AutoModelForCausalLM.from_pretrained("theworker02/open-reason-small")
+```
+
 ## Changelog
 
 See **[CHANGELOG.md](CHANGELOG.md)** for every release.
