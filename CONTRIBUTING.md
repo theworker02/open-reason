@@ -4,7 +4,7 @@ Thanks for helping build Open Reason.
 
 ## Rules that do not yield
 
-- **No Reddit.** Posts, comments, dumps, APIs, archives, or Reddit-derived datasets will be rejected.
+- **No Reddit.** Posts, comments, dumps, APIs, archives, or Reddit-derived datasets will be rejected. Case study: [docs/why-not-reddit.md](docs/why-not-reddit.md).
 - **No fabricated provenance**, licenses, or citations.
 - **No verified label without a check** that this repository can re-run.
 - **No prompt paraphrases** whose only purpose is to inflate row counts.

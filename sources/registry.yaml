@@ -194,8 +194,9 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
-  auto_approved_at: '2026-08-18T23:47:59Z'
+  auto_approval_reason: Original curriculum tasks only. NC/SA never copied into Apache-2.0
+    rows as verbatim text.
+  auto_approved_at: '2026-08-19T01:34:25Z'
 - id: mit_opencourseware
   name: MIT OpenCourseWare
   category: education
@@ -226,8 +227,9 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
-  auto_approved_at: '2026-08-18T23:47:59Z'
+  auto_approval_reason: Original curriculum tasks only. NC/SA never copied into Apache-2.0
+    rows as verbatim text.
+  auto_approved_at: '2026-08-19T01:34:25Z'
 - id: harvard_cs50
   name: Harvard CS50
   category: education
@@ -256,8 +258,9 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
-  auto_approved_at: '2026-08-18T23:47:59Z'
+  auto_approval_reason: Original curriculum tasks only. NC/SA never copied into Apache-2.0
+    rows as verbatim text.
+  auto_approved_at: '2026-08-19T01:34:25Z'
 - id: openstax
   name: OpenStax
   category: education
@@ -291,8 +294,9 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
-  auto_approved_at: '2026-08-18T23:47:59Z'
+  auto_approval_reason: Original curriculum tasks only. NC/SA never copied into Apache-2.0
+    rows as verbatim text.
+  auto_approved_at: '2026-08-19T01:34:25Z'
 - id: mdn
   name: MDN Web Docs
   category: documentation
@@ -323,8 +327,9 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
-  auto_approved_at: '2026-08-18T23:47:59Z'
+  auto_approval_reason: Original curriculum tasks only. NC/SA never copied into Apache-2.0
+    rows as verbatim text.
+  auto_approved_at: '2026-08-19T01:34:25Z'
 - id: the_odin_project
   name: The Odin Project
   category: education
@@ -356,8 +361,9 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
-  auto_approved_at: '2026-08-18T23:47:59Z'
+  auto_approval_reason: Original curriculum tasks only. NC/SA never copied into Apache-2.0
+    rows as verbatim text.
+  auto_approved_at: '2026-08-19T01:34:25Z'
 - id: python_docs
   name: Python official documentation
   category: documentation
@@ -384,7 +390,7 @@ sources:
   auto_approved: true
   auto_approval_mode: curriculum
   auto_approval_reason: Official docs — original Open Reason tasks only; no scrape.
-  auto_approved_at: '2026-08-18T23:47:59Z'
+  auto_approved_at: '2026-08-19T01:34:25Z'
 - id: rust_docs
   name: Rust official documentation
   category: documentation
@@ -411,7 +417,7 @@ sources:
   auto_approved: true
   auto_approval_mode: curriculum
   auto_approval_reason: Official docs — original Open Reason tasks only; no scrape.
-  auto_approved_at: '2026-08-18T23:47:59Z'
+  auto_approved_at: '2026-08-19T01:34:25Z'
 - id: go_docs
   name: Go official documentation
   category: documentation
@@ -438,7 +444,7 @@ sources:
   auto_approved: true
   auto_approval_mode: curriculum
   auto_approval_reason: Official docs — original Open Reason tasks only; no scrape.
-  auto_approved_at: '2026-08-18T23:47:59Z'
+  auto_approved_at: '2026-08-19T01:34:25Z'
 - id: w3c_whatwg
   name: W3C / WHATWG specifications
   category: specification
@@ -466,7 +472,7 @@ sources:
   auto_approved: true
   auto_approval_mode: curriculum
   auto_approval_reason: Official docs — original Open Reason tasks only; no scrape.
-  auto_approved_at: '2026-08-18T23:47:59Z'
+  auto_approved_at: '2026-08-19T01:34:25Z'
 - id: sqlite_docs
   name: SQLite documentation
   category: documentation
@@ -493,7 +499,7 @@ sources:
   auto_approved: true
   auto_approval_mode: curriculum
   auto_approval_reason: Official docs — original Open Reason tasks only; no scrape.
-  auto_approved_at: '2026-08-18T23:47:59Z'
+  auto_approved_at: '2026-08-19T01:34:25Z'
 - id: postgresql_docs
   name: PostgreSQL documentation
   category: documentation
@@ -520,7 +526,7 @@ sources:
   auto_approved: true
   auto_approval_mode: curriculum
   auto_approval_reason: Official docs — original Open Reason tasks only; no scrape.
-  auto_approved_at: '2026-08-18T23:47:59Z'
+  auto_approved_at: '2026-08-19T01:34:25Z'
 - id: linux_man_pages
   name: Linux man-pages
   category: documentation
@@ -547,7 +553,7 @@ sources:
   auto_approved: true
   auto_approval_mode: curriculum
   auto_approval_reason: Official docs — original Open Reason tasks only; no scrape.
-  auto_approved_at: '2026-08-18T23:47:59Z'
+  auto_approved_at: '2026-08-19T01:34:25Z'
 - id: nasa_education
   name: NASA educational resources
   category: science
@@ -577,7 +583,7 @@ sources:
   auto_approval_mode: curriculum
   auto_approval_reason: Public-sector education pages inspire original numeric/concept
     tasks; not copied.
-  auto_approved_at: '2026-08-18T23:47:59Z'
+  auto_approved_at: '2026-08-19T01:34:25Z'
 - id: noaa_education
   name: NOAA educational resources
   category: science
@@ -606,7 +612,7 @@ sources:
   auto_approval_mode: curriculum
   auto_approval_reason: Public-sector education pages inspire original numeric/concept
     tasks; not copied.
-  auto_approved_at: '2026-08-18T23:47:59Z'
+  auto_approved_at: '2026-08-19T01:34:25Z'
 - id: usgs_education
   name: USGS educational resources
   category: science
@@ -634,7 +640,7 @@ sources:
   auto_approval_mode: curriculum
   auto_approval_reason: Public-sector education pages inspire original numeric/concept
     tasks; not copied.
-  auto_approved_at: '2026-08-18T23:47:59Z'
+  auto_approved_at: '2026-08-19T01:34:25Z'
 - id: openalex
   name: OpenAlex
   category: scientific_metadata
@@ -683,8 +689,8 @@ sources:
   share_alike: true
   attribution_required: true
   reddit_allowed: false
-  status: review_required
-  enabled: false
+  status: conditionally_approved
+  enabled: true
   extraction_method:
   - data_dump
   - api
@@ -694,12 +700,13 @@ sources:
     its own profile.
 
     '
-  curriculum_use: false
+  curriculum_use: true
   verbatim: false
-  auto_approved: false
-  auto_approval_mode: null
-  auto_approval_reason: null
-  auto_approved_at: null
+  auto_approved: true
+  auto_approval_mode: curriculum
+  auto_approval_reason: User-approved. Original rewritten tasks or short attributed
+    quotes. No Reddit mirrors. Votes never verify.
+  auto_approved_at: '2026-08-19T01:34:25Z'
 - id: stackoverflow
   name: Stack Overflow
   category: community
@@ -716,20 +723,21 @@ sources:
   share_alike: true
   attribution_required: true
   reddit_allowed: false
-  status: review_required
-  enabled: false
+  status: conditionally_approved
+  enabled: true
   parent: stack_exchange
   extraction_method:
   - data_dump
   - api
   notes: Disclaims warranties. Never copy Q/A as the example; transform into structured
     evidence.
-  curriculum_use: false
+  curriculum_use: true
   verbatim: false
-  auto_approved: false
-  auto_approval_mode: null
-  auto_approval_reason: null
-  auto_approved_at: null
+  auto_approved: true
+  auto_approval_mode: curriculum
+  auto_approval_reason: User-approved. Original rewritten tasks or short attributed
+    quotes. No Reddit mirrors. Votes never verify.
+  auto_approved_at: '2026-08-19T01:34:25Z'
 - id: github_permissive
   name: Permissive Git repositories
   category: implementation
@@ -746,17 +754,18 @@ sources:
   share_alike: per_repo
   attribution_required: true
   reddit_allowed: false
-  status: review_required
-  enabled: false
+  status: conditionally_approved
+  enabled: true
   extraction_method:
   - commit_pinned_snapshot
   notes: Incomplete connector. No clone until an allowlisted snapshot is configured.
-  curriculum_use: false
+  curriculum_use: true
   verbatim: false
-  auto_approved: false
-  auto_approval_mode: null
-  auto_approval_reason: null
-  auto_approved_at: null
+  auto_approved: true
+  auto_approval_mode: curriculum
+  auto_approval_reason: MIT/BSD/Apache-2.0 public repos only. Provenance url+license+commit.
+    Skip GPL/AGPL/Reddit-derived.
+  auto_approved_at: '2026-08-19T01:34:25Z'
 - id: oer_commons
   name: OER Commons
   category: education
@@ -782,8 +791,9 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
-  auto_approved_at: '2026-08-18T23:47:59Z'
+  auto_approval_reason: Original curriculum tasks only. NC/SA never copied into Apache-2.0
+    rows as verbatim text.
+  auto_approved_at: '2026-08-19T01:34:25Z'
 - id: wikibooks
   name: Wikibooks
   category: education
@@ -808,8 +818,9 @@ sources:
   verbatim: false
   auto_approved: true
   auto_approval_mode: curriculum
-  auto_approval_reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
-  auto_approved_at: '2026-08-18T23:47:59Z'
+  auto_approval_reason: Original curriculum tasks only. NC/SA never copied into Apache-2.0
+    rows as verbatim text.
+  auto_approved_at: '2026-08-19T01:34:25Z'
 - id: wikipedia
   name: Wikipedia
   category: encyclopedia

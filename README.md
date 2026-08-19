@@ -10,11 +10,11 @@
 </p>
 
 <p align="center">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/code-Apache%202.0-0B1F33" alt="Apache 2.0"></a>
-  <a href="LICENSE-DATA"><img src="https://img.shields.io/badge/data-CC%20BY%204.0-C4A35A" alt="CC BY 4.0"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/pipeline-v1.0.1-2A6F6F" alt="v1.0.1"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-0B1F33" alt="Apache 2.0"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/pipeline-v1.3.8-2A6F6F" alt="v1.3.8"></a>
   <a href="docs/data-sources.md"><img src="https://img.shields.io/badge/Reddit-forbidden-b91c1c" alt="Reddit forbidden"></a>
   <a href="https://huggingface.co/datasets/theworker02/open-reason"><img src="https://img.shields.io/badge/Hugging%20Face-open--reason-FFD21E" alt="Hugging Face"></a>
+  <a href="https://huggingface.co/theworker02/open-reason-small"><img src="https://img.shields.io/badge/model-open--reason--small-2A6F6F" alt="open-reason-small"></a>
   <a href="https://theworker02.github.io/open-reason/"><img src="https://img.shields.io/badge/site-GitHub%20Pages-2A6F6F" alt="GitHub Pages"></a>
 </p>
 
@@ -22,7 +22,7 @@
   <img src="assets/banner.png" alt="Open Reason — Open. Licensed. Provenanced. Verified." width="100%">
 </p>
 
-> **Open Reason does not use Reddit as a data source.**
+> **Open Reason does not use Reddit as a data source.** Case study: [docs/why-not-reddit.md](docs/why-not-reddit.md) · [project site](https://theworker02.github.io/open-reason/why-not-reddit.html).
 
 ## Changelog
 
@@ -30,7 +30,7 @@ See **[CHANGELOG.md](CHANGELOG.md)** for every release.
 
 | Version | Date | Notes |
 | --- | --- | --- |
-| **[v1.0.1](CHANGELOG.md#v101--2026-08-18)** | 2026-08-18 | Broader original verified coverage; still no course-site scrapes |
+| **[v1.3.8](CHANGELOG.md#v138--2026-08-18)** | 2026-08-18 | Apache-2.0 only; train-sized corpus; small CPU causal LM |
 | **[v1.0.0](CHANGELOG.md#v100--2026-08-18)** | 2026-08-18 | Catalogs in every section, broader original tasks, local 1.0 dataset |
 | **[v0.4.0](CHANGELOG.md#v040--2026-08-18)** | 2026-08-18 | Policy engine, coverage generation, training pipeline |
 | **[v0.3.0](CHANGELOG.md#v030--2026-08-18)** | 2026-08-18 | Curriculum auto-approve, original source-tagged tasks, README demos |
@@ -46,8 +46,9 @@ It is a dataset **and** the pipeline that produces it.
 ## GitHub vs Hugging Face
 
 - **GitHub** [`theworker02/open-reason`](https://github.com/theworker02/open-reason) is the lab: pipeline, schemas, taxonomy, registry, tests, docs, configs, and small samples. Default branch is `main`.
-- **Hugging Face** [`theworker02/open-reason`](https://huggingface.co/datasets/theworker02/open-reason) is distribution: Parquet shards and the dataset card, versioned from **GitHub Releases**.
-- `open-reason build` writes local `data/release/`. Those `*.parquet` / `*.jsonl` shards are gitignored. Only manifests, statistics, and the card in `distribution/dataset/` belong in git.
+- **Hugging Face dataset** [`theworker02/open-reason`](https://huggingface.co/datasets/theworker02/open-reason) is distribution: Parquet shards and the dataset card.
+- **Small CPU model** [`theworker02/open-reason-small`](https://huggingface.co/theworker02/open-reason-small) is a ~1.3M-parameter GPT-2-style causal LM trained on that data (not a 1B model).
+- `open-reason build` writes local `data/release/`. Those `*.parquet` / `*.jsonl` shards are gitignored. A committed sample lives in `data/sample/`.
 
 See [docs/huggingface.md](docs/huggingface.md) and [docs/releases.md](docs/releases.md).
 
@@ -178,7 +179,7 @@ Every example carries knowledge, task, evidence, solution, verification, provena
   "solution": "…",
   "answer": "…",
   "verification": {"method": "sympy", "passed": true},
-  "provenance": {"source_type": "synthetic", "license_spdx": "CC-BY-4.0"},
+  "provenance": {"source_type": "synthetic", "license_spdx": "Apache-2.0"},
   "quality": {"tier": "S", "verified": true, "evidence_confidence": 0.81},
   "education_level": "high_school",
   "concept_id": "math.algebra"
@@ -198,27 +199,26 @@ JSON Schema: [`schemas/`](schemas/).
 
 ## Licensing
 
-- Pipeline: [Apache 2.0](LICENSE)
-- Original dataset content: [CC BY 4.0](LICENSE-DATA)
-- Per-row `provenance.license_spdx` is authoritative
+- Project: [Apache 2.0](LICENSE)
+- Per-row `provenance.license_spdx` records upstream SPDX (GitHub MIT/BSD/Apache snippets, SO-inspired original rows)
 - Share-alike and non-commercial third-party text is not relicensed into this release
 
 ## Statistics
 
 <!-- BEGIN_RELEASE_SNAPSHOT -->
-Pipeline version **1.0.1**.
+Pipeline version **1.3.8**.
 
 | Configuration | Examples | Verified | Human-authored |
 | --- | ---: | ---: | ---: |
-| coding | 314 | 300 | 0 |
-| reasoning | 248 | 248 | 0 |
-| science | 262 | 262 | 0 |
-| mathematics | 334 | 334 | 0 |
+| coding | 354 | 340 | 0 |
+| reasoning | 381 | 381 | 0 |
+| science | 368 | 368 | 0 |
+| mathematics | 648 | 648 | 0 |
 | human | 268 | 240 | 28 |
-| education | 329 | 95 | 0 |
-| core | 1755 | 1479 | 28 |
-| verified | 1479 | 1479 | 0 |
-| all | 1755 | 1479 | 28 |
+| education | 337 | 103 | 0 |
+| core | 2348 | 2072 | 28 |
+| verified | 2072 | 2072 | 0 |
+| all | 2348 | 2072 | 28 |
 
 Rebuild with `open-reason build --config all --seed 42 --out data/release`.
 Full tables: `data/release/statistics.md`.
@@ -236,7 +236,7 @@ Full tables: `data/release/statistics.md`.
 
 - [Project site](https://theworker02.github.io/open-reason/)
 - [Architecture](docs/architecture.md)
-- [Data sources](docs/data-sources.md)
+- [Data sources](docs/data-sources.md) · [Why not Reddit](docs/why-not-reddit.md)
 - [Knowledge graph](docs/knowledge-graph.md)
 - [Provenance](docs/provenance.md) · [Licensing](docs/licensing.md) · [Quality](docs/quality.md)
 - [Validation](docs/validation.md) · [Verification](docs/verification.md) · [Sandbox](docs/sandbox.md)
@@ -253,7 +253,7 @@ Full tables: `data/release/statistics.md`.
   author       = {Open Reason contributors},
   year         = {2026},
   howpublished = {\url{https://github.com/theworker02/open-reason}},
-  note         = {Dataset and pipeline v1.0.1}
+  note         = {Dataset and pipeline v1.3.8}
 }
 ```
 

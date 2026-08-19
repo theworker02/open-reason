@@ -13,7 +13,7 @@ Filter:
 rows = [r for r in ds["train"] if json.loads(r["quality"])["tier"] == "S"]
 ```
 
-Never mark an example verified because a model "looked correct." Community votes and accepted-answer flags **inform** `evidence_confidence`. They never set `quality.verified`.
+Never mark an example verified because a model "looked correct." Community votes and accepted-answer flags **inform** `evidence_confidence`. They never set `quality.verified`. Reddit is not a community-evidence source; see [why-not-reddit.md](why-not-reddit.md).
 
 `quality.evidence_confidence` is a weighted mix of authority, verification, cross-source support, community signals (capped), recency, and provenance completeness. It is not a claim of objective truth.
 

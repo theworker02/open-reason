@@ -552,4 +552,7 @@ def generate_science(seed: int = 42) -> list[Example]:
     from open_reason.generation.science_v101 import extra_science_v101
 
     examples.extend(extra_science_v101(rng))
+    from open_reason.generation.science_v102 import extra_science_v102
+
+    examples.extend(extra_science_v102(rng))
     return examples

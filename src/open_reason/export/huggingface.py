@@ -57,7 +57,7 @@ def dataset_yaml_frontmatter(stats_by_config: dict[str, dict[str, Any]]) -> str:
         )
     payload = {
         "pretty_name": "Open Reason",
-        "license": "cc-by-4.0",
+        "license": "apache-2.0",
         "task_categories": [
             "text-generation",
             "question-answering",
@@ -157,8 +157,9 @@ def write_release_readme(path: Path, reports: dict[str, Any]) -> None:
             "- `statistics.md` — per-config tables",
             "- `manifest.yaml` — validation, dedup, contamination, and version",
             "",
-            "Parquet and JSONL shards are local build products (gitignored).",
-            "GitHub stores this catalog; Hugging Face receives shards on a GitHub Release.",
+            "Project license is Apache-2.0. Per-row `provenance.license_spdx` records upstream SPDX.",
+            "Parquet and JSONL shards are local build products (gitignored except `data/sample/`).",
+            "GitHub stores this catalog; Hugging Face receives shards on publish.",
             "",
             "**Open Reason does not use Reddit as a data source.**",
             "",

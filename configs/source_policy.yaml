@@ -1,21 +1,20 @@
 # Central Open Reason source policy. Application code must read this file
 # instead of scattering one-off approval rules.
-version: "1.0.1"
-
+version: "1.3.8"
 reddit: prohibited
 quora_as_authority: prohibited
 community_votes_are_not_verification: true
 auto_ingest_discovered: false
 reviewed_crawler_exists: false
 
+# HTML crawls of course sites stay off. Stack Overflow seeds use original
+# rewrites (or the official API/dump), never Reddit mirrors.
 never_scrape:
   - khan_academy_computing
   - mit_opencourseware
   - harvard_cs50
   - openstax
   - mdn
-  - stackoverflow
-  - stack_exchange
 
 verbatim:
   default: false
@@ -40,12 +39,21 @@ rules:
   - id: community_qa
     match:
       ids: [stack_exchange, stackoverflow]
-    decision: METADATA_ONLY
-    enabled: false
-    curriculum_use: false
+    decision: AUTO_APPROVED
+    enabled: true
+    curriculum_use: true
     verbatim: false
-    status: metadata_only
-    reason: Community evidence is not ground truth and votes never verify.
+    status: conditionally_approved
+    reason: User-approved. Original rewritten tasks or short attributed quotes. No Reddit mirrors. Votes never verify.
+  - id: github_permissive_ingest
+    match:
+      ids: [github_permissive, github-permissive]
+    decision: AUTO_APPROVED
+    enabled: true
+    curriculum_use: true
+    verbatim: false
+    status: conditionally_approved
+    reason: MIT/BSD/Apache-2.0 public repos only. Provenance url+license+commit. Skip GPL/AGPL/Reddit-derived.
   - id: ordinary_docs
     match:
       ids:
@@ -87,7 +95,7 @@ rules:
     curriculum_use: true
     verbatim: false
     status: conditionally_approved
-    reason: Original curriculum tasks only. NC/SA never copied into CC-BY-4.0.
+    reason: Original curriculum tasks only. NC/SA never copied into Apache-2.0 rows as verbatim text.
   - id: internal
     match:
       ids: [open-reason-authors, open-reason-generators]
@@ -99,7 +107,7 @@ rules:
     reason: First-party Open Reason material.
   - id: incomplete_connectors
     match:
-      ids: [github_permissive, github-permissive, openalex, wikipedia]
+      ids: [openalex, wikipedia]
     decision: METADATA_ONLY
     enabled: false
     curriculum_use: false

@@ -1,0 +1,12 @@
+.git
+.venv
+venv
+data/release/*.parquet
+data/work
+**/__pycache__
+.pytest_cache
+training/work
+*.egg-info
+dist
+build
+site

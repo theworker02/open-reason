@@ -1,5 +1,43 @@
 # Changelog
 
+## v1.3.8 — 2026-08-18
+
+Apache-2.0 as the only project license, a train-sized verified corpus (original
+plus GitHub-permissive and Stack Overflow *seeds*), and a real small CPU causal
+LM trainer. Reddit remains forbidden. The 1B Hub id is reserved for an actual
+CUDA 1B job, which this release does not claim.
+
+### Dataset
+
+- Additional verified math, science, and reasoning families (`*_v102`)
+- Original coding tasks inspired by pinned MIT/BSD/Apache GitHub snapshots
+  (url, SPDX, commit; `verbatim=false`)
+- Stack Overflow as user-approved **task seeds**: original rewrites, not
+  verbatim CC BY-SA dumps and not Reddit mirrors
+- Committed `data/sample/all.sample.jsonl` so GitHub shows real rows
+- Rebuild: `open-reason build --config all --seed 42 --out data/release`
+
+### Training
+
+- `open-reason train` trains a small GPT-2-style Hugging Face model on
+  `data/release/all.jsonl` (CPU Docker when Docker exists; otherwise host CPU)
+- Image: `open-reason-train:cpu` (`training/Dockerfile`)
+- Checkpoints: `training/work/open-reason-local/`
+- Optional Hub id if upload succeeds: `theworker02/open-reason-small`
+- Not AMD GPU, not ROCm, not a fake 1B
+
+### License
+
+- Single project license: Apache-2.0 (`LICENSE`)
+- `LICENSE-DATA` / CC-BY-4.0 as a second project license removed
+- Per-row `provenance.license_spdx` still records upstream SPDX
+
+## Unreleased
+
+### Documentation
+
+- Case study: why Open Reason does not use Reddit (`docs/why-not-reddit.md`, site page `why-not-reddit.html`)
+
 ## v1.0.1 — 2026-08-18
 
 Coverage expansion: more original verified tasks across coding languages, CS

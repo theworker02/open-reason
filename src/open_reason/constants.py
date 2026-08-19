@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 PIPELINE_NAME = "open-reason"
-PIPELINE_VERSION = "1.0.1"
+PIPELINE_VERSION = "1.3.8"
 DATASET_NAME = "open-reason"
-SCHEMA_VERSION = "1.0.1"
+SCHEMA_VERSION = "1.3.8"
 
 CURRENT_CONFIGS = (
     "coding",

@@ -1,0 +1,13 @@
+services:
+  train:
+    image: open-reason-train:cpu
+    build:
+      context: ..
+      dockerfile: training/Dockerfile
+    environment:
+      OPEN_REASON_IN_DOCKER: "1"
+      OPEN_REASON_DISABLE_CUDA: "1"
+    volumes:
+      - ../data/release:/app/data/release:ro
+      - ../training/work:/app/training/work
+    # CPU only. Never add deploy.resources reservations for GPUs.

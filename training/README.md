@@ -1,39 +1,54 @@
-# Open Reason model training (not a published model)
+# Open Reason model training
 
-This directory is the **training pipeline** for a future `theworker02/open-reason-1b`
-model. It is **not** a Hugging Face upload and it does not invent eval numbers.
+This directory is the **training pipeline**. A 1B Hub model is **not** published
+from CPU-only machines.
 
-## Intended first model
+## Small CPU model (what this repo actually trains)
 
-- Hub id (later): `theworker02/open-reason-1b`
-- Permissive base (documented, not auto-downloaded here): `TinyLlama/TinyLlama-1.1B-Chat-v1.0` (Apache-2.0)
-- Data: local `data/release/*.jsonl` from `open-reason build --config all`
-
-## Commands
+- Hub id (if upload succeeds): `theworker02/open-reason-small`
+- Architecture: GPT-2-style, from scratch, ~2–8M parameters
+- Data: `data/release/all.jsonl` after `open-reason build --config all --seed 42`
+- Device: **CPU**. Docker CPU image when Docker is installed. **Not AMD GPU.**
+- Checkpoints: `training/work/open-reason-local/`
 
 ```bash
-open-reason train --smoke --data data/release/all.jsonl
-open-reason evaluate-model --model training/work/model --data data/release/verified.jsonl
+docker build -t open-reason-train:cpu -f training/Dockerfile .
+docker run --rm \
+  -e OPEN_REASON_IN_DOCKER=1 \
+  -e OPEN_REASON_DISABLE_CUDA=1 \
+  -v "${PWD}/data/release:/app/data/release:ro" \
+  -v "${PWD}/training/work:/app/training/work" \
+  open-reason-train:cpu
 ```
 
-`--smoke` runs a tiny CPU embedding loop (a few steps) so the trainer is real.
-It is **not** TinyLlama and must not be uploaded as `open-reason-1b`.
+Windows PowerShell:
 
-This developer environment (2026-08-18) had `torch 2.12.0+cpu` and
-`cuda=false` (~61 GB RAM). A real 1.1B LoRA SFT needs CUDA torch and a GPU
-(about 8 GB+ VRAM). Command: `open-reason train --config training/configs/open-reason-1b.yaml --data data/release/all.jsonl` after `prepare_sft.py`.
+```powershell
+docker build -t open-reason-train:cpu -f training/Dockerfile .
+docker run --rm `
+  -e OPEN_REASON_IN_DOCKER=1 `
+  -e OPEN_REASON_DISABLE_CUDA=1 `
+  -v "${PWD}/data/release:/app/data/release:ro" `
+  -v "${PWD}/training/work:/app/training/work" `
+  open-reason-train:cpu
+```
+
+If Docker is missing, the CLI trains the same small causal LM on **host CPU**:
 
 ```bash
 python training/scripts/prepare_sft.py data/release/all.jsonl training/work/sft.jsonl
-open-reason train --smoke --config training/configs/smoke.yaml --data data/release/all.jsonl
+open-reason train --config training/configs/open-reason-local.yaml --data data/release/all.jsonl
 ```
 
-Full 1B–3B training needs a GPU, `torch`, and `transformers`. If those are missing,
-the CLI exits with an honest message and writes no fake metrics.
+`--smoke` runs a few CPU steps of the **same** GPT-2-style model (tiny layers),
+not a 1B checkpoint.
 
-Eval protocol: `training/eval/protocol.yaml`. Holdout scoring: `docs/evaluation.md`.
+Do **not** upload this directory as `theworker02/open-reason-1b`.
 
-## GitHub vs Hub
+## Intended 1B (CUDA only, not this machine)
 
-Train on a machine with GPU. Attach checkpoints to a **GitHub Release**.
-Do not publish a placeholder model to Hugging Face.
+- Hub id (later): `theworker02/open-reason-1b`
+- Base: `TinyLlama/TinyLlama-1.1B-Chat-v1.0` (Apache-2.0)
+- Requires NVIDIA CUDA (`nvidia-smi` + CUDA torch). AMD/ROCm is not used.
+
+Eval protocol: `training/eval/protocol.yaml`.

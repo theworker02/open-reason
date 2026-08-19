@@ -1,19 +1,29 @@
 # Training
 
-The training pipeline is real scaffolding, not a published Hugging Face model.
+Open Reason trains a **small** GPT-2-style causal LM on `data/release/all.jsonl`.
+It does not invent a 1B Hugging Face model on CPU-only hardware.
 
 ```bash
 python training/scripts/prepare_sft.py data/release/all.jsonl training/work/sft.jsonl
-open-reason train --smoke --config training/configs/smoke.yaml --data data/release/all.jsonl
+open-reason train --config training/configs/open-reason-local.yaml --data data/release/all.jsonl
 ```
 
-`--smoke` runs a tiny CPU embedding loop so the trainer is not a no-op. It is
-**not** TinyLlama and must not be uploaded as `theworker02/open-reason-1b`.
+Prefer CPU **Docker** when Docker is installed and NVIDIA CUDA is not:
 
-The 2026-08-18 developer machine had CPU-only torch (`cuda=false`). Smoke
-metrics live in `training/work/smoke_metrics.json` and are not 1B eval scores.
+```bash
+docker build -t open-reason-train:cpu -f training/Dockerfile .
+docker run --rm -e OPEN_REASON_IN_DOCKER=1 -e OPEN_REASON_DISABLE_CUDA=1 \
+  -v "$PWD/data/release:/app/data/release:ro" \
+  -v "$PWD/training/work:/app/training/work" \
+  open-reason-train:cpu
+```
 
-Full 1B training needs a GPU, `torch`, and `transformers`. Missing pieces exit
-with an honest message and write no fake eval tables.
+That image is `open-reason-train:cpu`. Checkpoints write to
+`training/work/open-reason-local/`. If the checkpoint is a real
+`transformers` `save_pretrained` tree, it may be uploaded as
+`theworker02/open-reason-small` — never as `open-reason-1b`.
 
-See `training/README.md`, `training/eval/protocol.yaml`, and `training/MODEL_CARD.md`.
+This developer machine uses CPU torch (`cuda=false`). AMD GPUs are not used.
+
+See `training/README.md`, `training/eval/protocol.yaml`, and the card written
+next to the checkpoint after a successful train.

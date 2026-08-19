@@ -15,10 +15,10 @@ class HumanAuthoredConnector(Connector):
     name = "human_authored"
     policy = SourcePolicy(
         source="open-reason authors",
-        license="CC-BY-4.0",
+        license="Apache-2.0",
         terms="Original examples written for Open Reason.",
         collection_method="authored_in_repository",
-        allowed_usage="Redistribute with LICENSE-DATA attribution.",
+        allowed_usage="Redistribute with Apache-2.0 attribution.",
         retention_policy="Keep across releases; never silently rewrite published ids.",
         attribution_requirements="Cite Open Reason.",
         status="active",

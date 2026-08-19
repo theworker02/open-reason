@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Why Open Reason does not use Reddit</title>
+  <meta name="description" content="Case study: Open Reason does not use Reddit as a data source. Provenance, license, verification, contamination, and a refusal to keep feeding the Reddit training loop.">
+  <link rel="canonical" href="https://theworker02.github.io/open-reason/why-not-reddit.html">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <meta property="og:title" content="Why Open Reason does not use Reddit">
+  <meta property="og:description" content="Research-infrastructure case study: provenance, license, votes are not verification, and a concrete refusal of Reddit-derived training data.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://theworker02.github.io/open-reason/why-not-reddit.html">
+  <meta name="theme-color" content="#0B1F33">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <a class="brand" href="./">
+      <img src="assets/logo.svg" width="40" height="40" alt="">
+      <span>Open Reason</span>
+    </a>
+    <nav aria-label="Primary">
+      <a href="./#load">Load</a>
+      <a href="./#quality">Quality</a>
+      <a href="why-not-reddit.html" aria-current="page">Why not Reddit</a>
+      <a href="https://github.com/theworker02/open-reason">GitHub</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <header class="doc-hero">
+      <p class="kicker">Case study · source policy</p>
+      <h1>Why Open Reason does not use Reddit</h1>
+      <p class="lede">The exclusion is absolute. It is not a preference, a backlog item, or a filter that can be relaxed for “high-quality subreddits.”</p>
+      <p class="reddit" role="note"><strong>Open Reason does not use Reddit as a data source.</strong></p>
+    </header>
+
+    <article class="article">
+      <p>This page is the public case study for that policy. It explains the research-infrastructure reasons (provenance, license, verification, contamination) and the project’s refusal to keep feeding a training loop that already exists at scale. It does not reproduce Reddit posts, comments, or dumps. The same essay lives in the repository as <a href="https://github.com/theworker02/open-reason/blob/main/docs/why-not-reddit.md"><code>docs/why-not-reddit.md</code></a>.</p>
+
+      <h2>What Open Reason has to be able to claim</h2>
+      <p>Every released row is supposed to answer three questions:</p>
+      <ol>
+        <li><strong>Where did this come from?</strong> (<code>provenance</code>, including source type, license, and generator or author).</li>
+        <li><strong>May a downstream user use it under the stated terms?</strong> (<code>provenance.license_spdx</code> is authoritative per row).</li>
+        <li><strong>Was the answer actually checked?</strong> (<code>quality.verified</code> is true only after a named check ran and passed).</li>
+      </ol>
+      <p>A source that cannot support those claims cannot enter the corpus. Popularity, accessibility, and “everyone else trained on it” are not substitutes.</p>
+
+      <h2>The loop we are refusing to feed</h2>
+      <p>It is widely known that a <strong>large volume and variety of Reddit data</strong> has been used to train contemporary AI systems: comment dumps, archives, third-party dataset releases, and scraped threads. That material is attractive because it is abundant, conversational, and already sitting in public crawls. Abundance is not a license, and it is not a verification protocol.</p>
+      <p>Those models often <strong>absorb the personality of Reddit commenters</strong>. The failure mode is not only factual error. It is a voice: performative certainty in place of knowledge, pile-ons in place of argument, mockery in place of correction, and a style of “listening” that is not actually advice. A great deal of that text <strong>sounds like help and is not helpful</strong>.</p>
+      <p>That is <strong>dangerous</strong>. Medical-, legal-, and financial-sounding chatter travels in the same streams as ordinary conversation. Harassment norms and unverifiable claims travel with them. A system that has ingested that register will reproduce it under the appearance of competence. At some point the loop has to be <strong>stopped</strong> — not by hoping a later alignment pass will wash it out, but by refusing the source.</p>
+      <p>Open Reason is a concrete refusal to keep feeding that loop. I am contributing what I can personally: this dataset and this pipeline do not use Reddit, <strong>directly or indirectly</strong>. There is no dump, no archive, no “Reddit-derived” mix, and no search-result workaround. If a candidate’s provenance includes Reddit, it is rejected.</p>
+      <p>If possible, a <strong>very small trained model</strong> will ship with the Hugging Face dataset release so the exclusion is not only a policy file. It will not be a frontier LLM. Training that has been run for this project is CPU-side (including a smoke trainer; this environment has had CPU PyTorch / Docker-python and no CUDA GPU). We will <strong>not</strong> claim a 1B-parameter model until one has actually been trained, evaluated, and uploaded. The dataset is <a href="https://huggingface.co/datasets/theworker02/open-reason">theworker02/open-reason</a>. If a companion checkpoint is published, it will appear under a documented id such as <code>theworker02/open-reason-local</code> (or a later name recorded in the training model card) and will be labeled honestly. If people find it useful, development will continue.</p>
+
+      <h2>Provenance: Reddit posts cannot support the claims</h2>
+      <p>Reddit items are not a stable, attributable research record in the sense Open Reason requires.</p>
+      <ul>
+        <li><strong>Identity.</strong> Authors are typically pseudonymous. A username is not a reviewed publisher, an institution, or a pinned git identity. Open Reason cannot honestly fill <code>provenance</code> with a person or organization it cannot identify.</li>
+        <li><strong>Stability.</strong> Posts and comments are edited, deleted, removed by moderators, or pulled when accounts disappear. A snapshot is not a version-pinned document.</li>
+        <li><strong>Authority.</strong> A subreddit is a community venue, not an official specification, a reviewed textbook, or a commit-pinned repository. Trust tiers in the source registry have no slot that turns forum consensus into an oracle.</li>
+        <li><strong>Traceability.</strong> Fabricating URLs, thread ids, or “source: Reddit” as if that were a complete citation is a pipeline bug. Omitting the origin is also a bug. The only honest action is rejection.</li>
+      </ul>
+      <p>Unknown origin is allowed only with <code>unknown_reason</code>, is forbidden for tier S, and is not a path to launder Reddit text as “unspecified web.”</p>
+
+      <h2>License: there is no clean redistributable grant</h2>
+      <p>Open Reason ships original dataset content under CC BY 4.0 and pipeline code under Apache-2.0. Per-row <code>license_spdx</code> must be a real grant, not a guess.</p>
+      <p>User content on Reddit is posted under the platform’s terms. That arrangement is <strong>not</strong> a clean downstream license to Open Reason, and it is <strong>not</strong> a grant to relicense the text as CC BY 4.0. We do not treat “it was publicly readable” as “it is redistributable in this corpus.”</p>
+      <p>The following remain Reddit-derived and are forbidden, even when they arrive with a different filename or host:</p>
+      <div class="table-wrap left">
+        <table>
+          <thead>
+            <tr><th>Channel</th><th>Why it is still excluded</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Official or unofficial API pulls</td><td>Access terms are not a dataset license for this project</td></tr>
+            <tr><td>Subreddit dumps and comment archives</td><td>Same user content, different packaging</td></tr>
+            <tr><td>Pushshift and successor archives</td><td>Archive is not permission; provenance is still Reddit</td></tr>
+            <tr><td>Third-party “Reddit datasets”</td><td>Secondary distribution does not create a new grant</td></tr>
+            <tr><td>Sites whose primary purpose is republishing Reddit</td><td>Mirrors do not change the source</td></tr>
+            <tr><td>Search results that reproduce Reddit threads</td><td>The snippet is still Reddit text</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>There is <strong>no secondary-dataset workaround</strong>. Share-alike, non-commercial, unknown, or platform-encumbered text is never silently converted to CC BY 4.0. This page is research-infrastructure policy, not legal advice to third parties. The operational rule is simpler: Reddit-derived material does not enter the tree or the release.</p>
+
+      <h2>Quality: votes are not verification</h2>
+      <p><code>quality.verified</code> is set only after a check this repository can re-run: coding sandbox (unittest / SQLite / Node), sympy or exact integer arithmetic, independent numeric science checks, or a named constraint checker. If a check was not run, the flag stays false. There is no “probably correct” bit.</p>
+      <p>Karma, awards, upvote ratios, and “best comment” rankings measure <strong>engagement</strong>, not correctness. They cannot support the claims Open Reason makes about verified rows.</p>
+      <p><code>evidence.community_evidence</code> may, for <em>other</em> reviewed community sources, inform a <strong>capped</strong> component of <code>evidence_confidence</code>. That score is not a claim of truth. <strong><code>community_evidence</code> must never set <code>quality.verified</code>.</strong> Reddit is not admitted as community evidence at all. A record that looks Reddit-derived is dropped before scoring.</p>
+      <p>High-risk domains (medicine, law, finance, safety-critical engineering) cannot enter tier S without authoritative evidence <strong>and</strong> independent verification. Forum chatter that merely <em>sounds</em> like those domains is exactly the register described above. It is not a shortcut into the <code>verified</code> configuration.</p>
+
+      <h2>Contamination and evaluation leakage</h2>
+      <p>Reddit is heavily represented in web crawls and in instruction-tuning mixes. Contest problems, exam questions, benchmark snippets, and homework statements have been posted there for years. Ingesting Reddit would be an uncontrolled mixing channel between “training text” and “evaluation items.”</p>
+      <p>Open Reason already fingerprints known eval sets (prompt prefixes and distinctive needles — not answers). Hits are <strong>reported</strong>, not silently deleted; strict builds fail. Hold out the repository benchmarks from training. A Reddit dump would bypass that discipline: the same item can appear as a casual comment with no benchmark name attached.</p>
+      <p>Using Reddit would also contaminate <strong>style</strong>. Models trained on that register learn to imitate it. Open Reason’s generators and human-authored items are labeled as such; they are not a paraphrase farm for forum threads.</p>
+
+      <h2>Indirect use is forbidden</h2>
+      <p>The exclusion is on <strong>provenance</strong>, not on a single hostname. Rejected channels include Reddit hosts and short links, Pushshift and successor archives, subreddit and comment dumps, third-party datasets whose provenance includes Reddit, sites whose primary purpose is republishing Reddit, search results and caches that reproduce threads, paraphrases or “inspired by a thread” rows whose provenance still points at Reddit, and discovery candidates whose id or URL matches Reddit.</p>
+      <p>The record inspector is conservative on purpose. It flags obvious Reddit provenance so examples can be <strong>rejected</strong>, not so Reddit can be laundered through a secondary dataset. If a corpus is materially Reddit-derived, do not import it.</p>
+
+      <h2>What Open Reason uses instead</h2>
+      <div class="table-wrap left">
+        <table>
+          <thead>
+            <tr><th>Kind</th><th>Role in this project</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Official documentation</td><td>Version-pinned, license-reviewed docs inspire <strong>original</strong> tasks. Auto-approve is a license policy, not a scrape.</td></tr>
+            <tr><td>Permissive GitHub</td><td>Repositories that pass an SPDX allowlist may become implementation evidence when a reviewed connector exists. Currently metadata-only (no crawler).</td></tr>
+            <tr><td>Stack Overflow</td><td><strong>User-approved seed only</strong>, after review: original rewrites and attributed snippets, not copies of threads, and not Reddit mirrors. Votes never verify. Not scraped today.</td></tr>
+            <tr><td>Original verified tasks</td><td>Human-authored items and deterministic synthetic generators. <code>quality.verified</code> only after sandbox, sympy, numeric, or named checkers.</td></tr>
+            <tr><td>Curriculum auto-approve</td><td>Public course and OER catalogs may inspire original tasks. Lectures are not copied. NC/SA never becomes CC BY 4.0 verbatim rows.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Quora is not a primary source of truth. Educational sites such as Khan Academy, MIT OCW, CS50, OpenStax, and MDN are registered for original curriculum tasks and are not scraped. Reddit cannot be approved, auto-approved, discovered, or ingested.</p>
+
+      <h2>Enforcement</h2>
+      <p>The ban is implemented, not merely documented: the source registry marks Reddit prohibited; source policy AUTO_REJECTS it; prohibited matchers list hosts and dataset-name substrings; <code>inspect_record</code> drops Reddit-derived rows; the pipeline counts <code>reddit_rejected</code>; <code>scripts/check_no_reddit.py</code> runs in CI; discovery cannot score Reddit; <code>open-reason ingest --source reddit</code> is rejected.</p>
+      <p>Do not add Reddit samples to the corpus. Rejection tests may use URL and source strings only to prove the inspector fails closed.</p>
+
+      <h2>What this policy does not do</h2>
+      <ul>
+        <li>It does not admit “old” dumps, research fair-use arguments, or anonymized comments as exceptions.</li>
+        <li>It does not distinguish posts from comments, NSFW from SFW, or one subreddit from another.</li>
+        <li>It does not treat web crawls, webtext corpora, or search snippets as clean if their provenance includes Reddit.</li>
+        <li>It does not set <code>quality.verified</code> from community scores anywhere in the pipeline.</li>
+      </ul>
+      <p>The exclusion is not weakened by this case study. If a future contributor wants Reddit in the corpus, the answer is no.</p>
+
+      <h2>How to cite</h2>
+      <ul>
+        <li>Source tree: <a href="https://github.com/theworker02/open-reason/blob/main/docs/why-not-reddit.md">docs/why-not-reddit.md</a></li>
+        <li>This page: <a href="https://theworker02.github.io/open-reason/why-not-reddit.html">theworker02.github.io/open-reason/why-not-reddit.html</a></li>
+        <li>Dataset: <a href="https://huggingface.co/datasets/theworker02/open-reason">huggingface.co/datasets/theworker02/open-reason</a></li>
+      </ul>
+    </article>
+  </main>
+
+  <footer>
+    <p>Open Reason · <a href="./">Site</a> · <a href="https://github.com/theworker02/open-reason">GitHub</a> · <a href="https://huggingface.co/datasets/theworker02/open-reason">Hugging Face</a></p>
+    <p>Code Apache-2.0 · Data CC-BY-4.0 · Completely free of Reddit.</p>
+  </footer>
+</body>
+</html>

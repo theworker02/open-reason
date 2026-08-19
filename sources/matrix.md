@@ -1,7 +1,7 @@
 # Open Reason source matrix
 
 Discovery is not ingestion. `enabled: true` requires license review.
-**Open Reason does not use Reddit as a data source.**
+**Open Reason does not use Reddit as a data source.** Case study: [docs/why-not-reddit.md](../docs/why-not-reddit.md).
 Quora is not a primary source of truth.
 
 | Source | Domain | Authority | License | Redistribution | Commercial | Attribution | Derivatives | Content types | Status | Enabled | Ingestion method |

@@ -1,4 +1,4 @@
-pipeline_version: 1.0.1
+pipeline_version: 1.3.8
 rows:
 - id: open-reason-authors
   license_spdx: CC-BY-4.0
@@ -69,6 +69,18 @@ rows:
   verbatim: false
   relicensed_to_cc_by_4_0: false
 - id: usgs_education
+  license_spdx: null
+  verbatim: false
+  relicensed_to_cc_by_4_0: false
+- id: stack_exchange
+  license_spdx: CC-BY-SA-4.0
+  verbatim: false
+  relicensed_to_cc_by_4_0: false
+- id: stackoverflow
+  license_spdx: CC-BY-SA-4.0
+  verbatim: false
+  relicensed_to_cc_by_4_0: false
+- id: github_permissive
   license_spdx: null
   verbatim: false
   relicensed_to_cc_by_4_0: false

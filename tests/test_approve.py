@@ -28,10 +28,10 @@ def test_auto_approve_mit_ocw_not_verbatim() -> None:
     assert "non-commercial" in ocw.reason.lower() or "curriculum" in ocw.reason.lower()
 
 
-def test_stack_exchange_not_auto_enabled() -> None:
+def test_stack_exchange_auto_enabled_not_verbatim() -> None:
     se = evaluate_source(load_registry().by_id("stack-exchange"))
-    assert se.enabled is False
-    assert se.action == "metadata_only"
+    assert se.enabled is True
+    assert se.action == "approve_curriculum"
     assert se.verbatim is False
 
 

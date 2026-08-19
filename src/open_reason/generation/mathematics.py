@@ -783,4 +783,7 @@ def generate_mathematics(seed: int = 42) -> list[Example]:
     from open_reason.generation.math_v101 import extra_mathematics_v101
 
     examples.extend(extra_mathematics_v101(rng))
+    from open_reason.generation.math_v102 import extra_mathematics_v102
+
+    examples.extend(extra_mathematics_v102(rng))
     return examples

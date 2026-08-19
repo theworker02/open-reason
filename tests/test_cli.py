@@ -41,7 +41,7 @@ def test_generate_help() -> None:
 
 
 def test_ingest_unreviewed_source_fails() -> None:
-    result = runner.invoke(app, ["ingest", "--source", "stack-exchange"])
+    result = runner.invoke(app, ["ingest", "--source", "wikipedia"])
     assert result.exit_code != 0
     combined = (result.stdout or "") + (result.stderr or "")
     assert "not enabled" in combined.lower() or "forbids" in combined.lower()

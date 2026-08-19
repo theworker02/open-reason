@@ -15,7 +15,10 @@ from open_reason.generation.coding_python import all_python_tasks
 from open_reason.generation.coding_sql_js import JS_TASKS, SQL_TASKS
 from open_reason.generation.coding_v1 import v1_python_tasks
 from open_reason.generation.coding_v101 import v101_python_tasks
-from open_reason.models import Domain, Example, Verification
+from open_reason.generation.coding_v102 import v102_python_tasks
+from open_reason.generation.github_tasks import github_python_tasks
+from open_reason.generation.stackoverflow_seeds import extra_so_concept_examples, so_python_tasks
+from open_reason.models import Domain, Example, Provenance, Verification
 from open_reason.provenance import synthetic_provenance
 from open_reason.verification import parse_harness_payload, verification_from_sandbox
 from open_reason.verification.sandbox import PYTHON_HARNESS, Sandbox
@@ -60,6 +63,7 @@ def generate_coding(seed: int = 42, sandbox: Sandbox | None = None) -> list[Exam
     if shutil.which("node"):
         examples.extend(_js_examples(sandbox))
     examples.extend(generate_language_concept_tasks())
+    examples.extend(extra_so_concept_examples())
     return examples
 
 
@@ -71,6 +75,9 @@ def _python_examples(sandbox: Sandbox) -> list[Example]:
         *micro_python_tasks(),
         *v1_python_tasks(),
         *v101_python_tasks(),
+        *v102_python_tasks(),
+        *github_python_tasks(),
+        *so_python_tasks(),
     ]:
         files = _python_files(task["code"], task["tests"])
         result, payload = _run_python(sandbox, files)
@@ -83,6 +90,9 @@ def _python_examples(sandbox: Sandbox) -> list[Example]:
             "repository": {"files": {"solution.py": task["code"], "test_solution.py": task["tests"]}},
             "topic": task["topic"],
         }
+        raw_prov = task.get("provenance")
+        provenance = Provenance.model_validate(raw_prov) if raw_prov else _prov()
+        extra_meta = dict(task.get("metadata_extra") or {})
         example = build_example(
             domain=Domain.CODING,
             task_type=task["task_type"],
@@ -96,10 +106,10 @@ def _python_examples(sandbox: Sandbox) -> list[Example]:
             ],
             plan=["Read the specification", "Implement the function or class", "Satisfy the tests"],
             verification=verification,
-            provenance=_prov(),
+            provenance=provenance,
             quality=verified_quality("sandbox:python"),
             source_key=f"py-{task['slug']}",
-            metadata={"language": "python", "topic": task["topic"], "slug": task["slug"]},
+            metadata={"language": "python", "topic": task["topic"], "slug": task["slug"], **extra_meta},
         )
         out.append(example)
 
@@ -143,7 +153,7 @@ def _python_examples(sandbox: Sandbox) -> list[Example]:
             constraints=["Do not weaken or delete tests", "Keep the public API"],
             plan=["Reproduce the failure", "Identify the defect", "Apply a minimal fix", "Re-run tests"],
             verification=verification,
-            provenance=_prov(),
+            provenance=provenance,
             quality=verified_quality("sandbox:python"),
             source_key=f"py-debug-{task['slug']}",
             metadata={
@@ -152,6 +162,7 @@ def _python_examples(sandbox: Sandbox) -> list[Example]:
                 "slug": task["slug"],
                 "failure_verification": fail_ver.model_dump(mode="json"),
                 "tests_passed_after_fix": tests_passed,
+                **extra_meta,
             },
         )
         out.append(debug)

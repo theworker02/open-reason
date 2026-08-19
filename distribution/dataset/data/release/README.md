@@ -25,4 +25,5 @@ data/release/all.parquet
 ```
 
 Do not scrape Khan Academy, MIT OCW, MDN, or Stack Overflow. Open Reason does
-not use Reddit as a data source.
+not use Reddit as a data source. Case study:
+https://github.com/theworker02/open-reason/blob/main/docs/why-not-reddit.md

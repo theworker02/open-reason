@@ -171,7 +171,7 @@ def analyze_coverage_cmd(
 @app.command("train")
 def train_cmd(
     smoke: bool = typer.Option(False, "--smoke", help="Tiny CPU run that proves the trainer, not a 1B model."),
-    config: Path = typer.Option(Path("training/configs/open-reason-1b.yaml"), "--config"),
+    config: Path = typer.Option(Path("training/configs/open-reason-local.yaml"), "--config"),
     data: Path = typer.Option(Path("data/release/all.jsonl"), "--data"),
 ) -> None:
     """Run the Open Reason training entrypoint. Does not invent metrics."""

@@ -491,7 +491,7 @@ def _v1_teaching() -> list[Example]:
         ),
         (
             "teach-nc-not-relicense",
-            "A page is CC BY-NC. Can those sentences be relicensed as CC BY 4.0 inside Open Reason?",
+            "A page is CC BY-NC. Can those sentences be relicensed as Apache-2.0 inside Open Reason?",
             [
                 "NC forbids commercial reuse of the licensed text.",
             ],
@@ -502,7 +502,7 @@ def _v1_teaching() -> list[Example]:
                 "Keep NC off the CC BY release",
                 "Generate original tasks instead if policy allows",
             ],
-            "No. NC text cannot be relicensed as CC BY 4.0. Leave it out of the release or keep the original SPDX on a non-BY-only distribution, which this project does not do.",
+            "No. NC text cannot be relicensed as Apache-2.0. Leave it out of the release or keep the original SPDX on the row; this project does not relicense NC material.",
         ),
         (
             "teach-verified-flag",

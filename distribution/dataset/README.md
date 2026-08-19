@@ -1,6 +1,6 @@
 ---
 pretty_name: Open Reason
-license: cc-by-4.0
+license: apache-2.0
 task_categories:
   - text-generation
   - question-answering
@@ -61,7 +61,7 @@ configs:
 
 Open Reason is a provenance-aware corpus plus a reproducible pipeline. It is intended for training and evaluating systems on coding, mathematics, science, structured decision-making, and human problem solving.
 
-**Open Reason does not use Reddit as a data source.** Quora is not a primary source of truth.
+**Open Reason does not use Reddit as a data source.** Quora is not a primary source of truth. Case study: [docs/why-not-reddit.md](docs/why-not-reddit.md).
 
 ## Supported tasks
 
@@ -74,15 +74,15 @@ Open Reason is a provenance-aware corpus plus a reproducible pipeline. It is int
 
 ## Languages
 
-Prompts and solutions are English. Verified coding languages in v1.0.1: Python, SQL, JavaScript (when the sandbox can run them). Other languages appear as original concept tasks and are not marked verified.
+Prompts and solutions are English. Verified coding languages in v1.3.8: Python, SQL, JavaScript (when the sandbox can run them). Other languages appear as original concept tasks and are not marked verified.
 
 ## Source information
 
-| Kind | How to recognize | v1.0.1 |
+| Kind | How to recognize | v1.3.8 |
 | --- | --- | --- |
 | Human-authored | `provenance.source_type = human_authored` | Teaching, synthesis, qualitative items |
 | Synthetic | `provenance.source_type = synthetic` plus `generator` | Math, science, most reasoning/coding, curriculum |
-| Source-derived | `open_source` / `documentation` / `educational` / `community` | **Not emitted** until the registry enables a reviewed source |
+| Source-derived | `open_source` / `community` with provenance URL/commit | GitHub-permissive original tasks; Stack Overflow *seeds* (`verbatim=false`) |
 | Verified | `quality.verified = true` and `verification.passed = true` | Coding sandbox, sympy, numeric, constraint checks |
 | Unverified | `quality.verified = false` | Reviewed teaching and misconception items (tier A) |
 
@@ -90,7 +90,7 @@ Never treat synthetic rows as human-authored. Never treat unverified rows as exe
 
 ## Licensing
 
-Original dataset content: [CC BY 4.0](LICENSE-DATA). Pipeline: [Apache 2.0](LICENSE). Per-row `provenance.license_spdx` is authoritative.
+Original dataset content and pipeline: [Apache 2.0](LICENSE). Per-row `provenance.license_spdx` is authoritative for upstream GitHub/SO snippets.
 
 ## Provenance
 
@@ -110,7 +110,7 @@ Exact SHA-256 of canonical fields, normalized prompt/answer hashes, 64-bit simha
 
 ## Quality controls
 
-Schema, SPDX allowlist, Reddit rejection, Quora-as-source rejection, PII heuristics, sandbox/sympy/numeric checks, community-votes-are-not-verification. Tiers S/A/B/C: [docs/quality.md](docs/quality.md). `evidence_confidence` is not a claim of truth.
+Schema, SPDX allowlist, Reddit rejection, Quora-as-source rejection, PII heuristics, sandbox/sympy/numeric checks, community-votes-are-not-verification. Tiers S/A/B/C: [docs/quality.md](docs/quality.md). Reddit case study: [docs/why-not-reddit.md](docs/why-not-reddit.md). `evidence_confidence` is not a claim of truth.
 
 ## Intended uses
 
@@ -118,7 +118,7 @@ Research on reasoning and code models; filtering by domain, language, tier, and 
 
 ## Limitations
 
-Small v1.0.1 corpus; still English-centric; verified coding languages limited to sandbox runtimes; teaching items are not executable oracles unless a numeric/sympy/sandbox check exists; third-party educational sites are registered but not scraped; denylists cannot be complete.
+Small v1.3.8 corpus; still English-centric; verified coding languages limited to sandbox runtimes; teaching items are not executable oracles unless a numeric/sympy/sandbox check exists; third-party educational sites are registered but not scraped; denylists cannot be complete.
 
 ## Bias considerations
 
@@ -126,34 +126,35 @@ Synthetic generators encode the authors' choice of topics (software engineering,
 
 ## Ethical considerations
 
-No Reddit/social dumps. Defensive security only. Minimize PII. Do not present this as a universal "human reasoning" sample.
+No Reddit/social dumps. Case study: [docs/why-not-reddit.md](docs/why-not-reddit.md). Defensive security only. Minimize PII. Do not present this as a universal "human reasoning" sample.
 
 ## Maintenance
 
 Issues and PRs: https://github.com/theworker02/open-reason  
 Hugging Face dataset: https://huggingface.co/datasets/theworker02/open-reason  
+Small CPU model (not 1B): https://huggingface.co/theworker02/open-reason-small  
 Releases are immutable; GitHub tags map to Hub revisions. Fixes ship in a new version. Shards are not stored in the GitHub git tree.
 
 ## Citation
 
 See `CITATION.cff` and the README BibTeX entry.
 
-## v1.0.1 snapshot
+## v1.3.8 snapshot
 
 <!-- BEGIN_RELEASE_SNAPSHOT -->
-Pipeline version **1.0.1**.
+Pipeline version **1.3.8**.
 
 | Configuration | Examples | Verified | Human-authored |
 | --- | ---: | ---: | ---: |
-| coding | 314 | 300 | 0 |
-| reasoning | 248 | 248 | 0 |
-| science | 262 | 262 | 0 |
-| mathematics | 334 | 334 | 0 |
+| coding | 354 | 340 | 0 |
+| reasoning | 381 | 381 | 0 |
+| science | 368 | 368 | 0 |
+| mathematics | 648 | 648 | 0 |
 | human | 268 | 240 | 28 |
-| education | 329 | 95 | 0 |
-| core | 1755 | 1479 | 28 |
-| verified | 1479 | 1479 | 0 |
-| all | 1755 | 1479 | 28 |
+| education | 337 | 103 | 0 |
+| core | 2348 | 2072 | 28 |
+| verified | 2072 | 2072 | 0 |
+| all | 2348 | 2072 | 28 |
 
 Rebuild with `open-reason build --config all --seed 42 --out data/release`.
 Full tables: `data/release/statistics.md`.

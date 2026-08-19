@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ALLOWED = {
     ROOT / "docs" / "data-sources.md",
+    ROOT / "docs" / "why-not-reddit.md",
     ROOT / "docs" / "architecture.md",
     ROOT / "README.md",
     ROOT / "DATA_CARD.md",

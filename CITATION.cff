@@ -6,8 +6,8 @@ authors:
   - name: "Open Reason contributors"
 repository-code: "https://github.com/theworker02/open-reason"
 url: "https://huggingface.co/datasets/theworker02/open-reason"
-license: "CC-BY-4.0"
-version: 1.0.1
+license: "Apache-2.0"
+version: 1.3.8
 date-released: "2026-08-18"
 abstract: >-
   An open, verified dataset and pipeline for coding, science, mathematics,

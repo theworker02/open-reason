@@ -23,10 +23,11 @@ def test_policy_python_docs_auto_approved() -> None:
     assert verdict.enabled is True
 
 
-def test_policy_stackoverflow_not_ingested() -> None:
+def test_policy_stackoverflow_original_tasks() -> None:
     verdict = evaluate_policy(load_registry().by_id("stackoverflow"))
-    assert verdict.decision == "METADATA_ONLY"
-    assert verdict.enabled is False
+    assert verdict.decision == "AUTO_APPROVED"
+    assert verdict.enabled is True
+    assert verdict.verbatim is False
 
 
 def test_discovery_rejects_reddit() -> None:

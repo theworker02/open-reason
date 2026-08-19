@@ -8,7 +8,7 @@
   <link rel="canonical" href="https://theworker02.github.io/open-reason/">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <meta property="og:title" content="Open Reason">
-  <meta property="og:description" content="An open, verified dataset for coding, science, mathematics, and human reasoning. Dual-licensed Apache-2.0 / CC-BY-4.0. No Reddit sources.">
+  <meta property="og:description" content="An open, verified dataset for coding, science, mathematics, and human reasoning. Apache-2.0. No Reddit sources.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://theworker02.github.io/open-reason/">
   <meta property="og:image" content="https://theworker02.github.io/open-reason/assets/github-social.png">
@@ -27,6 +27,7 @@
       <a href="#load">Load</a>
       <a href="#configs">Configs</a>
       <a href="#quality">Quality</a>
+      <a href="why-not-reddit.html">Why not Reddit</a>
       <a href="#cite">Cite</a>
       <a href="https://github.com/theworker02/open-reason">GitHub</a>
     </nav>
@@ -34,19 +35,19 @@
 
   <main id="main">
     <section class="hero">
-      <p class="kicker">Dataset + pipeline · v1.0.1</p>
+      <p class="kicker">Dataset + pipeline · v1.3.8</p>
       <img class="mark" src="assets/logo.svg" width="96" height="96" alt="Open Reason logo">
       <h1>Open Reason</h1>
       <p class="tagline">An open, verified dataset for coding, science, mathematics, and human reasoning.</p>
       <p class="sub">Provenance-aware. License-gated. Independently checked. Reproducible.</p>
-      <p class="reddit" role="note"><strong>Open Reason does not use Reddit as a data source.</strong></p>
+      <p class="reddit" role="note"><strong>Open Reason does not use Reddit as a data source.</strong> <a href="why-not-reddit.html">Why</a></p>
       <p class="licenses">
-        Dual license: <a href="https://github.com/theworker02/open-reason/blob/main/LICENSE">Apache-2.0</a> code ·
-        <a href="https://github.com/theworker02/open-reason/blob/main/LICENSE-DATA">CC-BY-4.0</a> data
+        License: <a href="https://github.com/theworker02/open-reason/blob/main/LICENSE">Apache-2.0</a>
       </p>
       <p class="actions">
         <a class="btn primary" href="https://github.com/theworker02/open-reason">GitHub repository</a>
         <a class="btn" href="https://huggingface.co/datasets/theworker02/open-reason">Hugging Face dataset</a>
+        <a class="btn" href="https://huggingface.co/theworker02/open-reason-small">Small CPU model</a>
         <a class="btn" href="https://thanks.dev/u/gh/theworker02">thanks.dev</a>
       </p>
     </section>
@@ -63,7 +64,7 @@
       </div>
       <div>
         <h2>Hugging Face is distribution</h2>
-        <p>Parquet shards and the dataset card, versioned from GitHub Releases. The git tree is not a Parquet dump.</p>
+        <p>Parquet shards and the dataset card, versioned from GitHub Releases. A small CPU causal LM trained on the corpus is <a href="https://huggingface.co/theworker02/open-reason-small">theworker02/open-reason-small</a> (not a 1B model).</p>
         <p><a href="https://huggingface.co/datasets/theworker02/open-reason">datasets/theworker02/open-reason</a></p>
       </div>
     </section>
@@ -107,7 +108,7 @@ open-reason build --config all --seed 42 --out data/release</code></pre>
     </section>
 
     <section id="snapshot">
-      <h2>v1.0.1 snapshot</h2>
+      <h2>v1.3.8 snapshot</h2>
       <p>Counts from the release manifest and dataset card. Rebuild with <code>open-reason build --config all --seed 42 --out data/release</code>.</p>
       <div class="table-wrap">
         <table>
@@ -144,7 +145,7 @@ open-reason build --config all --seed 42 --out data/release</code></pre>
         </article>
         <article>
           <h3>Policy</h3>
-          <p>License-gated auto-approve enables original tasks inspired by public curricula or docs. It never copies lectures, never sets <code>verbatim=true</code> for NC/SA/unknown licenses, and never enables Reddit or Quora as a source of truth. Contamination fingerprints are reported, not silently deleted.</p>
+          <p>License-gated auto-approve enables original tasks inspired by public curricula or docs. It never copies lectures, never sets <code>verbatim=true</code> for NC/SA/unknown licenses, and never enables Reddit or Quora as a source of truth. Contamination fingerprints are reported, not silently deleted. Case study: <a href="why-not-reddit.html">Why Open Reason does not use Reddit</a>.</p>
         </article>
       </div>
       <h3 class="subhead">Quality tiers</h3>
@@ -186,14 +187,14 @@ open-reason build --config all --seed 42 --out data/release</code></pre>
   author       = {Open Reason contributors},
   year         = {2026},
   howpublished = {\url{https://github.com/theworker02/open-reason}},
-  note         = {Dataset and pipeline v1.0.1}
+  note         = {Dataset and pipeline v1.3.8}
 }">Copy</button>
         <pre><code>@misc{openreason2026,
   title        = {Open Reason: An open, verified dataset for coding, science, mathematics, and human reasoning},
   author       = {Open Reason contributors},
   year         = {2026},
   howpublished = {\url{https://github.com/theworker02/open-reason}},
-  note         = {Dataset and pipeline v1.0.1}
+  note         = {Dataset and pipeline v1.3.8}
 }</code></pre>
       </div>
     </section>
@@ -209,8 +210,8 @@ open-reason build --config all --seed 42 --out data/release</code></pre>
   </main>
 
   <footer>
-    <p>Open Reason v1.0.1 · <a href="https://github.com/theworker02/open-reason">GitHub</a> · <a href="https://huggingface.co/datasets/theworker02/open-reason">Hugging Face</a> · <a href="https://thanks.dev/u/gh/theworker02">thanks.dev</a></p>
-    <p>Code Apache-2.0 · Data CC-BY-4.0 · Completely free of Reddit.</p>
+    <p>Open Reason v1.3.8 · <a href="https://github.com/theworker02/open-reason">GitHub</a> · <a href="https://huggingface.co/datasets/theworker02/open-reason">Hugging Face</a> · <a href="https://thanks.dev/u/gh/theworker02">thanks.dev</a></p>
+    <p>Apache-2.0 · Completely free of Reddit. <a href="why-not-reddit.html">Why not Reddit</a></p>
   </footer>
 
   <script>

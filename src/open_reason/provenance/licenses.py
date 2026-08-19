@@ -30,6 +30,14 @@ PERMISSIVE_SPDX = frozenset(
     }
 )
 
+SHARE_ALIKE_SPDX = frozenset(
+    {
+        "CC-BY-SA-4.0",
+        "CC-BY-SA-3.0",
+        "CC-BY-SA-2.5",
+    }
+)
+
 COPYLEFT_SPDX = frozenset(
     {
         "GPL-2.0",
@@ -83,6 +91,12 @@ def evaluate_license(spdx: str | None, *, allow_copyleft: bool = False) -> Licen
         return LicenseDecision(False, f"license {identifier} is not redistributable", identifier)
     if identifier in PERMISSIVE_SPDX:
         return LicenseDecision(True, "permissive license", identifier)
+    if identifier in SHARE_ALIKE_SPDX:
+        return LicenseDecision(
+            True,
+            "share-alike kept on the row; not relicensed as the project license",
+            identifier,
+        )
     if identifier in COPYLEFT_SPDX:
         if allow_copyleft:
             return LicenseDecision(True, "copyleft allowed by source policy", identifier)

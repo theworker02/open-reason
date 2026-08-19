@@ -7,7 +7,7 @@ original, independently checked coverage without scraping third-party courses.
 
 1. **Provenance is mandatory.** Unknown origin is an explicit `source_type: unknown` with a reason, never an omitted field.
 2. **Verification is empirical.** `quality.verified=true` is only set after a check actually ran and passed.
-3. **Reddit is forbidden.** Connectors, validators, and contamination scans reject Reddit URLs, dumps, and known Reddit-derived datasets.
+3. **Reddit is forbidden.** Connectors, validators, and contamination scans reject Reddit URLs, dumps, and known Reddit-derived datasets. Case study: [why-not-reddit.md](why-not-reddit.md).
 4. **Unreviewed sources emit nothing.** The registry must mark a source `approved`/`conditionally_approved` and `enabled: true` before ingestion.
 5. **Determinism.** Generators take a seed. Identifiers are hashes of canonical payloads. JSONL is written with sorted keys.
 6. **Streaming I/O.** JSONL and Parquet writers do not require the full release in RAM.

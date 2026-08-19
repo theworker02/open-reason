@@ -1,6 +1,7 @@
 """Training and evaluation entrypoints.
 
-These prove a reproducible pipeline. They do not invent a published 1B model.
+Default training is a small CPU causal LM on Open Reason JSONL.
+It does not invent a published 1B model and does not use AMD GPUs.
 """
 
 from __future__ import annotations
@@ -43,71 +44,97 @@ def run_training(*, config_path: Path, data_path: Path, smoke: bool = False) -> 
     spec = yaml.safe_load(config_path.read_text(encoding="utf-8")) or {}
     print(f"intended_base={spec.get('base_model')}")
     print(f"intended_hub={spec.get('hub_model_id')}")
-    print("This command does not upload to Hugging Face.")
-    try:
-        import torch
-        import torch.nn as nn
-    except ImportError:
-        print("torch is not installed. Training pipeline is documented in training/README.md.")
-        print("No metrics were written because no training ran.")
-        return 2
+    print("This command does not claim a 1B model unless CUDA 1B SFT actually ran.")
 
-    if not smoke and not torch.cuda.is_available():
-        print("No GPU detected. Re-run with --smoke for a tiny CPU proof, or train on a GPU machine.")
-        print("No 1B–3B model was trained.")
-        return 2
+    from open_reason.training.causal import (
+        LOCAL_MODEL_DIR,
+        cuda_usable,
+        docker_available,
+        inside_docker,
+        maybe_upload_small_model,
+        run_docker_training,
+        train_local_causal,
+    )
 
-    rows = list(iter_jsonl(data_path)) if data_path.exists() else []
-    if not rows:
+    out_dir = repo_root() / LOCAL_MODEL_DIR
+    cuda = cuda_usable()
+    print(f"cuda_usable={cuda} docker={docker_available()} in_docker={inside_docker()}")
+    if cuda:
+        print("NVIDIA CUDA is available. 1B LoRA is not auto-started here without an explicit GPU job.")
+        print("Falling through to the small CPU causal LM unless OPEN_REASON_FORCE_1B=1.")
+
+    if (
+        not smoke
+        and not cuda
+        and docker_available()
+        and not inside_docker()
+        and spec.get("hub_model_id") != "theworker02/open-reason-1b"
+    ):
+        print("No NVIDIA CUDA. Preferring CPU Docker training (not AMD GPU).")
+        code = run_docker_training(data_path=data_path, out_dir=out_dir)
+        if code == 0 and (out_dir / "config.json").exists():
+            maybe_upload_small_model(out_dir)
+        return code
+
+    if not data_path.exists():
         print(f"no JSONL rows at {data_path}; build the dataset first")
         return 2
-    prepared = prepare_sft_rows(rows)
-    if not prepared:
-        print("no prompt/completion pairs after prepare_sft_rows")
-        return 2
-    subset = prepared[:8] if smoke else prepared
-    vocab = 64
-    model = nn.Sequential(nn.Embedding(vocab, 16), nn.Flatten(), nn.Linear(16 * 8, vocab))
-    opt = torch.optim.SGD(model.parameters(), lr=0.05)
-    loss_fn = nn.CrossEntropyLoss()
-    losses: list[float] = []
-    steps = 3 if smoke else 50
-    for step in range(steps):
-        batch = torch.randint(0, vocab, (len(subset), 8))
-        target = torch.randint(0, vocab, (len(subset),))
-        opt.zero_grad()
-        logits = model(batch)
-        loss = loss_fn(logits, target)
-        loss.backward()
-        opt.step()
-        losses.append(float(loss.detach()))
-        print(f"step={step} loss={losses[-1]:.4f} rows={len(subset)}")
-    work = repo_root() / "training" / "work"
-    work.mkdir(parents=True, exist_ok=True)
-    payload = {
-        "smoke": smoke,
-        "cuda": bool(torch.cuda.is_available()),
-        "steps": steps,
-        "rows": len(subset),
-        "losses": losses,
-        "note": "Toy embedding run to prove the trainer. Not open-reason-1b.",
-        "base_model_not_loaded": spec.get("base_model"),
-    }
-    (work / "smoke_metrics.json").write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
-    print(f"wrote {work / 'smoke_metrics.json'}")
-    return 0
+
+    steps = 8 if smoke else int(spec.get("steps") or 200)
+    print("Training a small GPT-2-style causal LM on CPU. Not AMD GPU. Not 1B.")
+    code = train_local_causal(
+        data_path=data_path,
+        out_dir=out_dir,
+        steps=steps,
+        smoke=smoke,
+        n_layer=int(spec.get("n_layer") or (2 if smoke else 4)),
+        n_embd=int(spec.get("n_embd") or (64 if smoke else 128)),
+        n_head=int(spec.get("n_head") or 4),
+    )
+    if code == 0 and not smoke:
+        maybe_upload_small_model(out_dir)
+    return code
 
 
 def evaluate_model(*, model_dir: Path, data_path: Path, limit: int = 32) -> int:
     model_dir = Path(model_dir)
     data_path = Path(data_path)
-    if not model_dir.exists():
-        print(f"no checkpoint at {model_dir}. Train on GPU before claiming a finetune comparison.")
+    if not model_dir.exists() or not (model_dir / "config.json").exists():
+        print(f"no transformers checkpoint at {model_dir}. Train first.")
         return 2
     if not data_path.exists():
         print(f"missing eval JSONL {data_path}")
         return 2
     n = sum(1 for _ in iter_jsonl(data_path))
-    print(json.dumps({"checkpoint": str(model_dir), "eval_rows": n, "limit": limit, "ran": False}))
-    print("Load the checkpoint with your trainer to compute real exact-match; this stub refuses fake scores.")
-    return 2
+    try:
+        from transformers import AutoModelForCausalLM, AutoTokenizer
+        import torch
+    except ImportError:
+        print("transformers/torch missing; cannot load checkpoint for eval")
+        return 2
+    tok = AutoTokenizer.from_pretrained(model_dir)
+    model = AutoModelForCausalLM.from_pretrained(model_dir)
+    model.eval()
+    rows = list(iter_jsonl(data_path))[:limit]
+    losses = []
+    with torch.no_grad():
+        for row in rows:
+            text = str(row.get("prompt") or "") + "\n\n" + str(row.get("answer") or row.get("solution") or "")
+            ids = tok(text, return_tensors="pt", truncation=True, max_length=128)
+            if ids["input_ids"].shape[-1] < 4:
+                continue
+            out = model(**ids, labels=ids["input_ids"])
+            losses.append(float(out.loss))
+    report = {
+        "checkpoint": str(model_dir),
+        "eval_rows": n,
+        "scored": len(losses),
+        "mean_nll": (sum(losses) / len(losses)) if losses else None,
+        "ran": True,
+        "note": "NLL on prompt+answer, not exact-match. Not a 1B eval.",
+    }
+    print(json.dumps(report, indent=2))
+    (repo_root() / "training" / "work" / "eval_metrics.json").write_text(
+        json.dumps(report, indent=2) + "\n", encoding="utf-8"
+    )
+    return 0 if losses else 2

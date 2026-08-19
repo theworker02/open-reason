@@ -126,6 +126,29 @@ def configs_to_build(name: str) -> list[str]:
     return [name]
 
 
+def write_committed_samples(examples: list[Example], root: Path, *, limit: int = 400) -> None:
+    """Keep a git-tracked JSONL sample large enough to prove the corpus exists."""
+    sample = root / "data" / "sample"
+    sample.mkdir(parents=True, exist_ok=True)
+    records = [example_to_record(ex) for ex in examples[:limit]]
+    write_jsonl(sample / "all.sample.jsonl", records)
+    (sample / "README.md").write_text(
+        "\n".join(
+            [
+                "# Open Reason committed sample",
+                "",
+                f"First {len(records)} rows of a full `all` build (pipeline {PIPELINE_VERSION}).",
+                "Full JSONL/Parquet shards live in `data/release/` (gitignored) and on Hugging Face.",
+                "",
+                "Project license: Apache-2.0. Per-row `provenance.license_spdx` is authoritative.",
+                "",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+
 def export_examples(examples: list[Example], directory: Path, config: str) -> dict[str, int]:
     directory.mkdir(parents=True, exist_ok=True)
     records = [example_to_record(ex) for ex in examples]
@@ -266,6 +289,7 @@ def build_release(
         write_source_catalogs()
         publish_staging(staging, out)
         published = True
+        write_committed_samples(combined, repo_root())
     except Exception:
         if not published and staging.exists():
             shutil.rmtree(staging, ignore_errors=True)

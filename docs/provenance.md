@@ -22,7 +22,7 @@ Must set `generator` and `generator_version`. Optional `derived_from` if a paren
 
 ## Checks
 
-- Reddit URL / source / dataset fingerprints → reject
+- Reddit URL / source / dataset fingerprints → reject ([why-not-reddit.md](why-not-reddit.md))
 - Missing SPDX on non-unknown records → reject (default policy)
 - Tier S forbids unknown provenance
 

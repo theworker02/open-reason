@@ -2,7 +2,7 @@
 
 These sources cannot be enabled.
 
-- **Reddit** — absolute exclusion (posts, comments, dumps, APIs, derived datasets)
+- **Reddit** — absolute exclusion (posts, comments, dumps, APIs, derived datasets). Case study: [docs/why-not-reddit.md](../../docs/why-not-reddit.md).
 - **Quora** — not a primary source of truth
 
 ## Files

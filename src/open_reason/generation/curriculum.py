@@ -48,6 +48,10 @@ def _prov(source_id: str):
 
 def generate_original_for_source(source_id: str, seed: int = 42) -> list[Example]:
     _ = seed
+    if source_id in {"stackoverflow", "stack_exchange"}:
+        from open_reason.generation.stackoverflow_seeds import extra_so_concept_examples, extra_so_reasoning
+
+        return extra_so_reasoning() + extra_so_concept_examples()
     tasks = TASKS.get(source_id) or []
     hint = DOMAIN_HINTS.get(source_id)
     if not hint:

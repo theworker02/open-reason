@@ -490,4 +490,10 @@ def generate_reasoning(seed: int = 42) -> list[Example]:
     from open_reason.generation.reasoning_v101 import extra_reasoning_v101
 
     examples.extend(extra_reasoning_v101(rng))
+    from open_reason.generation.reasoning_v102 import extra_reasoning_v102
+
+    examples.extend(extra_reasoning_v102(rng))
+    from open_reason.generation.stackoverflow_seeds import extra_so_reasoning
+
+    examples.extend(extra_so_reasoning())
     return examples
