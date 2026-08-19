@@ -25,6 +25,23 @@ MEDIUM_HUB_ID = "theworker02/open-reason-medium"
 MEDIUM_MODEL_DIR = Path("training/work/open-reason-medium")
 LARGE_HUB_ID = "theworker02/open-reason-large"
 LARGE_MODEL_DIR = Path("training/work/open-reason-large")
+XL_HUB_ID = "theworker02/open-reason-xl"
+XL_MODEL_DIR = Path("training/work/open-reason-xl")
+
+
+def is_xl_name(name: str) -> bool:
+    lowered = str(name).lower()
+    return "xl" in lowered or "ultra" in lowered
+
+
+def _cpu_name() -> str:
+    try:
+        import platform
+
+        name = (platform.processor() or platform.machine() or "CPU").strip()
+        return name or "CPU"
+    except Exception:
+        return "CPU"
 
 
 def inside_docker() -> bool:
@@ -140,6 +157,7 @@ def _write_card(out_dir: Path, payload: dict) -> None:
         "- Small: https://huggingface.co/theworker02/open-reason-small",
         "- Medium: https://huggingface.co/theworker02/open-reason-medium",
         "- Large: https://huggingface.co/theworker02/open-reason-large",
+        "- XL: https://huggingface.co/theworker02/open-reason-xl",
         "",
         "No Reddit sources. Project license Apache-2.0.",
         "",
@@ -171,6 +189,10 @@ def train_local_causal(
     card_title: str | None = None,
     size_note: str | None = None,
     smoke: bool = False,
+    gradient_checkpointing: bool = False,
+    gradient_accumulation: int = 1,
+    learning_rate: float = 3e-4,
+    save_every: int = 10,
 ) -> int:
     try:
         import torch
@@ -210,15 +232,16 @@ def train_local_causal(
     try:
         import torch as _torch
 
-        threads = max(1, min(16, os.cpu_count() or 4))
+        cpu_count = os.cpu_count() or 4
+        threads = max(1, min(32, cpu_count))
         os.environ.setdefault("OMP_NUM_THREADS", str(threads))
         os.environ.setdefault("MKL_NUM_THREADS", str(threads))
         _torch.set_num_threads(threads)
         try:
-            _torch.set_num_interop_threads(max(1, min(4, threads // 4)))
+            _torch.set_num_interop_threads(max(1, min(8, max(1, threads // 4))))
         except Exception:
             pass
-        print(f"torch cpu threads={threads}")
+        print(f"torch cpu threads={threads} cpu_count={cpu_count}")
     except Exception:
         pass
 
@@ -252,9 +275,22 @@ def train_local_causal(
     device = torch.device("cpu")
     model.to(device)
     model.train()
-    opt = torch.optim.AdamW(model.parameters(), lr=3e-4)
+    model.config.use_cache = False
+    accum = max(1, int(gradient_accumulation))
+    if gradient_checkpointing:
+        try:
+            model.gradient_checkpointing_enable(
+                gradient_checkpointing_kwargs={"use_reentrant": False}
+            )
+        except TypeError:
+            model.gradient_checkpointing_enable()
+        print("gradient_checkpointing=on")
+    opt = torch.optim.AdamW(model.parameters(), lr=float(learning_rate))
     param_count = sum(p.numel() for p in model.parameters())
-    print(f"architecture=gpt2-scratch params={param_count} device=cpu steps={steps} rows={len(rows)}")
+    print(
+        f"architecture=gpt2-scratch params={param_count} device=cpu steps={steps} "
+        f"rows={len(rows)} batch={batch_size} accum={accum} seq={max_seq_len}"
+    )
     print("This is not a 1B model. AMD GPU is not used.")
 
     encoded = []
@@ -270,6 +306,12 @@ def train_local_causal(
 
     losses: list[float] = []
     t0 = time.time()
+    max_seconds = int(os.environ.get("OPEN_REASON_MAX_SECONDS") or "0")
+    save_every = max(1, int(save_every))
+    out_dir.mkdir(parents=True, exist_ok=True)
+    hf_tok.save_pretrained(out_dir)
+    opt.zero_grad(set_to_none=True)
+    completed_steps = 0
     for step in range(steps):
         batch_ids = []
         for offset in range(batch_size):
@@ -281,21 +323,33 @@ def train_local_causal(
             cut = seq[:max_len]
             tensor[i, : len(cut)] = torch.tensor(cut, dtype=torch.long)
         tensor = tensor.to(device)
-        opt.zero_grad()
         out = model(input_ids=tensor, labels=tensor)
-        loss = out.loss
+        loss = out.loss / accum
         loss.backward()
-        opt.step()
-        losses.append(float(loss.detach()))
-        if step % 10 == 0 or step == steps - 1:
+        if (step + 1) % accum == 0:
+            opt.step()
+            opt.zero_grad(set_to_none=True)
+        losses.append(float(loss.detach()) * accum)
+        completed_steps = step + 1
+        if step % 5 == 0 or step == steps - 1:
             elapsed = time.time() - t0
             print(f"step={step} loss={losses[-1]:.4f} elapsed_s={elapsed:.1f}")
+        if completed_steps % save_every == 0 or step == steps - 1:
+            model.save_pretrained(out_dir)
+            print(f"checkpoint saved at step={step} dir={out_dir}")
+        if max_seconds and (time.time() - t0) >= max_seconds and completed_steps >= 8:
+            print(f"time budget {max_seconds}s reached after {completed_steps} steps; saving")
+            break
+    if completed_steps and (completed_steps % accum) != 0:
+        opt.step()
+        opt.zero_grad(set_to_none=True)
 
-    out_dir.mkdir(parents=True, exist_ok=True)
     model.save_pretrained(out_dir)
     hf_tok.save_pretrained(out_dir)
     backend = "cpu-docker" if inside_docker() else "cpu-host"
-    if "large" in hub_id:
+    if is_xl_name(hub_id):
+        default_title = "Open Reason XL (CPU)"
+    elif "large" in hub_id:
         default_title = "Open Reason large (CPU)"
     elif "medium" in hub_id:
         default_title = "Open Reason medium (CPU)"
@@ -312,7 +366,12 @@ def train_local_causal(
         "n_head": n_head,
         "vocab_size": vocab,
         "max_seq_len": max_seq_len,
-        "steps": steps,
+        "steps": completed_steps,
+        "requested_steps": steps,
+        "gradient_checkpointing": bool(gradient_checkpointing),
+        "gradient_accumulation": accum,
+        "batch_size": batch_size,
+        "learning_rate": float(learning_rate),
         "rows": len(rows),
         "dataset_version": PIPELINE_VERSION,
         "final_loss": losses[-1] if losses else None,
@@ -321,7 +380,8 @@ def train_local_causal(
         "card_title": card_title or default_title,
         "size_note": size_note,
         "hardware": (
-            f"Host CPU; torch {torch.__version__}; cuda_available={bool(torch.cuda.is_available())}; "
+            f"Host CPU ({_cpu_name()}); torch {torch.__version__}; "
+            f"cuda_available={bool(torch.cuda.is_available())}; "
             f"docker_installed={docker_available()}; docker_used={inside_docker()}. "
             "NVIDIA CUDA was not used. AMD GPU/ROCm/DirectML were not used."
         ),

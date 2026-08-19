@@ -9,6 +9,8 @@ from open_reason.training.causal import (
     LARGE_HUB_ID,
     LOCAL_HUB_ID,
     MEDIUM_HUB_ID,
+    XL_HUB_ID,
+    is_xl_name,
     train_local_causal,
 )
 
@@ -28,6 +30,8 @@ def main() -> int:
     batch = int(os.environ.get("OPEN_REASON_BATCH", "4"))
     if os.environ.get("OPEN_REASON_HUB_ID"):
         hub = os.environ["OPEN_REASON_HUB_ID"]
+    elif is_xl_name(name):
+        hub = XL_HUB_ID
     elif "large" in name:
         hub = LARGE_HUB_ID
     elif "medium" in name:
@@ -45,6 +49,8 @@ def main() -> int:
         max_seq_len=seq,
         batch_size=batch,
         hub_id=hub,
+        gradient_checkpointing=is_xl_name(name) or os.environ.get("OPEN_REASON_CHECKPOINTING") == "1",
+        gradient_accumulation=int(os.environ.get("OPEN_REASON_ACCUM", "1")),
     )
 
 

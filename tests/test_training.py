@@ -59,6 +59,29 @@ def test_large_training_config_is_cpu_larger_than_medium() -> None:
     )
 
 
+def test_xl_training_config_is_about_450m() -> None:
+    path = repo_root() / "training" / "configs" / "open-reason-xl.yaml"
+    spec = yaml.safe_load(path.read_text(encoding="utf-8"))
+    large = yaml.safe_load(
+        (repo_root() / "training" / "configs" / "open-reason-large.yaml").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert spec["hub_model_id"] == "theworker02/open-reason-xl"
+    assert spec["device"] == "cpu"
+    assert spec["model_name"] == "open-reason-xl"
+    assert "1b" not in spec["model_name"].lower()
+    assert int(spec["n_embd"]) >= 1024
+    assert int(spec["n_layer"]) >= 16
+    assert int(spec["vocab_size"]) == 8192
+    assert int(spec["max_seq_len"]) == 256
+    assert int(spec["batch_size"]) == 1
+    assert spec.get("gradient_checkpointing") is True
+    assert int(spec["n_embd"]) * int(spec["n_layer"]) > int(large["n_embd"]) * int(
+        large["n_layer"]
+    )
+
+
 def test_dockerfile_is_cpu_only() -> None:
     text = (repo_root() / "training" / "Dockerfile").read_text(encoding="utf-8")
     assert "python:3.12-slim" in text

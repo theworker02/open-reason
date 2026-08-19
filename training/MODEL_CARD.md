@@ -60,5 +60,6 @@ Recorded in `training/work/smoke_metrics.json`:
 These losses are **not** model-quality metrics.
 
 Published CPU models (not 1B): `theworker02/open-reason-small`,
-`theworker02/open-reason-medium`, and `theworker02/open-reason-large`
-(91,544,064 parameters, host CPU, dataset pipeline 1.4.0).
+`theworker02/open-reason-medium`, `theworker02/open-reason-large`
+(91,544,064 parameters), and `theworker02/open-reason-xl` (443,719,680
+parameters, host CPU, dataset pipeline 1.4.0). None of these is a 1B model.

@@ -12,6 +12,7 @@ the Hub.
 | Small CPU model (not 1B) | Hugging Face model [`theworker02/open-reason-small`](https://huggingface.co/theworker02/open-reason-small) |
 | Medium CPU model (13,867,008, not 1B) | Hugging Face model [`theworker02/open-reason-medium`](https://huggingface.co/theworker02/open-reason-medium) |
 | Large CPU model (91,544,064, not 1B) | Hugging Face model [`theworker02/open-reason-large`](https://huggingface.co/theworker02/open-reason-large) |
+| XL CPU model (443,719,680, not 1B) | Hugging Face model [`theworker02/open-reason-xl`](https://huggingface.co/theworker02/open-reason-xl) |
 
 ## What is synced
 

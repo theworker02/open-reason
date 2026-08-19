@@ -50,9 +50,11 @@ def run_training(*, config_path: Path, data_path: Path, smoke: bool = False) -> 
         LARGE_MODEL_DIR,
         LOCAL_MODEL_DIR,
         MEDIUM_MODEL_DIR,
+        XL_MODEL_DIR,
         cuda_usable,
         docker_available,
         inside_docker,
+        is_xl_name,
         maybe_upload_model,
         run_docker_training,
         train_local_causal,
@@ -60,7 +62,9 @@ def run_training(*, config_path: Path, data_path: Path, smoke: bool = False) -> 
 
     model_name = str(spec.get("model_name") or "open-reason-small")
     hub_id = str(spec.get("hub_model_id") or "theworker02/open-reason-small")
-    if "large" in model_name:
+    if is_xl_name(model_name) or is_xl_name(hub_id):
+        out_dir = repo_root() / XL_MODEL_DIR
+    elif "large" in model_name:
         out_dir = repo_root() / LARGE_MODEL_DIR
     elif "medium" in model_name:
         out_dir = repo_root() / MEDIUM_MODEL_DIR
@@ -72,7 +76,12 @@ def run_training(*, config_path: Path, data_path: Path, smoke: bool = False) -> 
         print("NVIDIA CUDA is available. 1B LoRA is not auto-started here without an explicit GPU job.")
         print("Falling through to the CPU causal LM unless OPEN_REASON_FORCE_1B=1.")
 
-    named_cpu_size = "medium" in model_name or "large" in model_name
+    named_cpu_size = (
+        "medium" in model_name
+        or "large" in model_name
+        or is_xl_name(model_name)
+        or is_xl_name(hub_id)
+    )
     if (
         not smoke
         and not cuda
@@ -94,7 +103,14 @@ def run_training(*, config_path: Path, data_path: Path, smoke: bool = False) -> 
     steps = 8 if smoke else int(spec.get("steps") or 200)
     print(f"Training GPT-2-style causal LM '{model_name}' on CPU. Not AMD GPU. Not 1B.")
     size_note = None
-    if "large" in model_name:
+    if is_xl_name(model_name) or is_xl_name(hub_id):
+        size_note = (
+            "This is an **XL** GPT-2-style causal LM (~450M parameters) trained from "
+            "scratch on the Open Reason SFT split. It is larger than "
+            "`theworker02/open-reason-large` and is **not** a 1B model and is **not** "
+            "`theworker02/open-reason-1b`."
+        )
+    elif "large" in model_name:
         size_note = (
             "This is a **large** GPT-2-style causal LM trained from scratch on the "
             "Open Reason SFT split. It is larger than `theworker02/open-reason-medium` "
@@ -120,6 +136,10 @@ def run_training(*, config_path: Path, data_path: Path, smoke: bool = False) -> 
         hub_id=hub_id,
         card_title=f"Open Reason {model_name} (CPU)",
         size_note=size_note,
+        gradient_checkpointing=bool(spec.get("gradient_checkpointing") or is_xl_name(model_name)),
+        gradient_accumulation=int(spec.get("gradient_accumulation") or 1),
+        learning_rate=float(spec.get("learning_rate") or 3e-4),
+        save_every=int(spec.get("save_every") or (10 if is_xl_name(model_name) else 50)),
     )
     if code == 0 and not smoke:
         maybe_upload_model(out_dir, hub_id)

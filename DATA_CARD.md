@@ -63,6 +63,7 @@ configs:
 - Small model: https://huggingface.co/theworker02/open-reason-small (~1.3M CPU causal LM; not 1B)
 - Medium model: https://huggingface.co/theworker02/open-reason-medium (13,867,008 CPU causal LM; not 1B)
 - Large model: https://huggingface.co/theworker02/open-reason-large (91,544,064 CPU causal LM; not 1B)
+- XL model: https://huggingface.co/theworker02/open-reason-xl (443,719,680 CPU causal LM; not 1B)
 - GitHub: https://github.com/theworker02/open-reason
 - Site: https://theworker02.github.io/open-reason/
 
@@ -142,6 +143,7 @@ Hugging Face dataset: https://huggingface.co/datasets/theworker02/open-reason
 Small CPU model (~1.3M): https://huggingface.co/theworker02/open-reason-small  
 Medium CPU model (13,867,008): https://huggingface.co/theworker02/open-reason-medium  
 Large CPU model (91,544,064): https://huggingface.co/theworker02/open-reason-large  
+XL CPU model (443,719,680): https://huggingface.co/theworker02/open-reason-xl  
 Releases are immutable; GitHub tags map to Hub revisions. Fixes ship in a new version. Shards are not stored in the GitHub git tree.
 
 ## Citation
