@@ -1,5 +1,25 @@
 # Changelog
 
+## v1.4.1 — 2026-08-18
+
+A **large** CPU causal LM trained on the existing v1.4.0 Open Reason JSONL.
+The dataset shards are unchanged. Reddit remains forbidden. Weights stay on
+Hugging Face, not GitHub. The 1B Hub id is still reserved for an actual CUDA
+1B job.
+
+### Training
+
+- `theworker02/open-reason-large` is a 91,544,064-parameter GPT-2-style CPU
+  model (`training/configs/open-reason-large.yaml`): 12 layers, hidden 768,
+  12 heads, vocab 8192, 400 steps, batch 2, host CPU
+- Docker was not installed on this host; `nvidia-smi` was not present;
+  `torch` is 2.12.0+cpu. AMD GPU was not used
+- Small (~1.3M) and medium (13,867,008) checkpoints are unchanged
+
+### License
+
+- Single project license: Apache-2.0
+
 ## v1.4.0 — 2026-08-18
 
 A larger verified corpus and a **medium** CPU causal LM (~13.9M parameters)

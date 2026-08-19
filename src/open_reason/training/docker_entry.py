@@ -5,7 +5,12 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
-from open_reason.training.causal import LOCAL_HUB_ID, MEDIUM_HUB_ID, train_local_causal
+from open_reason.training.causal import (
+    LARGE_HUB_ID,
+    LOCAL_HUB_ID,
+    MEDIUM_HUB_ID,
+    train_local_causal,
+)
 
 
 def main() -> int:
@@ -21,9 +26,14 @@ def main() -> int:
     vocab = int(os.environ.get("OPEN_REASON_VOCAB", "4096"))
     seq = int(os.environ.get("OPEN_REASON_MAX_SEQ", "128"))
     batch = int(os.environ.get("OPEN_REASON_BATCH", "4"))
-    hub = os.environ.get("OPEN_REASON_HUB_ID") or (
-        MEDIUM_HUB_ID if "medium" in name else LOCAL_HUB_ID
-    )
+    if os.environ.get("OPEN_REASON_HUB_ID"):
+        hub = os.environ["OPEN_REASON_HUB_ID"]
+    elif "large" in name:
+        hub = LARGE_HUB_ID
+    elif "medium" in name:
+        hub = MEDIUM_HUB_ID
+    else:
+        hub = LOCAL_HUB_ID
     return train_local_causal(
         data_path=data,
         out_dir=out,

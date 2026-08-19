@@ -1,0 +1,21 @@
+model_name: open-reason-large
+hub_model_id: theworker02/open-reason-large
+base_model: gpt2-scratch
+base_license: Apache-2.0
+dataset: theworker02/open-reason
+local_data: data/release/all.jsonl
+max_seq_len: 256
+n_layer: 12
+n_embd: 768
+n_head: 12
+vocab_size: 8192
+steps: 400
+batch_size: 2
+learning_rate: 3.0e-4
+device: cpu
+docker_image: open-reason-train:cpu
+notes: >
+  Large GPT-2-style causal LM (~90M, GPT-2 small depth/width with an Open Reason
+  BPE vocab). Trained from scratch on Open Reason JSONL. CPU Docker when Docker
+  exists; otherwise host CPU. Not a 1B model. Keep small and medium as the
+  smaller checkpoints.

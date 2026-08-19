@@ -35,7 +35,7 @@
 
   <main id="main">
     <section class="hero">
-      <p class="kicker">Dataset + pipeline · v1.4.0</p>
+      <p class="kicker">Dataset + pipeline · v1.4.1</p>
       <img class="mark" src="assets/logo.svg" width="96" height="96" alt="Open Reason logo">
       <h1>Open Reason</h1>
       <p class="tagline">An open, verified dataset for coding, science, mathematics, and human reasoning.</p>
@@ -49,6 +49,7 @@
         <a class="btn" href="https://huggingface.co/datasets/theworker02/open-reason">Hugging Face dataset</a>
         <a class="btn" href="https://huggingface.co/theworker02/open-reason-small">Small CPU model</a>
         <a class="btn" href="https://huggingface.co/theworker02/open-reason-medium">Medium CPU model</a>
+        <a class="btn" href="https://huggingface.co/theworker02/open-reason-large">Large CPU model</a>
         <a class="btn" href="https://thanks.dev/u/gh/theworker02">thanks.dev</a>
       </p>
     </section>
@@ -65,7 +66,7 @@
       </div>
       <div>
         <h2>Hugging Face is distribution</h2>
-        <p>Parquet shards and the dataset card, versioned from GitHub Releases. CPU causal LMs trained on the corpus: <a href="https://huggingface.co/theworker02/open-reason-small">open-reason-small</a> (~1.3M) and <a href="https://huggingface.co/theworker02/open-reason-medium">open-reason-medium</a> (~13.9M). Neither is a 1B model. Full shards live on Hugging Face, not GitHub.</p>
+        <p>Parquet shards and the dataset card, versioned from GitHub Releases. CPU causal LMs trained on the corpus: <a href="https://huggingface.co/theworker02/open-reason-small">open-reason-small</a> (~1.3M), <a href="https://huggingface.co/theworker02/open-reason-medium">open-reason-medium</a> (13,867,008), and <a href="https://huggingface.co/theworker02/open-reason-large">open-reason-large</a> (91,544,064). None of these is a 1B model. Full shards live on Hugging Face, not GitHub.</p>
         <p><a href="https://huggingface.co/datasets/theworker02/open-reason">datasets/theworker02/open-reason</a></p>
       </div>
     </section>
@@ -109,7 +110,7 @@ open-reason build --config all --seed 42 --out data/release</code></pre>
     </section>
 
     <section id="snapshot">
-      <h2>v1.4.0 snapshot</h2>
+      <h2>v1.4.0 dataset snapshot</h2>
       <p>Counts from the release manifest and dataset card. Rebuild with <code>open-reason build --config all --seed 42 --out data/release</code>. Full Parquet shards are on Hugging Face, not GitHub.</p>
       <div class="table-wrap">
         <table>
@@ -188,14 +189,14 @@ open-reason build --config all --seed 42 --out data/release</code></pre>
   author       = {Open Reason contributors},
   year         = {2026},
   howpublished = {\url{https://github.com/theworker02/open-reason}},
-  note         = {Dataset and pipeline v1.4.0}
+  note         = {Dataset v1.4.0, project v1.4.1}
 }">Copy</button>
         <pre><code>@misc{openreason2026,
   title        = {Open Reason: An open, verified dataset for coding, science, mathematics, and human reasoning},
   author       = {Open Reason contributors},
   year         = {2026},
   howpublished = {\url{https://github.com/theworker02/open-reason}},
-  note         = {Dataset and pipeline v1.4.0}
+  note         = {Dataset v1.4.0, project v1.4.1}
 }</code></pre>
       </div>
     </section>
@@ -211,7 +212,7 @@ open-reason build --config all --seed 42 --out data/release</code></pre>
   </main>
 
   <footer>
-    <p>Open Reason v1.4.0 · <a href="https://github.com/theworker02/open-reason">GitHub</a> · <a href="https://huggingface.co/datasets/theworker02/open-reason">dataset</a> · <a href="https://huggingface.co/theworker02/open-reason-small">small</a> · <a href="https://huggingface.co/theworker02/open-reason-medium">medium</a> · <a href="https://thanks.dev/u/gh/theworker02">thanks.dev</a></p>
+    <p>Open Reason v1.4.1 · <a href="https://github.com/theworker02/open-reason">GitHub</a> · <a href="https://huggingface.co/datasets/theworker02/open-reason">dataset</a> · <a href="https://huggingface.co/theworker02/open-reason-small">small</a> · <a href="https://huggingface.co/theworker02/open-reason-medium">medium</a> · <a href="https://huggingface.co/theworker02/open-reason-large">large</a> · <a href="https://thanks.dev/u/gh/theworker02">thanks.dev</a></p>
     <p>Apache-2.0 · Completely free of Reddit. <a href="why-not-reddit.html">Why not Reddit</a></p>
   </footer>
 

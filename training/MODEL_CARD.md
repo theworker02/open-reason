@@ -58,3 +58,7 @@ Recorded in `training/work/smoke_metrics.json`:
 - note: not TinyLlama, not open-reason-1b
 
 These losses are **not** model-quality metrics.
+
+Published CPU models (not 1B): `theworker02/open-reason-small`,
+`theworker02/open-reason-medium`, and `theworker02/open-reason-large`
+(91,544,064 parameters, host CPU, dataset pipeline 1.4.0).

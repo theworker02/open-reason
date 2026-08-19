@@ -39,6 +39,26 @@ def test_medium_training_config_is_cpu_larger() -> None:
     assert spec.get("n_layer", 0) <= 12
 
 
+def test_large_training_config_is_cpu_larger_than_medium() -> None:
+    path = repo_root() / "training" / "configs" / "open-reason-large.yaml"
+    spec = yaml.safe_load(path.read_text(encoding="utf-8"))
+    medium = yaml.safe_load(
+        (repo_root() / "training" / "configs" / "open-reason-medium.yaml").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert spec["hub_model_id"] == "theworker02/open-reason-large"
+    assert spec["device"] == "cpu"
+    assert spec["model_name"] == "open-reason-large"
+    assert "1b" not in spec["model_name"].lower()
+    assert int(spec["n_embd"]) >= 512
+    assert int(spec["n_layer"]) >= 8
+    assert int(spec["n_layer"]) <= 12
+    assert int(spec["n_embd"]) * int(spec["n_layer"]) > int(medium["n_embd"]) * int(
+        medium["n_layer"]
+    )
+
+
 def test_dockerfile_is_cpu_only() -> None:
     text = (repo_root() / "training" / "Dockerfile").read_text(encoding="utf-8")
     assert "python:3.12-slim" in text

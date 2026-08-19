@@ -12,6 +12,7 @@ import os
 import shutil
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 from open_reason.config import repo_root
@@ -22,6 +23,8 @@ LOCAL_MODEL_DIR = Path("training/work/open-reason-local")
 LOCAL_HUB_ID = "theworker02/open-reason-small"
 MEDIUM_HUB_ID = "theworker02/open-reason-medium"
 MEDIUM_MODEL_DIR = Path("training/work/open-reason-medium")
+LARGE_HUB_ID = "theworker02/open-reason-large"
+LARGE_MODEL_DIR = Path("training/work/open-reason-large")
 
 
 def inside_docker() -> bool:
@@ -127,10 +130,16 @@ def _write_card(out_dir: Path, payload: dict) -> None:
         f"- Steps: {payload.get('steps')}",
         f"- Backend: {payload.get('backend')}",
         f"- CUDA used: {payload.get('cuda')}",
-        f"- Hardware: CPU (Docker when available). AMD GPU is not used.",
+        f"- Hardware: {payload.get('hardware') or 'CPU (Docker when available). AMD GPU is not used.'}",
         f"- Dataset: theworker02/open-reason pipeline {payload.get('dataset_version')}",
         f"- SFT rows: {payload.get('rows')}",
         f"- Final loss: {payload.get('final_loss')}",
+        "",
+        "Related checkpoints (none of these is a 1B model):",
+        "- Dataset: https://huggingface.co/datasets/theworker02/open-reason",
+        "- Small: https://huggingface.co/theworker02/open-reason-small",
+        "- Medium: https://huggingface.co/theworker02/open-reason-medium",
+        "- Large: https://huggingface.co/theworker02/open-reason-large",
         "",
         "No Reddit sources. Project license Apache-2.0.",
         "",
@@ -201,8 +210,14 @@ def train_local_causal(
     try:
         import torch as _torch
 
-        threads = max(1, min(8, os.cpu_count() or 4))
+        threads = max(1, min(16, os.cpu_count() or 4))
+        os.environ.setdefault("OMP_NUM_THREADS", str(threads))
+        os.environ.setdefault("MKL_NUM_THREADS", str(threads))
         _torch.set_num_threads(threads)
+        try:
+            _torch.set_num_interop_threads(max(1, min(4, threads // 4)))
+        except Exception:
+            pass
         print(f"torch cpu threads={threads}")
     except Exception:
         pass
@@ -254,10 +269,11 @@ def train_local_causal(
         return 2
 
     losses: list[float] = []
+    t0 = time.time()
     for step in range(steps):
         batch_ids = []
-        for _ in range(batch_size):
-            seq = encoded[step % len(encoded)]
+        for offset in range(batch_size):
+            seq = encoded[(step * batch_size + offset) % len(encoded)]
             batch_ids.append(seq)
         max_len = min(max_seq_len, max(len(s) for s in batch_ids))
         tensor = torch.full((len(batch_ids), max_len), hf_tok.pad_token_id, dtype=torch.long)
@@ -271,13 +287,20 @@ def train_local_causal(
         loss.backward()
         opt.step()
         losses.append(float(loss.detach()))
-        if step % 20 == 0 or step == steps - 1:
-            print(f"step={step} loss={losses[-1]:.4f}")
+        if step % 10 == 0 or step == steps - 1:
+            elapsed = time.time() - t0
+            print(f"step={step} loss={losses[-1]:.4f} elapsed_s={elapsed:.1f}")
 
     out_dir.mkdir(parents=True, exist_ok=True)
     model.save_pretrained(out_dir)
     hf_tok.save_pretrained(out_dir)
     backend = "cpu-docker" if inside_docker() else "cpu-host"
+    if "large" in hub_id:
+        default_title = "Open Reason large (CPU)"
+    elif "medium" in hub_id:
+        default_title = "Open Reason medium (CPU)"
+    else:
+        default_title = "Open Reason small (CPU)"
     payload = {
         "smoke": smoke,
         "cuda": False,
@@ -295,8 +318,16 @@ def train_local_causal(
         "final_loss": losses[-1] if losses else None,
         "losses_tail": losses[-10:],
         "hub_id_if_uploaded": hub_id,
-        "card_title": card_title or ("Open Reason medium (CPU)" if "medium" in hub_id else "Open Reason small (CPU)"),
+        "card_title": card_title or default_title,
         "size_note": size_note,
+        "hardware": (
+            f"Host CPU; torch {torch.__version__}; cuda_available={bool(torch.cuda.is_available())}; "
+            f"docker_installed={docker_available()}; docker_used={inside_docker()}. "
+            "NVIDIA CUDA was not used. AMD GPU/ROCm/DirectML were not used."
+        ),
+        "docker_used": inside_docker(),
+        "docker_installed": docker_available(),
+        "torch_version": torch.__version__,
         "note": "CPU causal LM. Not open-reason-1b. Not AMD GPU. No Reddit.",
     }
     _write_card(out_dir, payload)

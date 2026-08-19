@@ -9,11 +9,13 @@ from CPU-only machines.
 | --- | --- | ---: | --- |
 | Small | `theworker02/open-reason-small` | ~1.3M | `training/configs/open-reason-local.yaml` |
 | Medium | `theworker02/open-reason-medium` | 13,867,008 | `training/configs/open-reason-medium.yaml` |
+| Large | `theworker02/open-reason-large` | 91,544,064 | `training/configs/open-reason-large.yaml` |
 
 - Architecture: GPT-2-style, from scratch
 - Data: `data/release/all.jsonl` after `open-reason build --config all --seed 42`
 - Device: **CPU**. Docker CPU image when Docker is installed. **Not AMD GPU.**
-- Checkpoints: `training/work/open-reason-local/` and `training/work/open-reason-medium/`
+- Checkpoints: `training/work/open-reason-local/`, `training/work/open-reason-medium/`,
+  and `training/work/open-reason-large/` (gitignored; publish weights on the Hub)
 
 ```bash
 docker build -t open-reason-train:cpu -f training/Dockerfile .
@@ -37,11 +39,11 @@ docker run --rm `
   open-reason-train:cpu
 ```
 
-If Docker is missing (as on the v1.4.0 host), the CLI trains on **host CPU**:
+If Docker is missing (as on the v1.4.1 host), the CLI trains on **host CPU**:
 
 ```bash
 python training/scripts/prepare_sft.py data/release/all.jsonl training/work/sft.jsonl
-open-reason train --config training/configs/open-reason-medium.yaml --data data/release/all.jsonl
+open-reason train --config training/configs/open-reason-large.yaml --data data/release/all.jsonl
 ```
 
 `--smoke` runs a few CPU steps of the **same** GPT-2-style model (tiny layers),

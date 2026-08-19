@@ -47,6 +47,7 @@ def run_training(*, config_path: Path, data_path: Path, smoke: bool = False) -> 
     print("This command does not claim a 1B model unless CUDA 1B SFT actually ran.")
 
     from open_reason.training.causal import (
+        LARGE_MODEL_DIR,
         LOCAL_MODEL_DIR,
         MEDIUM_MODEL_DIR,
         cuda_usable,
@@ -59,7 +60,9 @@ def run_training(*, config_path: Path, data_path: Path, smoke: bool = False) -> 
 
     model_name = str(spec.get("model_name") or "open-reason-small")
     hub_id = str(spec.get("hub_model_id") or "theworker02/open-reason-small")
-    if "medium" in model_name:
+    if "large" in model_name:
+        out_dir = repo_root() / LARGE_MODEL_DIR
+    elif "medium" in model_name:
         out_dir = repo_root() / MEDIUM_MODEL_DIR
     else:
         out_dir = repo_root() / LOCAL_MODEL_DIR
@@ -69,13 +72,14 @@ def run_training(*, config_path: Path, data_path: Path, smoke: bool = False) -> 
         print("NVIDIA CUDA is available. 1B LoRA is not auto-started here without an explicit GPU job.")
         print("Falling through to the CPU causal LM unless OPEN_REASON_FORCE_1B=1.")
 
+    named_cpu_size = "medium" in model_name or "large" in model_name
     if (
         not smoke
         and not cuda
         and docker_available()
         and not inside_docker()
         and spec.get("hub_model_id") != "theworker02/open-reason-1b"
-        and "medium" not in model_name
+        and not named_cpu_size
     ):
         print("No NVIDIA CUDA. Preferring CPU Docker training (not AMD GPU).")
         code = run_docker_training(data_path=data_path, out_dir=out_dir)
@@ -90,7 +94,13 @@ def run_training(*, config_path: Path, data_path: Path, smoke: bool = False) -> 
     steps = 8 if smoke else int(spec.get("steps") or 200)
     print(f"Training GPT-2-style causal LM '{model_name}' on CPU. Not AMD GPU. Not 1B.")
     size_note = None
-    if "medium" in model_name:
+    if "large" in model_name:
+        size_note = (
+            "This is a **large** GPT-2-style causal LM trained from scratch on the "
+            "Open Reason SFT split. It is larger than `theworker02/open-reason-medium` "
+            "and is **not** a 1B model and is **not** `theworker02/open-reason-1b`."
+        )
+    elif "medium" in model_name:
         size_note = (
             "This is a **medium** GPT-2-style causal LM trained from scratch on the "
             "Open Reason SFT split. It is larger than `theworker02/open-reason-small` "

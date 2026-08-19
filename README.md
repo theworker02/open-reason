@@ -11,11 +11,12 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-0B1F33" alt="Apache 2.0"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/pipeline-v1.4.0-2A6F6F" alt="v1.4.0"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/pipeline-v1.4.1-2A6F6F" alt="v1.4.1"></a>
   <a href="docs/data-sources.md"><img src="https://img.shields.io/badge/Reddit-forbidden-b91c1c" alt="Reddit forbidden"></a>
   <a href="https://huggingface.co/datasets/theworker02/open-reason"><img src="https://img.shields.io/badge/Hugging%20Face-open--reason-FFD21E" alt="Hugging Face"></a>
   <a href="https://huggingface.co/theworker02/open-reason-small"><img src="https://img.shields.io/badge/model-open--reason--small-2A6F6F" alt="open-reason-small"></a>
   <a href="https://huggingface.co/theworker02/open-reason-medium"><img src="https://img.shields.io/badge/model-open--reason--medium-2A6F6F" alt="open-reason-medium"></a>
+  <a href="https://huggingface.co/theworker02/open-reason-large"><img src="https://img.shields.io/badge/model-open--reason--large-2A6F6F" alt="open-reason-large"></a>
   <a href="https://theworker02.github.io/open-reason/"><img src="https://img.shields.io/badge/site-GitHub%20Pages-2A6F6F" alt="GitHub Pages"></a>
 </p>
 
@@ -32,7 +33,8 @@
 | **GitHub** (pipeline, tests, samples) | https://github.com/theworker02/open-reason |
 | **Dataset** (full shards) | https://huggingface.co/datasets/theworker02/open-reason |
 | **Small model** (~1.3M params, CPU) | https://huggingface.co/theworker02/open-reason-small |
-| **Medium model** (larger CPU GPT, not 1B) | https://huggingface.co/theworker02/open-reason-medium |
+| **Medium model** (13,867,008 params, CPU) | https://huggingface.co/theworker02/open-reason-medium |
+| **Large model** (91,544,064 params, CPU) | https://huggingface.co/theworker02/open-reason-large |
 | **Site** | https://theworker02.github.io/open-reason/ |
 
 Full Parquet/JSONL shards are on Hugging Face, not GitHub. Project license is Apache-2.0 only.
@@ -42,9 +44,9 @@ from datasets import load_dataset
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 ds = load_dataset("theworker02/open-reason", "all")
-tok = AutoTokenizer.from_pretrained("theworker02/open-reason-medium")
-model = AutoModelForCausalLM.from_pretrained("theworker02/open-reason-medium")
-# or: theworker02/open-reason-small
+tok = AutoTokenizer.from_pretrained("theworker02/open-reason-large")
+model = AutoModelForCausalLM.from_pretrained("theworker02/open-reason-large")
+# or: theworker02/open-reason-medium / theworker02/open-reason-small
 ```
 
 ## Changelog
@@ -53,6 +55,7 @@ See **[CHANGELOG.md](CHANGELOG.md)** for every release.
 
 | Version | Date | Notes |
 | --- | --- | --- |
+| **[v1.4.1](CHANGELOG.md#v141--2026-08-18)** | 2026-08-18 | Large CPU causal LM (~91.5M); dataset unchanged |
 | **[v1.4.0](CHANGELOG.md#v140--2026-08-18)** | 2026-08-18 | Larger verified corpus; small + medium CPU models |
 | **[v1.3.8](CHANGELOG.md#v138--2026-08-18)** | 2026-08-18 | Apache-2.0 only; train-sized corpus; small CPU causal LM |
 | **[v1.0.0](CHANGELOG.md#v100--2026-08-18)** | 2026-08-18 | Catalogs in every section, broader original tasks, local 1.0 dataset |
@@ -73,6 +76,7 @@ It is a dataset **and** the pipeline that produces it.
 - **Hugging Face dataset** [`theworker02/open-reason`](https://huggingface.co/datasets/theworker02/open-reason) is distribution: Parquet shards and the dataset card.
 - **Small CPU model** [`theworker02/open-reason-small`](https://huggingface.co/theworker02/open-reason-small) is a ~1.3M-parameter GPT-2-style causal LM.
 - **Medium CPU model** [`theworker02/open-reason-medium`](https://huggingface.co/theworker02/open-reason-medium) is a 13,867,008-parameter GPT-2-style causal LM (CPU, not 1B).
+- **Large CPU model** [`theworker02/open-reason-large`](https://huggingface.co/theworker02/open-reason-large) is a 91,544,064-parameter GPT-2-style causal LM (CPU, not 1B). Weights are on the Hub, not in git.
 - `open-reason build` writes local `data/release/`. Those `*.parquet` / `*.jsonl` shards are gitignored. A committed sample lives in `data/sample/`.
 
 See [docs/huggingface.md](docs/huggingface.md) and [docs/releases.md](docs/releases.md).
@@ -278,7 +282,7 @@ Full tables: `data/release/statistics.md`.
   author       = {Open Reason contributors},
   year         = {2026},
   howpublished = {\url{https://github.com/theworker02/open-reason}},
-  note         = {Dataset and pipeline v1.4.0}
+  note         = {Dataset v1.4.0, project v1.4.1}
 }
 ```
 

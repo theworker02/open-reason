@@ -10,7 +10,8 @@ the Hub.
 | Pipeline, schemas, registry, tests, docs, samples, release manifests | GitHub [`theworker02/open-reason`](https://github.com/theworker02/open-reason) (branch `main`) |
 | Dataset card + published shards | Hugging Face dataset [`theworker02/open-reason`](https://huggingface.co/datasets/theworker02/open-reason) |
 | Small CPU model (not 1B) | Hugging Face model [`theworker02/open-reason-small`](https://huggingface.co/theworker02/open-reason-small) |
-| Medium CPU model (~13.9M, not 1B) | Hugging Face model [`theworker02/open-reason-medium`](https://huggingface.co/theworker02/open-reason-medium) |
+| Medium CPU model (13,867,008, not 1B) | Hugging Face model [`theworker02/open-reason-medium`](https://huggingface.co/theworker02/open-reason-medium) |
+| Large CPU model (91,544,064, not 1B) | Hugging Face model [`theworker02/open-reason-large`](https://huggingface.co/theworker02/open-reason-large) |
 
 ## What is synced
 
