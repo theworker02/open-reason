@@ -1,0 +1,403 @@
+:root {
+  --ink: #0b1f33;
+  --ink-soft: #16324c;
+  --copper: #c4a35a;
+  --paper: #f4efe4;
+  --paper-dark: #e8e0d0;
+  --teal: #2a6f6f;
+  --teal-bright: #3a8a8a;
+  --cream: #faf7f0;
+  --rule: rgba(196, 163, 90, 0.35);
+  --shadow: 0 18px 40px rgba(11, 31, 51, 0.18);
+  --sans: "Segoe UI", "IBM Plex Sans", "Source Sans 3", system-ui, sans-serif;
+  --mono: "Cascadia Code", "IBM Plex Mono", "Source Code Pro", ui-monospace, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  color: var(--ink);
+  background:
+    linear-gradient(180deg, rgba(11, 31, 51, 0.04), transparent 220px),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 31px,
+      rgba(11, 31, 51, 0.035) 32px
+    ),
+    var(--paper);
+  line-height: 1.55;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--teal);
+}
+
+a:hover {
+  color: var(--ink);
+}
+
+.skip {
+  position: absolute;
+  left: 0.75rem;
+  top: -3rem;
+  background: var(--copper);
+  color: var(--ink);
+  padding: 0.4rem 0.7rem;
+  z-index: 20;
+}
+
+.skip:focus {
+  top: 0.75rem;
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 6vw;
+  background: rgba(11, 31, 51, 0.96);
+  color: var(--paper);
+  border-bottom: 2px solid var(--copper);
+  backdrop-filter: blur(8px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--paper);
+  text-decoration: none;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+}
+
+.brand img {
+  border-radius: 8px;
+}
+
+.nav nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+}
+
+.nav nav a {
+  color: var(--paper);
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+
+.nav nav a:hover {
+  color: var(--copper);
+}
+
+main {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 0 6vw 4rem;
+}
+
+.hero {
+  text-align: center;
+  padding: 3.5rem 0 1.5rem;
+}
+
+.kicker {
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--teal);
+  margin-bottom: 1rem;
+}
+
+.mark {
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+}
+
+h1 {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  margin: 1rem 0 0.4rem;
+  letter-spacing: -0.03em;
+}
+
+.tagline {
+  font-size: 1.25rem;
+  max-width: 38rem;
+  margin: 0 auto;
+  font-weight: 600;
+}
+
+.sub {
+  color: var(--ink-soft);
+  margin-top: 0.4rem;
+}
+
+.reddit {
+  display: inline-block;
+  margin: 1.2rem auto 0;
+  padding: 0.55rem 1rem;
+  border: 1px solid #b91c1c;
+  background: #fff5f5;
+  color: #7f1d1d;
+  border-radius: 4px;
+}
+
+.licenses {
+  margin-top: 1rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-top: 1.4rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.65rem 1.05rem;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  text-decoration: none;
+  background: var(--cream);
+  border-radius: 2px;
+  font-weight: 600;
+}
+
+.btn:hover {
+  background: var(--paper-dark);
+  color: var(--ink);
+}
+
+.btn.primary {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: var(--cream);
+}
+
+.btn.primary:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--cream);
+}
+
+.banner {
+  margin: 0 0 2.5rem;
+  border: 1px solid var(--rule);
+  box-shadow: var(--shadow);
+}
+
+.banner img {
+  display: block;
+  width: 100%;
+}
+
+section {
+  margin: 3rem 0;
+}
+
+h2 {
+  font-size: 1.65rem;
+  margin: 0 0 0.8rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--copper);
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1.05rem;
+}
+
+.subhead {
+  margin-top: 1.6rem;
+  border: 0;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1rem;
+}
+
+.split > div,
+.cards article,
+.pillars article {
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  padding: 1.2rem 1.25rem;
+  box-shadow: 0 1px 0 rgba(11, 31, 51, 0.04);
+}
+
+.split > div {
+  border-top: 3px solid var(--teal);
+}
+
+.cards,
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 0.85rem;
+}
+
+.mono-line {
+  font-family: var(--mono);
+  font-size: 0.92rem;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.85rem 1rem;
+  overflow-x: auto;
+}
+
+.codeblock {
+  position: relative;
+  background: var(--ink);
+  color: #e8e0d0;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  border-left: 4px solid var(--copper);
+}
+
+.codeblock pre {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  white-space: pre-wrap;
+}
+
+.copy {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.55rem;
+  background: var(--teal);
+  color: var(--cream);
+  border: 0;
+  padding: 0.28rem 0.55rem;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.75rem;
+}
+
+.copy:hover {
+  background: var(--teal-bright);
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--rule);
+  background: var(--cream);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.55rem 0.8rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+th:not(:first-child),
+td:not(:first-child) {
+  text-align: right;
+}
+
+thead th {
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 600;
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+  font-weight: 650;
+}
+
+.note {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.flow {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
+  gap: 0.55rem;
+  counter-reset: step;
+}
+
+.flow li {
+  counter-increment: step;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.9rem 0.85rem 0.9rem 2.4rem;
+  position: relative;
+  min-height: 4.2rem;
+}
+
+.flow li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0.7rem;
+  top: 0.85rem;
+  color: var(--copper);
+  font-weight: 700;
+  font-family: var(--mono);
+}
+
+footer {
+  background: var(--ink);
+  color: var(--paper);
+  text-align: center;
+  padding: 2rem 6vw;
+  border-top: 2px solid var(--copper);
+}
+
+footer a {
+  color: var(--copper);
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 0.92em;
+}
+
+@media (max-width: 720px) {
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.8rem 5vw;
+  }
+
+  .hero {
+    padding-top: 2.2rem;
+  }
+}

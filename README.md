@@ -15,6 +15,7 @@
   <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/pipeline-v1.0.1-2A6F6F" alt="v1.0.1"></a>
   <a href="docs/data-sources.md"><img src="https://img.shields.io/badge/Reddit-forbidden-b91c1c" alt="Reddit forbidden"></a>
   <a href="https://huggingface.co/datasets/theworker02/open-reason"><img src="https://img.shields.io/badge/Hugging%20Face-open--reason-FFD21E" alt="Hugging Face"></a>
+  <a href="https://theworker02.github.io/open-reason/"><img src="https://img.shields.io/badge/site-GitHub%20Pages-2A6F6F" alt="GitHub Pages"></a>
 </p>
 
 <p align="center">
@@ -233,6 +234,7 @@ Full tables: `data/release/statistics.md`.
 
 ## Documentation
 
+- [Project site](https://theworker02.github.io/open-reason/)
 - [Architecture](docs/architecture.md)
 - [Data sources](docs/data-sources.md)
 - [Knowledge graph](docs/knowledge-graph.md)

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open Reason — open, verified dataset for coding, science, mathematics, and human reasoning</title>
+  <meta name="description" content="Open Reason is an open, verified dataset and pipeline for coding, science, mathematics, and human reasoning. Provenance-aware, license-gated, independently checked. It does not use Reddit as a data source.">
+  <link rel="canonical" href="https://theworker02.github.io/open-reason/">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <meta property="og:title" content="Open Reason">
+  <meta property="og:description" content="An open, verified dataset for coding, science, mathematics, and human reasoning. Dual-licensed Apache-2.0 / CC-BY-4.0. No Reddit sources.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://theworker02.github.io/open-reason/">
+  <meta property="og:image" content="https://theworker02.github.io/open-reason/assets/github-social.png">
+  <meta name="theme-color" content="#0B1F33">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <a class="brand" href="./">
+      <img src="assets/logo.svg" width="40" height="40" alt="">
+      <span>Open Reason</span>
+    </a>
+    <nav aria-label="Primary">
+      <a href="#load">Load</a>
+      <a href="#configs">Configs</a>
+      <a href="#quality">Quality</a>
+      <a href="#cite">Cite</a>
+      <a href="https://github.com/theworker02/open-reason">GitHub</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <p class="kicker">Dataset + pipeline · v1.0.1</p>
+      <img class="mark" src="assets/logo.svg" width="96" height="96" alt="Open Reason logo">
+      <h1>Open Reason</h1>
+      <p class="tagline">An open, verified dataset for coding, science, mathematics, and human reasoning.</p>
+      <p class="sub">Provenance-aware. License-gated. Independently checked. Reproducible.</p>
+      <p class="reddit" role="note"><strong>Open Reason does not use Reddit as a data source.</strong></p>
+      <p class="licenses">
+        Dual license: <a href="https://github.com/theworker02/open-reason/blob/main/LICENSE">Apache-2.0</a> code ·
+        <a href="https://github.com/theworker02/open-reason/blob/main/LICENSE-DATA">CC-BY-4.0</a> data
+      </p>
+      <p class="actions">
+        <a class="btn primary" href="https://github.com/theworker02/open-reason">GitHub repository</a>
+        <a class="btn" href="https://huggingface.co/datasets/theworker02/open-reason">Hugging Face dataset</a>
+        <a class="btn" href="https://thanks.dev/u/gh/theworker02">thanks.dev</a>
+      </p>
+    </section>
+
+    <figure class="banner">
+      <img src="assets/banner.png" alt="Open Reason — Open. Licensed. Provenanced. Verified.">
+    </figure>
+
+    <section class="split" id="labs">
+      <div>
+        <h2>GitHub is the lab</h2>
+        <p>Engineering source of truth: pipeline, schemas, taxonomy, source registry, tests, docs, configs, and small samples. Default branch is <code>main</code>.</p>
+        <p><a href="https://github.com/theworker02/open-reason">theworker02/open-reason</a></p>
+      </div>
+      <div>
+        <h2>Hugging Face is distribution</h2>
+        <p>Parquet shards and the dataset card, versioned from GitHub Releases. The git tree is not a Parquet dump.</p>
+        <p><a href="https://huggingface.co/datasets/theworker02/open-reason">datasets/theworker02/open-reason</a></p>
+      </div>
+    </section>
+
+    <section id="load">
+      <h2>How to load</h2>
+      <p>Install <a href="https://huggingface.co/docs/datasets">Hugging Face Datasets</a> and pull a named configuration:</p>
+      <div class="codeblock">
+        <button type="button" class="copy" data-copy="from datasets import load_dataset
+
+coding = load_dataset(&quot;theworker02/open-reason&quot;, &quot;coding&quot;)">Copy</button>
+        <pre><code>from datasets import load_dataset
+
+coding = load_dataset("theworker02/open-reason", "coding")</code></pre>
+      </div>
+      <p>Other configs work the same way: pass <code>"reasoning"</code>, <code>"science"</code>, <code>"mathematics"</code>, <code>"human"</code>, <code>"education"</code>, <code>"core"</code>, <code>"verified"</code>, or <code>"all"</code>.</p>
+      <p>Build locally from the engineering repo:</p>
+      <div class="codeblock">
+        <pre><code>git clone https://github.com/theworker02/open-reason.git
+cd open-reason
+pip install -e ".[dev]"
+open-reason sources --approve --apply
+open-reason build --config all --seed 42 --out data/release</code></pre>
+      </div>
+    </section>
+
+    <section id="configs">
+      <h2>Configurations</h2>
+      <p class="mono-line">coding · reasoning · science · mathematics · human · education · core · verified · all</p>
+      <div class="cards">
+        <article><h3>coding</h3><p>Sandbox-tested software tasks (Python, SQL, JavaScript when available).</p></article>
+        <article><h3>mathematics</h3><p>Symbolic and integer-checked problems.</p></article>
+        <article><h3>science</h3><p>Independently recomputed numerical and conceptual items.</p></article>
+        <article><h3>reasoning</h3><p>Structured planning and constraint problems.</p></article>
+        <article><h3>human</h3><p>Teaching, synthesis, and decision support.</p></article>
+        <article><h3>education</h3><p>Curriculum graph plus original tasks from auto-approved sources — never scraped lectures.</p></article>
+        <article><h3>core</h3><p>Quality tiers S and A.</p></article>
+        <article><h3>verified</h3><p>Tier S only (<code>quality.verified</code> after a real check).</p></article>
+        <article><h3>all</h3><p>Union by <code>id</code>.</p></article>
+      </div>
+    </section>
+
+    <section id="snapshot">
+      <h2>v1.0.1 snapshot</h2>
+      <p>Counts from the release manifest and dataset card. Rebuild with <code>open-reason build --config all --seed 42 --out data/release</code>.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Configuration</th><th>Examples</th><th>Verified</th><th>Human-authored</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>coding</td><td>314</td><td>300</td><td>0</td></tr>
+            <tr><td>reasoning</td><td>248</td><td>248</td><td>0</td></tr>
+            <tr><td>science</td><td>262</td><td>262</td><td>0</td></tr>
+            <tr><td>mathematics</td><td>334</td><td>334</td><td>0</td></tr>
+            <tr><td>human</td><td>268</td><td>240</td><td>28</td></tr>
+            <tr><td>education</td><td>329</td><td>95</td><td>0</td></tr>
+            <tr><td>core</td><td>1755</td><td>1479</td><td>28</td></tr>
+            <tr><td>verified</td><td>1479</td><td>1479</td><td>0</td></tr>
+            <tr><td>all</td><td>1755</td><td>1479</td><td>28</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">This is a foundation, not a web dump. Quality over scale. Third-party course sites are registered but not scraped.</p>
+    </section>
+
+    <section id="quality">
+      <h2>Quality, provenance, verification</h2>
+      <p>Most public “reasoning” corpora are web dumps, unverified generations, or evaluation sets reused as training data. Open Reason is built so every row can answer: Where did this come from? May I use it? Was the answer actually checked?</p>
+      <div class="pillars">
+        <article>
+          <h3>Provenance</h3>
+          <p>Every example includes a <code>provenance</code> object. Source types include human-authored, synthetic (named generator), and reviewed educational sources. Unknown origin requires <code>unknown_reason</code> and cannot be tier S. Fabricating URLs or commits is a pipeline bug.</p>
+        </article>
+        <article>
+          <h3>Verification</h3>
+          <p><code>quality.verified</code> is set only after a check ran and passed: coding sandbox (unittest / SQLite / Node), sympy or exact integer math, independent numeric science checks, named constraint checkers. If a check was not run, the flag stays false. Votes and “accepted answers” never verify a row.</p>
+        </article>
+        <article>
+          <h3>Policy</h3>
+          <p>License-gated auto-approve enables original tasks inspired by public curricula or docs. It never copies lectures, never sets <code>verbatim=true</code> for NC/SA/unknown licenses, and never enables Reddit or Quora as a source of truth. Contamination fingerprints are reported, not silently deleted.</p>
+        </article>
+      </div>
+      <h3 class="subhead">Quality tiers</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Tier</th><th>Meaning</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>S</td><td>A check ran and passed</td></tr>
+            <tr><td>A</td><td>Reviewed / human-authored, not claimed executed</td></tr>
+            <tr><td>B</td><td>Synthetic, structurally valid</td></tr>
+            <tr><td>C</td><td>Raw (unused)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="pipeline">
+      <h2>Pipeline</h2>
+      <ol class="flow">
+        <li>Source registry</li>
+        <li>License-policy auto-approve</li>
+        <li>Original task generation</li>
+        <li>Normalize / validate / Reddit block</li>
+        <li>Execute or symbolic check</li>
+        <li>Deduplicate</li>
+        <li>Contamination report</li>
+        <li>Statistics + Parquet / JSONL</li>
+      </ol>
+    </section>
+
+    <section id="cite">
+      <h2>Citation</h2>
+      <p>If you use the dataset or pipeline, please cite it. See also <a href="https://github.com/theworker02/open-reason/blob/main/CITATION.cff">CITATION.cff</a>.</p>
+      <div class="codeblock">
+        <button type="button" class="copy" data-copy="@misc{openreason2026,
+  title        = {Open Reason: An open, verified dataset for coding, science, mathematics, and human reasoning},
+  author       = {Open Reason contributors},
+  year         = {2026},
+  howpublished = {\url{https://github.com/theworker02/open-reason}},
+  note         = {Dataset and pipeline v1.0.1}
+}">Copy</button>
+        <pre><code>@misc{openreason2026,
+  title        = {Open Reason: An open, verified dataset for coding, science, mathematics, and human reasoning},
+  author       = {Open Reason contributors},
+  year         = {2026},
+  howpublished = {\url{https://github.com/theworker02/open-reason}},
+  note         = {Dataset and pipeline v1.0.1}
+}</code></pre>
+      </div>
+    </section>
+
+    <section id="sponsor">
+      <h2>Sponsor</h2>
+      <p>Support maintenance of the pipeline and dataset releases.</p>
+      <p class="actions">
+        <a class="btn primary" href="https://github.com/sponsors/theworker02">GitHub Sponsors</a>
+        <a class="btn" href="https://thanks.dev/u/gh/theworker02">thanks.dev/u/gh/theworker02</a>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Open Reason v1.0.1 · <a href="https://github.com/theworker02/open-reason">GitHub</a> · <a href="https://huggingface.co/datasets/theworker02/open-reason">Hugging Face</a> · <a href="https://thanks.dev/u/gh/theworker02">thanks.dev</a></p>
+    <p>Code Apache-2.0 · Data CC-BY-4.0 · Completely free of Reddit.</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll(".copy").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var text = btn.getAttribute("data-copy") || "";
+        navigator.clipboard.writeText(text).then(function () {
+          btn.textContent = "Copied";
+          setTimeout(function () { btn.textContent = "Copy"; }, 1600);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
