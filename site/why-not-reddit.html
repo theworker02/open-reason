@@ -55,7 +55,7 @@
       <p>Those models often <strong>absorb the personality of Reddit commenters</strong>. The failure mode is not only factual error. It is a voice: performative certainty in place of knowledge, pile-ons in place of argument, mockery in place of correction, and a style of “listening” that is not actually advice. A great deal of that text <strong>sounds like help and is not helpful</strong>.</p>
       <p>That is <strong>dangerous</strong>. Medical-, legal-, and financial-sounding chatter travels in the same streams as ordinary conversation. Harassment norms and unverifiable claims travel with them. A system that has ingested that register will reproduce it under the appearance of competence. At some point the loop has to be <strong>stopped</strong> — not by hoping a later alignment pass will wash it out, but by refusing the source.</p>
       <p>Open Reason is a concrete refusal to keep feeding that loop. I am contributing what I can personally: this dataset and this pipeline do not use Reddit, <strong>directly or indirectly</strong>. There is no dump, no archive, no “Reddit-derived” mix, and no search-result workaround. If a candidate’s provenance includes Reddit, it is rejected.</p>
-      <p>If possible, a <strong>very small trained model</strong> will ship with the Hugging Face dataset release so the exclusion is not only a policy file. It will not be a frontier LLM. Training that has been run for this project is CPU-side (including a smoke trainer; this environment has had CPU PyTorch / Docker-python and no CUDA GPU). We will <strong>not</strong> claim a 1B-parameter model until one has actually been trained, evaluated, and uploaded. The dataset is <a href="https://huggingface.co/datasets/theworker02/open-reason">theworker02/open-reason</a>. If a companion checkpoint is published, it will appear under a documented id such as <code>theworker02/open-reason-local</code> (or a later name recorded in the training model card) and will be labeled honestly. If people find it useful, development will continue.</p>
+      <p>A <strong>very small trained model</strong> is part of this project so the exclusion is not only a policy file. It is not a frontier LLM. This repository trains a GPT-2-style causal LM from scratch (a few million parameters) on Open Reason JSONL, on <strong>CPU</strong> — Docker image <code>open-reason-train:cpu</code> when Docker is available, otherwise host CPU. Checkpoints write to <code>training/work/open-reason-local/</code>. The dataset is <a href="https://huggingface.co/datasets/theworker02/open-reason">theworker02/open-reason</a>. If a Hub upload succeeds, the companion id is <a href="https://huggingface.co/theworker02/open-reason-small">theworker02/open-reason-small</a>. We do <strong>not</strong> claim a 1B-parameter model (<code>theworker02/open-reason-1b</code>) until a CUDA 1B job has actually been trained, evaluated, and uploaded. If people find the small model useful, development will continue.</p>
 
       <h2>Provenance: Reddit posts cannot support the claims</h2>
       <p>Reddit items are not a stable, attributable research record in the sense Open Reason requires.</p>
@@ -68,8 +68,8 @@
       <p>Unknown origin is allowed only with <code>unknown_reason</code>, is forbidden for tier S, and is not a path to launder Reddit text as “unspecified web.”</p>
 
       <h2>License: there is no clean redistributable grant</h2>
-      <p>Open Reason ships original dataset content under CC BY 4.0 and pipeline code under Apache-2.0. Per-row <code>license_spdx</code> must be a real grant, not a guess.</p>
-      <p>User content on Reddit is posted under the platform’s terms. That arrangement is <strong>not</strong> a clean downstream license to Open Reason, and it is <strong>not</strong> a grant to relicense the text as CC BY 4.0. We do not treat “it was publicly readable” as “it is redistributable in this corpus.”</p>
+      <p>Open Reason ships pipeline and original dataset rows under <strong>Apache-2.0</strong>. That is the only project license. Per-row <code>provenance.license_spdx</code> must still be a real grant, not a guess.</p>
+      <p>User content on Reddit is posted under the platform’s terms. That arrangement is <strong>not</strong> a clean downstream license to Open Reason, and it is <strong>not</strong> a grant to relicense the text as Apache-2.0. We do not treat “it was publicly readable” as “it is redistributable in this corpus.”</p>
       <p>The following remain Reddit-derived and are forbidden, even when they arrive with a different filename or host:</p>
       <div class="table-wrap left">
         <table>
@@ -86,7 +86,7 @@
           </tbody>
         </table>
       </div>
-      <p>There is <strong>no secondary-dataset workaround</strong>. Share-alike, non-commercial, unknown, or platform-encumbered text is never silently converted to CC BY 4.0. This page is research-infrastructure policy, not legal advice to third parties. The operational rule is simpler: Reddit-derived material does not enter the tree or the release.</p>
+      <p>There is <strong>no secondary-dataset workaround</strong>. Share-alike, non-commercial, unknown, or platform-encumbered text is never silently converted to Apache-2.0. This page is research-infrastructure policy, not legal advice to third parties. The operational rule is simpler: Reddit-derived material does not enter the tree or the release.</p>
 
       <h2>Quality: votes are not verification</h2>
       <p><code>quality.verified</code> is set only after a check this repository can re-run: coding sandbox (unittest / SQLite / Node), sympy or exact integer arithmetic, independent numeric science checks, or a named constraint checker. If a check was not run, the flag stays false. There is no “probably correct” bit.</p>
@@ -111,10 +111,10 @@
           </thead>
           <tbody>
             <tr><td>Official documentation</td><td>Version-pinned, license-reviewed docs inspire <strong>original</strong> tasks. Auto-approve is a license policy, not a scrape.</td></tr>
-            <tr><td>Permissive GitHub</td><td>Repositories that pass an SPDX allowlist may become implementation evidence when a reviewed connector exists. Currently metadata-only (no crawler).</td></tr>
-            <tr><td>Stack Overflow</td><td><strong>User-approved seed only</strong>, after review: original rewrites and attributed snippets, not copies of threads, and not Reddit mirrors. Votes never verify. Not scraped today.</td></tr>
+            <tr><td>Permissive GitHub</td><td>Original tasks inspired by commit-pinned MIT/BSD/Apache-2.0 public snapshots (<code>verbatim=false</code>). Not Reddit-derived.</td></tr>
+            <tr><td>Stack Overflow</td><td><strong>User-approved seed only</strong>: original rewrites and short attributed snippets, not copies of threads, and not Reddit mirrors. Votes never verify.</td></tr>
             <tr><td>Original verified tasks</td><td>Human-authored items and deterministic synthetic generators. <code>quality.verified</code> only after sandbox, sympy, numeric, or named checkers.</td></tr>
-            <tr><td>Curriculum auto-approve</td><td>Public course and OER catalogs may inspire original tasks. Lectures are not copied. NC/SA never becomes CC BY 4.0 verbatim rows.</td></tr>
+            <tr><td>Curriculum auto-approve</td><td>Public course and OER catalogs may inspire original tasks. Lectures are not copied. NC/SA never becomes Apache-2.0 verbatim rows.</td></tr>
           </tbody>
         </table>
       </div>
@@ -138,13 +138,14 @@
         <li>Source tree: <a href="https://github.com/theworker02/open-reason/blob/main/docs/why-not-reddit.md">docs/why-not-reddit.md</a></li>
         <li>This page: <a href="https://theworker02.github.io/open-reason/why-not-reddit.html">theworker02.github.io/open-reason/why-not-reddit.html</a></li>
         <li>Dataset: <a href="https://huggingface.co/datasets/theworker02/open-reason">huggingface.co/datasets/theworker02/open-reason</a></li>
+        <li>Small companion model (if uploaded): <a href="https://huggingface.co/theworker02/open-reason-small">huggingface.co/theworker02/open-reason-small</a></li>
       </ul>
     </article>
   </main>
 
   <footer>
-    <p>Open Reason · <a href="./">Site</a> · <a href="https://github.com/theworker02/open-reason">GitHub</a> · <a href="https://huggingface.co/datasets/theworker02/open-reason">Hugging Face</a></p>
-    <p>Code Apache-2.0 · Data CC-BY-4.0 · Completely free of Reddit.</p>
+    <p>Open Reason · <a href="./">Site</a> · <a href="https://github.com/theworker02/open-reason">GitHub</a> · <a href="https://huggingface.co/datasets/theworker02/open-reason">dataset</a> · <a href="https://huggingface.co/theworker02/open-reason-small">open-reason-small</a></p>
+    <p>Apache-2.0 · Completely free of Reddit.</p>
   </footer>
 </body>
 </html>

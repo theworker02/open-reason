@@ -5,7 +5,8 @@
 Apache-2.0 as the only project license, a train-sized verified corpus (original
 plus GitHub-permissive and Stack Overflow *seeds*), and a real small CPU causal
 LM trainer. Reddit remains forbidden. The 1B Hub id is reserved for an actual
-CUDA 1B job, which this release does not claim.
+CUDA 1B job, which this release does not claim. Case study:
+`docs/why-not-reddit.md` and site page `why-not-reddit.html`.
 
 ### Dataset
 
@@ -31,12 +32,6 @@ CUDA 1B job, which this release does not claim.
 - Single project license: Apache-2.0 (`LICENSE`)
 - `LICENSE-DATA` / CC-BY-4.0 as a second project license removed
 - Per-row `provenance.license_spdx` still records upstream SPDX
-
-## Unreleased
-
-### Documentation
-
-- Case study: why Open Reason does not use Reddit (`docs/why-not-reddit.md`, site page `why-not-reddit.html`)
 
 ## v1.0.1 — 2026-08-18
 

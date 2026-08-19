@@ -26,7 +26,7 @@ That is **dangerous**. Medical-, legal-, and financial-sounding chatter travels 
 
 Open Reason is a concrete refusal to keep feeding that loop. I am contributing what I can personally: this dataset and this pipeline do not use Reddit, **directly or indirectly**. There is no dump, no archive, no “Reddit-derived” mix, and no search-result workaround. If a candidate’s provenance includes Reddit, it is rejected.
 
-If possible, a **very small trained model** will ship with the Hugging Face dataset release so the exclusion is not only a policy file. It will not be a frontier LLM. Training that has been run for this project is CPU-side (including a smoke trainer; this environment has had CPU PyTorch / Docker-python and no CUDA GPU). We will **not** claim a 1B-parameter model until one has actually been trained, evaluated, and uploaded. The dataset is [`theworker02/open-reason`](https://huggingface.co/datasets/theworker02/open-reason). If a companion checkpoint is published, it will appear under a documented id such as `theworker02/open-reason-local` (or a later name recorded in `training/MODEL_CARD.md`) and will be labeled honestly. If people find it useful, development will continue.
+A **very small trained model** is part of this project so the exclusion is not only a policy file. It is not a frontier LLM. This repository trains a GPT-2-style causal LM from scratch (a few million parameters) on Open Reason JSONL, on **CPU** — Docker image `open-reason-train:cpu` when Docker is available, otherwise host CPU. Checkpoints write to `training/work/open-reason-local/`. The dataset is [`theworker02/open-reason`](https://huggingface.co/datasets/theworker02/open-reason). If a Hub upload succeeds, the companion id is [`theworker02/open-reason-small`](https://huggingface.co/theworker02/open-reason-small). We do **not** claim a 1B-parameter model (`theworker02/open-reason-1b`) until a CUDA 1B job has actually been trained, evaluated, and uploaded. If people find the small model useful, development will continue.
 
 ## Provenance: Reddit posts cannot support the claims
 
@@ -41,9 +41,9 @@ Unknown origin is allowed only with `unknown_reason`, is forbidden for tier S, a
 
 ## License: there is no clean redistributable grant
 
-Open Reason ships original dataset content under CC BY 4.0 and pipeline code under Apache-2.0. Per-row `license_spdx` must be a real grant, not a guess.
+Open Reason ships pipeline and original dataset rows under **Apache-2.0** (`LICENSE`). That is the only project license. Per-row `provenance.license_spdx` must still be a real grant, not a guess.
 
-User content on Reddit is posted under the platform’s terms. That arrangement is **not** a clean downstream license to Open Reason, and it is **not** a grant to relicense the text as CC BY 4.0. We do not treat “it was publicly readable” as “it is redistributable in this corpus.”
+User content on Reddit is posted under the platform’s terms. That arrangement is **not** a clean downstream license to Open Reason, and it is **not** a grant to relicense the text as Apache-2.0. We do not treat “it was publicly readable” as “it is redistributable in this corpus.”
 
 The following remain Reddit-derived and are forbidden, even when they arrive with a different filename or host:
 
@@ -56,7 +56,7 @@ The following remain Reddit-derived and are forbidden, even when they arrive wit
 | Sites whose primary purpose is republishing Reddit | Mirrors do not change the source |
 | Search results that reproduce Reddit threads | The snippet is still Reddit text |
 
-There is **no secondary-dataset workaround**. Share-alike, non-commercial, unknown, or platform-encumbered text is never silently converted to CC BY 4.0. Copyleft identifiers require an explicit source-policy exception and still would not admit Reddit.
+There is **no secondary-dataset workaround**. Share-alike, non-commercial, unknown, or platform-encumbered text is never silently converted to Apache-2.0. Copyleft identifiers require an explicit source-policy exception and still would not admit Reddit.
 
 This document is research-infrastructure policy, not legal advice to third parties. The operational rule for this repository is simpler: Reddit-derived material does not enter the tree or the release.
 
@@ -98,10 +98,10 @@ The exclusion is on **provenance**, not on a single hostname. All of the followi
 | Kind | Role in this project |
 | --- | --- |
 | Official documentation | Version-pinned, license-reviewed docs (language references, man pages, standards) inspire **original** tasks. Auto-approve is a license policy, not a scrape. `verbatim` stays false without a reviewed crawler. |
-| Permissive GitHub | Repositories that pass an SPDX allowlist may become implementation evidence when a reviewed connector exists. `github_permissive` is currently metadata-only (no crawler). |
-| Stack Overflow / Stack Exchange | **User-approved seed only**, after review: original rewrites and attributed snippets, not copies of threads, and **not Reddit mirrors**. CC BY-SA must be preserved; votes never verify. Today these ids are `review_required` / metadata-only and are listed under `never_scrape`. |
-| Original verified tasks | Human-authored Open Reason items (CC BY 4.0) and deterministic synthetic generators, always labeled `provenance.source_type`. `quality.verified` only after sandbox, sympy, numeric, or named checkers. |
-| Curriculum auto-approve | Public course and OER catalogs may inspire original tasks (`curriculum_use: true`). Lectures are not copied. NC/SA/unknown licenses never become CC BY 4.0 verbatim rows. |
+| Permissive GitHub | Original tasks inspired by commit-pinned MIT/BSD/Apache-2.0 public snapshots (`url`, SPDX, commit; `verbatim=false`). Not a scrape of the internet, and not Reddit-derived. |
+| Stack Overflow / Stack Exchange | **User-approved seed only**: original rewrites and short attributed snippets, not copies of threads, and **not Reddit mirrors**. CC BY-SA on any quoted snippet must be preserved; votes never verify. |
+| Original verified tasks | Human-authored Open Reason items and deterministic synthetic generators (Apache-2.0 project license), always labeled `provenance.source_type`. `quality.verified` only after sandbox, sympy, numeric, or named checkers. |
+| Curriculum auto-approve | Public course and OER catalogs may inspire original tasks (`curriculum_use: true`). Lectures are not copied. NC/SA/unknown licenses never become Apache-2.0 verbatim rows. |
 
 Quora is not a primary source of truth. Educational sites such as Khan Academy, MIT OCW, CS50, OpenStax, and MDN are registered for original curriculum tasks and are **not scraped**.
 
@@ -140,3 +140,4 @@ Cite the repository (`CITATION.cff`) and this document:
 - Source tree: [`docs/why-not-reddit.md`](https://github.com/theworker02/open-reason/blob/main/docs/why-not-reddit.md)
 - Project site: [https://theworker02.github.io/open-reason/why-not-reddit.html](https://theworker02.github.io/open-reason/why-not-reddit.html)
 - Dataset: [https://huggingface.co/datasets/theworker02/open-reason](https://huggingface.co/datasets/theworker02/open-reason)
+- Small companion model (if uploaded): [https://huggingface.co/theworker02/open-reason-small](https://huggingface.co/theworker02/open-reason-small)
