@@ -20,12 +20,12 @@ manifest next to newer JSONL.
 ## GitHub tag → Hugging Face revision
 
 1. Rebuild locally: `open-reason build --config all --seed 42 --out data/release`.
-2. Tag GitHub (`v0.3.0`, …). Attach `data/release/*.parquet` (and JSONL if needed)
-   as **release assets**. Do not commit those shards to git.
+2. Tag GitHub (`v1.4.0`, …). **Do not** attach full Parquet/JSONL shards to the
+   GitHub Release and **do not** commit those shards to git.
 3. Publishing a GitHub Release runs `.github/workflows/sync-huggingface.yml`,
    which syncs **only** `distribution/dataset/` (card, sample, pointers) to
    Hugging Face dataset `theworker02/open-reason`.
-4. Upload the attached Parquet files to Hub `data/release/` so they match the
+4. Upload Parquet files to Hub `data/release/` so they match the
    dataset card `configs.data_files` paths. Hub-sync uses `--delete="*"`, so
    shards that live only on the Hub (outside that subdirectory) must be
    re-uploaded after a card sync, or copied into `distribution/dataset/data/release/`

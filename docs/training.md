@@ -1,11 +1,16 @@
 # Training
 
-Open Reason trains a **small** GPT-2-style causal LM on `data/release/all.jsonl`.
+Open Reason trains GPT-2-style causal LMs on `data/release/all.jsonl`.
 It does not invent a 1B Hugging Face model on CPU-only hardware.
+
+| Model | Hub | Params | Config |
+| --- | --- | ---: | --- |
+| Small | [`theworker02/open-reason-small`](https://huggingface.co/theworker02/open-reason-small) | ~1.3M | `training/configs/open-reason-local.yaml` |
+| Medium | [`theworker02/open-reason-medium`](https://huggingface.co/theworker02/open-reason-medium) | 13,867,008 | `training/configs/open-reason-medium.yaml` |
 
 ```bash
 python training/scripts/prepare_sft.py data/release/all.jsonl training/work/sft.jsonl
-open-reason train --config training/configs/open-reason-local.yaml --data data/release/all.jsonl
+open-reason train --config training/configs/open-reason-medium.yaml --data data/release/all.jsonl
 ```
 
 Prefer CPU **Docker** when Docker is installed and NVIDIA CUDA is not:
@@ -13,17 +18,17 @@ Prefer CPU **Docker** when Docker is installed and NVIDIA CUDA is not:
 ```bash
 docker build -t open-reason-train:cpu -f training/Dockerfile .
 docker run --rm -e OPEN_REASON_IN_DOCKER=1 -e OPEN_REASON_DISABLE_CUDA=1 \
+  -e OPEN_REASON_MODEL_NAME=open-reason-medium \
+  -e OPEN_REASON_HUB_ID=theworker02/open-reason-medium \
   -v "$PWD/data/release:/app/data/release:ro" \
   -v "$PWD/training/work:/app/training/work" \
   open-reason-train:cpu
 ```
 
-That image is `open-reason-train:cpu`. Checkpoints write to
-`training/work/open-reason-local/`. If the checkpoint is a real
-`transformers` `save_pretrained` tree, it may be uploaded as
-`theworker02/open-reason-small` — never as `open-reason-1b`.
+v1.4.0 training on this developer machine used **host CPU** because Docker was
+not installed. `torch.cuda.is_available()` is false. AMD GPUs are not used.
 
-This developer machine uses CPU torch (`cuda=false`). AMD GPUs are not used.
+Do **not** upload these checkpoints as `theworker02/open-reason-1b`.
 
 See `training/README.md`, `training/eval/protocol.yaml`, and the card written
 next to the checkpoint after a successful train.

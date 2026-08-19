@@ -22,10 +22,19 @@ def test_registry_loads_and_never_enables_reddit() -> None:
 
 def test_unreviewed_or_skipped_source_cannot_ingest() -> None:
     try:
-        assert_can_ingest("stack_exchange")
+        assert_can_ingest("wikipedia")
         raise AssertionError("expected SourceAdmissionError")
     except SourceAdmissionError as exc:
         assert "not enabled" in str(exc) or "forbids" in str(exc)
+
+
+def test_stackoverflow_is_curriculum_only() -> None:
+    record = assert_can_ingest("stackoverflow")
+    assert record.enabled is True
+    assert record.verbatim is False
+    assert record.curriculum_use is True
+    se = load_registry().by_id("stack_exchange")
+    assert se.verbatim is False
 
 
 def test_reddit_source_cannot_ingest() -> None:

@@ -11,10 +11,11 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-0B1F33" alt="Apache 2.0"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/pipeline-v1.3.8-2A6F6F" alt="v1.3.8"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/pipeline-v1.4.0-2A6F6F" alt="v1.4.0"></a>
   <a href="docs/data-sources.md"><img src="https://img.shields.io/badge/Reddit-forbidden-b91c1c" alt="Reddit forbidden"></a>
   <a href="https://huggingface.co/datasets/theworker02/open-reason"><img src="https://img.shields.io/badge/Hugging%20Face-open--reason-FFD21E" alt="Hugging Face"></a>
   <a href="https://huggingface.co/theworker02/open-reason-small"><img src="https://img.shields.io/badge/model-open--reason--small-2A6F6F" alt="open-reason-small"></a>
+  <a href="https://huggingface.co/theworker02/open-reason-medium"><img src="https://img.shields.io/badge/model-open--reason--medium-2A6F6F" alt="open-reason-medium"></a>
   <a href="https://theworker02.github.io/open-reason/"><img src="https://img.shields.io/badge/site-GitHub%20Pages-2A6F6F" alt="GitHub Pages"></a>
 </p>
 
@@ -29,17 +30,21 @@
 | What | URL |
 | --- | --- |
 | **GitHub** (pipeline, tests, samples) | https://github.com/theworker02/open-reason |
-| **Dataset** | https://huggingface.co/datasets/theworker02/open-reason |
-| **Model** (small CPU causal LM, not 1B) | https://huggingface.co/theworker02/open-reason-small |
+| **Dataset** (full shards) | https://huggingface.co/datasets/theworker02/open-reason |
+| **Small model** (~1.3M params, CPU) | https://huggingface.co/theworker02/open-reason-small |
+| **Medium model** (larger CPU GPT, not 1B) | https://huggingface.co/theworker02/open-reason-medium |
 | **Site** | https://theworker02.github.io/open-reason/ |
+
+Full Parquet/JSONL shards are on Hugging Face, not GitHub. Project license is Apache-2.0 only.
 
 ```python
 from datasets import load_dataset
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 ds = load_dataset("theworker02/open-reason", "all")
-tok = AutoTokenizer.from_pretrained("theworker02/open-reason-small")
-model = AutoModelForCausalLM.from_pretrained("theworker02/open-reason-small")
+tok = AutoTokenizer.from_pretrained("theworker02/open-reason-medium")
+model = AutoModelForCausalLM.from_pretrained("theworker02/open-reason-medium")
+# or: theworker02/open-reason-small
 ```
 
 ## Changelog
@@ -48,6 +53,7 @@ See **[CHANGELOG.md](CHANGELOG.md)** for every release.
 
 | Version | Date | Notes |
 | --- | --- | --- |
+| **[v1.4.0](CHANGELOG.md#v140--2026-08-18)** | 2026-08-18 | Larger verified corpus; small + medium CPU models |
 | **[v1.3.8](CHANGELOG.md#v138--2026-08-18)** | 2026-08-18 | Apache-2.0 only; train-sized corpus; small CPU causal LM |
 | **[v1.0.0](CHANGELOG.md#v100--2026-08-18)** | 2026-08-18 | Catalogs in every section, broader original tasks, local 1.0 dataset |
 | **[v0.4.0](CHANGELOG.md#v040--2026-08-18)** | 2026-08-18 | Policy engine, coverage generation, training pipeline |
@@ -63,9 +69,10 @@ It is a dataset **and** the pipeline that produces it.
 
 ## GitHub vs Hugging Face
 
-- **GitHub** [`theworker02/open-reason`](https://github.com/theworker02/open-reason) is the lab: pipeline, schemas, taxonomy, registry, tests, docs, configs, and small samples. Default branch is `main`.
+- **GitHub** [`theworker02/open-reason`](https://github.com/theworker02/open-reason) is the lab: pipeline, schemas, taxonomy, registry, tests, docs, configs, and small samples. Default branch is `main`. Full shards are **not** in git.
 - **Hugging Face dataset** [`theworker02/open-reason`](https://huggingface.co/datasets/theworker02/open-reason) is distribution: Parquet shards and the dataset card.
-- **Small CPU model** [`theworker02/open-reason-small`](https://huggingface.co/theworker02/open-reason-small) is a ~1.3M-parameter GPT-2-style causal LM trained on that data (not a 1B model).
+- **Small CPU model** [`theworker02/open-reason-small`](https://huggingface.co/theworker02/open-reason-small) is a ~1.3M-parameter GPT-2-style causal LM.
+- **Medium CPU model** [`theworker02/open-reason-medium`](https://huggingface.co/theworker02/open-reason-medium) is a 13,867,008-parameter GPT-2-style causal LM (CPU, not 1B).
 - `open-reason build` writes local `data/release/`. Those `*.parquet` / `*.jsonl` shards are gitignored. A committed sample lives in `data/sample/`.
 
 See [docs/huggingface.md](docs/huggingface.md) and [docs/releases.md](docs/releases.md).
@@ -155,7 +162,7 @@ coding | reasoning | science | mathematics | human | education | core | verified
 permissive SPDX + commercial + no share-alike  →  original tasks (verbatim still off until a reviewed crawler)
 education / docs with unclear or SA/NC terms   →  original tasks only
 Reddit / Quora / prohibited                    →  never
-Stack Exchange                                 →  skipped (community evidence, not ground truth)
+Stack Overflow                                 →  original rewritten seeds only (not verbatim CC BY-SA dumps)
 ```
 
 `quality.verified` is never set from votes, views, or “accepted answer.”
@@ -224,19 +231,19 @@ JSON Schema: [`schemas/`](schemas/).
 ## Statistics
 
 <!-- BEGIN_RELEASE_SNAPSHOT -->
-Pipeline version **1.3.8**.
+Pipeline version **1.4.0**.
 
 | Configuration | Examples | Verified | Human-authored |
 | --- | ---: | ---: | ---: |
-| coding | 354 | 340 | 0 |
-| reasoning | 381 | 381 | 0 |
-| science | 368 | 368 | 0 |
-| mathematics | 648 | 648 | 0 |
-| human | 268 | 240 | 28 |
-| education | 337 | 103 | 0 |
-| core | 2348 | 2072 | 28 |
-| verified | 2072 | 2072 | 0 |
-| all | 2348 | 2072 | 28 |
+| coding | 400 | 386 | 0 |
+| reasoning | 580 | 580 | 0 |
+| science | 527 | 527 | 0 |
+| mathematics | 1050 | 1050 | 0 |
+| human | 289 | 261 | 28 |
+| education | 345 | 111 | 0 |
+| core | 3175 | 2899 | 28 |
+| verified | 2899 | 2899 | 0 |
+| all | 3175 | 2899 | 28 |
 
 Rebuild with `open-reason build --config all --seed 42 --out data/release`.
 Full tables: `data/release/statistics.md`.
@@ -271,7 +278,7 @@ Full tables: `data/release/statistics.md`.
   author       = {Open Reason contributors},
   year         = {2026},
   howpublished = {\url{https://github.com/theworker02/open-reason}},
-  note         = {Dataset and pipeline v1.3.8}
+  note         = {Dataset and pipeline v1.4.0}
 }
 ```
 

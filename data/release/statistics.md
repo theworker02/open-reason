@@ -1,52 +1,60 @@
 ## Statistics (`coding`)
 
-- Total examples: **354**
-- Verified: 340
-- Synthetic: 332
+- Total examples: **400**
+- Verified: 386
+- Synthetic: 357
 - Human-authored: 0
-- Source-derived: 22
+- Source-derived: 43
 
 | domain | count |
 | --- | ---: |
-| coding | 354 |
+| coding | 400 |
 
 | quality | count |
 | --- | ---: |
-| S | 340 |
+| S | 386 |
 | A | 14 |
 
 | difficulty | count |
 | --- | ---: |
-| beginner | 161 |
-| intermediate | 95 |
-| advanced | 69 |
-| expert | 19 |
+| beginner | 182 |
+| intermediate | 107 |
+| advanced | 80 |
+| expert | 21 |
 | introductory | 10 |
 
 | education_level | count |
 | --- | ---: |
-| unspecified | 340 |
+| unspecified | 386 |
 | undergraduate | 14 |
 
 | source_type | count |
 | --- | ---: |
-| synthetic | 332 |
-| community | 12 |
-| open_source | 10 |
+| synthetic | 357 |
+| community | 22 |
+| open_source | 21 |
 
 | source | count |
 | --- | ---: |
-| open_reason.generation.coding | 318 |
+| open_reason.generation.coding | 343 |
+| stackoverflow | 22 |
 | open_reason.generation.coding_languages | 14 |
-| stackoverflow | 12 |
 | psf/requests | 5 |
 | pallets/click | 3 |
+| Textualize/rich | 2 |
 | encode/httpx | 2 |
+| pydantic/pydantic | 2 |
+| urllib3/urllib3 | 2 |
+| encode/httpcore | 1 |
+| pallets/flask | 1 |
+| pallets/werkzeug | 1 |
+| psf/black | 1 |
+| python-attrs/attrs | 1 |
 
 | task_type | count |
 | --- | ---: |
-| code_generation | 217 |
-| debugging | 90 |
+| code_generation | 250 |
+| debugging | 103 |
 | sql | 24 |
 | concept_explanation | 6 |
 | algorithm_design | 5 |
@@ -59,12 +67,13 @@
 
 | license | count |
 | --- | ---: |
-| Apache-2.0 | 349 |
-| BSD-3-Clause | 5 |
+| Apache-2.0 | 384 |
+| BSD-3-Clause | 8 |
+| MIT | 8 |
 
 | language | count |
 | --- | ---: |
-| python | 302 |
+| python | 348 |
 | sql | 26 |
 | javascript | 15 |
 | typescript | 2 |
@@ -81,208 +90,208 @@
 
 ## Statistics (`reasoning`)
 
-- Total examples: **381**
-- Verified: 381
-- Synthetic: 373
+- Total examples: **580**
+- Verified: 580
+- Synthetic: 564
 - Human-authored: 0
-- Source-derived: 8
+- Source-derived: 16
 
 | domain | count |
 | --- | ---: |
-| reasoning | 381 |
+| reasoning | 580 |
 
 | quality | count |
 | --- | ---: |
-| S | 381 |
+| S | 580 |
 
 | difficulty | count |
 | --- | ---: |
-| beginner | 241 |
+| beginner | 371 |
+| introductory | 107 |
 | intermediate | 102 |
-| introductory | 38 |
 
 | education_level | count |
 | --- | ---: |
-| unspecified | 381 |
+| unspecified | 580 |
 
 | source_type | count |
 | --- | ---: |
-| synthetic | 373 |
-| community | 8 |
+| synthetic | 564 |
+| community | 16 |
 
 | source | count |
 | --- | ---: |
-| open_reason.generation.reasoning | 373 |
-| stackoverflow | 8 |
+| open_reason.generation.reasoning | 564 |
+| stackoverflow | 16 |
 
 | task_type | count |
 | --- | ---: |
-| classification | 74 |
-| planning | 59 |
-| temporal_reasoning | 44 |
-| constraint_satisfaction | 43 |
-| quantitative_reasoning | 39 |
-| comparison | 32 |
+| planning | 126 |
+| quantitative_reasoning | 101 |
+| classification | 79 |
+| temporal_reasoning | 76 |
+| constraint_satisfaction | 52 |
+| comparison | 48 |
 | information_extraction | 28 |
 | decision_analysis | 25 |
-| troubleshooting | 16 |
+| troubleshooting | 24 |
 | argument_analysis | 13 |
 | causal_reasoning | 8 |
 
 | license | count |
 | --- | ---: |
-| Apache-2.0 | 381 |
+| Apache-2.0 | 580 |
 
 | language | count |
 | --- | ---: |
-| n/a | 381 |
+| n/a | 580 |
 
 
 ## Statistics (`science`)
 
-- Total examples: **368**
-- Verified: 368
-- Synthetic: 368
+- Total examples: **527**
+- Verified: 527
+- Synthetic: 527
 - Human-authored: 0
 - Source-derived: 0
 
 | domain | count |
 | --- | ---: |
-| science | 368 |
+| science | 527 |
 
 | quality | count |
 | --- | ---: |
-| S | 368 |
+| S | 527 |
 
 | difficulty | count |
 | --- | ---: |
-| beginner | 293 |
-| introductory | 52 |
+| beginner | 405 |
+| introductory | 99 |
 | intermediate | 23 |
 
 | education_level | count |
 | --- | ---: |
-| unspecified | 368 |
+| unspecified | 527 |
 
 | source_type | count |
 | --- | ---: |
-| synthetic | 368 |
+| synthetic | 527 |
 
 | source | count |
 | --- | ---: |
-| open_reason.generation.science | 368 |
+| open_reason.generation.science | 527 |
 
 | task_type | count |
 | --- | ---: |
-| calculation | 346 |
+| calculation | 505 |
 | modeling | 9 |
 | interpretation | 7 |
 | experimental_design | 6 |
 
 | license | count |
 | --- | ---: |
-| Apache-2.0 | 368 |
+| Apache-2.0 | 527 |
 
 | language | count |
 | --- | ---: |
-| n/a | 368 |
+| n/a | 527 |
 
 
 ## Statistics (`mathematics`)
 
-- Total examples: **648**
-- Verified: 648
-- Synthetic: 648
+- Total examples: **1050**
+- Verified: 1050
+- Synthetic: 1050
 - Human-authored: 0
 - Source-derived: 0
 
 | domain | count |
 | --- | ---: |
-| mathematics | 648 |
+| mathematics | 1050 |
 
 | quality | count |
 | --- | ---: |
-| S | 648 |
+| S | 1050 |
 
 | difficulty | count |
 | --- | ---: |
-| beginner | 447 |
-| introductory | 170 |
+| beginner | 525 |
+| introductory | 494 |
 | intermediate | 31 |
 
 | education_level | count |
 | --- | ---: |
-| unspecified | 648 |
+| unspecified | 1050 |
 
 | source_type | count |
 | --- | ---: |
-| synthetic | 648 |
+| synthetic | 1050 |
 
 | source | count |
 | --- | ---: |
-| open_reason.generation.mathematics | 648 |
+| open_reason.generation.mathematics | 1050 |
 
 | task_type | count |
 | --- | ---: |
-| algebra | 194 |
-| number_theory | 113 |
-| geometry | 66 |
-| linear_algebra | 64 |
-| sequences | 49 |
-| discrete_mathematics | 42 |
-| statistics | 24 |
+| number_theory | 275 |
+| algebra | 229 |
+| geometry | 123 |
+| linear_algebra | 113 |
+| sequences | 88 |
+| discrete_mathematics | 83 |
+| statistics | 38 |
 | calculus | 22 |
 | trigonometry | 22 |
 | numerical_methods | 16 |
+| probability | 16 |
 | arithmetic | 12 |
-| probability | 11 |
 | optimization | 10 |
 | proof | 3 |
 
 | license | count |
 | --- | ---: |
-| Apache-2.0 | 648 |
+| Apache-2.0 | 1050 |
 
 | language | count |
 | --- | ---: |
-| n/a | 648 |
+| n/a | 1050 |
 
 
 ## Statistics (`human`)
 
-- Total examples: **268**
-- Verified: 240
-- Synthetic: 240
+- Total examples: **289**
+- Verified: 261
+- Synthetic: 261
 - Human-authored: 28
 - Source-derived: 0
 
 | domain | count |
 | --- | ---: |
-| human | 268 |
+| human | 289 |
 
 | quality | count |
 | --- | ---: |
-| S | 240 |
+| S | 261 |
 | A | 28 |
 
 | difficulty | count |
 | --- | ---: |
 | beginner | 178 |
-| intermediate | 85 |
+| intermediate | 106 |
 | introductory | 5 |
 
 | education_level | count |
 | --- | ---: |
-| unspecified | 268 |
+| unspecified | 289 |
 
 | source_type | count |
 | --- | ---: |
-| synthetic | 240 |
+| synthetic | 261 |
 | human_authored | 28 |
 
 | source | count |
 | --- | ---: |
-| open_reason.generation.human | 240 |
+| open_reason.generation.human | 261 |
 | explain-backpressure | 1 |
 | explain-cap | 1 |
 | explain-floating-sum | 1 |
@@ -314,9 +323,9 @@
 
 | task_type | count |
 | --- | ---: |
+| structured_reasoning | 101 |
 | constraint_satisfaction | 80 |
 | planning | 80 |
-| structured_reasoning | 80 |
 | teaching | 16 |
 | explanation | 8 |
 | qualitative_reasoning | 2 |
@@ -324,37 +333,37 @@
 
 | license | count |
 | --- | ---: |
-| Apache-2.0 | 268 |
+| Apache-2.0 | 289 |
 
 | language | count |
 | --- | ---: |
-| n/a | 268 |
+| n/a | 289 |
 
 
 ## Statistics (`education`)
 
-- Total examples: **337**
-- Verified: 103
+- Total examples: **345**
+- Verified: 111
 - Synthetic: 329
 - Human-authored: 0
-- Source-derived: 8
+- Source-derived: 16
 
 | domain | count |
 | --- | ---: |
 | coding | 201 |
 | mathematics | 66 |
 | science | 54 |
+| reasoning | 16 |
 | human | 8 |
-| reasoning | 8 |
 
 | quality | count |
 | --- | ---: |
 | A | 234 |
-| S | 103 |
+| S | 111 |
 
 | difficulty | count |
 | --- | ---: |
-| beginner | 176 |
+| beginner | 184 |
 | introductory | 154 |
 | intermediate | 7 |
 
@@ -364,21 +373,21 @@
 | introductory_college | 66 |
 | undergraduate | 66 |
 | professional | 43 |
-| unspecified | 8 |
+| unspecified | 16 |
 | k5 | 7 |
 | middle_school | 5 |
 
 | source_type | count |
 | --- | ---: |
 | synthetic | 329 |
-| community | 8 |
+| community | 16 |
 
 | source | count |
 | --- | ---: |
 | open_reason.generation.coverage_tasks | 194 |
 | open_reason.generation.education | 46 |
+| stackoverflow | 16 |
 | python_docs | 8 |
-| stackoverflow | 8 |
 | khan_academy_computing | 6 |
 | go_docs | 5 |
 | harvard_cs50 | 5 |
@@ -404,18 +413,18 @@
 | concept_explanation | 68 |
 | debugging_exercise | 64 |
 | diagnostic_misconception | 19 |
+| troubleshooting | 16 |
 | numerical | 9 |
-| troubleshooting | 8 |
 | sql_generation | 2 |
 | teaching | 2 |
 
 | license | count |
 | --- | ---: |
-| Apache-2.0 | 337 |
+| Apache-2.0 | 345 |
 
 | language | count |
 | --- | ---: |
-| n/a | 136 |
+| n/a | 144 |
 | python | 133 |
 | javascript | 18 |
 | sql | 17 |
@@ -427,36 +436,36 @@
 
 ## Statistics (`core`)
 
-- Total examples: **2348**
-- Verified: 2072
-- Synthetic: 2290
+- Total examples: **3175**
+- Verified: 2899
+- Synthetic: 3088
 - Human-authored: 28
-- Source-derived: 30
+- Source-derived: 59
 
 | domain | count |
 | --- | ---: |
-| mathematics | 714 |
-| coding | 555 |
-| science | 422 |
-| reasoning | 381 |
-| human | 276 |
+| mathematics | 1116 |
+| coding | 601 |
+| science | 581 |
+| reasoning | 580 |
+| human | 297 |
 
 | quality | count |
 | --- | ---: |
-| S | 2072 |
+| S | 2899 |
 | A | 276 |
 
 | difficulty | count |
 | --- | ---: |
-| beginner | 1488 |
-| introductory | 429 |
-| intermediate | 343 |
-| advanced | 69 |
-| expert | 19 |
+| beginner | 1829 |
+| introductory | 869 |
+| intermediate | 376 |
+| advanced | 80 |
+| expert | 21 |
 
 | education_level | count |
 | --- | ---: |
-| unspecified | 2005 |
+| unspecified | 2832 |
 | high_school | 142 |
 | undergraduate | 80 |
 | introductory_college | 66 |
@@ -466,21 +475,21 @@
 
 | source_type | count |
 | --- | ---: |
-| synthetic | 2290 |
+| synthetic | 3088 |
+| community | 38 |
 | human_authored | 28 |
-| community | 20 |
-| open_source | 10 |
+| open_source | 21 |
 
 | source | count |
 | --- | ---: |
-| open_reason.generation.mathematics | 648 |
-| open_reason.generation.reasoning | 373 |
-| open_reason.generation.science | 368 |
-| open_reason.generation.coding | 318 |
-| open_reason.generation.human | 240 |
+| open_reason.generation.mathematics | 1050 |
+| open_reason.generation.reasoning | 564 |
+| open_reason.generation.science | 527 |
+| open_reason.generation.coding | 343 |
+| open_reason.generation.human | 261 |
 | open_reason.generation.coverage_tasks | 194 |
 | open_reason.generation.education | 46 |
-| stackoverflow | 20 |
+| stackoverflow | 38 |
 | open_reason.generation.coding_languages | 14 |
 | python_docs | 8 |
 | khan_academy_computing | 6 |
@@ -502,7 +511,11 @@
 | usgs_education | 4 |
 | wikibooks | 4 |
 | pallets/click | 3 |
+| Textualize/rich | 2 |
 | encode/httpx | 2 |
+| pydantic/pydantic | 2 |
+| urllib3/urllib3 | 2 |
+| encode/httpcore | 1 |
 | explain-backpressure | 1 |
 | explain-cap | 1 |
 | explain-floating-sum | 1 |
@@ -511,6 +524,10 @@
 | explain-sre-error-budget | 1 |
 | explain-statistical-vs-practical | 1 |
 | explain-test-oracle | 1 |
+| pallets/flask | 1 |
+| pallets/werkzeug | 1 |
+| psf/black | 1 |
+| python-attrs/attrs | 1 |
 | qual-ethics-eval | 1 |
 | qual-tradeoff | 1 |
 | synth-consensus | 1 |
@@ -534,39 +551,39 @@
 
 | task_type | count |
 | --- | ---: |
-| calculation | 346 |
-| code_generation | 217 |
-| algebra | 194 |
-| planning | 139 |
-| constraint_satisfaction | 123 |
-| number_theory | 113 |
-| debugging | 90 |
+| calculation | 505 |
+| number_theory | 275 |
+| code_generation | 250 |
+| algebra | 229 |
+| planning | 206 |
+| constraint_satisfaction | 132 |
+| geometry | 123 |
+| linear_algebra | 113 |
+| debugging | 103 |
+| quantitative_reasoning | 101 |
+| structured_reasoning | 101 |
 | simple_exercise | 89 |
+| sequences | 88 |
+| discrete_mathematics | 83 |
 | applied_exercise | 80 |
-| structured_reasoning | 80 |
-| classification | 74 |
+| classification | 79 |
+| temporal_reasoning | 76 |
 | concept_explanation | 74 |
 | debugging_exercise | 68 |
-| geometry | 66 |
-| linear_algebra | 64 |
-| sequences | 49 |
-| temporal_reasoning | 44 |
-| discrete_mathematics | 42 |
-| quantitative_reasoning | 39 |
-| comparison | 32 |
+| comparison | 48 |
+| statistics | 38 |
 | information_extraction | 28 |
 | decision_analysis | 25 |
 | sql | 24 |
-| statistics | 24 |
+| troubleshooting | 24 |
 | calculus | 22 |
 | trigonometry | 22 |
 | diagnostic_misconception | 19 |
 | teaching | 18 |
 | numerical_methods | 16 |
-| troubleshooting | 16 |
+| probability | 16 |
 | argument_analysis | 13 |
 | arithmetic | 12 |
-| probability | 11 |
 | optimization | 10 |
 | modeling | 9 |
 | numerical | 9 |
@@ -586,13 +603,14 @@
 
 | license | count |
 | --- | ---: |
-| Apache-2.0 | 2343 |
-| BSD-3-Clause | 5 |
+| Apache-2.0 | 3159 |
+| BSD-3-Clause | 8 |
+| MIT | 8 |
 
 | language | count |
 | --- | ---: |
-| n/a | 1793 |
-| python | 435 |
+| n/a | 2574 |
+| python | 481 |
 | sql | 43 |
 | javascript | 33 |
 | c | 11 |
@@ -610,35 +628,35 @@
 
 ## Statistics (`verified`)
 
-- Total examples: **2072**
-- Verified: 2072
-- Synthetic: 2042
+- Total examples: **2899**
+- Verified: 2899
+- Synthetic: 2840
 - Human-authored: 0
-- Source-derived: 30
+- Source-derived: 59
 
 | domain | count |
 | --- | ---: |
-| mathematics | 694 |
-| science | 401 |
-| reasoning | 381 |
-| coding | 356 |
-| human | 240 |
+| mathematics | 1096 |
+| reasoning | 580 |
+| science | 560 |
+| coding | 402 |
+| human | 261 |
 
 | quality | count |
 | --- | ---: |
-| S | 2072 |
+| S | 2899 |
 
 | difficulty | count |
 | --- | ---: |
-| beginner | 1355 |
-| intermediate | 330 |
-| introductory | 299 |
-| advanced | 69 |
-| expert | 19 |
+| beginner | 1696 |
+| introductory | 739 |
+| intermediate | 363 |
+| advanced | 80 |
+| expert | 21 |
 
 | education_level | count |
 | --- | ---: |
-| unspecified | 1977 |
+| unspecified | 2804 |
 | high_school | 73 |
 | undergraduate | 11 |
 | k5 | 5 |
@@ -647,63 +665,71 @@
 
 | source_type | count |
 | --- | ---: |
-| synthetic | 2042 |
-| community | 20 |
-| open_source | 10 |
+| synthetic | 2840 |
+| community | 38 |
+| open_source | 21 |
 
 | source | count |
 | --- | ---: |
-| open_reason.generation.mathematics | 648 |
-| open_reason.generation.reasoning | 373 |
-| open_reason.generation.science | 368 |
-| open_reason.generation.coding | 318 |
-| open_reason.generation.human | 240 |
+| open_reason.generation.mathematics | 1050 |
+| open_reason.generation.reasoning | 564 |
+| open_reason.generation.science | 527 |
+| open_reason.generation.coding | 343 |
+| open_reason.generation.human | 261 |
 | open_reason.generation.coverage_tasks | 55 |
+| stackoverflow | 38 |
 | open_reason.generation.education | 22 |
-| stackoverflow | 20 |
 | openstax | 5 |
 | psf/requests | 5 |
 | khan_academy_computing | 3 |
 | nasa_education | 3 |
 | pallets/click | 3 |
+| Textualize/rich | 2 |
 | encode/httpx | 2 |
 | noaa_education | 2 |
+| pydantic/pydantic | 2 |
+| urllib3/urllib3 | 2 |
 | usgs_education | 2 |
+| encode/httpcore | 1 |
 | mit_opencourseware | 1 |
+| pallets/flask | 1 |
+| pallets/werkzeug | 1 |
+| psf/black | 1 |
+| python-attrs/attrs | 1 |
 | python_docs | 1 |
 | sqlite_docs | 1 |
 
 | task_type | count |
 | --- | ---: |
-| calculation | 346 |
-| code_generation | 217 |
-| algebra | 194 |
-| planning | 139 |
-| constraint_satisfaction | 123 |
-| number_theory | 113 |
-| debugging | 90 |
-| structured_reasoning | 80 |
-| classification | 74 |
-| geometry | 66 |
-| linear_algebra | 64 |
+| calculation | 505 |
+| number_theory | 275 |
+| code_generation | 250 |
+| algebra | 229 |
+| planning | 206 |
+| constraint_satisfaction | 132 |
+| geometry | 123 |
+| linear_algebra | 113 |
+| debugging | 103 |
+| quantitative_reasoning | 101 |
+| structured_reasoning | 101 |
+| sequences | 88 |
+| discrete_mathematics | 83 |
+| classification | 79 |
+| temporal_reasoning | 76 |
 | simple_exercise | 55 |
-| sequences | 49 |
-| temporal_reasoning | 44 |
-| discrete_mathematics | 42 |
-| quantitative_reasoning | 39 |
-| comparison | 32 |
+| comparison | 48 |
+| statistics | 38 |
 | information_extraction | 28 |
 | decision_analysis | 25 |
 | sql | 24 |
-| statistics | 24 |
+| troubleshooting | 24 |
 | calculus | 22 |
 | trigonometry | 22 |
 | applied_exercise | 20 |
 | numerical_methods | 16 |
-| troubleshooting | 16 |
+| probability | 16 |
 | argument_analysis | 13 |
 | arithmetic | 12 |
-| probability | 11 |
 | debugging_exercise | 10 |
 | optimization | 10 |
 | modeling | 9 |
@@ -721,49 +747,50 @@
 
 | license | count |
 | --- | ---: |
-| Apache-2.0 | 2067 |
-| BSD-3-Clause | 5 |
+| Apache-2.0 | 2883 |
+| BSD-3-Clause | 8 |
+| MIT | 8 |
 
 | language | count |
 | --- | ---: |
-| n/a | 1716 |
-| python | 317 |
+| n/a | 2497 |
+| python | 363 |
 | sql | 25 |
 | javascript | 14 |
 
 
 ## Statistics (`all`)
 
-- Total examples: **2348**
-- Verified: 2072
-- Synthetic: 2290
+- Total examples: **3175**
+- Verified: 2899
+- Synthetic: 3088
 - Human-authored: 28
-- Source-derived: 30
+- Source-derived: 59
 
 | domain | count |
 | --- | ---: |
-| mathematics | 714 |
-| coding | 555 |
-| science | 422 |
-| reasoning | 381 |
-| human | 276 |
+| mathematics | 1116 |
+| coding | 601 |
+| science | 581 |
+| reasoning | 580 |
+| human | 297 |
 
 | quality | count |
 | --- | ---: |
-| S | 2072 |
+| S | 2899 |
 | A | 276 |
 
 | difficulty | count |
 | --- | ---: |
-| beginner | 1488 |
-| introductory | 429 |
-| intermediate | 343 |
-| advanced | 69 |
-| expert | 19 |
+| beginner | 1829 |
+| introductory | 869 |
+| intermediate | 376 |
+| advanced | 80 |
+| expert | 21 |
 
 | education_level | count |
 | --- | ---: |
-| unspecified | 2005 |
+| unspecified | 2832 |
 | high_school | 142 |
 | undergraduate | 80 |
 | introductory_college | 66 |
@@ -773,21 +800,21 @@
 
 | source_type | count |
 | --- | ---: |
-| synthetic | 2290 |
+| synthetic | 3088 |
+| community | 38 |
 | human_authored | 28 |
-| community | 20 |
-| open_source | 10 |
+| open_source | 21 |
 
 | source | count |
 | --- | ---: |
-| open_reason.generation.mathematics | 648 |
-| open_reason.generation.reasoning | 373 |
-| open_reason.generation.science | 368 |
-| open_reason.generation.coding | 318 |
-| open_reason.generation.human | 240 |
+| open_reason.generation.mathematics | 1050 |
+| open_reason.generation.reasoning | 564 |
+| open_reason.generation.science | 527 |
+| open_reason.generation.coding | 343 |
+| open_reason.generation.human | 261 |
 | open_reason.generation.coverage_tasks | 194 |
 | open_reason.generation.education | 46 |
-| stackoverflow | 20 |
+| stackoverflow | 38 |
 | open_reason.generation.coding_languages | 14 |
 | python_docs | 8 |
 | khan_academy_computing | 6 |
@@ -809,7 +836,11 @@
 | usgs_education | 4 |
 | wikibooks | 4 |
 | pallets/click | 3 |
+| Textualize/rich | 2 |
 | encode/httpx | 2 |
+| pydantic/pydantic | 2 |
+| urllib3/urllib3 | 2 |
+| encode/httpcore | 1 |
 | explain-backpressure | 1 |
 | explain-cap | 1 |
 | explain-floating-sum | 1 |
@@ -818,6 +849,10 @@
 | explain-sre-error-budget | 1 |
 | explain-statistical-vs-practical | 1 |
 | explain-test-oracle | 1 |
+| pallets/flask | 1 |
+| pallets/werkzeug | 1 |
+| psf/black | 1 |
+| python-attrs/attrs | 1 |
 | qual-ethics-eval | 1 |
 | qual-tradeoff | 1 |
 | synth-consensus | 1 |
@@ -841,39 +876,39 @@
 
 | task_type | count |
 | --- | ---: |
-| calculation | 346 |
-| code_generation | 217 |
-| algebra | 194 |
-| planning | 139 |
-| constraint_satisfaction | 123 |
-| number_theory | 113 |
-| debugging | 90 |
+| calculation | 505 |
+| number_theory | 275 |
+| code_generation | 250 |
+| algebra | 229 |
+| planning | 206 |
+| constraint_satisfaction | 132 |
+| geometry | 123 |
+| linear_algebra | 113 |
+| debugging | 103 |
+| quantitative_reasoning | 101 |
+| structured_reasoning | 101 |
 | simple_exercise | 89 |
+| sequences | 88 |
+| discrete_mathematics | 83 |
 | applied_exercise | 80 |
-| structured_reasoning | 80 |
-| classification | 74 |
+| classification | 79 |
+| temporal_reasoning | 76 |
 | concept_explanation | 74 |
 | debugging_exercise | 68 |
-| geometry | 66 |
-| linear_algebra | 64 |
-| sequences | 49 |
-| temporal_reasoning | 44 |
-| discrete_mathematics | 42 |
-| quantitative_reasoning | 39 |
-| comparison | 32 |
+| comparison | 48 |
+| statistics | 38 |
 | information_extraction | 28 |
 | decision_analysis | 25 |
 | sql | 24 |
-| statistics | 24 |
+| troubleshooting | 24 |
 | calculus | 22 |
 | trigonometry | 22 |
 | diagnostic_misconception | 19 |
 | teaching | 18 |
 | numerical_methods | 16 |
-| troubleshooting | 16 |
+| probability | 16 |
 | argument_analysis | 13 |
 | arithmetic | 12 |
-| probability | 11 |
 | optimization | 10 |
 | modeling | 9 |
 | numerical | 9 |
@@ -893,13 +928,14 @@
 
 | license | count |
 | --- | ---: |
-| Apache-2.0 | 2343 |
-| BSD-3-Clause | 5 |
+| Apache-2.0 | 3159 |
+| BSD-3-Clause | 8 |
+| MIT | 8 |
 
 | language | count |
 | --- | ---: |
-| n/a | 1793 |
-| python | 435 |
+| n/a | 2574 |
+| python | 481 |
 | sql | 43 |
 | javascript | 33 |
 | c | 11 |

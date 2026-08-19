@@ -20,6 +20,8 @@ from open_reason.io import iter_jsonl
 TRAIN_IMAGE = "open-reason-train:cpu"
 LOCAL_MODEL_DIR = Path("training/work/open-reason-local")
 LOCAL_HUB_ID = "theworker02/open-reason-small"
+MEDIUM_HUB_ID = "theworker02/open-reason-medium"
+MEDIUM_MODEL_DIR = Path("training/work/open-reason-medium")
 
 
 def inside_docker() -> bool:
@@ -94,6 +96,13 @@ def run_docker_training(*, data_path: Path, out_dir: Path) -> int:
 
 
 def _write_card(out_dir: Path, payload: dict) -> None:
+    hub_id = payload.get("hub_id_if_uploaded") or LOCAL_HUB_ID
+    title = payload.get("card_title") or "Open Reason small (CPU)"
+    size_note = payload.get("size_note") or (
+        "This is a **small** GPT-2-style causal LM trained from scratch on the "
+        "Open Reason SFT split. It is **not** a 1B model and is **not** "
+        "`theworker02/open-reason-1b`."
+    )
     lines = [
         "---",
         "language:",
@@ -109,25 +118,26 @@ def _write_card(out_dir: Path, payload: dict) -> None:
         f"base_model: {payload.get('architecture', 'gpt2-scratch')}",
         "---",
         "",
-        "# Open Reason small (CPU)",
+        f"# {title}",
         "",
-        "This is a **small** GPT-2-style causal LM trained from scratch on the",
-        "Open Reason SFT split. It is **not** a 1B model and is **not**",
-        "`theworker02/open-reason-1b`.",
+        size_note,
         "",
-        f"- Parameters (approx): {payload.get('param_count')}",
+        f"- Parameters: {payload.get('param_count')}",
+        f"- Architecture: n_layer={payload.get('n_layer')} n_embd={payload.get('n_embd')} n_head={payload.get('n_head')}",
         f"- Steps: {payload.get('steps')}",
         f"- Backend: {payload.get('backend')}",
         f"- CUDA used: {payload.get('cuda')}",
-        f"- Rows: {payload.get('rows')}",
+        f"- Hardware: CPU (Docker when available). AMD GPU is not used.",
+        f"- Dataset: theworker02/open-reason pipeline {payload.get('dataset_version')}",
+        f"- SFT rows: {payload.get('rows')}",
         f"- Final loss: {payload.get('final_loss')}",
         "",
-        "Hardware: CPU (Docker when available). AMD GPU training is not used.",
+        "No Reddit sources. Project license Apache-2.0.",
         "",
         "```python",
         "from transformers import AutoModelForCausalLM, AutoTokenizer",
-        f'tok = AutoTokenizer.from_pretrained("{LOCAL_HUB_ID}")',
-        f'model = AutoModelForCausalLM.from_pretrained("{LOCAL_HUB_ID}")',
+        f'tok = AutoTokenizer.from_pretrained("{hub_id}")',
+        f'model = AutoModelForCausalLM.from_pretrained("{hub_id}")',
         "```",
         "",
     ]
@@ -147,6 +157,10 @@ def train_local_causal(
     n_embd: int = 128,
     n_head: int = 4,
     batch_size: int = 4,
+    vocab_size: int = 4096,
+    hub_id: str = LOCAL_HUB_ID,
+    card_title: str | None = None,
+    size_note: str | None = None,
     smoke: bool = False,
 ) -> int:
     try:
@@ -166,6 +180,7 @@ def train_local_causal(
     if not data_path.exists():
         print(f"no JSONL at {data_path}; build the dataset first")
         return 2
+    from open_reason.constants import PIPELINE_VERSION
     from open_reason.training import prepare_sft_rows
 
     rows = prepare_sft_rows(list(iter_jsonl(data_path)))
@@ -183,9 +198,21 @@ def train_local_causal(
     corpus = work / "sft_corpus.txt"
     corpus.write_text("\n".join(texts), encoding="utf-8")
 
+    try:
+        import torch as _torch
+
+        threads = max(1, min(8, os.cpu_count() or 4))
+        _torch.set_num_threads(threads)
+        print(f"torch cpu threads={threads}")
+    except Exception:
+        pass
+
     tokenizer = Tokenizer(BPE(unk_token="[UNK]"))
     tokenizer.pre_tokenizer = ByteLevel()
-    trainer = BpeTrainer(vocab_size=4096 if not smoke else 512, special_tokens=["[UNK]", "[PAD]", "[BOS]", "[EOS]"])
+    trainer = BpeTrainer(
+        vocab_size=512 if smoke else vocab_size,
+        special_tokens=["[UNK]", "[PAD]", "[BOS]", "[EOS]"],
+    )
     tokenizer.train([str(corpus)], trainer)
     hf_tok = PreTrainedTokenizerFast(
         tokenizer_object=tokenizer,
@@ -260,12 +287,17 @@ def train_local_causal(
         "n_layer": n_layer,
         "n_embd": n_embd,
         "n_head": n_head,
+        "vocab_size": vocab,
+        "max_seq_len": max_seq_len,
         "steps": steps,
         "rows": len(rows),
+        "dataset_version": PIPELINE_VERSION,
         "final_loss": losses[-1] if losses else None,
         "losses_tail": losses[-10:],
-        "hub_id_if_uploaded": LOCAL_HUB_ID,
-        "note": "Small CPU causal LM. Not open-reason-1b. Not AMD GPU.",
+        "hub_id_if_uploaded": hub_id,
+        "card_title": card_title or ("Open Reason medium (CPU)" if "medium" in hub_id else "Open Reason small (CPU)"),
+        "size_note": size_note,
+        "note": "CPU causal LM. Not open-reason-1b. Not AMD GPU. No Reddit.",
     }
     _write_card(out_dir, payload)
     print(f"saved transformers checkpoint to {out_dir}")
@@ -273,8 +305,16 @@ def train_local_causal(
 
 
 def maybe_upload_small_model(out_dir: Path) -> str | None:
+    return maybe_upload_model(out_dir, LOCAL_HUB_ID)
+
+
+def maybe_upload_model(out_dir: Path, hub_id: str) -> str | None:
     """Upload only a real save_pretrained directory. Never as open-reason-1b."""
     out_dir = Path(out_dir)
+    hub_id = str(hub_id)
+    if "1b" in hub_id.lower():
+        print("refusing to upload as a 1b id from this CPU trainer")
+        return None
     if not (out_dir / "config.json").exists():
         print("no config.json; refusing Hub upload")
         return None
@@ -285,22 +325,22 @@ def maybe_upload_small_model(out_dir: Path) -> str | None:
         from huggingface_hub import HfApi
     except ImportError:
         print("huggingface_hub missing; skip upload. Manual:")
-        print(f"  hf upload {LOCAL_HUB_ID} {out_dir} --repo-type model")
+        print(f"  hf upload {hub_id} {out_dir} --repo-type model")
         return None
     api = HfApi()
     try:
-        api.create_repo(LOCAL_HUB_ID, repo_type="model", exist_ok=True, private=False)
+        api.create_repo(hub_id, repo_type="model", exist_ok=True, private=False)
         api.upload_folder(
             folder_path=str(out_dir),
-            repo_id=LOCAL_HUB_ID,
+            repo_id=hub_id,
             repo_type="model",
-            commit_message="Upload Open Reason small CPU causal LM (not 1B)",
+            commit_message=f"Upload Open Reason CPU causal LM {hub_id} (not 1B)",
         )
     except Exception as exc:
         print(f"Hub upload failed: {exc}")
-        print(f"Manual: hf upload {LOCAL_HUB_ID} {out_dir} --repo-type model")
+        print(f"Manual: hf upload {hub_id} {out_dir} --repo-type model")
         return None
-    url = f"https://huggingface.co/{LOCAL_HUB_ID}"
+    url = f"https://huggingface.co/{hub_id}"
     print(f"uploaded {url}")
     return url
 

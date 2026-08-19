@@ -38,6 +38,54 @@ GITHUB_SOURCES = {
         "commit": "5ef70112a1ff19c05324ff889dd30405b1002044",
         "repo": "pallets/jinja",
     },
+    "flask": {
+        "url": "https://github.com/pallets/flask/blob/3.1.0/src/flask/helpers.py",
+        "license_spdx": "BSD-3-Clause",
+        "commit": "3.1.0",
+        "repo": "pallets/flask",
+    },
+    "urllib3": {
+        "url": "https://github.com/urllib3/urllib3/blob/2.3.0/src/urllib3/util/url.py",
+        "license_spdx": "MIT",
+        "commit": "2.3.0",
+        "repo": "urllib3/urllib3",
+    },
+    "pydantic": {
+        "url": "https://github.com/pydantic/pydantic/blob/2.10.4/pydantic/type_adapter.py",
+        "license_spdx": "MIT",
+        "commit": "2.10.4",
+        "repo": "pydantic/pydantic",
+    },
+    "rich": {
+        "url": "https://github.com/Textualize/rich/blob/v13.9.4/rich/text.py",
+        "license_spdx": "MIT",
+        "commit": "v13.9.4",
+        "repo": "Textualize/rich",
+    },
+    "httpcore": {
+        "url": "https://github.com/encode/httpcore/blob/1.0.7/httpcore/_utils.py",
+        "license_spdx": "BSD-3-Clause",
+        "commit": "1.0.7",
+        "repo": "encode/httpcore",
+    },
+    "black": {
+        "url": "https://github.com/psf/black/blob/24.10.0/src/black/strings.py",
+        "license_spdx": "MIT",
+        "commit": "24.10.0",
+        "repo": "psf/black",
+    },
+    "werkzeug": {
+        "url": "https://github.com/pallets/werkzeug/blob/3.1.3/src/werkzeug/urls.py",
+        "license_spdx": "BSD-3-Clause",
+        "commit": "3.1.3",
+        "repo": "pallets/werkzeug",
+    },
+    "attrs": {
+        "url": "https://github.com/python-attrs/attrs/blob/24.3.0/src/attr/_next_gen.py",
+        "license_spdx": "MIT",
+        "commit": "24.3.0",
+        "repo": "python-attrs/attrs",
+    },
 }
 
 
@@ -359,5 +407,265 @@ class Test(unittest.TestCase):
 ''',
             ),
             "requests",
+        ),
+        _with_src(
+            T(
+                "gh-secure-filename",
+                "http",
+                """Implement `secure_filename(name: str) -> str`.
+
+Keep ASCII letters, digits, `.`, `_`, and `-`. Replace other characters with
+`_`. Collapse runs of `_`. Strip leading/trailing `_` and `.`. Empty after
+cleaning → `file`.""",
+                '''
+import re
+
+def secure_filename(name):
+    out = []
+    for ch in name:
+        if ch.isalnum() or ch in "._-":
+            out.append(ch)
+        else:
+            out.append("_")
+    cleaned = re.sub(r"_+", "_", "".join(out)).strip("_.")
+    return cleaned or "file"
+''',
+                '''
+import unittest
+from solution import secure_filename
+
+class Test(unittest.TestCase):
+    def test_ok(self):
+        self.assertEqual(secure_filename("My Report.pdf"), "My_Report.pdf")
+    def test_empty(self):
+        self.assertEqual(secure_filename("***"), "file")
+''',
+            ),
+            "flask",
+        ),
+        _with_src(
+            T(
+                "gh-split-host",
+                "http",
+                """Implement `split_hostport(authority: str) -> tuple[str, int | None]`.
+
+`host:port` → (host, int(port)). Host only → (host, None). IPv6 in brackets
+`[::1]:443` → ('::1', 443). Raise ValueError on empty host or non-int port.""",
+                '''
+def split_hostport(authority):
+    if authority.startswith("["):
+        end = authority.find("]")
+        if end < 0:
+            raise ValueError("ipv6")
+        host = authority[1:end]
+        rest = authority[end + 1:]
+        if rest == "":
+            port = None
+        elif rest.startswith(":"):
+            port = int(rest[1:])
+        else:
+            raise ValueError("ipv6")
+        if not host:
+            raise ValueError("host")
+        return host, port
+    if ":" in authority:
+        host, port_s = authority.rsplit(":", 1)
+        if not host or not port_s.isdigit():
+            raise ValueError("hostport")
+        return host, int(port_s)
+    if not authority:
+        raise ValueError("host")
+    return authority, None
+''',
+                '''
+import unittest
+from solution import split_hostport
+
+class Test(unittest.TestCase):
+    def test_port(self):
+        self.assertEqual(split_hostport("ex.com:80"), ("ex.com", 80))
+    def test_host(self):
+        self.assertEqual(split_hostport("ex.com"), ("ex.com", None))
+    def test_v6(self):
+        self.assertEqual(split_hostport("[::1]:443"), ("::1", 443))
+''',
+            ),
+            "urllib3",
+        ),
+        _with_src(
+            T(
+                "gh-coerce-bool",
+                "validation",
+                """Implement `as_bool(value: str | bool | int) -> bool`.
+
+True: True, 1, "1", "true", "yes", "on" (case-insensitive, strip).
+False: False, 0, "0", "false", "no", "off". Raise ValueError otherwise.""",
+                '''
+def as_bool(value):
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, int) and value in (0, 1):
+        return bool(value)
+    if isinstance(value, str):
+        key = value.strip().lower()
+        if key in {"1", "true", "yes", "on"}:
+            return True
+        if key in {"0", "false", "no", "off"}:
+            return False
+    raise ValueError("bool")
+''',
+                '''
+import unittest
+from solution import as_bool
+
+class Test(unittest.TestCase):
+    def test_true(self):
+        self.assertTrue(as_bool(" YES "))
+    def test_false(self):
+        self.assertFalse(as_bool("off"))
+    def test_bad(self):
+        with self.assertRaises(ValueError):
+            as_bool("maybe")
+''',
+            ),
+            "pydantic",
+        ),
+        _with_src(
+            T(
+                "gh-ansi-strip",
+                "terminal",
+                """Implement `strip_ansi(text: str) -> str` removing CSI sequences
+`ESC [ ... letter` where the final byte is A-Za-z. ESC is `\\x1b`.""",
+                '''
+import re
+
+def strip_ansi(text):
+    return re.sub(chr(27) + "[[][0-9;?]*[A-Za-z]", "", text)
+''',
+                '''
+import unittest
+from solution import strip_ansi
+
+class Test(unittest.TestCase):
+    def test_color(self):
+        self.assertEqual(strip_ansi("a" + chr(27) + "[31mb"), "ab")
+    def test_plain(self):
+        self.assertEqual(strip_ansi("ok"), "ok")
+''',
+            ),
+            "rich",
+        ),
+        _with_src(
+            T(
+                "gh-deadline",
+                "http",
+                """Implement `remaining_timeout(deadline: float, now: float) -> float`.
+
+Return max(0.0, deadline-now). Used as a remaining HTTP timeout budget.""",
+                '''
+def remaining_timeout(deadline, now):
+    return max(0.0, deadline - now)
+''',
+                '''
+import unittest
+from solution import remaining_timeout
+
+class Test(unittest.TestCase):
+    def test_left(self):
+        self.assertEqual(remaining_timeout(10.0, 3.0), 7.0)
+    def test_past(self):
+        self.assertEqual(remaining_timeout(1.0, 5.0), 0.0)
+''',
+            ),
+            "httpcore",
+        ),
+        _with_src(
+            T(
+                "gh-normalize-quotes",
+                "formatting",
+                """Implement `normalize_quotes(text: str) -> str`.
+
+Replace curly quotes “ ” ‘ ’ (U+201C U+201D U+2018 U+2019) with ASCII
+`"` and `'`.""",
+                '''
+def normalize_quotes(text):
+    return (
+        text.replace("\\u201c", '"')
+        .replace("\\u201d", '"')
+        .replace("\\u2018", "'")
+        .replace("\\u2019", "'")
+    )
+''',
+                '''
+import unittest
+from solution import normalize_quotes
+
+class Test(unittest.TestCase):
+    def test_curly(self):
+        self.assertEqual(normalize_quotes("\\u201chello\\u201d"), '"hello"')
+''',
+            ),
+            "black",
+        ),
+        _with_src(
+            T(
+                "gh-iri-quote",
+                "urls",
+                """Implement `quote_path(segment: str) -> str`.
+
+Percent-encode bytes UTF-8. Unreserved: ALPHA / DIGIT / "-" / "." / "_" / "~".
+Use uppercase hex.""",
+                '''
+def quote_path(segment):
+    safe = set("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~")
+    out = []
+    for b in segment.encode("utf-8"):
+        ch = chr(b)
+        if ch in safe:
+            out.append(ch)
+        else:
+            out.append(f"%{b:02X}")
+    return "".join(out)
+''',
+                '''
+import unittest
+from solution import quote_path
+
+class Test(unittest.TestCase):
+    def test_space(self):
+        self.assertEqual(quote_path("a b"), "a%20b")
+    def test_safe(self):
+        self.assertEqual(quote_path("a-b_c"), "a-b_c")
+''',
+            ),
+            "werkzeug",
+        ),
+        _with_src(
+            T(
+                "gh-evolve-defaults",
+                "objects",
+                """Implement `with_overrides(base: dict, changes: dict) -> dict`.
+
+Shallow copy of base then update from changes. Nested dict values of `changes`
+replace entirely (no deep merge). Do not mutate `base`.""",
+                '''
+def with_overrides(base, changes):
+    out = dict(base)
+    out.update(changes)
+    return out
+''',
+                '''
+import unittest
+from solution import with_overrides
+
+class Test(unittest.TestCase):
+    def test_copy(self):
+        base = {"a": 1, "b": 2}
+        got = with_overrides(base, {"b": 9})
+        self.assertEqual(got, {"a": 1, "b": 9})
+        self.assertEqual(base, {"a": 1, "b": 2})
+''',
+            ),
+            "attrs",
         ),
     ]

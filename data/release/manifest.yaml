@@ -1,6 +1,6 @@
 dataset: open-reason
-pipeline_version: 1.3.8
-generated_at: '2026-08-19T01:35:28Z'
+pipeline_version: 1.4.0
+generated_at: '2026-08-19T02:06:09Z'
 complete: true
 configs:
 - coding
@@ -15,35 +15,35 @@ configs:
 reports:
   coding:
     config: coding
-    generated: 359
-    validated: 355
-    kept: 354
+    generated: 405
+    validated: 401
+    kept: 400
     validation_failures: 3
     reddit_rejected: 1
     dedup:
-      input_count: 355
-      kept: 354
+      input_count: 401
+      kept: 400
       exact_duplicates: 0
       normalized_duplicates: 0
       near_duplicates: 1
       dropped: 1
     contamination:
-      checked: 354
+      checked: 400
       hit_count: 0
       rate: 0.0
       hits: []
     statistics:
       config: coding
-      total_examples: 354
-      verified_examples: 340
-      synthetic_examples: 332
+      total_examples: 400
+      verified_examples: 386
+      synthetic_examples: 357
       human_authored_examples: 0
-      source_derived_examples: 22
+      source_derived_examples: 43
       by_domain:
-        coding: 354
+        coding: 400
       by_task_type:
-        code_generation: 217
-        debugging: 90
+        code_generation: 250
+        debugging: 103
         algorithm_design: 5
         performance_analysis: 1
         refactoring: 1
@@ -54,33 +54,42 @@ reports:
         debugging_exercise: 4
         applied_exercise: 4
       by_difficulty:
-        beginner: 161
-        intermediate: 95
-        advanced: 69
-        expert: 19
+        beginner: 182
+        intermediate: 107
+        advanced: 80
+        expert: 21
         introductory: 10
       by_education_level:
-        unspecified: 340
+        unspecified: 386
         undergraduate: 14
       by_quality_tier:
-        S: 340
+        S: 386
         A: 14
       by_source_type:
-        synthetic: 332
-        open_source: 10
-        community: 12
+        synthetic: 357
+        open_source: 21
+        community: 22
       by_source:
-        open_reason.generation.coding: 318
+        open_reason.generation.coding: 343
         psf/requests: 5
         encode/httpx: 2
         pallets/click: 3
-        stackoverflow: 12
+        pallets/flask: 1
+        urllib3/urllib3: 2
+        pydantic/pydantic: 2
+        Textualize/rich: 2
+        encode/httpcore: 1
+        psf/black: 1
+        pallets/werkzeug: 1
+        python-attrs/attrs: 1
+        stackoverflow: 22
         open_reason.generation.coding_languages: 14
       by_license:
-        Apache-2.0: 349
-        BSD-3-Clause: 5
+        Apache-2.0: 384
+        BSD-3-Clause: 8
+        MIT: 8
       by_language:
-        python: 302
+        python: 348
         sql: 26
         javascript: 15
         typescript: 2
@@ -96,201 +105,201 @@ reports:
     review_queue_size: 14
   reasoning:
     config: reasoning
-    generated: 534
-    validated: 534
-    kept: 381
+    generated: 774
+    validated: 774
+    kept: 580
     validation_failures: 0
     reddit_rejected: 0
     dedup:
-      input_count: 525
-      kept: 381
-      exact_duplicates: 100
+      input_count: 765
+      kept: 580
+      exact_duplicates: 132
       normalized_duplicates: 0
-      near_duplicates: 44
-      dropped: 144
+      near_duplicates: 53
+      dropped: 185
     contamination:
-      checked: 381
+      checked: 580
       hit_count: 0
       rate: 0.0
       hits: []
     statistics:
       config: reasoning
-      total_examples: 381
-      verified_examples: 381
-      synthetic_examples: 373
+      total_examples: 580
+      verified_examples: 580
+      synthetic_examples: 564
       human_authored_examples: 0
-      source_derived_examples: 8
+      source_derived_examples: 16
       by_domain:
-        reasoning: 381
+        reasoning: 580
       by_task_type:
-        planning: 59
-        classification: 74
+        planning: 126
+        classification: 79
         information_extraction: 28
-        comparison: 32
+        comparison: 48
         causal_reasoning: 8
-        temporal_reasoning: 44
-        constraint_satisfaction: 43
+        temporal_reasoning: 76
+        constraint_satisfaction: 52
         decision_analysis: 25
         argument_analysis: 13
-        quantitative_reasoning: 39
-        troubleshooting: 16
+        quantitative_reasoning: 101
+        troubleshooting: 24
       by_difficulty:
         intermediate: 102
-        beginner: 241
-        introductory: 38
+        beginner: 371
+        introductory: 107
       by_education_level:
-        unspecified: 381
+        unspecified: 580
       by_quality_tier:
-        S: 381
+        S: 580
       by_source_type:
-        synthetic: 373
-        community: 8
+        synthetic: 564
+        community: 16
       by_source:
-        open_reason.generation.reasoning: 373
-        stackoverflow: 8
+        open_reason.generation.reasoning: 564
+        stackoverflow: 16
       by_license:
-        Apache-2.0: 381
+        Apache-2.0: 580
       by_language:
-        n/a: 381
+        n/a: 580
     review_queue_size: 0
   science:
     config: science
-    generated: 518
-    validated: 518
-    kept: 368
+    generated: 764
+    validated: 764
+    kept: 527
     validation_failures: 0
     reddit_rejected: 0
     dedup:
-      input_count: 400
-      kept: 368
+      input_count: 559
+      kept: 527
       exact_duplicates: 32
       normalized_duplicates: 0
       near_duplicates: 0
       dropped: 32
     contamination:
-      checked: 368
+      checked: 527
       hit_count: 0
       rate: 0.0
       hits: []
     statistics:
       config: science
-      total_examples: 368
-      verified_examples: 368
-      synthetic_examples: 368
+      total_examples: 527
+      verified_examples: 527
+      synthetic_examples: 527
       human_authored_examples: 0
       source_derived_examples: 0
       by_domain:
-        science: 368
+        science: 527
       by_task_type:
-        calculation: 346
+        calculation: 505
         interpretation: 7
         modeling: 9
         experimental_design: 6
       by_difficulty:
-        beginner: 293
+        beginner: 405
         intermediate: 23
-        introductory: 52
+        introductory: 99
       by_education_level:
-        unspecified: 368
+        unspecified: 527
       by_quality_tier:
-        S: 368
+        S: 527
       by_source_type:
-        synthetic: 368
+        synthetic: 527
       by_source:
-        open_reason.generation.science: 368
+        open_reason.generation.science: 527
       by_license:
-        Apache-2.0: 368
+        Apache-2.0: 527
       by_language:
-        n/a: 368
+        n/a: 527
     review_queue_size: 0
   mathematics:
     config: mathematics
-    generated: 724
-    validated: 708
-    kept: 648
+    generated: 1198
+    validated: 1182
+    kept: 1050
     validation_failures: 0
     reddit_rejected: 16
     dedup:
-      input_count: 674
-      kept: 648
-      exact_duplicates: 24
-      normalized_duplicates: 2
+      input_count: 1086
+      kept: 1050
+      exact_duplicates: 33
+      normalized_duplicates: 3
       near_duplicates: 0
-      dropped: 26
+      dropped: 36
     contamination:
-      checked: 648
+      checked: 1050
       hit_count: 0
       rate: 0.0
       hits: []
     statistics:
       config: mathematics
-      total_examples: 648
-      verified_examples: 648
-      synthetic_examples: 648
+      total_examples: 1050
+      verified_examples: 1050
+      synthetic_examples: 1050
       human_authored_examples: 0
       source_derived_examples: 0
       by_domain:
-        mathematics: 648
+        mathematics: 1050
       by_task_type:
-        algebra: 194
+        algebra: 229
         arithmetic: 12
-        number_theory: 113
+        number_theory: 275
         calculus: 22
         trigonometry: 22
-        geometry: 66
-        discrete_mathematics: 42
-        probability: 11
-        statistics: 24
-        linear_algebra: 64
+        geometry: 123
+        discrete_mathematics: 83
+        probability: 16
+        statistics: 38
+        linear_algebra: 113
         optimization: 10
         numerical_methods: 16
         proof: 3
-        sequences: 49
+        sequences: 88
       by_difficulty:
-        beginner: 447
+        beginner: 525
         intermediate: 31
-        introductory: 170
+        introductory: 494
       by_education_level:
-        unspecified: 648
+        unspecified: 1050
       by_quality_tier:
-        S: 648
+        S: 1050
       by_source_type:
-        synthetic: 648
+        synthetic: 1050
       by_source:
-        open_reason.generation.mathematics: 648
+        open_reason.generation.mathematics: 1050
       by_license:
-        Apache-2.0: 648
+        Apache-2.0: 1050
       by_language:
-        n/a: 648
+        n/a: 1050
     review_queue_size: 0
   human:
     config: human
-    generated: 268
-    validated: 268
-    kept: 268
+    generated: 308
+    validated: 308
+    kept: 289
     validation_failures: 0
     reddit_rejected: 0
     dedup:
-      input_count: 268
-      kept: 268
-      exact_duplicates: 0
+      input_count: 308
+      kept: 289
+      exact_duplicates: 19
       normalized_duplicates: 0
       near_duplicates: 0
-      dropped: 0
+      dropped: 19
     contamination:
-      checked: 268
+      checked: 289
       hit_count: 0
       rate: 0.0
       hits: []
     statistics:
       config: human
-      total_examples: 268
-      verified_examples: 240
-      synthetic_examples: 240
+      total_examples: 289
+      verified_examples: 261
+      synthetic_examples: 261
       human_authored_examples: 28
       source_derived_examples: 0
       by_domain:
-        human: 268
+        human: 289
       by_task_type:
         teaching: 16
         research_synthesis: 2
@@ -298,19 +307,19 @@ reports:
         planning: 80
         constraint_satisfaction: 80
         explanation: 8
-        structured_reasoning: 80
+        structured_reasoning: 101
       by_difficulty:
         beginner: 178
-        intermediate: 85
+        intermediate: 106
         introductory: 5
       by_education_level:
-        unspecified: 268
+        unspecified: 289
       by_quality_tier:
         A: 28
-        S: 240
+        S: 261
       by_source_type:
         human_authored: 28
-        synthetic: 240
+        synthetic: 261
       by_source:
         teach-hash-collision: 1
         teach-acid: 1
@@ -324,7 +333,7 @@ reports:
         synth-incident: 1
         qual-tradeoff: 1
         qual-ethics-eval: 1
-        open_reason.generation.human: 240
+        open_reason.generation.human: 261
         explain-backpressure: 1
         explain-idempotency: 1
         explain-statistical-vs-practical: 1
@@ -342,41 +351,41 @@ reports:
         teach-index-selectivity: 1
         teach-float-money: 1
       by_license:
-        Apache-2.0: 268
+        Apache-2.0: 289
       by_language:
-        n/a: 268
+        n/a: 289
     review_queue_size: 28
   education:
     config: education
-    generated: 351
-    validated: 345
-    kept: 337
+    generated: 367
+    validated: 361
+    kept: 345
     validation_failures: 5
     reddit_rejected: 1
     dedup:
-      input_count: 337
-      kept: 337
+      input_count: 345
+      kept: 345
       exact_duplicates: 0
       normalized_duplicates: 0
       near_duplicates: 0
       dropped: 0
     contamination:
-      checked: 337
+      checked: 345
       hit_count: 0
       rate: 0.0
       hits: []
     statistics:
       config: education
-      total_examples: 337
-      verified_examples: 103
+      total_examples: 345
+      verified_examples: 111
       synthetic_examples: 329
       human_authored_examples: 0
-      source_derived_examples: 8
+      source_derived_examples: 16
       by_domain:
         coding: 201
         mathematics: 66
         science: 54
-        reasoning: 8
+        reasoning: 16
         human: 8
       by_task_type:
         concept_explanation: 68
@@ -386,10 +395,10 @@ reports:
         numerical: 9
         diagnostic_misconception: 19
         sql_generation: 2
-        troubleshooting: 8
+        troubleshooting: 16
         teaching: 2
       by_difficulty:
-        beginner: 176
+        beginner: 184
         intermediate: 7
         introductory: 154
       by_education_level:
@@ -399,13 +408,13 @@ reports:
         k5: 7
         middle_school: 5
         professional: 43
-        unspecified: 8
+        unspecified: 16
       by_quality_tier:
         A: 234
-        S: 103
+        S: 111
       by_source_type:
         synthetic: 329
-        community: 8
+        community: 16
       by_source:
         open_reason.generation.education: 46
         open_reason.generation.coverage_tasks: 194
@@ -425,14 +434,14 @@ reports:
         nasa_education: 4
         noaa_education: 4
         usgs_education: 4
-        stackoverflow: 8
+        stackoverflow: 16
         oer_commons: 4
         wikibooks: 4
       by_license:
-        Apache-2.0: 337
+        Apache-2.0: 345
       by_language:
         python: 133
-        n/a: 136
+        n/a: 144
         sql: 17
         javascript: 18
         rust: 9
@@ -442,39 +451,39 @@ reports:
     review_queue_size: 234
   all:
     config: all
-    generated: 2356
-    validated: 2356
-    kept: 2348
+    generated: 3191
+    validated: 3191
+    kept: 3175
     validation_failures: 0
     reddit_rejected: 0
     dedup:
-      input_count: 2348
-      kept: 2348
+      input_count: 3175
+      kept: 3175
       exact_duplicates: 0
       normalized_duplicates: 0
       near_duplicates: 0
       dropped: 0
     contamination:
-      checked: 2348
+      checked: 3175
       hit_count: 0
       rate: 0.0
       hits: []
     statistics:
       config: all
-      total_examples: 2348
-      verified_examples: 2072
-      synthetic_examples: 2290
+      total_examples: 3175
+      verified_examples: 2899
+      synthetic_examples: 3088
       human_authored_examples: 28
-      source_derived_examples: 30
+      source_derived_examples: 59
       by_domain:
-        coding: 555
-        reasoning: 381
-        science: 422
-        mathematics: 714
-        human: 276
+        coding: 601
+        reasoning: 580
+        science: 581
+        mathematics: 1116
+        human: 297
       by_task_type:
-        code_generation: 217
-        debugging: 90
+        code_generation: 250
+        debugging: 103
         algorithm_design: 5
         performance_analysis: 1
         refactoring: 1
@@ -484,52 +493,52 @@ reports:
         concept_explanation: 74
         debugging_exercise: 68
         applied_exercise: 80
-        planning: 139
-        classification: 74
+        planning: 206
+        classification: 79
         information_extraction: 28
-        comparison: 32
+        comparison: 48
         causal_reasoning: 8
-        temporal_reasoning: 44
-        constraint_satisfaction: 123
+        temporal_reasoning: 76
+        constraint_satisfaction: 132
         decision_analysis: 25
         argument_analysis: 13
-        quantitative_reasoning: 39
-        troubleshooting: 16
-        calculation: 346
+        quantitative_reasoning: 101
+        troubleshooting: 24
+        calculation: 505
         interpretation: 7
         modeling: 9
         experimental_design: 6
-        algebra: 194
+        algebra: 229
         arithmetic: 12
-        number_theory: 113
+        number_theory: 275
         calculus: 22
         trigonometry: 22
-        geometry: 66
-        discrete_mathematics: 42
-        probability: 11
-        statistics: 24
-        linear_algebra: 64
+        geometry: 123
+        discrete_mathematics: 83
+        probability: 16
+        statistics: 38
+        linear_algebra: 113
         optimization: 10
         numerical_methods: 16
         proof: 3
-        sequences: 49
+        sequences: 88
         teaching: 18
         research_synthesis: 2
         qualitative_reasoning: 2
         explanation: 8
-        structured_reasoning: 80
+        structured_reasoning: 101
         simple_exercise: 89
         numerical: 9
         diagnostic_misconception: 19
         sql_generation: 2
       by_difficulty:
-        beginner: 1488
-        intermediate: 343
-        advanced: 69
-        expert: 19
-        introductory: 429
+        beginner: 1829
+        intermediate: 376
+        advanced: 80
+        expert: 21
+        introductory: 869
       by_education_level:
-        unspecified: 2005
+        unspecified: 2832
         undergraduate: 80
         high_school: 142
         introductory_college: 66
@@ -537,23 +546,31 @@ reports:
         middle_school: 5
         professional: 43
       by_quality_tier:
-        S: 2072
+        S: 2899
         A: 276
       by_source_type:
-        synthetic: 2290
-        open_source: 10
-        community: 20
+        synthetic: 3088
+        open_source: 21
+        community: 38
         human_authored: 28
       by_source:
-        open_reason.generation.coding: 318
+        open_reason.generation.coding: 343
         psf/requests: 5
         encode/httpx: 2
         pallets/click: 3
-        stackoverflow: 20
+        pallets/flask: 1
+        urllib3/urllib3: 2
+        pydantic/pydantic: 2
+        Textualize/rich: 2
+        encode/httpcore: 1
+        psf/black: 1
+        pallets/werkzeug: 1
+        python-attrs/attrs: 1
+        stackoverflow: 38
         open_reason.generation.coding_languages: 14
-        open_reason.generation.reasoning: 373
-        open_reason.generation.science: 368
-        open_reason.generation.mathematics: 648
+        open_reason.generation.reasoning: 564
+        open_reason.generation.science: 527
+        open_reason.generation.mathematics: 1050
         teach-hash-collision: 1
         teach-acid: 1
         teach-p-vs-np: 1
@@ -566,7 +583,7 @@ reports:
         synth-incident: 1
         qual-tradeoff: 1
         qual-ethics-eval: 1
-        open_reason.generation.human: 240
+        open_reason.generation.human: 261
         explain-backpressure: 1
         explain-idempotency: 1
         explain-statistical-vs-practical: 1
@@ -604,10 +621,11 @@ reports:
         oer_commons: 4
         wikibooks: 4
       by_license:
-        Apache-2.0: 2343
-        BSD-3-Clause: 5
+        Apache-2.0: 3159
+        BSD-3-Clause: 8
+        MIT: 8
       by_language:
-        python: 435
+        python: 481
         sql: 43
         javascript: 33
         typescript: 2
@@ -620,44 +638,44 @@ reports:
         haskell: 1
         shell: 1
         csharp: 1
-        n/a: 1793
+        n/a: 2574
         html: 5
     review_queue_size: 276
   core:
     config: core
-    generated: 2348
-    validated: 2348
-    kept: 2348
+    generated: 3175
+    validated: 3175
+    kept: 3175
     validation_failures: 0
     reddit_rejected: 0
     dedup:
-      input_count: 2348
-      kept: 2348
+      input_count: 3175
+      kept: 3175
       exact_duplicates: 0
       normalized_duplicates: 0
       near_duplicates: 0
       dropped: 0
     contamination:
-      checked: 2348
+      checked: 3175
       hit_count: 0
       rate: 0.0
       hits: []
     statistics:
       config: core
-      total_examples: 2348
-      verified_examples: 2072
-      synthetic_examples: 2290
+      total_examples: 3175
+      verified_examples: 2899
+      synthetic_examples: 3088
       human_authored_examples: 28
-      source_derived_examples: 30
+      source_derived_examples: 59
       by_domain:
-        coding: 555
-        reasoning: 381
-        science: 422
-        mathematics: 714
-        human: 276
+        coding: 601
+        reasoning: 580
+        science: 581
+        mathematics: 1116
+        human: 297
       by_task_type:
-        code_generation: 217
-        debugging: 90
+        code_generation: 250
+        debugging: 103
         algorithm_design: 5
         performance_analysis: 1
         refactoring: 1
@@ -667,52 +685,52 @@ reports:
         concept_explanation: 74
         debugging_exercise: 68
         applied_exercise: 80
-        planning: 139
-        classification: 74
+        planning: 206
+        classification: 79
         information_extraction: 28
-        comparison: 32
+        comparison: 48
         causal_reasoning: 8
-        temporal_reasoning: 44
-        constraint_satisfaction: 123
+        temporal_reasoning: 76
+        constraint_satisfaction: 132
         decision_analysis: 25
         argument_analysis: 13
-        quantitative_reasoning: 39
-        troubleshooting: 16
-        calculation: 346
+        quantitative_reasoning: 101
+        troubleshooting: 24
+        calculation: 505
         interpretation: 7
         modeling: 9
         experimental_design: 6
-        algebra: 194
+        algebra: 229
         arithmetic: 12
-        number_theory: 113
+        number_theory: 275
         calculus: 22
         trigonometry: 22
-        geometry: 66
-        discrete_mathematics: 42
-        probability: 11
-        statistics: 24
-        linear_algebra: 64
+        geometry: 123
+        discrete_mathematics: 83
+        probability: 16
+        statistics: 38
+        linear_algebra: 113
         optimization: 10
         numerical_methods: 16
         proof: 3
-        sequences: 49
+        sequences: 88
         teaching: 18
         research_synthesis: 2
         qualitative_reasoning: 2
         explanation: 8
-        structured_reasoning: 80
+        structured_reasoning: 101
         simple_exercise: 89
         numerical: 9
         diagnostic_misconception: 19
         sql_generation: 2
       by_difficulty:
-        beginner: 1488
-        intermediate: 343
-        advanced: 69
-        expert: 19
-        introductory: 429
+        beginner: 1829
+        intermediate: 376
+        advanced: 80
+        expert: 21
+        introductory: 869
       by_education_level:
-        unspecified: 2005
+        unspecified: 2832
         undergraduate: 80
         high_school: 142
         introductory_college: 66
@@ -720,23 +738,31 @@ reports:
         middle_school: 5
         professional: 43
       by_quality_tier:
-        S: 2072
+        S: 2899
         A: 276
       by_source_type:
-        synthetic: 2290
-        open_source: 10
-        community: 20
+        synthetic: 3088
+        open_source: 21
+        community: 38
         human_authored: 28
       by_source:
-        open_reason.generation.coding: 318
+        open_reason.generation.coding: 343
         psf/requests: 5
         encode/httpx: 2
         pallets/click: 3
-        stackoverflow: 20
+        pallets/flask: 1
+        urllib3/urllib3: 2
+        pydantic/pydantic: 2
+        Textualize/rich: 2
+        encode/httpcore: 1
+        psf/black: 1
+        pallets/werkzeug: 1
+        python-attrs/attrs: 1
+        stackoverflow: 38
         open_reason.generation.coding_languages: 14
-        open_reason.generation.reasoning: 373
-        open_reason.generation.science: 368
-        open_reason.generation.mathematics: 648
+        open_reason.generation.reasoning: 564
+        open_reason.generation.science: 527
+        open_reason.generation.mathematics: 1050
         teach-hash-collision: 1
         teach-acid: 1
         teach-p-vs-np: 1
@@ -749,7 +775,7 @@ reports:
         synth-incident: 1
         qual-tradeoff: 1
         qual-ethics-eval: 1
-        open_reason.generation.human: 240
+        open_reason.generation.human: 261
         explain-backpressure: 1
         explain-idempotency: 1
         explain-statistical-vs-practical: 1
@@ -787,10 +813,11 @@ reports:
         oer_commons: 4
         wikibooks: 4
       by_license:
-        Apache-2.0: 2343
-        BSD-3-Clause: 5
+        Apache-2.0: 3159
+        BSD-3-Clause: 8
+        MIT: 8
       by_language:
-        python: 435
+        python: 481
         sql: 43
         javascript: 33
         typescript: 2
@@ -803,114 +830,122 @@ reports:
         haskell: 1
         shell: 1
         csharp: 1
-        n/a: 1793
+        n/a: 2574
         html: 5
     review_queue_size: 276
   verified:
     config: verified
-    generated: 2072
-    validated: 2072
-    kept: 2072
+    generated: 2899
+    validated: 2899
+    kept: 2899
     validation_failures: 0
     reddit_rejected: 0
     dedup:
-      input_count: 2072
-      kept: 2072
+      input_count: 2899
+      kept: 2899
       exact_duplicates: 0
       normalized_duplicates: 0
       near_duplicates: 0
       dropped: 0
     contamination:
-      checked: 2072
+      checked: 2899
       hit_count: 0
       rate: 0.0
       hits: []
     statistics:
       config: verified
-      total_examples: 2072
-      verified_examples: 2072
-      synthetic_examples: 2042
+      total_examples: 2899
+      verified_examples: 2899
+      synthetic_examples: 2840
       human_authored_examples: 0
-      source_derived_examples: 30
+      source_derived_examples: 59
       by_domain:
-        coding: 356
-        reasoning: 381
-        science: 401
-        mathematics: 694
-        human: 240
+        coding: 402
+        reasoning: 580
+        science: 560
+        mathematics: 1096
+        human: 261
       by_task_type:
-        code_generation: 217
-        debugging: 90
+        code_generation: 250
+        debugging: 103
         algorithm_design: 5
         performance_analysis: 1
         refactoring: 1
         code_completion: 1
         test_generation: 1
         sql: 24
-        planning: 139
-        classification: 74
+        planning: 206
+        classification: 79
         information_extraction: 28
-        comparison: 32
+        comparison: 48
         causal_reasoning: 8
-        temporal_reasoning: 44
-        constraint_satisfaction: 123
+        temporal_reasoning: 76
+        constraint_satisfaction: 132
         decision_analysis: 25
         argument_analysis: 13
-        quantitative_reasoning: 39
-        troubleshooting: 16
-        calculation: 346
+        quantitative_reasoning: 101
+        troubleshooting: 24
+        calculation: 505
         interpretation: 7
         modeling: 9
         experimental_design: 6
-        algebra: 194
+        algebra: 229
         arithmetic: 12
-        number_theory: 113
+        number_theory: 275
         calculus: 22
         trigonometry: 22
-        geometry: 66
-        discrete_mathematics: 42
-        probability: 11
-        statistics: 24
-        linear_algebra: 64
+        geometry: 123
+        discrete_mathematics: 83
+        probability: 16
+        statistics: 38
+        linear_algebra: 113
         optimization: 10
         numerical_methods: 16
         proof: 3
-        sequences: 49
-        structured_reasoning: 80
+        sequences: 88
+        structured_reasoning: 101
         simple_exercise: 55
         applied_exercise: 20
         numerical: 9
         concept_explanation: 1
         debugging_exercise: 10
       by_difficulty:
-        beginner: 1355
-        intermediate: 330
-        advanced: 69
-        expert: 19
-        introductory: 299
+        beginner: 1696
+        intermediate: 363
+        advanced: 80
+        expert: 21
+        introductory: 739
       by_education_level:
-        unspecified: 1977
+        unspecified: 2804
         k5: 5
         high_school: 73
         introductory_college: 4
         undergraduate: 11
         professional: 2
       by_quality_tier:
-        S: 2072
+        S: 2899
       by_source_type:
-        synthetic: 2042
-        open_source: 10
-        community: 20
+        synthetic: 2840
+        open_source: 21
+        community: 38
       by_source:
-        open_reason.generation.coding: 318
+        open_reason.generation.coding: 343
         psf/requests: 5
         encode/httpx: 2
         pallets/click: 3
-        stackoverflow: 20
-        open_reason.generation.reasoning: 373
-        open_reason.generation.science: 368
-        open_reason.generation.mathematics: 648
-        open_reason.generation.human: 240
+        pallets/flask: 1
+        urllib3/urllib3: 2
+        pydantic/pydantic: 2
+        Textualize/rich: 2
+        encode/httpcore: 1
+        psf/black: 1
+        pallets/werkzeug: 1
+        python-attrs/attrs: 1
+        stackoverflow: 38
+        open_reason.generation.reasoning: 564
+        open_reason.generation.science: 527
+        open_reason.generation.mathematics: 1050
+        open_reason.generation.human: 261
         open_reason.generation.education: 22
         open_reason.generation.coverage_tasks: 55
         khan_academy_computing: 3
@@ -922,11 +957,12 @@ reports:
         noaa_education: 2
         usgs_education: 2
       by_license:
-        Apache-2.0: 2067
-        BSD-3-Clause: 5
+        Apache-2.0: 2883
+        BSD-3-Clause: 8
+        MIT: 8
       by_language:
-        python: 317
+        python: 363
         sql: 25
         javascript: 14
-        n/a: 1716
+        n/a: 2497
     review_queue_size: 0

@@ -288,6 +288,205 @@ class Test(unittest.TestCase):
         self.assertEqual(unique_stable(["b", "a", "b", "c"]), ["b", "a", "c"])
 ''',
         ),
+        T(
+            "so-round-half-even",
+            "python",
+            """Implement `bankers_cents(amount: float) -> int` converting a
+dollar amount to integer cents with banker's rounding (round half to even)
+on the cent. Example: 1.225 → 122 or 123 depending on the half-even rule
+applied to tenths of a cent after multiplying by 100. Multiply by 100 then
+use decimal ROUND_HALF_EVEN.""",
+            '''
+from decimal import Decimal, ROUND_HALF_EVEN
+
+def bankers_cents(amount):
+    d = Decimal(str(amount)) * Decimal("100")
+    return int(d.quantize(Decimal("1"), rounding=ROUND_HALF_EVEN))
+''',
+            '''
+import unittest
+from solution import bankers_cents
+
+class Test(unittest.TestCase):
+    def test_even(self):
+        self.assertEqual(bankers_cents(1.0), 100)
+    def test_half(self):
+        self.assertEqual(bankers_cents(0.125), 12)
+''',
+        ),
+        T(
+            "so-json-strict",
+            "python",
+            """Implement `load_object(text: str) -> dict`.
+
+Parse JSON with json.loads. Require a dict root. Raise ValueError otherwise.
+Do not use eval.""",
+            '''
+import json
+
+def load_object(text):
+    data = json.loads(text)
+    if not isinstance(data, dict):
+        raise ValueError("object")
+    return data
+''',
+            '''
+import unittest
+from solution import load_object
+
+class Test(unittest.TestCase):
+    def test_obj(self):
+        self.assertEqual(load_object('{"a": 1}'), {"a": 1})
+    def test_list(self):
+        with self.assertRaises(ValueError):
+            load_object("[1]")
+''',
+        ),
+        T(
+            "so-tz-aware-diff",
+            "python",
+            """Implement `seconds_between(a, b) -> float` for timezone-aware
+datetime objects. Return (b-a).total_seconds(). Raise TypeError if either is
+naive (tzinfo is None).""",
+            '''
+def seconds_between(a, b):
+    if a.tzinfo is None or b.tzinfo is None:
+        raise TypeError("aware")
+    return (b - a).total_seconds()
+''',
+            '''
+import unittest
+from datetime import datetime, timezone, timedelta
+from solution import seconds_between
+
+class Test(unittest.TestCase):
+    def test_hour(self):
+        a = datetime(2020, 1, 1, tzinfo=timezone.utc)
+        b = a + timedelta(hours=1)
+        self.assertEqual(seconds_between(a, b), 3600)
+    def test_naive(self):
+        with self.assertRaises(TypeError):
+            seconds_between(datetime(2020, 1, 1), datetime(2020, 1, 2))
+''',
+        ),
+        T(
+            "so-context-cm",
+            "python",
+            """Implement class `TempValue` as a context manager: `__enter__`
+returns the given value; `__exit__` swallows no exceptions (return False).""",
+            '''
+class TempValue:
+    def __init__(self, value):
+        self.value = value
+
+    def __enter__(self):
+        return self.value
+
+    def __exit__(self, exc_type, exc, tb):
+        return False
+''',
+            '''
+import unittest
+from solution import TempValue
+
+class Test(unittest.TestCase):
+    def test_enter(self):
+        with TempValue(3) as x:
+            self.assertEqual(x, 3)
+    def test_raise(self):
+        with self.assertRaises(RuntimeError):
+            with TempValue(1):
+                raise RuntimeError("x")
+''',
+        ),
+        T(
+            "so-split-csv-line",
+            "python",
+            """Implement `split_simple_csv(line: str) -> list[str]`.
+
+Split on commas that are not inside double quotes. Quotes are stripped from
+quoted fields. No escaped quotes inside fields.""",
+            '''
+def split_simple_csv(line):
+    out = []
+    buf = []
+    quoted = False
+    for ch in line:
+        if ch == '"':
+            quoted = not quoted
+            continue
+        if ch == "," and not quoted:
+            out.append("".join(buf))
+            buf = []
+        else:
+            buf.append(ch)
+    out.append("".join(buf))
+    return out
+''',
+            '''
+import unittest
+from solution import split_simple_csv
+
+class Test(unittest.TestCase):
+    def test_q(self):
+        self.assertEqual(split_simple_csv('a,"b,c",d'), ["a", "b,c", "d"])
+    def test_plain(self):
+        self.assertEqual(split_simple_csv("a,b"), ["a", "b"])
+''',
+        ),
+        T(
+            "so-retry-predicate",
+            "python",
+            """Implement `should_retry(status: int) -> bool`. True for 408, 425,
+429, and 500-599 inclusive. False otherwise.""",
+            '''
+def should_retry(status):
+    return status in {408, 425, 429} or 500 <= status <= 599
+''',
+            '''
+import unittest
+from solution import should_retry
+
+class Test(unittest.TestCase):
+    def test_yes(self):
+        self.assertTrue(should_retry(503))
+        self.assertTrue(should_retry(429))
+    def test_no(self):
+        self.assertFalse(should_retry(404))
+        self.assertFalse(should_retry(200))
+''',
+        ),
+        T(
+            "so-path-suffix",
+            "python",
+            """Implement `with_suffix(path: str, suffix: str) -> str`.
+
+Replace the final extension after the last `.` in the basename (after the
+last `/`). If there is no `.` in the basename, append suffix. suffix includes
+the dot, e.g. `.json`.""",
+            '''
+def with_suffix(path, suffix):
+    if "/" in path:
+        head, base = path.rsplit("/", 1)
+        prefix = head + "/"
+    else:
+        prefix, base = "", path
+    if "." in base:
+        stem = base.rsplit(".", 1)[0]
+        return prefix + stem + suffix
+    return prefix + base + suffix
+''',
+            '''
+import unittest
+from solution import with_suffix
+
+class Test(unittest.TestCase):
+    def test_rep(self):
+        self.assertEqual(with_suffix("a/b.txt", ".json"), "a/b.json")
+    def test_add(self):
+        self.assertEqual(with_suffix("readme", ".md"), "readme.md")
+''',
+        ),
     ]
     for task in tasks:
         task["provenance"] = so_provenance().model_dump(mode="json")
@@ -357,6 +556,62 @@ def extra_so_reasoning() -> list[Example]:
             "You checkout a raw commit SHA. Are new commits still on a named branch? yes or no.",
             "no",
             "Detached HEAD: commits are not on a branch until you create/move one.",
+            True,
+        ),
+        (
+            "utf8 vs latin1",
+            "A file is UTF-8 bytes for é (C3 A9). If decoded as latin-1, do you get the single character é? yes or no.",
+            "no",
+            "Latin-1 maps each byte to a character, so two bytes become two characters, not U+00E9.",
+            True,
+        ),
+        (
+            "list multiply",
+            "Does `[[0]]*3` create three independent inner lists in CPython? yes or no.",
+            "no",
+            "The inner list is aliased three times; mutating one row mutates all.",
+            True,
+        ),
+        (
+            "sql limit offset",
+            "Is OFFSET 1000000 on a huge unordered table a cheap way to paginate in typical SQL engines? yes or no.",
+            "no",
+            "Large OFFSET still scans/skips prior rows. Keyset pagination is usually cheaper.",
+            True,
+        ),
+        (
+            "http put idempotent",
+            "In HTTP semantics, is PUT to a known resource URL considered idempotent? yes or no.",
+            "yes",
+            "PUT replaces the resource at that URL; repeating it should leave the same stored state.",
+            True,
+        ),
+        (
+            "pytest fixture scope",
+            "Does a function-scoped pytest fixture run once per test function that uses it (not once per module)? yes or no.",
+            "yes",
+            "Default fixture scope is function: setup/teardown around each test.",
+            True,
+        ),
+        (
+            "docker layer cache",
+            "If you COPY requirements then RUN pip, then COPY source, does changing only source typically reuse the pip layer? yes or no.",
+            "yes",
+            "Docker caches layers; an unchanged COPY requirements + pip layer is reused when only later source changes.",
+            True,
+        ),
+        (
+            "css specificity",
+            "Does an ID selector beat a class selector in CSS specificity (assuming equal importance)? yes or no.",
+            "yes",
+            "IDs outrank classes in the specificity tuple.",
+            True,
+        ),
+        (
+            "npm lockfile",
+            "Should a library publish usually commit package-lock.json if the project is an application? yes or no.",
+            "yes",
+            "Applications pin the tree with a lockfile so installs reproduce. (Libraries may omit it; this question is about apps.)",
             True,
         ),
     ]

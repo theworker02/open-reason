@@ -1,4 +1,4 @@
-pipeline_version: 1.3.8
+pipeline_version: 1.4.0
 note: Review-required or metadata-only. Do not fetch or copy these sites. Original
   tasks may exist only after AUTO_APPROVED curriculum_use.
 sources:

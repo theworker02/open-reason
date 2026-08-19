@@ -16,6 +16,7 @@ from open_reason.generation.coding_sql_js import JS_TASKS, SQL_TASKS
 from open_reason.generation.coding_v1 import v1_python_tasks
 from open_reason.generation.coding_v101 import v101_python_tasks
 from open_reason.generation.coding_v102 import v102_python_tasks
+from open_reason.generation.coding_v140 import v140_python_tasks
 from open_reason.generation.github_tasks import github_python_tasks
 from open_reason.generation.stackoverflow_seeds import extra_so_concept_examples, so_python_tasks
 from open_reason.models import Domain, Example, Provenance, Verification
@@ -76,6 +77,7 @@ def _python_examples(sandbox: Sandbox) -> list[Example]:
         *v1_python_tasks(),
         *v101_python_tasks(),
         *v102_python_tasks(),
+        *v140_python_tasks(),
         *github_python_tasks(),
         *so_python_tasks(),
     ]:

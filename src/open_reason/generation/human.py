@@ -35,6 +35,7 @@ def generate_human(seed: int = 42) -> list[Example]:
     examples.extend(_constraint_word(rng))
     examples.extend(_explanation_gold())
     examples.extend(_inventory(rng))
+    examples.extend(_sla_queue(rng))
     examples.extend(_v1_teaching())
     return examples
 
@@ -451,6 +452,44 @@ def _inventory(rng: random.Random) -> list[Example]:
                 provenance=_syn(),
                 quality=verified_quality("budget-check"),
                 source_key=f"inv-{i}-{budget}-{cap}",
+                metadata={"authorship": "synthetic"},
+            )
+        )
+    return out
+
+
+def _sla_queue(rng: random.Random) -> list[Example]:
+    """Verified staffing/queue arithmetic (not paraphrases of inventory)."""
+    out: list[Example] = []
+    for i in range(40):
+        arrival = 10 + (i % 7)
+        service = 2 + (i % 3)
+        window = 30
+        served = min(window // service, arrival)
+        backlog = arrival - served
+        answer = f"served={served}; backlog={backlog}"
+        prompt = (
+            f"A support window lasts {window} minutes. Each ticket takes {service} minutes "
+            f"with one agent and no overlap. {arrival} tickets wait at t=0. "
+            "How many are served in the window, and how many remain as backlog?"
+        )
+        check = served + backlog == arrival and served * service <= window
+        verification = Verification(method="queue-check", passed=check, result=answer)
+        out.append(
+            build_example(
+                domain=Domain.HUMAN,
+                task_type="structured_reasoning",
+                prompt=prompt,
+                answer=answer,
+                solution=f"Throughput={window}//{service}={window // service}; {answer}.",
+                observations=[f"arrival={arrival}", f"service={service}", f"window={window}"],
+                constraints=["Single agent", "No preemption", "Tickets are identical"],
+                assumptions=["All tickets present at start"],
+                plan=["Compute capacity", "served=min(capacity, arrivals)", "backlog=arrivals-served"],
+                verification=verification,
+                provenance=_syn(),
+                quality=verified_quality("queue-check") if check else reviewed_quality(),
+                source_key=f"sla-{i}-{arrival}-{service}",
                 metadata={"authorship": "synthetic"},
             )
         )

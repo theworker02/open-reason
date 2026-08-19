@@ -1,6 +1,6 @@
 # Central Open Reason source policy. Application code must read this file
 # instead of scattering one-off approval rules.
-version: "1.3.8"
+version: "1.4.0"
 reddit: prohibited
 quora_as_authority: prohibited
 community_votes_are_not_verification: true

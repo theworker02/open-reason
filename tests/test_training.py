@@ -27,6 +27,18 @@ def test_local_training_config_is_cpu_small() -> None:
     assert spec.get("n_layer", 0) <= 8
 
 
+def test_medium_training_config_is_cpu_larger() -> None:
+    path = repo_root() / "training" / "configs" / "open-reason-medium.yaml"
+    spec = yaml.safe_load(path.read_text(encoding="utf-8"))
+    assert spec["hub_model_id"] == "theworker02/open-reason-medium"
+    assert spec["device"] == "cpu"
+    assert spec["model_name"] == "open-reason-medium"
+    assert "1b" not in spec["model_name"].lower()
+    assert int(spec["n_embd"]) >= 256
+    assert int(spec["n_layer"]) >= 6
+    assert spec.get("n_layer", 0) <= 12
+
+
 def test_dockerfile_is_cpu_only() -> None:
     text = (repo_root() / "training" / "Dockerfile").read_text(encoding="utf-8")
     assert "python:3.12-slim" in text

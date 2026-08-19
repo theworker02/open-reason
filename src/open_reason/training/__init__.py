@@ -48,20 +48,26 @@ def run_training(*, config_path: Path, data_path: Path, smoke: bool = False) -> 
 
     from open_reason.training.causal import (
         LOCAL_MODEL_DIR,
+        MEDIUM_MODEL_DIR,
         cuda_usable,
         docker_available,
         inside_docker,
-        maybe_upload_small_model,
+        maybe_upload_model,
         run_docker_training,
         train_local_causal,
     )
 
-    out_dir = repo_root() / LOCAL_MODEL_DIR
+    model_name = str(spec.get("model_name") or "open-reason-small")
+    hub_id = str(spec.get("hub_model_id") or "theworker02/open-reason-small")
+    if "medium" in model_name:
+        out_dir = repo_root() / MEDIUM_MODEL_DIR
+    else:
+        out_dir = repo_root() / LOCAL_MODEL_DIR
     cuda = cuda_usable()
     print(f"cuda_usable={cuda} docker={docker_available()} in_docker={inside_docker()}")
     if cuda:
         print("NVIDIA CUDA is available. 1B LoRA is not auto-started here without an explicit GPU job.")
-        print("Falling through to the small CPU causal LM unless OPEN_REASON_FORCE_1B=1.")
+        print("Falling through to the CPU causal LM unless OPEN_REASON_FORCE_1B=1.")
 
     if (
         not smoke
@@ -69,11 +75,12 @@ def run_training(*, config_path: Path, data_path: Path, smoke: bool = False) -> 
         and docker_available()
         and not inside_docker()
         and spec.get("hub_model_id") != "theworker02/open-reason-1b"
+        and "medium" not in model_name
     ):
         print("No NVIDIA CUDA. Preferring CPU Docker training (not AMD GPU).")
         code = run_docker_training(data_path=data_path, out_dir=out_dir)
         if code == 0 and (out_dir / "config.json").exists():
-            maybe_upload_small_model(out_dir)
+            maybe_upload_model(out_dir, hub_id)
         return code
 
     if not data_path.exists():
@@ -81,18 +88,31 @@ def run_training(*, config_path: Path, data_path: Path, smoke: bool = False) -> 
         return 2
 
     steps = 8 if smoke else int(spec.get("steps") or 200)
-    print("Training a small GPT-2-style causal LM on CPU. Not AMD GPU. Not 1B.")
+    print(f"Training GPT-2-style causal LM '{model_name}' on CPU. Not AMD GPU. Not 1B.")
+    size_note = None
+    if "medium" in model_name:
+        size_note = (
+            "This is a **medium** GPT-2-style causal LM trained from scratch on the "
+            "Open Reason SFT split. It is larger than `theworker02/open-reason-small` "
+            "and is **not** a 1B model and is **not** `theworker02/open-reason-1b`."
+        )
     code = train_local_causal(
         data_path=data_path,
         out_dir=out_dir,
         steps=steps,
         smoke=smoke,
+        max_seq_len=int(spec.get("max_seq_len") or (64 if smoke else 128)),
         n_layer=int(spec.get("n_layer") or (2 if smoke else 4)),
         n_embd=int(spec.get("n_embd") or (64 if smoke else 128)),
         n_head=int(spec.get("n_head") or 4),
+        batch_size=int(spec.get("batch_size") or (2 if smoke else 4)),
+        vocab_size=int(spec.get("vocab_size") or 4096),
+        hub_id=hub_id,
+        card_title=f"Open Reason {model_name} (CPU)",
+        size_note=size_note,
     )
     if code == 0 and not smoke:
-        maybe_upload_small_model(out_dir)
+        maybe_upload_model(out_dir, hub_id)
     return code
 
 

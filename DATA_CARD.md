@@ -60,7 +60,8 @@ configs:
 **An open, verified dataset for coding, science, mathematics, and human reasoning.**
 
 - Dataset: https://huggingface.co/datasets/theworker02/open-reason
-- Model: https://huggingface.co/theworker02/open-reason-small (small CPU causal LM; not 1B)
+- Small model: https://huggingface.co/theworker02/open-reason-small (~1.3M CPU causal LM; not 1B)
+- Medium model: https://huggingface.co/theworker02/open-reason-medium (~13.9M CPU causal LM; not 1B)
 - GitHub: https://github.com/theworker02/open-reason
 - Site: https://theworker02.github.io/open-reason/
 
@@ -79,11 +80,11 @@ Open Reason is a provenance-aware corpus plus a reproducible pipeline. It is int
 
 ## Languages
 
-Prompts and solutions are English. Verified coding languages in v1.3.8: Python, SQL, JavaScript (when the sandbox can run them). Other languages appear as original concept tasks and are not marked verified.
+Prompts and solutions are English. Verified coding languages in v1.4.0: Python, SQL, JavaScript (when the sandbox can run them). Other languages appear as original concept tasks and are not marked verified.
 
 ## Source information
 
-| Kind | How to recognize | v1.3.8 |
+| Kind | How to recognize | v1.4.0 |
 | --- | --- | --- |
 | Human-authored | `provenance.source_type = human_authored` | Teaching, synthesis, qualitative items |
 | Synthetic | `provenance.source_type = synthetic` plus `generator` | Math, science, most reasoning/coding, curriculum |
@@ -123,7 +124,7 @@ Research on reasoning and code models; filtering by domain, language, tier, and 
 
 ## Limitations
 
-Small v1.3.8 corpus; still English-centric; verified coding languages limited to sandbox runtimes; teaching items are not executable oracles unless a numeric/sympy/sandbox check exists; third-party educational sites are registered but not scraped; denylists cannot be complete.
+Small v1.4.0 corpus (~3.2K rows); still English-centric; verified coding languages limited to sandbox runtimes; teaching items are not executable oracles unless a numeric/sympy/sandbox check exists; third-party educational sites are registered but not scraped; denylists cannot be complete.
 
 ## Bias considerations
 
@@ -137,29 +138,30 @@ No Reddit/social dumps. Case study: [docs/why-not-reddit.md](docs/why-not-reddit
 
 Issues and PRs: https://github.com/theworker02/open-reason  
 Hugging Face dataset: https://huggingface.co/datasets/theworker02/open-reason  
-Small CPU model (not 1B): https://huggingface.co/theworker02/open-reason-small  
+Small CPU model (~1.3M): https://huggingface.co/theworker02/open-reason-small  
+Medium CPU model (~13.9M): https://huggingface.co/theworker02/open-reason-medium  
 Releases are immutable; GitHub tags map to Hub revisions. Fixes ship in a new version. Shards are not stored in the GitHub git tree.
 
 ## Citation
 
 See `CITATION.cff` and the README BibTeX entry.
 
-## v1.3.8 snapshot
+## v1.4.0 snapshot
 
 <!-- BEGIN_RELEASE_SNAPSHOT -->
-Pipeline version **1.3.8**.
+Pipeline version **1.4.0**.
 
 | Configuration | Examples | Verified | Human-authored |
 | --- | ---: | ---: | ---: |
-| coding | 354 | 340 | 0 |
-| reasoning | 381 | 381 | 0 |
-| science | 368 | 368 | 0 |
-| mathematics | 648 | 648 | 0 |
-| human | 268 | 240 | 28 |
-| education | 337 | 103 | 0 |
-| core | 2348 | 2072 | 28 |
-| verified | 2072 | 2072 | 0 |
-| all | 2348 | 2072 | 28 |
+| coding | 400 | 386 | 0 |
+| reasoning | 580 | 580 | 0 |
+| science | 527 | 527 | 0 |
+| mathematics | 1050 | 1050 | 0 |
+| human | 289 | 261 | 28 |
+| education | 345 | 111 | 0 |
+| core | 3175 | 2899 | 28 |
+| verified | 2899 | 2899 | 0 |
+| all | 3175 | 2899 | 28 |
 
 Rebuild with `open-reason build --config all --seed 42 --out data/release`.
 Full tables: `data/release/statistics.md`.

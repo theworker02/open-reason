@@ -1,5 +1,35 @@
 # Changelog
 
+## v1.4.0 — 2026-08-18
+
+A larger verified corpus and a **medium** CPU causal LM (~13.9M parameters)
+alongside the existing small model (~1.3M). Reddit remains forbidden. Full shards
+stay on Hugging Face, not GitHub. The 1B Hub id is still reserved for an actual
+CUDA 1B job.
+
+### Dataset
+
+- Original verified math, science, and reasoning families (`*_v140`)
+- Additional sandbox-tested Python tasks (`coding_v140`)
+- More GitHub-permissive original coding tasks (Flask, urllib3, Pydantic, Rich,
+  httpcore, Black, Werkzeug, attrs) with tests; `verbatim=false`
+- More Stack Overflow **seeds**: original rewrites, not SA-relicense dumps
+- Rebuild: `open-reason build --config all --seed 42 --out data/release`
+- Gitignored `data/release/*.parquet` and `*.jsonl`; sample stays in `data/sample/`
+
+### Training
+
+- `theworker02/open-reason-small` remains the ~1.3M CPU model
+- `theworker02/open-reason-medium` is a 13,867,008-parameter GPT-2-style CPU model
+  (`training/configs/open-reason-medium.yaml`), 180 steps, host CPU
+- Docker was not installed on this host; training used **host CPU**
+- Not AMD GPU, not ROCm, not a fake 1B
+
+### License
+
+- Single project license: Apache-2.0
+- Per-row `provenance.license_spdx` still records upstream SPDX
+
 ## v1.3.8 — 2026-08-18
 
 Apache-2.0 as the only project license, a train-sized verified corpus (original
