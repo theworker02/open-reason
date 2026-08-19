@@ -7,7 +7,7 @@ Open Reason should look like research infrastructure: scientific, technical, ope
 - Paper cream `#F4EFE4`
 - Signal teal `#2A6F6F`
 
-The mark is a geometric open angle / proof bracket, not a robot or brain clip-art.
+The mark is a nested copper-and-teal L with a cream dot at the top, not a robot, brain, or a second letterform.
 
 Assets:
 
