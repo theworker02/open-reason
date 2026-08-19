@@ -11,23 +11,50 @@ datasets:
   - theworker02/open-reason
 ---
 
-# Open Reason 1B (template)
+# Open Reason 1B — not trained on this machine
 
-Fill this card **only after a real training run**. Do not publish an empty or
-randomly initialized network as `theworker02/open-reason-1b`.
+Do **not** treat this file as a published `theworker02/open-reason-1b` model.
+No 1B–3B SFT ran here. No finetune was uploaded.
 
-## Training data
+## Hardware that was inspected (2026-08-18)
 
-Local shards from `open-reason build --config all --seed 42 --out data/release`.
-Reddit is not used.
+- OS: Windows AMD64
+- RAM: ~61 GB
+- `torch`: 2.12.0+**cpu**
+- `torch.cuda.is_available()`: **false**
+- No CUDA GPU in this environment
 
-## Eval
+A real 1.1B chat SFT (TinyLlama, Apache-2.0) needs a CUDA GPU (about 8 GB+ VRAM
+with LoRA, more for full finetune), `transformers`, and the local
+`data/release/all.jsonl` from `open-reason build --config all --seed 42`.
 
-Compare the base checkpoint and the finetune on held-out coding, mathematics,
-science, and reasoning items. Report exact-match / sandbox pass rates that were
-actually measured.
+Intended command once GPU + CUDA torch exist:
 
-## Status
+```text
+python training/scripts/prepare_sft.py data/release/all.jsonl training/work/sft.jsonl
+open-reason train --config training/configs/open-reason-1b.yaml --data data/release/all.jsonl
+```
 
-Not trained in the default developer environment unless a GPU job wrote
-`training/work/`.
+Then evaluate the **base** TinyLlama checkpoint against the finetune on held-out
+coding / mathematics / science / reasoning items and write measured exact-match
+or sandbox pass rates. Upload to `theworker02/open-reason-1b` only after that
+job finishes.
+
+## Smoke trainer (CPU, labeled smoke)
+
+Command:
+
+```text
+open-reason train --smoke --config training/configs/smoke.yaml --data data/release/all.jsonl
+```
+
+Recorded in `training/work/smoke_metrics.json`:
+
+- smoke: true
+- cuda: false
+- steps: 3
+- rows: 8
+- losses: 4.2393, 4.0729, 4.4579 (toy embedding net, random token ids)
+- note: not TinyLlama, not open-reason-1b
+
+These losses are **not** model-quality metrics.

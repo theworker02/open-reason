@@ -1,4 +1,4 @@
-pipeline_version: 1.0.0
+pipeline_version: 1.0.1
 rows:
 - id: open-reason-authors
   license_spdx: CC-BY-4.0

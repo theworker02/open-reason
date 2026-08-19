@@ -1,230 +1,242 @@
 ## Statistics (`coding`)
 
-- Total examples: **238**
-- Verified: 232
-- Synthetic: 238
+- Total examples: **314**
+- Verified: 300
+- Synthetic: 314
 - Human-authored: 0
 - Source-derived: 0
 
 | domain | count |
 | --- | ---: |
-| coding | 238 |
+| coding | 314 |
 
 | quality | count |
 | --- | ---: |
-| S | 232 |
-| A | 6 |
+| S | 300 |
+| A | 14 |
 
 | difficulty | count |
 | --- | ---: |
-| beginner | 120 |
-| intermediate | 63 |
-| advanced | 35 |
-| expert | 16 |
-| introductory | 4 |
+| beginner | 146 |
+| intermediate | 81 |
+| advanced | 60 |
+| expert | 17 |
+| introductory | 10 |
 
 | education_level | count |
 | --- | ---: |
-| unspecified | 232 |
-| undergraduate | 6 |
+| unspecified | 300 |
+| undergraduate | 14 |
 
 | source_type | count |
 | --- | ---: |
-| synthetic | 238 |
+| synthetic | 314 |
 
 | source | count |
 | --- | ---: |
-| open_reason.generation.coding | 232 |
-| open_reason.generation.coding_languages | 6 |
+| open_reason.generation.coding | 300 |
+| open_reason.generation.coding_languages | 14 |
 
 | task_type | count |
 | --- | ---: |
-| code_generation | 166 |
-| debugging | 50 |
-| sql | 16 |
-| concept_explanation | 3 |
-| applied_exercise | 2 |
-| debugging_exercise | 1 |
+| code_generation | 188 |
+| debugging | 79 |
+| sql | 24 |
+| concept_explanation | 6 |
+| algorithm_design | 5 |
+| applied_exercise | 4 |
+| debugging_exercise | 4 |
+| code_completion | 1 |
+| performance_analysis | 1 |
+| refactoring | 1 |
+| test_generation | 1 |
 
 | license | count |
 | --- | ---: |
-| CC-BY-4.0 | 238 |
+| CC-BY-4.0 | 314 |
 
 | language | count |
 | --- | ---: |
-| python | 208 |
-| sql | 17 |
-| javascript | 9 |
+| python | 262 |
+| sql | 26 |
+| javascript | 15 |
+| typescript | 2 |
 | c | 1 |
+| cpp | 1 |
+| csharp | 1 |
 | go | 1 |
+| haskell | 1 |
+| java | 1 |
+| kotlin | 1 |
 | rust | 1 |
-| typescript | 1 |
+| shell | 1 |
 
 
 ## Statistics (`reasoning`)
 
-- Total examples: **210**
-- Verified: 210
-- Synthetic: 210
+- Total examples: **248**
+- Verified: 248
+- Synthetic: 248
 - Human-authored: 0
 - Source-derived: 0
 
 | domain | count |
 | --- | ---: |
-| reasoning | 210 |
+| reasoning | 248 |
 
 | quality | count |
 | --- | ---: |
-| S | 210 |
+| S | 248 |
 
 | difficulty | count |
 | --- | ---: |
-| beginner | 110 |
-| intermediate | 100 |
+| beginner | 137 |
+| intermediate | 102 |
+| introductory | 9 |
 
 | education_level | count |
 | --- | ---: |
-| unspecified | 210 |
+| unspecified | 248 |
 
 | source_type | count |
 | --- | ---: |
-| synthetic | 210 |
+| synthetic | 248 |
 
 | source | count |
 | --- | ---: |
-| open_reason.generation.reasoning | 210 |
+| open_reason.generation.reasoning | 248 |
 
 | task_type | count |
 | --- | ---: |
 | classification | 50 |
 | comparison | 32 |
 | information_extraction | 28 |
-| temporal_reasoning | 24 |
-| decision_analysis | 21 |
-| quantitative_reasoning | 19 |
-| planning | 16 |
-| argument_analysis | 9 |
-| constraint_satisfaction | 5 |
-| troubleshooting | 4 |
-| causal_reasoning | 2 |
+| temporal_reasoning | 28 |
+| decision_analysis | 25 |
+| quantitative_reasoning | 23 |
+| planning | 21 |
+| argument_analysis | 13 |
+| constraint_satisfaction | 12 |
+| causal_reasoning | 8 |
+| troubleshooting | 8 |
 
 | license | count |
 | --- | ---: |
-| CC-BY-4.0 | 210 |
+| CC-BY-4.0 | 248 |
 
 | language | count |
 | --- | ---: |
-| n/a | 210 |
+| n/a | 248 |
 
 
 ## Statistics (`science`)
 
-- Total examples: **203**
-- Verified: 203
-- Synthetic: 203
+- Total examples: **262**
+- Verified: 262
+- Synthetic: 262
 - Human-authored: 0
 - Source-derived: 0
 
 | domain | count |
 | --- | ---: |
-| science | 203 |
+| science | 262 |
 
 | quality | count |
 | --- | ---: |
-| S | 203 |
+| S | 262 |
 
 | difficulty | count |
 | --- | ---: |
-| beginner | 168 |
-| introductory | 25 |
+| beginner | 213 |
+| introductory | 39 |
 | intermediate | 10 |
 
 | education_level | count |
 | --- | ---: |
-| unspecified | 203 |
+| unspecified | 262 |
 
 | source_type | count |
 | --- | ---: |
-| synthetic | 203 |
+| synthetic | 262 |
 
 | source | count |
 | --- | ---: |
-| open_reason.generation.science | 203 |
+| open_reason.generation.science | 262 |
 
 | task_type | count |
 | --- | ---: |
-| calculation | 192 |
+| calculation | 240 |
+| modeling | 9 |
+| interpretation | 7 |
 | experimental_design | 6 |
-| modeling | 3 |
-| interpretation | 2 |
 
 | license | count |
 | --- | ---: |
-| CC-BY-4.0 | 203 |
+| CC-BY-4.0 | 262 |
 
 | language | count |
 | --- | ---: |
-| n/a | 203 |
+| n/a | 262 |
 
 
 ## Statistics (`mathematics`)
 
-- Total examples: **252**
-- Verified: 252
-- Synthetic: 252
+- Total examples: **334**
+- Verified: 334
+- Synthetic: 334
 - Human-authored: 0
 - Source-derived: 0
 
 | domain | count |
 | --- | ---: |
-| mathematics | 252 |
+| mathematics | 334 |
 
 | quality | count |
 | --- | ---: |
-| S | 252 |
+| S | 334 |
 
 | difficulty | count |
 | --- | ---: |
-| beginner | 170 |
-| introductory | 61 |
-| intermediate | 21 |
+| beginner | 220 |
+| introductory | 83 |
+| intermediate | 31 |
 
 | education_level | count |
 | --- | ---: |
-| unspecified | 252 |
+| unspecified | 334 |
 
 | source_type | count |
 | --- | ---: |
-| synthetic | 252 |
+| synthetic | 334 |
 
 | source | count |
 | --- | ---: |
-| open_reason.generation.mathematics | 252 |
+| open_reason.generation.mathematics | 334 |
 
 | task_type | count |
 | --- | ---: |
-| algebra | 61 |
-| number_theory | 32 |
-| discrete_mathematics | 30 |
+| algebra | 87 |
+| discrete_mathematics | 42 |
+| number_theory | 40 |
+| linear_algebra | 34 |
 | calculus | 22 |
-| linear_algebra | 20 |
+| trigonometry | 17 |
+| numerical_methods | 16 |
 | geometry | 15 |
+| sequences | 15 |
 | arithmetic | 12 |
 | probability | 11 |
 | optimization | 10 |
 | statistics | 10 |
-| trigonometry | 10 |
-| numerical_methods | 8 |
-| sequences | 8 |
 | proof | 3 |
 
 | license | count |
 | --- | ---: |
-| CC-BY-4.0 | 252 |
+| CC-BY-4.0 | 334 |
 
 | language | count |
 | --- | ---: |
-| n/a | 252 |
+| n/a | 334 |
 
 
 ## Statistics (`human`)
@@ -312,165 +324,165 @@
 
 ## Statistics (`education`)
 
-- Total examples: **185**
-- Verified: 39
-- Synthetic: 185
+- Total examples: **329**
+- Verified: 95
+- Synthetic: 329
 - Human-authored: 0
 - Source-derived: 0
 
 | domain | count |
 | --- | ---: |
-| coding | 120 |
-| mathematics | 31 |
-| science | 28 |
-| human | 6 |
+| coding | 201 |
+| mathematics | 66 |
+| science | 54 |
+| human | 8 |
 
 | quality | count |
 | --- | ---: |
-| A | 146 |
-| S | 39 |
+| A | 234 |
+| S | 95 |
 
 | difficulty | count |
 | --- | ---: |
-| beginner | 103 |
-| introductory | 77 |
-| intermediate | 5 |
+| beginner | 168 |
+| introductory | 154 |
+| intermediate | 7 |
 
 | education_level | count |
 | --- | ---: |
-| high_school | 77 |
-| introductory_college | 39 |
-| undergraduate | 36 |
-| professional | 27 |
-| k5 | 3 |
-| middle_school | 3 |
+| high_school | 142 |
+| introductory_college | 66 |
+| undergraduate | 66 |
+| professional | 43 |
+| k5 | 7 |
+| middle_school | 5 |
 
 | source_type | count |
 | --- | ---: |
-| synthetic | 185 |
+| synthetic | 329 |
 
 | source | count |
 | --- | ---: |
-| open_reason.generation.coverage_tasks | 99 |
-| open_reason.generation.education | 28 |
-| python_docs | 6 |
-| khan_academy_computing | 4 |
-| go_docs | 3 |
-| harvard_cs50 | 3 |
-| linux_man_pages | 3 |
-| mdn | 3 |
-| mit_opencourseware | 3 |
-| nasa_education | 3 |
-| noaa_education | 3 |
-| oer_commons | 3 |
-| openstax | 3 |
-| postgresql_docs | 3 |
-| rust_docs | 3 |
-| sqlite_docs | 3 |
-| the_odin_project | 3 |
-| usgs_education | 3 |
-| w3c_whatwg | 3 |
-| wikibooks | 3 |
+| open_reason.generation.coverage_tasks | 194 |
+| open_reason.generation.education | 46 |
+| python_docs | 8 |
+| khan_academy_computing | 6 |
+| go_docs | 5 |
+| harvard_cs50 | 5 |
+| linux_man_pages | 5 |
+| mdn | 5 |
+| mit_opencourseware | 5 |
+| openstax | 5 |
+| postgresql_docs | 5 |
+| rust_docs | 5 |
+| sqlite_docs | 5 |
+| the_odin_project | 5 |
+| w3c_whatwg | 5 |
+| nasa_education | 4 |
+| noaa_education | 4 |
+| oer_commons | 4 |
+| usgs_education | 4 |
+| wikibooks | 4 |
 
 | task_type | count |
 | --- | ---: |
-| concept_explanation | 65 |
-| simple_exercise | 37 |
-| applied_exercise | 34 |
-| debugging_exercise | 24 |
+| simple_exercise | 89 |
+| applied_exercise | 76 |
+| concept_explanation | 68 |
+| debugging_exercise | 64 |
 | diagnostic_misconception | 19 |
-| numerical | 2 |
+| numerical | 9 |
 | sql_generation | 2 |
 | teaching | 2 |
 
 | license | count |
 | --- | ---: |
-| CC-BY-4.0 | 185 |
+| CC-BY-4.0 | 329 |
 
 | language | count |
 | --- | ---: |
-| python | 82 |
-| n/a | 65 |
-| javascript | 10 |
-| sql | 9 |
-| c | 6 |
-| go | 5 |
-| rust | 5 |
-| html | 3 |
+| python | 133 |
+| n/a | 128 |
+| javascript | 18 |
+| sql | 17 |
+| c | 10 |
+| go | 9 |
+| rust | 9 |
+| html | 5 |
 
 
 ## Statistics (`core`)
 
-- Total examples: **1356**
-- Verified: 1176
-- Synthetic: 1328
+- Total examples: **1755**
+- Verified: 1479
+- Synthetic: 1727
 - Human-authored: 28
 - Source-derived: 0
 
 | domain | count |
 | --- | ---: |
-| coding | 358 |
-| mathematics | 283 |
-| human | 274 |
-| science | 231 |
-| reasoning | 210 |
+| coding | 515 |
+| mathematics | 400 |
+| science | 316 |
+| human | 276 |
+| reasoning | 248 |
 
 | quality | count |
 | --- | ---: |
-| S | 1176 |
-| A | 180 |
+| S | 1479 |
+| A | 276 |
 
 | difficulty | count |
 | --- | ---: |
-| beginner | 849 |
-| intermediate | 284 |
-| introductory | 172 |
-| advanced | 35 |
-| expert | 16 |
+| beginner | 1062 |
+| intermediate | 316 |
+| introductory | 300 |
+| advanced | 60 |
+| expert | 17 |
 
 | education_level | count |
 | --- | ---: |
-| unspecified | 1165 |
-| high_school | 77 |
-| undergraduate | 42 |
-| introductory_college | 39 |
-| professional | 27 |
-| k5 | 3 |
-| middle_school | 3 |
+| unspecified | 1412 |
+| high_school | 142 |
+| undergraduate | 80 |
+| introductory_college | 66 |
+| professional | 43 |
+| k5 | 7 |
+| middle_school | 5 |
 
 | source_type | count |
 | --- | ---: |
-| synthetic | 1328 |
+| synthetic | 1727 |
 | human_authored | 28 |
 
 | source | count |
 | --- | ---: |
-| open_reason.generation.mathematics | 252 |
+| open_reason.generation.mathematics | 334 |
+| open_reason.generation.coding | 300 |
+| open_reason.generation.science | 262 |
+| open_reason.generation.reasoning | 248 |
 | open_reason.generation.human | 240 |
-| open_reason.generation.coding | 232 |
-| open_reason.generation.reasoning | 210 |
-| open_reason.generation.science | 203 |
-| open_reason.generation.coverage_tasks | 99 |
-| open_reason.generation.education | 28 |
-| open_reason.generation.coding_languages | 6 |
-| python_docs | 6 |
-| khan_academy_computing | 4 |
-| go_docs | 3 |
-| harvard_cs50 | 3 |
-| linux_man_pages | 3 |
-| mdn | 3 |
-| mit_opencourseware | 3 |
-| nasa_education | 3 |
-| noaa_education | 3 |
-| oer_commons | 3 |
-| openstax | 3 |
-| postgresql_docs | 3 |
-| rust_docs | 3 |
-| sqlite_docs | 3 |
-| the_odin_project | 3 |
-| usgs_education | 3 |
-| w3c_whatwg | 3 |
-| wikibooks | 3 |
+| open_reason.generation.coverage_tasks | 194 |
+| open_reason.generation.education | 46 |
+| open_reason.generation.coding_languages | 14 |
+| python_docs | 8 |
+| khan_academy_computing | 6 |
+| go_docs | 5 |
+| harvard_cs50 | 5 |
+| linux_man_pages | 5 |
+| mdn | 5 |
+| mit_opencourseware | 5 |
+| openstax | 5 |
+| postgresql_docs | 5 |
+| rust_docs | 5 |
+| sqlite_docs | 5 |
+| the_odin_project | 5 |
+| w3c_whatwg | 5 |
+| nasa_education | 4 |
+| noaa_education | 4 |
+| oer_commons | 4 |
+| usgs_education | 4 |
+| wikibooks | 4 |
 | explain-backpressure | 1 |
 | explain-cap | 1 |
 | explain-floating-sum | 1 |
@@ -502,249 +514,268 @@
 
 | task_type | count |
 | --- | ---: |
-| calculation | 192 |
-| code_generation | 166 |
-| planning | 96 |
-| constraint_satisfaction | 85 |
+| calculation | 240 |
+| code_generation | 188 |
+| planning | 101 |
+| constraint_satisfaction | 92 |
+| simple_exercise | 89 |
+| algebra | 87 |
+| applied_exercise | 80 |
 | structured_reasoning | 80 |
-| concept_explanation | 68 |
-| algebra | 61 |
+| debugging | 79 |
+| concept_explanation | 74 |
+| debugging_exercise | 68 |
 | classification | 50 |
-| debugging | 50 |
-| simple_exercise | 37 |
-| applied_exercise | 36 |
+| discrete_mathematics | 42 |
+| number_theory | 40 |
+| linear_algebra | 34 |
 | comparison | 32 |
-| number_theory | 32 |
-| discrete_mathematics | 30 |
 | information_extraction | 28 |
-| debugging_exercise | 25 |
-| temporal_reasoning | 24 |
+| temporal_reasoning | 28 |
+| decision_analysis | 25 |
+| sql | 24 |
+| quantitative_reasoning | 23 |
 | calculus | 22 |
-| decision_analysis | 21 |
-| linear_algebra | 20 |
 | diagnostic_misconception | 19 |
-| quantitative_reasoning | 19 |
 | teaching | 18 |
-| sql | 16 |
+| trigonometry | 17 |
+| numerical_methods | 16 |
 | geometry | 15 |
+| sequences | 15 |
+| argument_analysis | 13 |
 | arithmetic | 12 |
 | probability | 11 |
 | optimization | 10 |
 | statistics | 10 |
-| trigonometry | 10 |
-| argument_analysis | 9 |
+| modeling | 9 |
+| numerical | 9 |
+| causal_reasoning | 8 |
 | explanation | 8 |
-| numerical_methods | 8 |
-| sequences | 8 |
+| troubleshooting | 8 |
+| interpretation | 7 |
 | experimental_design | 6 |
-| troubleshooting | 4 |
-| modeling | 3 |
+| algorithm_design | 5 |
 | proof | 3 |
-| causal_reasoning | 2 |
-| interpretation | 2 |
-| numerical | 2 |
 | qualitative_reasoning | 2 |
 | research_synthesis | 2 |
 | sql_generation | 2 |
+| code_completion | 1 |
+| performance_analysis | 1 |
+| refactoring | 1 |
+| test_generation | 1 |
 
 | license | count |
 | --- | ---: |
-| CC-BY-4.0 | 1356 |
+| CC-BY-4.0 | 1755 |
 
 | language | count |
 | --- | ---: |
-| n/a | 998 |
-| python | 290 |
-| sql | 26 |
-| javascript | 19 |
-| c | 7 |
-| go | 6 |
-| rust | 6 |
-| html | 3 |
-| typescript | 1 |
+| n/a | 1240 |
+| python | 395 |
+| sql | 43 |
+| javascript | 33 |
+| c | 11 |
+| go | 10 |
+| rust | 10 |
+| html | 5 |
+| typescript | 2 |
+| cpp | 1 |
+| csharp | 1 |
+| haskell | 1 |
+| java | 1 |
+| kotlin | 1 |
+| shell | 1 |
 
 
 ## Statistics (`verified`)
 
-- Total examples: **1176**
-- Verified: 1176
-- Synthetic: 1176
+- Total examples: **1479**
+- Verified: 1479
+- Synthetic: 1479
 - Human-authored: 0
 - Source-derived: 0
 
 | domain | count |
 | --- | ---: |
-| mathematics | 271 |
-| coding | 240 |
+| mathematics | 380 |
+| coding | 316 |
+| science | 295 |
+| reasoning | 248 |
 | human | 240 |
-| science | 215 |
-| reasoning | 210 |
 
 | quality | count |
 | --- | ---: |
-| S | 1176 |
+| S | 1479 |
 
 | difficulty | count |
 | --- | ---: |
-| beginner | 753 |
-| intermediate | 274 |
-| introductory | 98 |
-| advanced | 35 |
-| expert | 16 |
+| beginner | 929 |
+| intermediate | 303 |
+| introductory | 170 |
+| advanced | 60 |
+| expert | 17 |
 
 | education_level | count |
 | --- | ---: |
-| unspecified | 1137 |
-| high_school | 30 |
-| undergraduate | 5 |
-| introductory_college | 2 |
-| k5 | 1 |
-| professional | 1 |
+| unspecified | 1384 |
+| high_school | 73 |
+| undergraduate | 11 |
+| k5 | 5 |
+| introductory_college | 4 |
+| professional | 2 |
 
 | source_type | count |
 | --- | ---: |
-| synthetic | 1176 |
+| synthetic | 1479 |
 
 | source | count |
 | --- | ---: |
-| open_reason.generation.mathematics | 252 |
+| open_reason.generation.mathematics | 334 |
+| open_reason.generation.coding | 300 |
+| open_reason.generation.science | 262 |
+| open_reason.generation.reasoning | 248 |
 | open_reason.generation.human | 240 |
-| open_reason.generation.coding | 232 |
-| open_reason.generation.reasoning | 210 |
-| open_reason.generation.science | 203 |
-| open_reason.generation.coverage_tasks | 26 |
-| open_reason.generation.education | 4 |
-| openstax | 3 |
-| nasa_education | 2 |
-| khan_academy_computing | 1 |
-| noaa_education | 1 |
+| open_reason.generation.coverage_tasks | 55 |
+| open_reason.generation.education | 22 |
+| openstax | 5 |
+| khan_academy_computing | 3 |
+| nasa_education | 3 |
+| noaa_education | 2 |
+| usgs_education | 2 |
+| mit_opencourseware | 1 |
+| python_docs | 1 |
 | sqlite_docs | 1 |
-| usgs_education | 1 |
 
 | task_type | count |
 | --- | ---: |
-| calculation | 192 |
-| code_generation | 166 |
-| planning | 96 |
-| constraint_satisfaction | 85 |
+| calculation | 240 |
+| code_generation | 188 |
+| planning | 101 |
+| constraint_satisfaction | 92 |
+| algebra | 87 |
 | structured_reasoning | 80 |
-| algebra | 61 |
+| debugging | 79 |
+| simple_exercise | 55 |
 | classification | 50 |
-| debugging | 50 |
+| discrete_mathematics | 42 |
+| number_theory | 40 |
+| linear_algebra | 34 |
 | comparison | 32 |
-| number_theory | 32 |
-| simple_exercise | 31 |
-| discrete_mathematics | 30 |
 | information_extraction | 28 |
-| temporal_reasoning | 24 |
+| temporal_reasoning | 28 |
+| decision_analysis | 25 |
+| sql | 24 |
+| quantitative_reasoning | 23 |
 | calculus | 22 |
-| decision_analysis | 21 |
-| linear_algebra | 20 |
-| quantitative_reasoning | 19 |
-| sql | 16 |
+| applied_exercise | 20 |
+| trigonometry | 17 |
+| numerical_methods | 16 |
 | geometry | 15 |
+| sequences | 15 |
+| argument_analysis | 13 |
 | arithmetic | 12 |
 | probability | 11 |
+| debugging_exercise | 10 |
 | optimization | 10 |
 | statistics | 10 |
-| trigonometry | 10 |
-| argument_analysis | 9 |
-| numerical_methods | 8 |
-| sequences | 8 |
+| modeling | 9 |
+| numerical | 9 |
+| causal_reasoning | 8 |
+| troubleshooting | 8 |
+| interpretation | 7 |
 | experimental_design | 6 |
-| applied_exercise | 5 |
-| troubleshooting | 4 |
-| modeling | 3 |
+| algorithm_design | 5 |
 | proof | 3 |
-| causal_reasoning | 2 |
-| interpretation | 2 |
-| numerical | 2 |
+| code_completion | 1 |
 | concept_explanation | 1 |
+| performance_analysis | 1 |
+| refactoring | 1 |
+| test_generation | 1 |
 
 | license | count |
 | --- | ---: |
-| CC-BY-4.0 | 1176 |
+| CC-BY-4.0 | 1479 |
 
 | language | count |
 | --- | ---: |
-| n/a | 936 |
-| python | 215 |
-| sql | 17 |
-| javascript | 8 |
+| n/a | 1163 |
+| python | 277 |
+| sql | 25 |
+| javascript | 14 |
 
 
 ## Statistics (`all`)
 
-- Total examples: **1356**
-- Verified: 1176
-- Synthetic: 1328
+- Total examples: **1755**
+- Verified: 1479
+- Synthetic: 1727
 - Human-authored: 28
 - Source-derived: 0
 
 | domain | count |
 | --- | ---: |
-| coding | 358 |
-| mathematics | 283 |
-| human | 274 |
-| science | 231 |
-| reasoning | 210 |
+| coding | 515 |
+| mathematics | 400 |
+| science | 316 |
+| human | 276 |
+| reasoning | 248 |
 
 | quality | count |
 | --- | ---: |
-| S | 1176 |
-| A | 180 |
+| S | 1479 |
+| A | 276 |
 
 | difficulty | count |
 | --- | ---: |
-| beginner | 849 |
-| intermediate | 284 |
-| introductory | 172 |
-| advanced | 35 |
-| expert | 16 |
+| beginner | 1062 |
+| intermediate | 316 |
+| introductory | 300 |
+| advanced | 60 |
+| expert | 17 |
 
 | education_level | count |
 | --- | ---: |
-| unspecified | 1165 |
-| high_school | 77 |
-| undergraduate | 42 |
-| introductory_college | 39 |
-| professional | 27 |
-| k5 | 3 |
-| middle_school | 3 |
+| unspecified | 1412 |
+| high_school | 142 |
+| undergraduate | 80 |
+| introductory_college | 66 |
+| professional | 43 |
+| k5 | 7 |
+| middle_school | 5 |
 
 | source_type | count |
 | --- | ---: |
-| synthetic | 1328 |
+| synthetic | 1727 |
 | human_authored | 28 |
 
 | source | count |
 | --- | ---: |
-| open_reason.generation.mathematics | 252 |
+| open_reason.generation.mathematics | 334 |
+| open_reason.generation.coding | 300 |
+| open_reason.generation.science | 262 |
+| open_reason.generation.reasoning | 248 |
 | open_reason.generation.human | 240 |
-| open_reason.generation.coding | 232 |
-| open_reason.generation.reasoning | 210 |
-| open_reason.generation.science | 203 |
-| open_reason.generation.coverage_tasks | 99 |
-| open_reason.generation.education | 28 |
-| open_reason.generation.coding_languages | 6 |
-| python_docs | 6 |
-| khan_academy_computing | 4 |
-| go_docs | 3 |
-| harvard_cs50 | 3 |
-| linux_man_pages | 3 |
-| mdn | 3 |
-| mit_opencourseware | 3 |
-| nasa_education | 3 |
-| noaa_education | 3 |
-| oer_commons | 3 |
-| openstax | 3 |
-| postgresql_docs | 3 |
-| rust_docs | 3 |
-| sqlite_docs | 3 |
-| the_odin_project | 3 |
-| usgs_education | 3 |
-| w3c_whatwg | 3 |
-| wikibooks | 3 |
+| open_reason.generation.coverage_tasks | 194 |
+| open_reason.generation.education | 46 |
+| open_reason.generation.coding_languages | 14 |
+| python_docs | 8 |
+| khan_academy_computing | 6 |
+| go_docs | 5 |
+| harvard_cs50 | 5 |
+| linux_man_pages | 5 |
+| mdn | 5 |
+| mit_opencourseware | 5 |
+| openstax | 5 |
+| postgresql_docs | 5 |
+| rust_docs | 5 |
+| sqlite_docs | 5 |
+| the_odin_project | 5 |
+| w3c_whatwg | 5 |
+| nasa_education | 4 |
+| noaa_education | 4 |
+| oer_commons | 4 |
+| usgs_education | 4 |
+| wikibooks | 4 |
 | explain-backpressure | 1 |
 | explain-cap | 1 |
 | explain-floating-sum | 1 |
@@ -776,63 +807,74 @@
 
 | task_type | count |
 | --- | ---: |
-| calculation | 192 |
-| code_generation | 166 |
-| planning | 96 |
-| constraint_satisfaction | 85 |
+| calculation | 240 |
+| code_generation | 188 |
+| planning | 101 |
+| constraint_satisfaction | 92 |
+| simple_exercise | 89 |
+| algebra | 87 |
+| applied_exercise | 80 |
 | structured_reasoning | 80 |
-| concept_explanation | 68 |
-| algebra | 61 |
+| debugging | 79 |
+| concept_explanation | 74 |
+| debugging_exercise | 68 |
 | classification | 50 |
-| debugging | 50 |
-| simple_exercise | 37 |
-| applied_exercise | 36 |
+| discrete_mathematics | 42 |
+| number_theory | 40 |
+| linear_algebra | 34 |
 | comparison | 32 |
-| number_theory | 32 |
-| discrete_mathematics | 30 |
 | information_extraction | 28 |
-| debugging_exercise | 25 |
-| temporal_reasoning | 24 |
+| temporal_reasoning | 28 |
+| decision_analysis | 25 |
+| sql | 24 |
+| quantitative_reasoning | 23 |
 | calculus | 22 |
-| decision_analysis | 21 |
-| linear_algebra | 20 |
 | diagnostic_misconception | 19 |
-| quantitative_reasoning | 19 |
 | teaching | 18 |
-| sql | 16 |
+| trigonometry | 17 |
+| numerical_methods | 16 |
 | geometry | 15 |
+| sequences | 15 |
+| argument_analysis | 13 |
 | arithmetic | 12 |
 | probability | 11 |
 | optimization | 10 |
 | statistics | 10 |
-| trigonometry | 10 |
-| argument_analysis | 9 |
+| modeling | 9 |
+| numerical | 9 |
+| causal_reasoning | 8 |
 | explanation | 8 |
-| numerical_methods | 8 |
-| sequences | 8 |
+| troubleshooting | 8 |
+| interpretation | 7 |
 | experimental_design | 6 |
-| troubleshooting | 4 |
-| modeling | 3 |
+| algorithm_design | 5 |
 | proof | 3 |
-| causal_reasoning | 2 |
-| interpretation | 2 |
-| numerical | 2 |
 | qualitative_reasoning | 2 |
 | research_synthesis | 2 |
 | sql_generation | 2 |
+| code_completion | 1 |
+| performance_analysis | 1 |
+| refactoring | 1 |
+| test_generation | 1 |
 
 | license | count |
 | --- | ---: |
-| CC-BY-4.0 | 1356 |
+| CC-BY-4.0 | 1755 |
 
 | language | count |
 | --- | ---: |
-| n/a | 998 |
-| python | 290 |
-| sql | 26 |
-| javascript | 19 |
-| c | 7 |
-| go | 6 |
-| rust | 6 |
-| html | 3 |
-| typescript | 1 |
+| n/a | 1240 |
+| python | 395 |
+| sql | 43 |
+| javascript | 33 |
+| c | 11 |
+| go | 10 |
+| rust | 10 |
+| html | 5 |
+| typescript | 2 |
+| cpp | 1 |
+| csharp | 1 |
+| haskell | 1 |
+| java | 1 |
+| kotlin | 1 |
+| shell | 1 |

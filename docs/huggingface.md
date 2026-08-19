@@ -71,6 +71,10 @@ upload anything by itself.
 Until you are ready to publish: do not run this workflow, do not
 `huggingface-cli upload`, and do not tag a release solely to trigger Hub sync.
 
+v1.0.1 parquet and the dataset card were published from a logged-in `hf` CLI
+session to https://huggingface.co/datasets/theworker02/open-reason . GitHub
+remains the engineering source of truth.
+
 ## Load
 
 ```python

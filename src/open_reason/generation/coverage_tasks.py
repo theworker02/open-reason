@@ -9,6 +9,7 @@ from __future__ import annotations
 from open_reason.constants import PIPELINE_VERSION
 from open_reason.generation.base import build_example, reviewed_quality, verified_quality
 from open_reason.generation.coverage_v1 import COVERAGE_SPECS_V1
+from open_reason.generation.coverage_v101 import COVERAGE_SPECS_V101
 from open_reason.models import Domain, EducationLevel, Evidence, Example
 from open_reason.provenance import synthetic_provenance
 from open_reason.verification import verify_math_answer, verify_numeric
@@ -487,3 +488,4 @@ COVERAGE_SPECS: list[dict] = [
 ]
 
 COVERAGE_SPECS.extend(COVERAGE_SPECS_V1)
+COVERAGE_SPECS.extend(COVERAGE_SPECS_V101)

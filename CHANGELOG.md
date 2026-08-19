@@ -1,5 +1,30 @@
 # Changelog
 
+## v1.0.1 — 2026-08-18
+
+Coverage expansion: more original verified tasks across coding languages, CS
+topics, math branches, science, reasoning, and checkable education items.
+Teaching/explanation rows remain unverified without a numeric/sympy/sandbox
+check. Third-party course sites are still not scraped.
+
+### Dataset
+
+- New Python sandbox tracks (graphs, DP, sorting, hashing, systems) plus
+  error-diagnosis items with failing baselines
+- Additional SQLite and JavaScript executable tasks
+- Language-concept tasks for Java, C++, Kotlin, Haskell, shell, C# (not marked
+  verified without a sandbox)
+- New math families (complex modulus, binomial, modular inverse, composition)
+  and science families (pendulum, gravity, molarity, Snell, interpretation)
+- Distinct causal/planning/matching reasoning scenarios (not paraphrases)
+- Coverage and curriculum banks grew with multiple task types per concept
+
+### Policy (unchanged)
+
+- Reddit forbidden; no KA/OCW/CS50/OpenStax/MDN/SO scrapes
+- NC/SA never relicensed into CC BY 4.0 copies
+- Hugging Face remains distribution; GitHub remains source of truth
+
 ## v1.0.0 — 2026-08-18
 
 First 1.0 line: complete catalogs in every previously README-only section,

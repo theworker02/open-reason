@@ -50,7 +50,9 @@ def dataset_yaml_frontmatter(stats_by_config: dict[str, dict[str, Any]]) -> str:
         configs.append(
             {
                 "config_name": name,
-                "data_files": {"train": f"data/release/{name}.parquet"},
+                "data_files": [
+                    {"split": "train", "path": f"data/release/{name}.parquet"}
+                ],
             }
         )
     payload = {
@@ -59,7 +61,6 @@ def dataset_yaml_frontmatter(stats_by_config: dict[str, dict[str, Any]]) -> str:
         "task_categories": [
             "text-generation",
             "question-answering",
-            "text2text-generation",
         ],
         "language": ["en"],
         "tags": [

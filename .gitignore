@@ -36,6 +36,10 @@ data/release/*.jsonl
 distribution/dataset/data/release/*.parquet
 distribution/dataset/data/release/*.jsonl
 
+# Training work (keep labeled smoke metrics only)
+training/work/**
+!training/work/smoke_metrics.json
+
 # OS / editors
 .DS_Store
 Thumbs.db

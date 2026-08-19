@@ -487,4 +487,7 @@ def generate_reasoning(seed: int = 42) -> list[Example]:
     from open_reason.generation.reasoning_v1 import extra_reasoning
 
     examples.extend(extra_reasoning(rng))
+    from open_reason.generation.reasoning_v101 import extra_reasoning_v101
+
+    examples.extend(extra_reasoning_v101(rng))
     return examples

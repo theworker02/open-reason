@@ -1,8 +1,7 @@
 # Architecture
 
-Open Reason is a **dataset infrastructure** project. The v1.0.0 release fills
-previously README-only trees (source catalogs, evaluation, training scripts)
-and expands original task banks on top of the v0.4 policy engine.
+Open Reason is a **dataset infrastructure** project. The v1.0.1 release grows
+original, independently checked coverage without scraping third-party courses.
 
 ## Design principles
 

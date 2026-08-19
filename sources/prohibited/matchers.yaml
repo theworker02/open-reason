@@ -1,4 +1,4 @@
-pipeline_version: 1.0.0
+pipeline_version: 1.0.1
 matchers:
   reddit:
     hosts:

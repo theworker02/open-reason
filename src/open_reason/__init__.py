@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-__version__ = "1.0.0"
-__pipeline_version__ = "1.0.0"
+__version__ = "1.0.1"
+__pipeline_version__ = "1.0.1"
 
 from open_reason.models import Example, Provenance, Quality, Verification
 

@@ -611,3 +611,320 @@ console.log('OPEN_REASON_RESULT ' + JSON.stringify({ passed: true, tests_run: 1,
 """,
     },
 ]
+
+
+SQL_TASKS.extend(
+    [
+        {
+            "slug": "null_safe_coalesce",
+            "topic": "sql",
+            "prompt": (
+                "items(id, qty) where qty may be NULL. Return id and qty with NULL qty "
+                "shown as 0, ordered by id."
+            ),
+            "schema": """
+CREATE TABLE items (id INTEGER, qty INTEGER);
+INSERT INTO items VALUES (1, 4), (2, NULL), (3, 0);
+""",
+            "query": """
+SELECT id, COALESCE(qty, 0) AS qty
+FROM items
+ORDER BY id;
+""",
+            "expected": [(1, 4), (2, 0), (3, 0)],
+        },
+        {
+            "slug": "self_join_mgr",
+            "topic": "sql",
+            "prompt": (
+                "emp(id, name, mgr_id). Return employee name and manager name for employees "
+                "who have a manager, ordered by employee name."
+            ),
+            "schema": """
+CREATE TABLE emp (id INTEGER, name TEXT, mgr_id INTEGER);
+INSERT INTO emp VALUES (1, 'Ann', NULL), (2, 'Bea', 1), (3, 'Cal', 1);
+""",
+            "query": """
+SELECT e.name, m.name
+FROM emp AS e
+JOIN emp AS m ON m.id = e.mgr_id
+ORDER BY e.name;
+""",
+            "expected": [("Bea", "Ann"), ("Cal", "Ann")],
+        },
+        {
+            "slug": "distinct_count",
+            "topic": "sql",
+            "prompt": (
+                "visits(user_id). Return the number of distinct user_id values."
+            ),
+            "schema": """
+CREATE TABLE visits (user_id INTEGER);
+INSERT INTO visits VALUES (1), (1), (2), (3), (3);
+""",
+            "query": """
+SELECT COUNT(DISTINCT user_id) AS n FROM visits;
+""",
+            "expected": [(3,)],
+        },
+        {
+            "slug": "case_bucket",
+            "topic": "sql",
+            "prompt": (
+                "scores(id, pts). Return id and a band: 'low' if pts < 50, 'mid' if pts < 80, "
+                "else 'high', ordered by id."
+            ),
+            "schema": """
+CREATE TABLE scores (id INTEGER, pts INTEGER);
+INSERT INTO scores VALUES (1, 40), (2, 50), (3, 90);
+""",
+            "query": """
+SELECT id,
+       CASE
+         WHEN pts < 50 THEN 'low'
+         WHEN pts < 80 THEN 'mid'
+         ELSE 'high'
+       END AS band
+FROM scores
+ORDER BY id;
+""",
+            "expected": [(1, "low"), (2, "mid"), (3, "high")],
+        },
+        {
+            "slug": "except_like_not_in",
+            "topic": "sql",
+            "prompt": (
+                "wanted(id), have(id). Return wanted ids that are not in have, ordered by id."
+            ),
+            "schema": """
+CREATE TABLE wanted (id INTEGER);
+CREATE TABLE have (id INTEGER);
+INSERT INTO wanted VALUES (1), (2), (3);
+INSERT INTO have VALUES (2);
+""",
+            "query": """
+SELECT id FROM wanted
+WHERE id NOT IN (SELECT id FROM have)
+ORDER BY id;
+""",
+            "expected": [(1,), (3,)],
+        },
+        {
+            "slug": "avg_group",
+            "topic": "sql",
+            "prompt": (
+                "grades(course, score). Return course and average score as a real, ordered by course."
+            ),
+            "schema": """
+CREATE TABLE grades (course TEXT, score INTEGER);
+INSERT INTO grades VALUES ('a', 10), ('a', 20), ('b', 5);
+""",
+            "query": """
+SELECT course, AVG(score) AS avg_score
+FROM grades
+GROUP BY course
+ORDER BY course;
+""",
+            "expected": [("a", 15.0), ("b", 5.0)],
+        },
+        {
+            "slug": "limit_offset",
+            "topic": "sql",
+            "prompt": (
+                "nums(n) sorted ascending. Return the second and third smallest n using LIMIT/OFFSET."
+            ),
+            "schema": """
+CREATE TABLE nums (n INTEGER);
+INSERT INTO nums VALUES (9), (1), (4), (2);
+""",
+            "query": """
+SELECT n FROM nums
+ORDER BY n
+LIMIT 2 OFFSET 1;
+""",
+            "expected": [(2,), (4,)],
+        },
+        {
+            "slug": "having_avg",
+            "topic": "sql",
+            "prompt": (
+                "sales(region, amount). Return regions whose average amount is at least 10, "
+                "ordered by region."
+            ),
+            "schema": """
+CREATE TABLE sales (region TEXT, amount INTEGER);
+INSERT INTO sales VALUES ('east', 8), ('east', 12), ('west', 4), ('west', 5), ('north', 20);
+""",
+            "query": """
+SELECT region
+FROM sales
+GROUP BY region
+HAVING AVG(amount) >= 10
+ORDER BY region;
+""",
+            "expected": [("east",), ("north",)],
+        },
+    ]
+)
+
+JS_TASKS.extend(
+    [
+        {
+            "slug": "unique_stable",
+            "topic": "javascript",
+            "prompt": (
+                "Implement uniqueStable(xs) returning first-seen unique values of array xs "
+                "using SameValueZero (Object.is except -0/+0)."
+            ),
+            "code": """
+function uniqueStable(xs) {
+  const out = [];
+  const seen = new Set();
+  for (const x of xs) {
+    if (seen.has(x)) continue;
+    seen.add(x);
+    out.push(x);
+  }
+  return out;
+}
+module.exports = { uniqueStable };
+""",
+            "tests": """
+const assert = require('assert');
+const { uniqueStable } = require('./solution');
+assert.deepStrictEqual(uniqueStable([1, 1, 2, 1, 3]), [1, 2, 3]);
+assert.deepStrictEqual(uniqueStable([]), []);
+console.log('OPEN_REASON_RESULT ' + JSON.stringify({ passed: true, tests_run: 2, failures: 0, errors: 0 }));
+""",
+        },
+        {
+            "slug": "deep_get",
+            "topic": "javascript",
+            "prompt": (
+                "Implement deepGet(obj, path) where path is 'a.b.c'. Missing keys return undefined. "
+                "Only plain objects; do not walk arrays as objects beyond numeric keys if present."
+            ),
+            "code": """
+function deepGet(obj, path) {
+  if (!path) return obj;
+  const parts = path.split('.');
+  let cur = obj;
+  for (const p of parts) {
+    if (cur == null || typeof cur !== 'object') return undefined;
+    cur = cur[p];
+  }
+  return cur;
+}
+module.exports = { deepGet };
+""",
+            "tests": """
+const assert = require('assert');
+const { deepGet } = require('./solution');
+assert.strictEqual(deepGet({ a: { b: 2 } }, 'a.b'), 2);
+assert.strictEqual(deepGet({ a: {} }, 'a.b'), undefined);
+console.log('OPEN_REASON_RESULT ' + JSON.stringify({ passed: true, tests_run: 2, failures: 0, errors: 0 }));
+""",
+        },
+        {
+            "slug": "chunk_array",
+            "topic": "javascript",
+            "prompt": "Implement chunk(xs, n) splitting array xs into arrays of length n (last may be shorter).",
+            "code": """
+function chunk(xs, n) {
+  if (n < 1) return [];
+  const out = [];
+  for (let i = 0; i < xs.length; i += n) out.push(xs.slice(i, i + n));
+  return out;
+}
+module.exports = { chunk };
+""",
+            "tests": """
+const assert = require('assert');
+const { chunk } = require('./solution');
+assert.deepStrictEqual(chunk([1, 2, 3, 4, 5], 2), [[1, 2], [3, 4], [5]]);
+assert.deepStrictEqual(chunk([], 3), []);
+console.log('OPEN_REASON_RESULT ' + JSON.stringify({ passed: true, tests_run: 2, failures: 0, errors: 0 }));
+""",
+        },
+        {
+            "slug": "once_fn",
+            "topic": "javascript",
+            "prompt": "Implement once(fn) that calls fn at most once and returns the first result thereafter.",
+            "code": """
+function once(fn) {
+  let called = false;
+  let value;
+  return function (...args) {
+    if (!called) {
+      value = fn.apply(this, args);
+      called = true;
+    }
+    return value;
+  };
+}
+module.exports = { once };
+""",
+            "tests": """
+const assert = require('assert');
+const { once } = require('./solution');
+let n = 0;
+const f = once(() => { n += 1; return n; });
+assert.strictEqual(f(), 1);
+assert.strictEqual(f(), 1);
+assert.strictEqual(n, 1);
+console.log('OPEN_REASON_RESULT ' + JSON.stringify({ passed: true, tests_run: 1, failures: 0, errors: 0 }));
+""",
+        },
+        {
+            "slug": "query_parse",
+            "topic": "javascript",
+            "prompt": (
+                "Implement parseQuery('a=1&b=2') returning {a:'1', b:'2'}. No decoding beyond "
+                "split on & and first =. Empty string is {}."
+            ),
+            "code": """
+function parseQuery(q) {
+  if (!q) return {};
+  const out = {};
+  for (const part of q.split('&')) {
+    if (!part) continue;
+    const i = part.indexOf('=');
+    if (i < 0) out[part] = '';
+    else out[part.slice(0, i)] = part.slice(i + 1);
+  }
+  return out;
+}
+module.exports = { parseQuery };
+""",
+            "tests": """
+const assert = require('assert');
+const { parseQuery } = require('./solution');
+assert.deepStrictEqual(parseQuery('a=1&b=2'), { a: '1', b: '2' });
+assert.deepStrictEqual(parseQuery(''), {});
+console.log('OPEN_REASON_RESULT ' + JSON.stringify({ passed: true, tests_run: 2, failures: 0, errors: 0 }));
+""",
+        },
+        {
+            "slug": "range_inclusive",
+            "topic": "javascript",
+            "prompt": "Implement range(a,b) returning [a, a+1, ..., b] inclusive if a<=b else [].",
+            "code": """
+function range(a, b) {
+  if (a > b) return [];
+  const out = [];
+  for (let i = a; i <= b; i += 1) out.push(i);
+  return out;
+}
+module.exports = { range };
+""",
+            "tests": """
+const assert = require('assert');
+const { range } = require('./solution');
+assert.deepStrictEqual(range(2, 4), [2, 3, 4]);
+assert.deepStrictEqual(range(5, 4), []);
+console.log('OPEN_REASON_RESULT ' + JSON.stringify({ passed: true, tests_run: 2, failures: 0, errors: 0 }));
+""",
+        },
+    ]
+)
+

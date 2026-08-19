@@ -1,0 +1,13 @@
+{
+  "smoke": true,
+  "cuda": false,
+  "steps": 3,
+  "rows": 8,
+  "losses": [
+    4.23928165435791,
+    4.0728960037231445,
+    4.457948684692383
+  ],
+  "note": "Toy embedding run to prove the trainer. Not open-reason-1b.",
+  "base_model_not_loaded": "none"
+}

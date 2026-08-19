@@ -19,6 +19,10 @@ open-reason evaluate-model --model training/work/model --data data/release/verif
 `--smoke` runs a tiny CPU embedding loop (a few steps) so the trainer is real.
 It is **not** TinyLlama and must not be uploaded as `open-reason-1b`.
 
+This developer environment (2026-08-18) had `torch 2.12.0+cpu` and
+`cuda=false` (~61 GB RAM). A real 1.1B LoRA SFT needs CUDA torch and a GPU
+(about 8 GB+ VRAM). Command: `open-reason train --config training/configs/open-reason-1b.yaml --data data/release/all.jsonl` after `prepare_sft.py`.
+
 ```bash
 python training/scripts/prepare_sft.py data/release/all.jsonl training/work/sft.jsonl
 open-reason train --smoke --config training/configs/smoke.yaml --data data/release/all.jsonl

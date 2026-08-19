@@ -4,7 +4,6 @@ license: cc-by-4.0
 task_categories:
   - text-generation
   - question-answering
-  - text2text-generation
 language:
   - en
 tags:
@@ -20,31 +19,40 @@ size_categories:
 configs:
   - config_name: coding
     data_files:
-      train: data/release/coding.parquet
+      - split: train
+        path: data/release/coding.parquet
   - config_name: reasoning
     data_files:
-      train: data/release/reasoning.parquet
+      - split: train
+        path: data/release/reasoning.parquet
   - config_name: science
     data_files:
-      train: data/release/science.parquet
+      - split: train
+        path: data/release/science.parquet
   - config_name: mathematics
     data_files:
-      train: data/release/mathematics.parquet
+      - split: train
+        path: data/release/mathematics.parquet
   - config_name: human
     data_files:
-      train: data/release/human.parquet
+      - split: train
+        path: data/release/human.parquet
   - config_name: education
     data_files:
-      train: data/release/education.parquet
+      - split: train
+        path: data/release/education.parquet
   - config_name: core
     data_files:
-      train: data/release/core.parquet
+      - split: train
+        path: data/release/core.parquet
   - config_name: verified
     data_files:
-      train: data/release/verified.parquet
+      - split: train
+        path: data/release/verified.parquet
   - config_name: all
     data_files:
-      train: data/release/all.parquet
+      - split: train
+        path: data/release/all.parquet
 ---
 
 # Dataset Card for Open Reason
@@ -66,11 +74,11 @@ Open Reason is a provenance-aware corpus plus a reproducible pipeline. It is int
 
 ## Languages
 
-Prompts and solutions are English. Verified coding languages in v1.0.0: Python, SQL, JavaScript (when the sandbox can run them). Other languages appear as original concept tasks and are not marked verified.
+Prompts and solutions are English. Verified coding languages in v1.0.1: Python, SQL, JavaScript (when the sandbox can run them). Other languages appear as original concept tasks and are not marked verified.
 
 ## Source information
 
-| Kind | How to recognize | v1.0.0 |
+| Kind | How to recognize | v1.0.1 |
 | --- | --- | --- |
 | Human-authored | `provenance.source_type = human_authored` | Teaching, synthesis, qualitative items |
 | Synthetic | `provenance.source_type = synthetic` plus `generator` | Math, science, most reasoning/coding, curriculum |
@@ -110,7 +118,7 @@ Research on reasoning and code models; filtering by domain, language, tier, and 
 
 ## Limitations
 
-Small v1.0.0 foundation; English-centric; verified coding languages limited; teaching items are not executable oracles; third-party educational sites are registered but not scraped; denylists cannot be complete.
+Small v1.0.1 corpus; still English-centric; verified coding languages limited to sandbox runtimes; teaching items are not executable oracles unless a numeric/sympy/sandbox check exists; third-party educational sites are registered but not scraped; denylists cannot be complete.
 
 ## Bias considerations
 
@@ -130,22 +138,22 @@ Releases are immutable; GitHub tags map to Hub revisions. Fixes ship in a new ve
 
 See `CITATION.cff` and the README BibTeX entry.
 
-## v1.0.0 snapshot
+## v1.0.1 snapshot
 
 <!-- BEGIN_RELEASE_SNAPSHOT -->
-Pipeline version **1.0.0**.
+Pipeline version **1.0.1**.
 
 | Configuration | Examples | Verified | Human-authored |
 | --- | ---: | ---: | ---: |
-| coding | 238 | 232 | 0 |
-| reasoning | 210 | 210 | 0 |
-| science | 203 | 203 | 0 |
-| mathematics | 252 | 252 | 0 |
+| coding | 314 | 300 | 0 |
+| reasoning | 248 | 248 | 0 |
+| science | 262 | 262 | 0 |
+| mathematics | 334 | 334 | 0 |
 | human | 268 | 240 | 28 |
-| education | 185 | 39 | 0 |
-| core | 1356 | 1176 | 28 |
-| verified | 1176 | 1176 | 0 |
-| all | 1356 | 1176 | 28 |
+| education | 329 | 95 | 0 |
+| core | 1755 | 1479 | 28 |
+| verified | 1479 | 1479 | 0 |
+| all | 1755 | 1479 | 28 |
 
 Rebuild with `open-reason build --config all --seed 42 --out data/release`.
 Full tables: `data/release/statistics.md`.

@@ -1,4 +1,4 @@
-pipeline_version: 1.0.0
+pipeline_version: 1.0.1
 never_fetch_hosts:
 - khanacademy.org
 - www.khanacademy.org

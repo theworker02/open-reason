@@ -1,4 +1,4 @@
-pipeline_version: 1.0.0
+pipeline_version: 1.0.1
 note: These sources cannot be enabled. Reddit is an absolute exclusion.
 sources:
 - id: reddit

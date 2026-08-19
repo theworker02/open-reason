@@ -25,6 +25,20 @@ def test_coverage_generation_emits_examples() -> None:
     assert all(ex.provenance.generator_version for ex in examples)
 
 
+def test_teaching_rows_are_not_auto_verified() -> None:
+    from open_reason.generation import generate_education_release
+
+    examples = generate_education_release(seed=42)
+    teaching = [ex for ex in examples if ex.task_type in {"teaching", "concept_explanation"}]
+    unverified_teaching = [ex for ex in teaching if not ex.quality.verified]
+    assert teaching
+    assert len(unverified_teaching) >= 1
+    for ex in teaching:
+        if ex.quality.verified:
+            assert ex.verification is not None and ex.verification.passed is True
+            assert ex.quality.verification_method in {"numeric", "sympy", "integer-check"}
+
+
 def test_education_coverage_not_thin_overall() -> None:
     from open_reason.generation import generate_education_release
 
