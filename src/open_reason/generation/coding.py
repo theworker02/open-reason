@@ -171,7 +171,10 @@ def _sql_examples(sandbox: Sandbox) -> list[Example]:
             query=task["query"],
             expected=json.dumps(task["expected"]),
         )
-        result = sandbox.run_python({"run.py": runner, "harness.py": "import run\n"}, [sandbox.python_executable, "run.py"])
+        result = sandbox.run_python(
+            {"run.py": runner, "harness.py": "import run\n"},
+            sandbox.python_argv("run.py"),
+        )
         payload = parse_harness_payload(result.stdout)
         passed = bool(payload and payload.get("passed"))
         verification = Verification(

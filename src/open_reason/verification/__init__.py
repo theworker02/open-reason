@@ -31,7 +31,7 @@ def verify_python_files(
     payload_files.setdefault("harness.py", PYTHON_HARNESS)
     if extra_files:
         payload_files.update(extra_files)
-    result = sandbox.run_python(payload_files, [sandbox.python_executable, "harness.py"])
+    result = sandbox.run_python(payload_files, sandbox.python_argv("harness.py"))
     return result, parse_harness_payload(result.stdout)
 
 

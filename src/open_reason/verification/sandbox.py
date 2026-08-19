@@ -32,8 +32,37 @@ class SandboxResult:
         return self.returncode == 0 and not self.timed_out
 
 
+DOCKER_IMAGE = "python:3.12-alpine"
+DOCKER_PYTHON = "python"
+_PYTHON_NAMES = {"python", "python3", "python.exe", "python3.exe", "py.exe", "py"}
+_NODE_NAMES = {"node", "node.exe"}
+
+
 def docker_available() -> bool:
     return shutil.which("docker") is not None
+
+
+def rewrite_command_for_docker(
+    command: list[str],
+    *,
+    python_executable: str | None = None,
+) -> list[str]:
+    """Map host interpreter paths onto binaries that exist in DOCKER_IMAGE.
+
+    GitHub Actions sets sys.executable to a hostedtoolcache path that is not
+    present inside python:3.12-alpine. Always run the image interpreter.
+    """
+    if not command:
+        return list(command)
+    rewritten = list(command)
+    first = rewritten[0]
+    name = Path(first).name.lower()
+    host_python = python_executable or sys.executable
+    if first in {host_python, sys.executable} or name in _PYTHON_NAMES:
+        rewritten[0] = DOCKER_PYTHON
+    elif name in _NODE_NAMES:
+        rewritten[0] = "node"
+    return rewritten
 
 
 class Sandbox:
@@ -48,6 +77,14 @@ class Sandbox:
         self.memory_mb = memory_mb
         self.python_executable = python_executable or sys.executable
         self.backend = "docker" if docker_available() else "subprocess"
+
+    @property
+    def python_command(self) -> str:
+        """Interpreter to invoke for this backend (image python under Docker)."""
+        return DOCKER_PYTHON if self.backend == "docker" else self.python_executable
+
+    def python_argv(self, script: str = "harness.py") -> list[str]:
+        return [self.python_command, script]
 
     def run(
         self,
@@ -67,8 +104,42 @@ class Sandbox:
         *,
         stdin: str | None = None,
     ) -> SandboxResult:
-        command = command or [self.python_executable, "harness.py"]
+        command = command or self.python_argv()
         return self.run(files, command, stdin=stdin)
+
+    def docker_argv(self, work: Path, command: list[str]) -> list[str]:
+        """Build `docker run` argv. The inner command uses image interpreters."""
+        inner = rewrite_command_for_docker(command, python_executable=self.python_executable)
+        return [
+            "docker",
+            "run",
+            "--rm",
+            "--network",
+            "none",
+            "--cpus",
+            "1",
+            "--memory",
+            f"{self.memory_mb}m",
+            "--pids-limit",
+            "64",
+            "--read-only",
+            "--tmpfs",
+            "/tmp:rw,noexec,nosuid,size=64m",
+            "-e",
+            "PYTHONDONTWRITEBYTECODE=1",
+            "-e",
+            "PYTHONHASHSEED=0",
+            "-e",
+            "PYTHONSAFEPATH=1",
+            "-e",
+            "HOME=/tmp",
+            "-v",
+            f"{work}:/work:ro",
+            "-w",
+            "/work",
+            DOCKER_IMAGE,
+            *inner,
+        ]
 
     def _run_subprocess(
         self,
@@ -146,27 +217,7 @@ class Sandbox:
         work = Path(tempfile.mkdtemp(prefix="open-reason-docker-"))
         try:
             _write_files(work, files)
-            docker_cmd = [
-                "docker",
-                "run",
-                "--rm",
-                "--network",
-                "none",
-                "--cpus",
-                "1",
-                "--memory",
-                f"{self.memory_mb}m",
-                "--pids-limit",
-                "64",
-                "--read-only",
-                "--tmpfs",
-                "/tmp:rw,noexec,nosuid,size=64m",
-                "-v",
-                f"{work}:/work:ro",
-                "-w",
-                "/work",
-                "python:3.12-alpine",
-            ] + command
+            docker_cmd = self.docker_argv(work, command)
             try:
                 completed = subprocess.run(
                     docker_cmd,
