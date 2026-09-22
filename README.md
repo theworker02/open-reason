@@ -22,10 +22,10 @@
 </p>
 
 <p align="center">
-  <img src="assets/banner.png" alt="Open Reason â€” Open. Licensed. Provenanced. Verified." width="100%">
+  <img src="assets/banner.png" alt="Open Reason Ã¢â‚¬â€ Open. Licensed. Provenanced. Verified." width="100%">
 </p>
 
-> **Open Reason does not use Reddit as a data source.** Case study: [docs/why-not-reddit.md](docs/why-not-reddit.md) Â· [project site](https://theworker02.github.io/open-reason/why-not-reddit.html).
+> **Open Reason does not use Reddit as a data source.** Case study: [docs/why-not-reddit.md](docs/why-not-reddit.md) Ã‚Â· [project site](https://theworker02.github.io/open-reason/why-not-reddit.html).
 
 ## Official links
 
@@ -69,7 +69,7 @@ See **[CHANGELOG.md](CHANGELOG.md)** for every release.
 
 ## Why it exists
 
-Most public â€œreasoningâ€ corpora are web dumps, unverified generations, or evaluation sets reused as training data. Open Reason is built so every row can answer: Where did this come from? May I use it? Was the answer actually checked?
+Most public Ã¢â‚¬Å“reasoningÃ¢â‚¬Â corpora are web dumps, unverified generations, or evaluation sets reused as training data. Open Reason is built so every row can answer: Where did this come from? May I use it? Was the answer actually checked?
 
 It is a dataset **and** the pipeline that produces it.
 
@@ -110,7 +110,7 @@ core = load_dataset("theworker02/open-reason", "core")
 
 ### 1. Auto-approve sources
 
-Auto-approve is a **license policy**, not a scrape. It enables original Open Reason tasks inspired by a sourceâ€™s public curriculum or docs. It never copies lectures, never sets `verbatim=true` for NC/SA/unknown licenses, and never enables Reddit.
+Auto-approve is a **license policy**, not a scrape. It enables original Open Reason tasks inspired by a sourceÃ¢â‚¬â„¢s public curriculum or docs. It never copies lectures, never sets `verbatim=true` for NC/SA/unknown licenses, and never enables Reddit.
 
 <p align="center">
   <img src="assets/demo/approve.gif" alt="open-reason sources --approve --apply" width="720">
@@ -167,25 +167,25 @@ coding | reasoning | science | mathematics | human | education | core | verified
 ## Auto-approve policy
 
 ```text
-permissive SPDX + commercial + no share-alike  â†’  original tasks (verbatim still off until a reviewed crawler)
-education / docs with unclear or SA/NC terms   â†’  original tasks only
-Reddit / Quora / prohibited                    â†’  never
-Stack Overflow                                 â†’  original rewritten seeds only (not verbatim CC BY-SA dumps)
+permissive SPDX + commercial + no share-alike  Ã¢â€ â€™  original tasks (verbatim still off until a reviewed crawler)
+education / docs with unclear or SA/NC terms   Ã¢â€ â€™  original tasks only
+Reddit / Quora / prohibited                    Ã¢â€ â€™  never
+Stack Overflow                                 Ã¢â€ â€™  original rewritten seeds only (not verbatim CC BY-SA dumps)
 ```
 
-`quality.verified` is never set from votes, views, or â€œaccepted answer.â€
+`quality.verified` is never set from votes, views, or Ã¢â‚¬Å“accepted answer.Ã¢â‚¬Â
 
 ## Pipeline
 
 ```text
 source registry
-    â†’ license-policy auto-approve
-    â†’ original task generation
-    â†’ normalize / validate / Reddit block
-    â†’ execute or symbolic check
-    â†’ deduplicate
-    â†’ contamination report
-    â†’ statistics + Parquet / JSONL
+    Ã¢â€ â€™ license-policy auto-approve
+    Ã¢â€ â€™ original task generation
+    Ã¢â€ â€™ normalize / validate / Reddit block
+    Ã¢â€ â€™ execute or symbolic check
+    Ã¢â€ â€™ deduplicate
+    Ã¢â€ â€™ contamination report
+    Ã¢â€ â€™ statistics + Parquet / JSONL
 ```
 
 ```bash
@@ -198,19 +198,19 @@ open-reason benchmark
 
 ## Schema
 
-Every example carries knowledge, task, evidence, solution, verification, provenance, educational position, and quality â€” not only `prompt` + `answer`.
+Every example carries knowledge, task, evidence, solution, verification, provenance, educational position, and quality Ã¢â‚¬â€ not only `prompt` + `answer`.
 
 ```json
 {
-  "id": "or-mathematics-synthetic-â€¦",
+  "id": "or-mathematics-synthetic-Ã¢â‚¬Â¦",
   "domain": "mathematics",
   "task_type": "algebra",
-  "prompt": "â€¦",
+  "prompt": "Ã¢â‚¬Â¦",
   "observations": [],
   "constraints": [],
   "plan": [],
-  "solution": "â€¦",
-  "answer": "â€¦",
+  "solution": "Ã¢â‚¬Â¦",
+  "answer": "Ã¢â‚¬Â¦",
   "verification": {"method": "sympy", "passed": true},
   "provenance": {"source_type": "synthetic", "license_spdx": "Apache-2.0"},
   "quality": {"tier": "S", "verified": true, "evidence_confidence": 0.81},
@@ -269,14 +269,14 @@ Full tables: `data/release/statistics.md`.
 
 - [Project site](https://theworker02.github.io/open-reason/)
 - [Architecture](docs/architecture.md)
-- [Data sources](docs/data-sources.md) Â· [Why not Reddit](docs/why-not-reddit.md)
+- [Data sources](docs/data-sources.md) Ã‚Â· [Why not Reddit](docs/why-not-reddit.md)
 - [Knowledge graph](docs/knowledge-graph.md)
-- [Provenance](docs/provenance.md) Â· [Licensing](docs/licensing.md) Â· [Quality](docs/quality.md)
-- [Validation](docs/validation.md) Â· [Verification](docs/verification.md) Â· [Sandbox](docs/sandbox.md)
-- [Contamination](docs/contamination.md) Â· [Releases](docs/releases.md)
-- [Hugging Face](docs/huggingface.md) Â· [Dataset card](DATA_CARD.md)
-- [Evaluation](docs/evaluation.md) Â· [Training](docs/training.md)
-- [Contributing](CONTRIBUTING.md) Â· [Security](SECURITY.md)
+- [Provenance](docs/provenance.md) Ã‚Â· [Licensing](docs/licensing.md) Ã‚Â· [Quality](docs/quality.md)
+- [Validation](docs/validation.md) Ã‚Â· [Verification](docs/verification.md) Ã‚Â· [Sandbox](docs/sandbox.md)
+- [Contamination](docs/contamination.md) Ã‚Â· [Releases](docs/releases.md)
+- [Hugging Face](docs/huggingface.md) Ã‚Â· [Dataset card](DATA_CARD.md)
+- [Evaluation](docs/evaluation.md) Ã‚Â· [Training](docs/training.md)
+- [Contributing](CONTRIBUTING.md) Ã‚Â· [Security](SECURITY.md)
 
 ## Citation
 
@@ -300,3 +300,7 @@ Also see [`CITATION.cff`](CITATION.cff).
 ## License & acquisition
 
 This project is **proprietary**. Production use, redistribution, and commercial deployment require a written commercial license or completed acquisition. See [LICENSE](./LICENSE) and [ACQUISITION.md](./ACQUISITION.md). Contact [@theworker02](https://github.com/theworker02).
+
+## Acquisition diligence
+
+Buyer-facing diligence materials live in [docs/acquisition/](./docs/acquisition/). Commercial licensing contact path: [COMMERCIAL.md](./COMMERCIAL.md).
