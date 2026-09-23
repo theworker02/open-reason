@@ -10,22 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-0B1F33" alt="Apache 2.0"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/pipeline-v1.4.2-2A6F6F" alt="v1.4.2"></a>
-  <a href="docs/data-sources.md"><img src="https://img.shields.io/badge/Reddit-forbidden-b91c1c" alt="Reddit forbidden"></a>
-  <a href="https://huggingface.co/datasets/theworker02/open-reason"><img src="https://img.shields.io/badge/Hugging%20Face-open--reason-FFD21E" alt="Hugging Face"></a>
-  <a href="https://huggingface.co/theworker02/open-reason-small"><img src="https://img.shields.io/badge/model-open--reason--small-2A6F6F" alt="open-reason-small"></a>
-  <a href="https://huggingface.co/theworker02/open-reason-medium"><img src="https://img.shields.io/badge/model-open--reason--medium-2A6F6F" alt="open-reason-medium"></a>
-  <a href="https://huggingface.co/theworker02/open-reason-large"><img src="https://img.shields.io/badge/model-open--reason--large-2A6F6F" alt="open-reason-large"></a>
-  <a href="https://huggingface.co/theworker02/open-reason-xl"><img src="https://img.shields.io/badge/model-open--reason--xl-2A6F6F" alt="open-reason-xl"></a>
-  <a href="https://theworker02.github.io/open-reason/"><img src="https://img.shields.io/badge/site-GitHub%20Pages-2A6F6F" alt="GitHub Pages"></a>
-</p>
-
-<p align="center">
-  <img src="assets/banner.png" alt="Open Reason Ã¢â‚¬â€ Open. Licensed. Provenanced. Verified." width="100%">
-</p>
-
-> **Open Reason does not use Reddit as a data source.** Case study: [docs/why-not-reddit.md](docs/why-not-reddit.md) Ã‚Â· [project site](https://theworker02.github.io/open-reason/why-not-reddit.html).
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-proprietary-0B1F33) Ãƒâ€šÃ‚Â· [project site](https://theworker02.github.io/open-reason/why-not-reddit.html).
 
 ## Official links
 
@@ -69,7 +54,7 @@ See **[CHANGELOG.md](CHANGELOG.md)** for every release.
 
 ## Why it exists
 
-Most public Ã¢â‚¬Å“reasoningÃ¢â‚¬Â corpora are web dumps, unverified generations, or evaluation sets reused as training data. Open Reason is built so every row can answer: Where did this come from? May I use it? Was the answer actually checked?
+Most public ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œreasoningÃƒÂ¢Ã¢â€šÂ¬Ã‚Â corpora are web dumps, unverified generations, or evaluation sets reused as training data. Open Reason is built so every row can answer: Where did this come from? May I use it? Was the answer actually checked?
 
 It is a dataset **and** the pipeline that produces it.
 
@@ -110,7 +95,7 @@ core = load_dataset("theworker02/open-reason", "core")
 
 ### 1. Auto-approve sources
 
-Auto-approve is a **license policy**, not a scrape. It enables original Open Reason tasks inspired by a sourceÃ¢â‚¬â„¢s public curriculum or docs. It never copies lectures, never sets `verbatim=true` for NC/SA/unknown licenses, and never enables Reddit.
+Auto-approve is a **license policy**, not a scrape. It enables original Open Reason tasks inspired by a sourceÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢s public curriculum or docs. It never copies lectures, never sets `verbatim=true` for NC/SA/unknown licenses, and never enables Reddit.
 
 <p align="center">
   <img src="assets/demo/approve.gif" alt="open-reason sources --approve --apply" width="720">
@@ -167,25 +152,25 @@ coding | reasoning | science | mathematics | human | education | core | verified
 ## Auto-approve policy
 
 ```text
-permissive SPDX + commercial + no share-alike  Ã¢â€ â€™  original tasks (verbatim still off until a reviewed crawler)
-education / docs with unclear or SA/NC terms   Ã¢â€ â€™  original tasks only
-Reddit / Quora / prohibited                    Ã¢â€ â€™  never
-Stack Overflow                                 Ã¢â€ â€™  original rewritten seeds only (not verbatim CC BY-SA dumps)
+permissive SPDX + commercial + no share-alike  ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢  original tasks (verbatim still off until a reviewed crawler)
+education / docs with unclear or SA/NC terms   ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢  original tasks only
+Reddit / Quora / prohibited                    ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢  never
+Stack Overflow                                 ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢  original rewritten seeds only (not verbatim CC BY-SA dumps)
 ```
 
-`quality.verified` is never set from votes, views, or Ã¢â‚¬Å“accepted answer.Ã¢â‚¬Â
+`quality.verified` is never set from votes, views, or ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œaccepted answer.ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â
 
 ## Pipeline
 
 ```text
 source registry
-    Ã¢â€ â€™ license-policy auto-approve
-    Ã¢â€ â€™ original task generation
-    Ã¢â€ â€™ normalize / validate / Reddit block
-    Ã¢â€ â€™ execute or symbolic check
-    Ã¢â€ â€™ deduplicate
-    Ã¢â€ â€™ contamination report
-    Ã¢â€ â€™ statistics + Parquet / JSONL
+    ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ license-policy auto-approve
+    ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ original task generation
+    ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ normalize / validate / Reddit block
+    ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ execute or symbolic check
+    ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ deduplicate
+    ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ contamination report
+    ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ statistics + Parquet / JSONL
 ```
 
 ```bash
@@ -198,19 +183,19 @@ open-reason benchmark
 
 ## Schema
 
-Every example carries knowledge, task, evidence, solution, verification, provenance, educational position, and quality Ã¢â‚¬â€ not only `prompt` + `answer`.
+Every example carries knowledge, task, evidence, solution, verification, provenance, educational position, and quality ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â not only `prompt` + `answer`.
 
 ```json
 {
-  "id": "or-mathematics-synthetic-Ã¢â‚¬Â¦",
+  "id": "or-mathematics-synthetic-ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦",
   "domain": "mathematics",
   "task_type": "algebra",
-  "prompt": "Ã¢â‚¬Â¦",
+  "prompt": "ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦",
   "observations": [],
   "constraints": [],
   "plan": [],
-  "solution": "Ã¢â‚¬Â¦",
-  "answer": "Ã¢â‚¬Â¦",
+  "solution": "ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦",
+  "answer": "ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦",
   "verification": {"method": "sympy", "passed": true},
   "provenance": {"source_type": "synthetic", "license_spdx": "Apache-2.0"},
   "quality": {"tier": "S", "verified": true, "evidence_confidence": 0.81},
@@ -269,14 +254,14 @@ Full tables: `data/release/statistics.md`.
 
 - [Project site](https://theworker02.github.io/open-reason/)
 - [Architecture](docs/architecture.md)
-- [Data sources](docs/data-sources.md) Ã‚Â· [Why not Reddit](docs/why-not-reddit.md)
+- [Data sources](docs/data-sources.md) Ãƒâ€šÃ‚Â· [Why not Reddit](docs/why-not-reddit.md)
 - [Knowledge graph](docs/knowledge-graph.md)
-- [Provenance](docs/provenance.md) Ã‚Â· [Licensing](docs/licensing.md) Ã‚Â· [Quality](docs/quality.md)
-- [Validation](docs/validation.md) Ã‚Â· [Verification](docs/verification.md) Ã‚Â· [Sandbox](docs/sandbox.md)
-- [Contamination](docs/contamination.md) Ã‚Â· [Releases](docs/releases.md)
-- [Hugging Face](docs/huggingface.md) Ã‚Â· [Dataset card](DATA_CARD.md)
-- [Evaluation](docs/evaluation.md) Ã‚Â· [Training](docs/training.md)
-- [Contributing](CONTRIBUTING.md) Ã‚Â· [Security](SECURITY.md)
+- [Provenance](docs/provenance.md) Ãƒâ€šÃ‚Â· [Licensing](docs/licensing.md) Ãƒâ€šÃ‚Â· [Quality](docs/quality.md)
+- [Validation](docs/validation.md) Ãƒâ€šÃ‚Â· [Verification](docs/verification.md) Ãƒâ€šÃ‚Â· [Sandbox](docs/sandbox.md)
+- [Contamination](docs/contamination.md) Ãƒâ€šÃ‚Â· [Releases](docs/releases.md)
+- [Hugging Face](docs/huggingface.md) Ãƒâ€šÃ‚Â· [Dataset card](DATA_CARD.md)
+- [Evaluation](docs/evaluation.md) Ãƒâ€šÃ‚Â· [Training](docs/training.md)
+- [Contributing](CONTRIBUTING.md) Ãƒâ€šÃ‚Â· [Security](SECURITY.md)
 
 ## Citation
 
