@@ -111,10 +111,10 @@ def test_hf_sync_workflow_identity_is_pinned() -> None:
     assert "types: [published]" in trigger
     assert "workflow_dispatch:" in trigger
     assert "push:" not in trigger
-    assert "subdirectory: distribution/dataset" in text
-    assert "repo_type: dataset" in text
-    assert "huggingface_repo_id: theworker02/open-reason" in text
-    assert "huggingface/hub-sync@v0.1.0" in text
+    assert "hf upload theworker02/open-reason distribution/dataset . --repo-type dataset" in text
+    assert "HF_TOKEN: ${{ secrets.HF_TOKEN }}" in text
+    assert 'if [ ! -d distribution/dataset ]; then' in text
+    assert "huggingface/hub-sync@v0.1.0" not in text
     assert "environment:" not in text
 
 

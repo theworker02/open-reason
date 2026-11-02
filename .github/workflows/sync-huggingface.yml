@@ -22,10 +22,18 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v4
-      - uses: huggingface/hub-sync@v0.1.0
-        with:
-          github_repo_id: ${{ github.repository }}
-          huggingface_repo_id: theworker02/open-reason
-          repo_type: dataset
-          subdirectory: distribution/dataset
-          hf_token: ${{ secrets.HF_TOKEN }}
+      - name: Install Hugging Face CLI
+        run: python -m pip install "huggingface_hub[cli]"
+      - name: Upload dataset-card directory
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          if [ -z "$HF_TOKEN" ]; then
+            echo "::error::HF_TOKEN repository secret is required for upload."
+            exit 1
+          fi
+          if [ ! -d distribution/dataset ]; then
+            echo "::error::distribution/dataset directory not found."
+            exit 1
+          fi
+          hf upload theworker02/open-reason distribution/dataset . --repo-type dataset
